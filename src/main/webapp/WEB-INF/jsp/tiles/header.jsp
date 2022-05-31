@@ -20,7 +20,7 @@
 	        <a href="/index.do">
 	          <img border="0" src="images/logo.png" /></a>
 	      </td>
-	      <td style="text-align:center" width="63%">
+	      <td style="text-align:right" width="63%">
 	        <!--<form action="book/search" method="post">     	
 	           <input style="width:300px; height:25px" name="keyword" />&nbsp;
 	          <input src="images/search.png" type="image"/> 

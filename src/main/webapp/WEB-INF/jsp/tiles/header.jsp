@@ -33,37 +33,37 @@
 					<%-- <a href="<c:url value="/user/login"/>">
 			        <img border="0" name="img_login" src="../images/login.png" /></a> --%>
 			        
-			        <a href="user/cart">
+			        <a href="/user/cart">
 			          		<img border="0" name="img_cart" src="/images/cart.png" /></a>
 			           	<img border="0" src="/images/separator.gif" />
-			           	<a href="user/mypage">
+			           	<a href="/user/mypage">
 			            	<img border="0" name="img_mypage" src="/images/mypage.png" /></a> 
 			         	<img border="0" src="/images/separator.gif" />
-			         	<a href="user/logout">
+			         	<a href="/user/logout">
 			            	<img border="0" name="img_logout" src="/images/logout.png" /></a>
 				</c:if>
 			    <c:if test="${!empty userSession.account}" > <!-- login -->
 			    	<c:if test="${user.isManager==true}" ><!-- manager -->
 		    			<img border="0" src="/images/isManager.png" alt="isManager" />
 				      	<!-- <img border="0" src="../images/separator.gif" />
-				      	<a href="manager/bookDelete">
+				      	<a href="/manager/bookDelete">
 			          		<img border="0" name="img_book_mg" src="/images/book_mg.png" /></a>
 			           	<img border="0" src="/images/separator.gif" />
-			           	<a href="manager/auctionDelete">
+			           	<a href="/manager/auctionDelete">
 			          		<img border="0" name="img_auction_mg" src="/images/auction_mg.png" /></a>
 			           	<img border="0" src="/images/separator.gif" />
-			           	<a href="manager/communityDelete">
+			           	<a href="/manager/communityDelete">
 			          		<img border="0" name="img_community_mg" src="/images/community.png" /></a>
 			           	<img border="0" src="/images/separator.gif" />  -->
 			    	</c:if>
 				    <c:if test="${user.isManager==false}">
-						<a href="user/cart">
+						<a href="/user/cart">
 			          		<img border="0" name="img_cart" src="/images/cart.png" /></a>
 			           	<img border="0" src="/images/separator.gif" />
-			           	<a href="user/mypage">
+			           	<a href="/user/mypage">
 			            	<img border="0" name="img_mypage" src="/images/mypage.png" /></a> 
 			         	<img border="0" src="/images/separator.gif" />
-			         	<a href="user/logout">
+			         	<a href="/user/logout">
 			            	<img border="0" name="img_logout" src="/images/logout.png" /></a>
 					</c:if>
 			    </c:if>

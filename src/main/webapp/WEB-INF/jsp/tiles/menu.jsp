@@ -60,7 +60,7 @@
 	  </td>
   </tr>
     <tr>
-      <td valign="top" width="100%">
+      <td valign="center" width="100%">
         
       
 

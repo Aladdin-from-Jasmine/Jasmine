@@ -10,21 +10,21 @@ public class CommunityController {
 
 	@RequestMapping(value= {"create"})
 	public String create() {
-		return "create";
+		return "community/create";
 	}
 	
 	@RequestMapping(value= {"update"})
 	public String update() {
-		return "update";
+		return "community/update";
 	}
 	
 	@RequestMapping(value= {"detail"})
 	public String detail() {
-		return "detail";
+		return "community/detail";
 	}
 	
 	@RequestMapping(value= {"list"})
 	public String list() {
-		return "list";
+		return "community/list";
 	}
 }

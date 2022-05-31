@@ -30,8 +30,17 @@
 	      </td>
 	      <td style="text-align:right" width="27%">
 				<c:if test="${empty userSession.account}" > <!-- no login -->
-					<a href="<c:url value="/user/login"/>">
-			        <img border="0" name="img_login" src="../images/login.png" /></a>
+					<%-- <a href="<c:url value="/user/login"/>">
+			        <img border="0" name="img_login" src="../images/login.png" /></a> --%>
+			        
+			        <a href="user/cart">
+			          		<img border="0" name="img_cart" src="images/cart.png" /></a>
+			           	<img border="0" src="images/separator.gif" />
+			           	<a href="user/mypage">
+			            	<img border="0" name="img_mypage" src="images/mypage.png" /></a> 
+			         	<img border="0" src="images/separator.gif" />
+			         	<a href="user/logout">
+			            	<img border="0" name="img_logout" src="images/logout.png" /></a>
 				</c:if>
 			    <c:if test="${!empty userSession.account}" > <!-- login -->
 			    	<c:if test="${user.isManager==true}" ><!-- manager -->

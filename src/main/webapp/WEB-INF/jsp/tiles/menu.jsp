@@ -19,24 +19,24 @@
 				</tr>
 				<tr>
 			  		<td> 
-			  			<a href="manager/bookDelete">
+			  			<a href="manager/book">
 		           		<img border="0" name="img_signin" src="images/book_menu.png" /></a>
 			  		</td>
 				</tr>
 				<tr>
 					<td>
-			  			<a href="manager/auctionDelete">
+			  			<a href="manager/auction">
 		            	<img border="0" name="img_signin" src="images/auction_menu.png" /></a>
 			  		</td>
 				</tr>
 				<tr>
 					<td>
-				  		<a href="manager/communityDelete">
+				  		<a href="manager/community">
 			            <img border="0" name="img_signin" src="images/community_menu.png" /></a>
 			  		</td>
 				</tr>
 			</c:if>
-			<%-- <c:if test="${user.isManager==false}" > --%><!-- user -->		
+			 <%-- <c:if test="${user.isManager==false}" > --%> <!-- user -->		
 				<tr>
 			  		<td> 
 			  			<a href="book/list">
@@ -55,7 +55,7 @@
 			            <img border="0" name="img_signin" src="images/community_menu.png" /></a>
 			  		</td>
 				</tr>
-			<%-- </c:if> --%>
+			 <%-- </c:if> --%> 
 	  	</table>
 	  </td>
   </tr>

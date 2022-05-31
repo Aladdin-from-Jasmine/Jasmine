@@ -29,7 +29,7 @@
 	</definition> 
 	
 	<definition name="community/*" extends="base_layout">
-	 	<put-attribute name="title" value="Jasmine_User_Community" type="string"/>
+	 	<put-attribute name="title" value="Jasmine_Community" type="string"/>
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/tiles/community/{1}.jsp" />
 	</definition> 

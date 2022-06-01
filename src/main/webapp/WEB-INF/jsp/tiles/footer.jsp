@@ -18,7 +18,7 @@
 	        <p>
 	           Choi yuna, 20181023</br>
 	           Jeon hyein, 20181009</br>
-	           Jung yeonlim, 20181012</br>
+	           Jeong yeonlim, 20181012</br>
 	           Song hyunsoo, 20180976</br>
 	        </p>
 	      </td>

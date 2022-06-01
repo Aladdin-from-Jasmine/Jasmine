@@ -10,21 +10,21 @@ public class ManagerController {
 
 	@RequestMapping(value= {"user"})
 	public String user() {
-		return "user";
+		return "manager/user";
 	}
 	
 	@RequestMapping(value= {"book"})
 	public String book() {
-		return "book";
+		return "manager/book";
 	}
 	
 	@RequestMapping(value= {"auction"})
 	public String auction() {
-		return "auction";
+		return "manager/auction";
 	}
 	
 	@RequestMapping(value= {"community"})
 	public String community() {
-		return "community";
+		return "manager/community";
 	}
 }

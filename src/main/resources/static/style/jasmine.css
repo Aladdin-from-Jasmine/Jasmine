@@ -61,6 +61,7 @@ table.top tr td {
 
 table.t1 {
     width: 100%;
+    height : 65%;
     border: none;
     border-collapse: separate;
     border-spacing : 10px 50px;

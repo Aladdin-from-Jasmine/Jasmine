@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="base_layout"
+		template="/WEB-INF/jsp/tiles/template/layout.jsp"> 
+		<put-attribute name="title" value="Jasmine" type="string"/>
+		<put-attribute name="header" value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/jsp/tiles/menu.jsp" />
+	</definition>
+	
+	 <definition name="index" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/index.jsp" />
+	</definition> 
+	
+	<definition name="tiles/*" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/{1}.jsp" />
+	</definition> 
+ 
+	 <definition name="manager/*" extends="base_layout">
+	 	<put-attribute name="title" value="Jasmine (ManagerMode)" type="string"/>
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/manager/{1}.jsp" />
+	</definition> 
+	
+	<definition name="community/*" extends="base_layout">
+	 	<put-attribute name="title" value="Jasmine|Community" type="string"/>
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/community/{1}.jsp" />
+	</definition> 
+ 
+ 	<!-- <definition name="tiles/Category" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/Category.jsp" />
+	</definition>
+
+	<definition name="tiles/SignonForm" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/SignonForm.jsp" />			
+	</definition>
+	
+	<definition name="tiles/EditAccountForm" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/EditAccountForm.jsp" />			
+	</definition>
+  -->
+</tiles-definitions>

@@ -25,9 +25,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
-import dongduk.cs.ssd.controller.user.UserSession;
-import dongduk.cs.ssd.domain.Auction;
-import dongduk.cs.ssd.service.AuctionService;
+import com.ssg.Jasmine.controller.user.UserSession;
+import com.ssg.Jasmine.domain.Auction;
+import com.ssg.Jasmine.service.AuctionService;
 
 
 @Controller

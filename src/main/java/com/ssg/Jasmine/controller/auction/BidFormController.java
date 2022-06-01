@@ -16,13 +16,13 @@ import org.springframework.web.bind.support.SessionStatus;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import dongduk.cs.ssd.domain.Bid;
-import dongduk.cs.ssd.service.BidService;
-import dongduk.cs.ssd.domain.User;
-import dongduk.cs.ssd.service.UserService;
-import dongduk.cs.ssd.controller.user.UserSession;
-import dongduk.cs.ssd.domain.Auction;
-import dongduk.cs.ssd.service.AuctionService;
+import com.ssg.Jasmine.domain.Bid;
+import com.ssg.Jasmine.service.BidService;
+import com.ssg.Jasmine.domain.User;
+import com.ssg.Jasmine.service.UserService;
+import com.ssg.Jasmine.controller.user.UserSession;
+import com.ssg.Jasmine.domain.Auction;
+import com.ssg.Jasmine.service.AuctionService;
 
 
 

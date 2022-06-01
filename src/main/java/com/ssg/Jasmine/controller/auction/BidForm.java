@@ -2,7 +2,7 @@ package com.ssg.Jasmine.controller.auction;
 
 import javax.validation.Valid;
 
-import dongduk.cs.ssd.domain.Bid;
+import com.ssg.Jasmine.domain.Bid;
 
 
 public class BidForm {

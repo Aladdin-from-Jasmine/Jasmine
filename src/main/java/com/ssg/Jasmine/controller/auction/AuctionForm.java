@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.Valid;
 
-import dongduk.cs.ssd.domain.Auction;
+import com.ssg.Jasmine.domain.Auction;
 
 
 @SuppressWarnings("serial")

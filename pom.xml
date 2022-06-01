@@ -15,7 +15,31 @@
    <description>Jasmine project for Spring Boot</description>
    <properties>
       <java.version>11</java.version>
-   </properties>
+		<!-- <java.version>1.8</java.version>  -->
+		<!-- 아래는 수정해야 할 수도 있음.  -->
+		<spring.version>5.2.4.RELEASE</spring.version>
+		<mybatis.version>3.4.5</mybatis.version>
+		<mybatis-spring.version>1.3.1</mybatis-spring.version>
+		<dbcp.version>2.2.0</dbcp.version>
+		<servlet-api.version>3.1.0</servlet-api.version>
+		<jsp.version>2.3.1</jsp.version>
+		<jstl.version>1.2</jstl.version>
+		<logback-classic.version>1.1.2</logback-classic.version>
+		<aspectj.version>1.6.10</aspectj.version>
+		<hsqldb.version>2.3.5</hsqldb.version>
+		<junit.version>4.12</junit.version>
+		<commons-fileupload.version>1.3.3</commons-fileupload.version>
+		<urlrewrite.version>3.1.0</urlrewrite.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<validation.version>2.0.1.Final</validation.version>
+		<hibernate.version>6.0.7.Final</hibernate.version>
+	</properties>
+   
+   
+   
+   
    <dependencies>
       <dependency>
          <groupId>org.springframework.boot</groupId>
@@ -84,6 +108,18 @@
          <artifactId>ojdbc8</artifactId>
          <version>21.3.0.0</version>         
          <scope>runtime</scope>
+      </dependency>
+      
+      <!-- JavaBean Validation API -->
+      <dependency>
+         <groupId>javax.validation</groupId>
+         <artifactId>validation-api</artifactId>
+         <version>${validation.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.hibernate.validator</groupId>
+         <artifactId>hibernate-validator</artifactId>
+         <version>${hibernate.version}</version>
       </dependency>
 	  
    </dependencies>

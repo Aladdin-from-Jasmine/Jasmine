@@ -51,6 +51,29 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- MyBatis -->
+		<dependency>
+     		<groupId>org.mybatis</groupId>
+      		<artifactId>mybatis</artifactId>
+      		<version>${mybatis.version}</version>
+    	</dependency>
+    	<dependency>
+      		<groupId>org.mybatis</groupId>
+      		<artifactId>mybatis-spring</artifactId>
+      		<version>${mybatis-spring.version}</version>
+    	</dependency>
+    	
+    	<!-- Oracle JDBC driver -->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>21.3.0.0</version>			
+			<scope>runtime</scope>
+		</dependency>
+    	
+    	
+		
 	</dependencies>
 
 	<build>

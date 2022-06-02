@@ -41,6 +41,9 @@
 			         	<img border="0" src="/images/separator.gif" />
 			         	<a href="/user/register">
 			            	<img border="0" name="img_join" src="/images/join.png" /></a>
+			            	
+			            <a href="/user/login">
+			            	<img border="0" name="img_join" src="/images/login.png" /></a>	
 				</c:if>
 			    <c:if test="${!empty userSession.account}" > <!-- login -->
 			    	<c:if test="${user.isManager==true}" ><!-- manager -->

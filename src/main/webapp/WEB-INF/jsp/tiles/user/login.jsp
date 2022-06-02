@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<%@ include file="../IncludeTop.jsp" %> 
+<%-- <%@ include file="../IncludeTop.jsp" %> 
 
 <style>
 	.error {
@@ -14,12 +12,12 @@
 		/* font-weight: bold; */
 	}
 </style>
-
+ --%>
 <c:if test="${deleteComplete == 1}">
 	<body onLoad="alert('회원탈퇴가 완료되었습니다.')">
 </c:if>
 
-<body bgcolor="black">
+<!-- <body bgcolor="black"> -->
 	<div class="container" style="padding: 100px">
 		<div class="row block-9 justify-content-center mb-5">
 			<div class="col-md-8 mb-md-5">
@@ -27,7 +25,7 @@
 				<h2 class="text-center">Login</h2>
 				<br/>
 				
-				<form:form modelAttribute="loginForm" method="POST" action="login.do" class="bg-light p-5 contact-form">
+				<form:form modelAttribute="loginForm" method="POST" action="login" class="bg-light p-5 contact-form">
 					<form:errors cssClass="error" /> <br />
 					<div class="form-group">
 						<label for="userId">ID</label> 
@@ -51,5 +49,5 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+<!-- </body>
+</html> -->

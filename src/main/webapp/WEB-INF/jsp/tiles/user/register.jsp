@@ -8,13 +8,6 @@
 	}
 
 </script>
-<!--  <style>
-	.error {
-		color: #ff0000;
-		/* font-weight: bold; */
-	}
-</style>-->
-
 <!--<body bgcolor="black">-->
 	<div class="container" style="padding: 100px">
 		<div class="row block-9 justify-content-center mb-5">
@@ -51,7 +44,7 @@
 					<div class="form-group">
 						<label for="name">Name</label> 
 						<form:input path="user.username" class="form-control" placeholder="Name" />
-<%-- 						<form:errors path="user.userName" cssClass="error" />
+<%-- 						<form:errors path="user.username" cssClass="error" />
  --%>					</div>
 
 					<div class="form-group">

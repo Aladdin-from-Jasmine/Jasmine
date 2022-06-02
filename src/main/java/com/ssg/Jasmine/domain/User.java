@@ -15,6 +15,9 @@ public class User implements Serializable {
 	private String phone;
 
 	/* JavaBeans Properties */
+	public User() {
+		
+	}
 
 	public String getUserId() {
 		return userId;

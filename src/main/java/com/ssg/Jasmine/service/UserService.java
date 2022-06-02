@@ -11,7 +11,7 @@ import com.ssg.Jasmine.domain.User;
 
 public interface UserService {
 
-	User getUser(String emailId, String password); // 로그인 시 사용
+	User getUser(String userId, String password); // 로그인 시 사용
 	
 	User getUserByUserId(String userId) throws DataAccessException;
 	

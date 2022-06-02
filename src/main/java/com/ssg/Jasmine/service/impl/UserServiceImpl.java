@@ -16,8 +16,8 @@ import com.ssg.Jasmine.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 	
-	//@Autowired(required=false)
-	@Autowired
+	@Autowired(required=false)
+//	@Autowired
 	private UserDao userDao;
 	
 	public User getUser(String userId, String password) {

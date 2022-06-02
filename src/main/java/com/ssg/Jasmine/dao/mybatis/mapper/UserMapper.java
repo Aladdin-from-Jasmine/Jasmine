@@ -2,12 +2,15 @@ package com.ssg.Jasmine.dao.mybatis.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.User;
 
+@Mapper
 public interface UserMapper {
 
-	User getUser(String userId, String passwd);
+	User getUser(String userId, String password);
 	
 	User getUserByEmail(String email);
 	

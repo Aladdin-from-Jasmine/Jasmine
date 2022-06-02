@@ -2,6 +2,7 @@ package com.ssg.Jasmine.dao.mybatis;
 
 import java.util.List;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,7 @@ import com.ssg.Jasmine.domain.User;
 @Repository
 public class MybatisUserDao implements UserDao {
 	
-	@Autowired
+	@Autowired(required=false)
 	private UserMapper userMapper;
 	
 	public User getUser(String userId, String password) throws DataAccessException {

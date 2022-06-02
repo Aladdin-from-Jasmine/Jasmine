@@ -7,14 +7,14 @@
   <select id="getUser" resultType="User">
     SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
-    WHERE EMAIL = #{param1}
+    WHERE USERID = #{param1}
       AND PASSWORD = #{param2}
   </select> 
   
   <select id="getUserByEmail" resultType="User">
   	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
-    WHERE EMAIL = #{param1}
+    WHERE USERID = #{param1}
   </select>
   
   <select id="getUserByUserId" resultType="User">
@@ -49,7 +49,7 @@
   	WHERE USERID = #{userId}
   </update>
 
-	<select id="getAuctionOrderList" resultType="Order">
+	<!-- <select id="getAuctionOrderList" resultType="Order">
 		SELECT s.auctionId, o.orderId, o.orderDate, o.totalPrice
 		FROM orders o, successBidders s
 		WHERE o.orderId = s.orderId and o.userId = #{param1}
@@ -69,7 +69,7 @@
   	FROM groupBuys
   	WHERE userId = #{userId}
   	ORDER BY groupBuyId DESC
-  </select> <!-- user가 등록한 GroupBuyList를 가져옴 for 마이페이지 공동구매 등록 목록 보기 -->
+  </select> --> <!-- user가 등록한 GroupBuyList를 가져옴 for 마이페이지 공동구매 등록 목록 보기 -->
   
     <select id="getAuctionList" parameterType="int"
   		resultType="Auction">

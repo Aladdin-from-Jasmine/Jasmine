@@ -30,9 +30,9 @@
 				<form:form modelAttribute="loginForm" method="POST" action="login.do" class="bg-light p-5 contact-form">
 					<form:errors cssClass="error" /> <br />
 					<div class="form-group">
-						<label for="email">Email</label> 
-						<form:input path="email" class="form-control" placeholder="Email" />
-						<form:errors path="email" cssClass="error" />
+						<label for="userId">ID</label> 
+						<form:input path="userId" class="form-control" placeholder="userId" />
+						<form:errors path="userId" cssClass="error" />
 					</div>
 
 					<div class="form-group">

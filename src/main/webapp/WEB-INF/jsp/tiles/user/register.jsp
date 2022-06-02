@@ -14,7 +14,6 @@
 	<div id="signup-form">
 		<h2 class="text-center">SIGN UP</h2>
 		<br />
-
 		<form:form modelAttribute="userForm" method="POST"
 			action="/user/register" id="signup-form-form">
 			<div class="form-group">

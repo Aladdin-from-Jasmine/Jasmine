@@ -39,9 +39,6 @@
 			           	<a href="/user/mypage">
 			            	<img border="0" name="img_mypage" src="/images/mypage.png" /></a> 
 			         	<img border="0" src="/images/separator.gif" />
-			         	<a href="/user/register">
-			            	<img border="0" name="img_join" src="/images/join.png" /></a>
-			            	
 			            <a href="/user/login">
 			            	<img border="0" name="img_join" src="/images/login.png" /></a>	
 				</c:if>

@@ -28,7 +28,12 @@
 				<h2 class="text-center">Singup</h2><br/>
 
 				<form:form modelAttribute="userForm" method="POST" action="register.do" class="bg-light p-5 contact-form">
-
+					<div class="form-group">
+						<label for="name">ID</label> 
+						<form:input path="user.userId" class="form-control" />
+						<form:errors path="user.userId" cssClass="error" />
+						<form:errors cssClass="error" />
+					</div>
 					<div class="form-group">
 						<label for="name">Email</label> 
 						<form:input path="user.email" class="form-control" placeholder="Email ex) 20170000@dongduk.ac.kr" />

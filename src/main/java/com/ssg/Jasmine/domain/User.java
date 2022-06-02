@@ -13,11 +13,6 @@ public class User implements Serializable {
 	private String email;
 	private String address;
 	private String phone;
-	private String favouriteCategoryId;
-	private String languagePreference;
-	private boolean listOption;
-	private boolean bannerOption;
-	private String bannerName;
 
 	/* JavaBeans Properties */
 
@@ -25,11 +20,9 @@ public class User implements Serializable {
 		return userId;
 	}
 
-
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 
 	public String getUsername() { return username; }
 	public void setUsername(String username) { this.username = username; }
@@ -45,23 +38,6 @@ public class User implements Serializable {
 
 	public String getPhone() { return phone; }
 	public void setPhone(String phone) { this.phone = phone; }
-
-	public String getFavouriteCategoryId() { return favouriteCategoryId; }
-	public void setFavouriteCategoryId(String favouriteCategoryId) { this.favouriteCategoryId = favouriteCategoryId; }
-
-	public String getLanguagePreference() { return languagePreference; }
-	public void setLanguagePreference(String languagePreference) { this.languagePreference = languagePreference; }
-
-	public boolean isListOption() { return listOption; }
-	public void setListOption(boolean listOption) { this.listOption = listOption; }
-	public int getListOptionAsInt() { return listOption ? 1 : 0; }
-
-	public boolean isBannerOption() { return bannerOption; }
-	public void setBannerOption(boolean bannerOption) { this.bannerOption = bannerOption; }
-	public int getBannerOptionAsInt() { return bannerOption ? 1 : 0; }
-
-	public String getBannerName() { return bannerName; }
-	public void setBannerName(String bannerName) { this.bannerName = bannerName; }
 
 	public boolean matchPassword(String inputPassword) {
 		return password.equals(inputPassword);

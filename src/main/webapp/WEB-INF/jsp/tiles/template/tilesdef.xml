@@ -12,7 +12,7 @@
 		<put-attribute name="menu" value="/WEB-INF/jsp/tiles/menu.jsp" />
 	</definition>
 	
-	 <definition name="index" extends="base_layout">
+	<definition name="index" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/tiles/index.jsp" />
 	</definition> 
@@ -34,10 +34,11 @@
 			value="/WEB-INF/jsp/tiles/community/{1}.jsp" />
 	</definition> 
  
- 	<definition name="user/register" extends="base_layout">
+ 	<definition name="user/*" extends="base_layout">
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/tiles/user/register.jsp" />
-	</definition>
+			value="/WEB-INF/jsp/tiles/user/{1}.jsp" />
+	</definition> 
+ 	
 
 	<!-- <definition name="tiles/SignonForm" extends="base_layout">
 		<put-attribute name="body"

@@ -1,8 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -13,21 +8,21 @@
 	}
 
 </script>
-<style>
+<!--  <style>
 	.error {
 		color: #ff0000;
 		/* font-weight: bold; */
 	}
-</style>
+</style>-->
 
-<body bgcolor="black">
+<!--<body bgcolor="black">-->
 	<div class="container" style="padding: 100px">
 		<div class="row block-9 justify-content-center mb-5">
 			<div class="col-md-8 mb-md-5">
 
 				<h2 class="text-center">Singup</h2><br/>
 
-				<form:form modelAttribute="userForm" method="POST" action="register.do" class="bg-light p-5 contact-form">
+				<form:form modelAttribute="userForm" method="POST" action="/user/register" class="bg-light p-5 contact-form">
 					<div class="form-group">
 						<label for="name">ID</label> 
 						<form:input path="user.userId" class="form-control" />
@@ -102,5 +97,5 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+<!-- </body>
+</html>-->

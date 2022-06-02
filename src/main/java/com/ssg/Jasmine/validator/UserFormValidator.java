@@ -19,12 +19,15 @@ public class UserFormValidator implements Validator {
 		UserForm regReq = (UserForm) target;
 
 		// 필수 입력 항목
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userId", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.email", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.passwd", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userName", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.nickname", "required");
 		
 		User user = regReq.getUser();
+		
+		/* userID 체크하는 부분 만들어야 됨~~*/
 		
 		String emailRegax = "^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$";
 		if (!user.getEmail().equals("") && !user.getEmail().matches(emailRegax)) {

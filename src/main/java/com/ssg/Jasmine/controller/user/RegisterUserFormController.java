@@ -57,10 +57,10 @@ public class RegisterUserFormController {
 		new UserFormValidator().validate(userForm, result);
 		
 		// 같은 이메일 아이디가 이미 존재할 경우 다시 form 띄움
-		if (userService.getUserByUserId(userForm.getUser().getEmail()) != null) {
-			result.reject("sameEmailExist", new Object[] {}, null);
-			return formViewName;
-		}
+//		if (userService.getUserByUserId(userForm.getUser().getEmail()) != null) {
+//			result.reject("sameEmailExist", new Object[] {}, null);
+//			return formViewName;
+//		}
 		
 		if (result.hasErrors()) {
 			return formViewName;

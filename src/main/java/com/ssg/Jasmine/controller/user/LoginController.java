@@ -26,7 +26,7 @@ import com.ssg.Jasmine.validator.LoginFormValidator;
 
 @Controller
 @SessionAttributes("userSession")
-@RequestMapping("/user/login.do")
+@RequestMapping("/user/login")
 public class LoginController {
 
 	@Value("user/login")

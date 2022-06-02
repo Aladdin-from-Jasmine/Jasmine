@@ -28,7 +28,7 @@ import com.ssg.Jasmine.service.AuctionService;
 
 @Controller
 @SessionAttributes("bidForm")
-@RequestMapping("/auction/bid/create.do")
+@RequestMapping("/auction/bid/create")
 public class BidFormController {
 
 	private static final String AUCTION_DETAIL = "auction/auction_detail";
@@ -53,7 +53,7 @@ public class BidFormController {
 		int auctionId = bidForm.getBid().getAuctionId();
 //		BidForm객체 validation
 		Auction auction = auctionService.getAuction(auctionId);
-		model.addAttribute("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
+		model.addAttribute("writer", userService.getUserByUserId(auction.getUserId()).getUsername());
 		model.addAttribute("isWriter", false);
 	
 		if (auction.getBids().isEmpty()) {
@@ -75,7 +75,7 @@ public class BidFormController {
 			} else {
 				model.addAttribute("date_maxBid", maxPriceBid.getBidDate());
 				User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
-				model.addAttribute("user_maxBid", user_maxBid.getNickname());
+				model.addAttribute("user_maxBid", user_maxBid.getUsername());
 			}
 			model.addAttribute("auction", auction);
 			return AUCTION_DETAIL;
@@ -83,7 +83,7 @@ public class BidFormController {
 		
 //		bid 생성
 		UserSession userSession = (UserSession)session.getAttribute("userSession");
-		int userId = (int) userSession.getUser().getUserId();
+		String userId = userSession.getUser().getUserId();
 		
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date bidDate = new java.sql.Date(utilDate.getTime());
@@ -105,7 +105,7 @@ public class BidFormController {
 //		auction_detail.jsp에 넘겨줄 model 값 설정
 		model.addAttribute("date_maxBid", bid.getBidDate());
 		User user_maxBid = userService.getUserByUserId(bid.getUserId());
-		model.addAttribute("user_maxBid", user_maxBid.getNickname());
+		model.addAttribute("user_maxBid", user_maxBid.getUsername());
 		session.setAttribute("bidForm", new BidForm());
 		model.addAttribute("bidForm", session.getAttribute("bidForm"));
 		return AUCTION_DETAIL;

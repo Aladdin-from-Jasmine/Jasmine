@@ -6,7 +6,6 @@ import java.util.List;
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.SuccessBidder;
 
-
 public interface AuctionService {
 	
 	Auction getAuction(int auctionId);

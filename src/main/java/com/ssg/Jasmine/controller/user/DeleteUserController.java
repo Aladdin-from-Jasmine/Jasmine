@@ -13,7 +13,6 @@ import com.ssg.Jasmine.service.UserService;
 
 @Controller
 public class DeleteUserController {
-	
 	private static final String formViewName = "user/login";
 	private static final String detailViewName = "user/user_detail";
 	
@@ -24,8 +23,7 @@ public class DeleteUserController {
 	@Autowired
 	private UserService userService;
 	
-	
-	@RequestMapping("/user/delete.do")
+	@RequestMapping("/user/delete")
 	public ModelAndView handleRequest(HttpSession session,
 			HttpServletResponse response) throws Exception {
 
@@ -36,7 +34,7 @@ public class DeleteUserController {
 		// 작성한 경매, 공동구매 중에 마감되지 않은 것이 있다면 회원탈퇴 불가
 		if (userService.isUnClosedExist(user.getUserId())) {
 			mav.addObject("deleteComplete", NOT_ALLOWED);
-			mav.addObject("userForm", new UserForm(userService.getUserByEmail(userSession.getUser().getEmail())));
+			mav.addObject("userForm", new UserForm(userService.getUserByUserId(userSession.getUser().getEmail())));
 			mav.setViewName(detailViewName);
 			return mav;
 		} 

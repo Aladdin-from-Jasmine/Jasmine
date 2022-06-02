@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 
 public class Bid {
 	int bidId;
-	int userId;
+	String userId;
 	int auctionId;
 	@NotNull
 	int bidPrice;
@@ -19,7 +19,7 @@ public class Bid {
 		
 	}
 	
-	public Bid(int userId, int auctionId, int bidPrice, Date bidDate) {
+	public Bid(String userId, int auctionId, int bidPrice, Date bidDate) {
 		this.userId = userId;
 		this.auctionId = auctionId;
 		this.bidPrice = bidPrice;
@@ -42,11 +42,11 @@ public class Bid {
 		this.bidId = bidId;
 	}
 	
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	

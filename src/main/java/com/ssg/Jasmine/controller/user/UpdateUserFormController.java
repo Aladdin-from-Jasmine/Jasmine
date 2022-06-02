@@ -35,20 +35,8 @@ public class UpdateUserFormController {
 	@ModelAttribute("userForm")
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		return new UserForm(userService.getUserByEmail(userSession.getUser().getEmail()));
+		return new UserForm(userService.getUserByUserId(userSession.getUser().getEmail()));
 	}
-	
-//	@ModelAttribute("cardBanks")
-//	public List<String> cardBanksData() {
-//		ArrayList<String> cardBanks = new ArrayList<String>();
-//		cardBanks.add("신한");
-//		cardBanks.add("하나");
-//		cardBanks.add("우리");
-//		cardBanks.add("농협");
-//		cardBanks.add("국민"); 
-//		// add more
-//		return cardBanks;			
-//	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm() {
@@ -73,7 +61,7 @@ public class UpdateUserFormController {
 			return successViewName;
 		}
 		
-		UserSession userSession = new UserSession(userService.getUserByEmail(userForm.getUser().getEmail()));
+		UserSession userSession = new UserSession(userService.getUserByUserId(userForm.getUser().getEmail()));
 		session.setAttribute("userSession", userSession);
 		return successViewName;
 	}

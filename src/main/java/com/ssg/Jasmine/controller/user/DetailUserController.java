@@ -21,10 +21,10 @@ public class DetailUserController {
 	@ModelAttribute("userForm")
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		return new UserForm(userService.getUserByEmail(userSession.getUser().getEmail()));
+		return new UserForm(userService.getUserByUserId(userSession.getUser().getEmail()));
 	}
 	
-	@RequestMapping("/user/detail.do")
+	@RequestMapping("/user/detail")
 	public String showForm() {
 		return detailViewName;
 	}

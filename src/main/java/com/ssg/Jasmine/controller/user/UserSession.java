@@ -16,4 +16,5 @@ public class UserSession implements Serializable {
 	public User getUser() {
 		return user;
 	}
+	
 }

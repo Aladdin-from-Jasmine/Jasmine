@@ -23,11 +23,9 @@ import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.BidService;
 
-
 @Controller
 @SessionAttributes("auctionForm")
-public class AuctionController {
-	
+public class AuctionController {	
 	private static final String AUCTION_LIST = "auction/auction_list";
 	private static final String AUCTION_DETAIL = "auction/auction_detail";
 	
@@ -37,9 +35,8 @@ public class AuctionController {
 	UserService userService;
 	@Autowired
 	BidService bidService;
-	
-	
-	@RequestMapping(value="/auction/list.do", method=RequestMethod.GET)
+		
+	@RequestMapping(value="/auction/list", method=RequestMethod.GET)
 	public ModelAndView auctionList(SessionStatus sessionStatus, HttpSession session){
 		ModelAndView mav = new ModelAndView(AUCTION_LIST);
 		List<Auction> auctionList = null;
@@ -54,7 +51,7 @@ public class AuctionController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/auction/detail.do", method=RequestMethod.GET)
+	@RequestMapping(value="/auction/detail", method=RequestMethod.GET)
 	public ModelAndView auctionDetail(HttpServletRequest request, 
 			@RequestParam("auctionId") int auctionId, HttpSession session) {
 
@@ -91,7 +88,7 @@ public class AuctionController {
 			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); 
 			mav.addObject("date_maxBid", maxPriceBid.getBidDate());
 			User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
-			mav.addObject("user_maxBid", user_maxBid.getNickname());
+			mav.addObject("user_maxBid", user_maxBid.getUsername());
 		}
 			
 //		현재 최고 금액을 입찰한 사람의 정보
@@ -99,11 +96,11 @@ public class AuctionController {
 		session.setAttribute("auctionId", auctionId);
 		mav.addObject("auction", auction);
 		mav.addObject("bidForm", session.getAttribute("bidForm"));
-		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getNickname());
+		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getUsername());
 		return mav;
 	}
 	
-	@RequestMapping(value="/auction/delete.do")
+	@RequestMapping(value="/auction/delete")
 	public ModelAndView auctionDelete(HttpServletRequest request,
 			@RequestParam("auctionId") int auctionId){
 		

@@ -19,7 +19,7 @@ public class ViewBookController {
 		this.jasmine = jasmine;
 	}
 	
-	@RequestMapping("/viewBook.do")
+	@RequestMapping("/viewBook")
 	public String handleRequest(
 			@RequestParam("bookID") String bookId,
 			ModelMap model) throws Exception {

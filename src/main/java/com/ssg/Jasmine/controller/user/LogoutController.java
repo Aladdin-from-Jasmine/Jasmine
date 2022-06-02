@@ -19,7 +19,7 @@ public class LogoutController {
 		return new LoginForm();
 	}
 	
-	@RequestMapping("/user/logout.do")
+	@RequestMapping("/user/logout")
 	public String handleRequest(HttpSession session) throws Exception {
 		session.removeAttribute("userSession");
 		session.invalidate();

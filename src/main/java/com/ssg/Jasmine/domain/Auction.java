@@ -40,7 +40,7 @@ public class Auction implements Serializable {
 	int maxPrice;
 	String state;
 	int menuId;
-	int userId;
+	String userId;
 
 	@NotEmpty
 	String isAmPm;
@@ -49,11 +49,11 @@ public class Auction implements Serializable {
 	
 	List<Bid> bids = new ArrayList<Bid>();
 	
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-		public void setUserId(int userId) {
+		public void setUserId(String userId) {
 			this.userId = userId;
 	}
 	

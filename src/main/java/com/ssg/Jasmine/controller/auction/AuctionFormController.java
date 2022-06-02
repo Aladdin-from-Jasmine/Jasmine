@@ -32,7 +32,7 @@ import com.ssg.Jasmine.service.AuctionService;
 
 @Controller
 @SessionAttributes("auctionForm")
-@RequestMapping("/auction/*.do")
+@RequestMapping("/auction/*")
 public class AuctionFormController implements ApplicationContextAware  {
 	
 //	request handler가 보내줄 view이름 지정
@@ -137,7 +137,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 		model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
 //		작성자만 수정/삭제 버튼 보이게 하기 위해 isWriter, 작성자 출력 위해 writer값을 넘겨준다.
 		model.addAttribute("isWriter", true);
-		model.addAttribute("writer", user.getUser().getNickname());
+		model.addAttribute("writer", user.getUser().getUsername());
 		model.addAttribute("bidForm", session.getAttribute("bidForm"));
 		sessionStatus.setComplete();
 		return AUCTION_DETAIL;

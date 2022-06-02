@@ -16,9 +16,9 @@ public interface BidService {
 	
 	void createBid(Bid bid);
 	
-	List<Bid> getBidByUserId(int userId);
+	List<Bid> getBidByUserId(String userId);
 	
-	Bid getBidByUserIdAndAuctionId(int userId, int auctionId);
+	Bid getBidByUserIdAndAuctionId(String userId, int auctionId);
 	
 	void updateBid(Bid bid);
 	

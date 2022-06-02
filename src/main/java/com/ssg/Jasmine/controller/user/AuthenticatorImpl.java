@@ -14,7 +14,7 @@ public class AuthenticatorImpl implements Authenticator {
 	
 	@Override
 	public void authenticate(LoginForm loginForm) {
-		User realUser = userService.getUserByEmail(loginForm.getEmail());
+		User realUser = userService.getUserByUserId(loginForm.getUserId());
 		
 		// email에 해당하는 user가 없을 경우
 		if (realUser == null) {

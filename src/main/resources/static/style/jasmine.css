@@ -154,6 +154,7 @@ h2 {
 
 .container {
 	padding-bottom: 50px;
+	text-align: center;
 }
 
 #signup-form, #login-form {

@@ -64,12 +64,12 @@ public class LoginController {
 			return new ModelAndView(formViewName);
 		}
 
-		List<GroupBuy> recentGroupBuy = groupBuyService.getRecentGroupBuyList();
+//		List<GroupBuy> recentGroupBuy = groupBuyService.getRecentGroupBuyList();
 		List<Auction> recentAuction = auctionService.getRecentAuctionList();
 		
-		User user = userService.getUser(loginForm.getEmail(), loginForm.getPassword());
+		User user = userService.getUser(loginForm.getUserId(), loginForm.getPassword());
 
-		model.addAttribute("recentGroupBuy", recentGroupBuy);
+	//	model.addAttribute("recentGroupBuy", recentGroupBuy);
 		model.addAttribute("recentAuction", recentAuction);
 		
 		System.out.println("LoginForm : " + loginForm);
@@ -82,7 +82,7 @@ public class LoginController {
 		} catch (AuthenticationException e) { // 검증 실패 시
 			
 			ModelAndView mav = new ModelAndView();
-			bindingResult.reject(e.getMessage(), new Object[] { loginForm.getEmail() }, null); // error message
+			bindingResult.reject(e.getMessage(), new Object[] { loginForm.getUserId() }, null); // error message
 			mav.addObject("loginForm", loginForm);
 			mav.setViewName(formViewName); // login form 이동
 			return mav;

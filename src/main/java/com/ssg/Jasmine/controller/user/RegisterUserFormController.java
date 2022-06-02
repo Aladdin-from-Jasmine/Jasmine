@@ -1,8 +1,5 @@
 package com.ssg.Jasmine.controller.user;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -36,17 +33,17 @@ public class RegisterUserFormController {
 		return new UserForm();
 	}
 	
-	@ModelAttribute("cardBanks")
-	public List<String> cardBanksData() {
-		ArrayList<String> cardBanks = new ArrayList<String>();
-		cardBanks.add("신한");
-		cardBanks.add("하나");
-		cardBanks.add("우리");
-		cardBanks.add("농협");
-		cardBanks.add("국민"); 
-		// add more
-		return cardBanks;			
-	}
+//	@ModelAttribute("cardBanks")
+//	public List<String> cardBanksData() {
+//		ArrayList<String> cardBanks = new ArrayList<String>();
+//		cardBanks.add("신한");
+//		cardBanks.add("하나");
+//		cardBanks.add("우리");
+//		cardBanks.add("농협");
+//		cardBanks.add("국민"); 
+//		// add more
+//		return cardBanks;			
+//	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm() {

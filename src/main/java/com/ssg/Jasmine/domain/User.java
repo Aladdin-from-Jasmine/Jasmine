@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
 	/* Private Fields */
-	int userId;
+	private String userId;
 	private String username;
 	private String password;
 	private String email;

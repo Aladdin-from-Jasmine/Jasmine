@@ -146,6 +146,7 @@ table#footer tr td {
 	padding: 20px;
 }
 
+<<<<<<< HEAD
 h2 {
 	text-align: center;
 	font-weight: bold;
@@ -196,3 +197,10 @@ h2 {
 	font-size: 15px;
 	text-decoration: none;
 }
+=======
+.error 
+{
+	color: #ff0000;
+	/* font-weight: bold; */
+}
+>>>>>>> branch 'hyunsoo2' of https://github.com/Aladdin-from-Jasmine/Jasmine.git

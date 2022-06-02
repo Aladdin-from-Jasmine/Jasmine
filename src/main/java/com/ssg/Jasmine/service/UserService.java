@@ -28,4 +28,5 @@ public interface UserService {
 	boolean isUnClosedExist(String userId);
 
 	User getUserByEmail(String email);
+	
 }

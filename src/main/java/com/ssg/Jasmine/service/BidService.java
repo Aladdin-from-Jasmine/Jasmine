@@ -2,6 +2,8 @@ package com.ssg.Jasmine.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ssg.Jasmine.domain.Bid;
 
 public interface BidService {

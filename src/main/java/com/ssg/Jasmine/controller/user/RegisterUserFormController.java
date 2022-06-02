@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,15 +20,14 @@ import com.ssg.Jasmine.validator.UserFormValidator;
 @RequestMapping("/user/register")
 public class RegisterUserFormController {
 	
-	@Value("/user/register")
+	@Value("user/register")
 	private String formViewName;
-	@Value("/user/login")
-	private String successViewName;
-	
+//	@Value("user/login")
+//	private String successViewName;
+//	
 	@Autowired
 	private UserService userService;
 
-	
 	@ModelAttribute("userForm")
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
 		return new UserForm();
@@ -67,7 +67,9 @@ public class RegisterUserFormController {
 		} else {
 			userService.createUser(userForm.getUser());
 			model.addAttribute("loginForm", new LoginForm());
-			return successViewName;
+			return formViewName;
+
+			//return successViewName;
 		}
 	}
 

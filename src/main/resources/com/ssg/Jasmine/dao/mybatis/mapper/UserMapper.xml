@@ -5,58 +5,47 @@
   <cache />
   
   <select id="getUser" resultType="User">
-    SELECT USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT
-    FROM USERS 
+    SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS1, PHONE
+    FROM USER_ 
     WHERE EMAIL = #{param1}
-      AND PASSWD = #{param2}
+      AND PASSWORD = #{param2}
   </select> 
   
   <select id="getUserByEmail" resultType="User">
-  	SELECT USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT
-    FROM USERS 
+  	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS1, PHONE
+    FROM USER_ 
     WHERE EMAIL = #{param1}
   </select>
   
   <select id="getUserByUserId" resultType="User">
-  	SELECT USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT
-    FROM USERS 
+  	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS1, PHONE
+    FROM USER_ 
     WHERE USERID = #{param1}
   </select>
   
   <insert id="createUser" parameterType="User">
-  	INSERT INTO USERS 
-  	(USERID, EMAIL, PASSWD, USERNAME, NICKNAME, ADDRESS1, ADDRESS2, ADDRESS3, PHONE, REFUNDBANK, REFUNDACCOUNT)
+  	INSERT INTO USER_ 
+  	( USERID, EMAIL, PASSWORD, USERNAME, ADDRESS1, PHONE)
   	VALUES 
-  	(USERID_SEQ.nextval, #{email}, #{passwd}, #{userName}, #{nickname}, 
-  	#{address1, jdbcType=VARCHAR}, #{address2, jdbcType=VARCHAR}, #{address3, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
-  	#{refundBank, jdbcType=VARCHAR}, #{refundAccount, jdbcType=VARCHAR}) 
+  	(USERID_SEQ.nextval, #{email}, #{password}, #{userName}, 
+  	#{address, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
   </insert>
   
   <update id="updateUser" parameterType="User">
-  	UPDATE USERS SET
-  		PASSWD = #{passwd},
-  		NICKNAME = #{nickname},
-  		ADDRESS1 = #{address1},
-  		ADDRESS2 = #{address2},
-  		ADDRESS3 = #{address3},
-  		PHONE = #{phone},
-  		REFUNDBANK = #{refundBank},
-  		REFUNDACCOUNT = #{refundAccount}
+  	UPDATE USER_ SET
+  		PASSWORD = #{password},
+  		ADDRESS = #{address1},
+  		PHONE = #{phone}
   	WHERE USERID = #{userId}
   </update>
   
   <update id="deleteUser" parameterType="User">
-  	UPDATE USERS SET
+  	UPDATE USER_ SET
   		EMAIL = '알수없음@deleted.user',
-  		PASSWD = '알수없음',
+  		PASSWORD = '알수없음',
   		USERNAME = '알수없음',
-  		NICKNAME = '알수없음',
-  		ADDRESS1 = null,
-  		ADDRESS2 = null,
-  		ADDRESS3 = null,
-  		PHONE = null,
-  		REFUNDBANK = null,
-  		REFUNDACCOUNT = null
+  		ADDRESS = null,
+  		PHONE = null
   	WHERE USERID = #{userId}
   </update>
 

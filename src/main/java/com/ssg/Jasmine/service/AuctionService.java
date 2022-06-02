@@ -3,6 +3,8 @@ package com.ssg.Jasmine.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.SuccessBidder;
 

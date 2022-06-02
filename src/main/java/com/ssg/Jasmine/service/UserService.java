@@ -26,4 +26,6 @@ public interface UserService {
 	List<Auction> getAuctionList(String userId); // 마이페이지 경매 등록 목록 보기
 	
 	boolean isUnClosedExist(String userId);
+
+	User getUserByEmail(String email);
 }

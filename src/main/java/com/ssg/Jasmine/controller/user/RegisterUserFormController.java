@@ -16,7 +16,7 @@ import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.validator.UserFormValidator;
 
 @Controller
-@RequestMapping("/user/register.do")
+@RequestMapping("/user/register")
 public class RegisterUserFormController {
 	
 	@Value("/user/register")

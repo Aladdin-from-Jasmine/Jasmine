@@ -13,7 +13,7 @@ import com.ssg.Jasmine.dao.mybatis.mapper.BidMapper;
 @Repository
 public class MybatisBidDao implements BidDao {
 
-	@Autowired
+	@Autowired(required=false)
 	private BidMapper bidMapper;
 
 	public Bid getBid(int bidId) throws DataAccessException {

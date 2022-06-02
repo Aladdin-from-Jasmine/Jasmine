@@ -14,7 +14,7 @@ public class ViewBookController {
 
 	private JasmineFacade jasmine;
 	
-	@Autowired
+	@Autowired(required=false)
 	public void setJasmine(JasmineFacade jasmine) {
 		this.jasmine = jasmine;
 	}

@@ -15,7 +15,7 @@ public interface UserDao {
 	
 	User getUserByEmail(String email) throws DataAccessException; // email로 user객체 얻어옴
 	
-	User getUserByUserId(int userId) throws DataAccessException; // userId로 user객체 얻어옴
+	User getUserByUserId(String userId) throws DataAccessException; // userId로 user객체 얻어옴
 	
 	void createUser(User user) throws DataAccessException;
 
@@ -23,6 +23,6 @@ public interface UserDao {
 
 	int deleteUser(User user) throws DataAccessException;
 
-	List<Auction> getAuctionList(int userId); // 마이페이지 경매 등록 목록 보기
+	List<Auction> getAuctionList(String userId); // 마이페이지 경매 등록 목록 보기
 	
 }

@@ -5,27 +5,27 @@
   <cache />
   
   <select id="getUser" resultType="User">
-    SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS1, PHONE
+    SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
     WHERE EMAIL = #{param1}
       AND PASSWORD = #{param2}
   </select> 
   
   <select id="getUserByEmail" resultType="User">
-  	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS1, PHONE
+  	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
     WHERE EMAIL = #{param1}
   </select>
   
   <select id="getUserByUserId" resultType="User">
-  	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS1, PHONE
+  	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
     WHERE USERID = #{param1}
   </select>
   
   <insert id="createUser" parameterType="User">
   	INSERT INTO USER_ 
-  	( USERID, EMAIL, PASSWORD, USERNAME, ADDRESS1, PHONE)
+  	( USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE)
   	VALUES 
   	(USERID_SEQ.nextval, #{email}, #{password}, #{userName}, 
   	#{address, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
@@ -34,7 +34,7 @@
   <update id="updateUser" parameterType="User">
   	UPDATE USER_ SET
   		PASSWORD = #{password},
-  		ADDRESS = #{address1},
+  		ADDRESS = #{address},
   		PHONE = #{phone}
   	WHERE USERID = #{userId}
   </update>

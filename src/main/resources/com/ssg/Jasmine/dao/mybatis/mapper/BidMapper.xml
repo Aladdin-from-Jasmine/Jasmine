@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="dongduk.cs.ssd.dao.mybatis.mapper.BidMapper">
+<mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.BidMapper">
   <cache />
   <sql id="BaseColumns_Bid">
   		NOTIID, TITLE, NOTIDATE, USERID, AUCTIONID, STATE
@@ -47,7 +47,7 @@
    WHERE USERID = #{userId}
   </select> 
   
-  <select id="getSuccessBidByAuctionId" resultType="dongduk.cs.ssd.domain.Bid" parameterType="int">
+  <select id="getSuccessBidByAuctionId" resultType="com.ssg.Jasmine.domain.Bid" parameterType="int">
    <![CDATA[
     SELECT *
 	FROM (SELECT * FROM BIDS

@@ -10,7 +10,7 @@
 	<body onLoad="alert('회원탈퇴가 완료되었습니다.')">
 </c:if>
 
-<div class="container" style="padding: 100px">
+<div class="container">
 	<div id="login-form">
 		<h2 class="text-center">LOGIN</h2>
 		<br />

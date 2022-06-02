@@ -9,7 +9,7 @@
 	}
 
 </script>
-	<div class="container" style="padding: 100px">
+	<div class="container">
 		<div id="signup-form">
 
 				<h2 class="text-center">SIGN UP</h2><br/>

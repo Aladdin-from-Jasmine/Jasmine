@@ -152,6 +152,10 @@ h2 {
 	color: rgb(128, 128, 192);
 }
 
+.container {
+	padding-bottom: 50px;
+}
+
 #signup-form, #login-form {
 	text-align: center;
 	width: 500px;

@@ -10,11 +10,6 @@ import org.springframework.web.util.WebUtils;
 
 import com.ssg.Jasmine.service.UserService;
 
-/**
- * @author Yejin Lee | Seonmi-Hwang
- * @since 2020.05.07 | 2020.06.21
- */
-
 @Controller
 public class DetailUserController {
 

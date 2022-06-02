@@ -17,18 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ssg.Jasmine.domain.Auction;
-import com.ssg.Jasmine.domain.GroupBuy;
+//import com.ssg.Jasmine.domain.GroupBuy;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
-import com.ssg.Jasmine.service.GroupBuyService;
+//import com.ssg.Jasmine.service.GroupBuyService;
 import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.validator.LoginFormValidator;
-
-
-/**
- * @author kimdahyee | Seonmi Hwang | HK
- * @since 2020.06.12 | 2020.06.28   | 2020.06.28
- */
 
 @Controller
 @SessionAttributes("userSession")
@@ -40,8 +34,8 @@ public class LoginController {
 
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private GroupBuyService groupBuyService;
+//	@Autowired
+//	private GroupBuyService groupBuyService;
 	@Autowired
 	private AuctionService auctionService;
 	

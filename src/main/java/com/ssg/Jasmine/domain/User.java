@@ -7,6 +7,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
   /* Private Fields */
+	int userId;
   private String username;
   private String password;
   private String email;
@@ -27,6 +28,16 @@ public class User implements Serializable {
   private String bannerName;
 
   /* JavaBeans Properties */
+  
+  public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 
   public String getUsername() { return username; }
   public void setUsername(String username) { this.username = username; }
@@ -83,5 +94,10 @@ public class User implements Serializable {
 
   public String getBannerName() { return bannerName; }
   public void setBannerName(String bannerName) { this.bannerName = bannerName; }
+  
+	public boolean matchPassword(String inputPassword) {
+		return password.equals(inputPassword);
+	}
+
 
 }

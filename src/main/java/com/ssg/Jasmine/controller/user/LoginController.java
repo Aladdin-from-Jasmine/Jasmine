@@ -36,13 +36,12 @@ public class LoginController {
 	private UserService userService;
 //	@Autowired
 //	private GroupBuyService groupBuyService;
-	@Autowired
+	//@Autowired
 	private AuctionService auctionService;
 	
 	@Autowired
 	private Authenticator authenticator;
 
-	
 	@ModelAttribute("loginForm")
 	public LoginForm formBacking(HttpServletRequest request) throws Exception {
 		return new LoginForm();
@@ -65,12 +64,12 @@ public class LoginController {
 		}
 
 //		List<GroupBuy> recentGroupBuy = groupBuyService.getRecentGroupBuyList();
-		List<Auction> recentAuction = auctionService.getRecentAuctionList();
+		//List<Auction> recentAuction = auctionService.getRecentAuctionList();
 		
 		User user = userService.getUser(loginForm.getUserId(), loginForm.getPassword());
 
 	//	model.addAttribute("recentGroupBuy", recentGroupBuy);
-		model.addAttribute("recentAuction", recentAuction);
+		//model.addAttribute("recentAuction", recentAuction);
 		
 		System.out.println("LoginForm : " + loginForm);
 		
@@ -78,9 +77,16 @@ public class LoginController {
 			authenticator.authenticate(loginForm); // email과 password가 맞는지 검증
 			UserSession userSession = new UserSession(user);
 			session.setAttribute("userSession", userSession);
-			return new ModelAndView("home");
-		} catch (AuthenticationException e) { // 검증 실패 시
 			
+			String userId = userSession.getUser().getUserId();
+			boolean isManager = false;
+			if(userId.equals("admin")) {
+				isManager = true;
+			}
+			session.setAttribute("isManager", isManager);
+			
+			return new ModelAndView("index");
+		} catch (AuthenticationException e) { // 검증 실패 시
 			ModelAndView mav = new ModelAndView();
 			bindingResult.reject(e.getMessage(), new Object[] { loginForm.getUserId() }, null); // error message
 			mav.addObject("loginForm", loginForm);

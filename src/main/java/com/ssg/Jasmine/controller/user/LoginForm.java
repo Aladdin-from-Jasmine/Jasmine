@@ -1,6 +1,9 @@
 package com.ssg.Jasmine.controller.user;
 
-public class LoginForm {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class LoginForm implements Serializable {
 
 	private String userId;
 	private String password;

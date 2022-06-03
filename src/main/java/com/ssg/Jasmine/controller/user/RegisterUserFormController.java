@@ -53,26 +53,20 @@ public class RegisterUserFormController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("userForm") UserForm userForm, BindingResult result, Model model) throws Exception {
-		
-		System.out.println("11111111"+userForm.getUser().getUserId());
-		
+				
 		new UserFormValidator().validate(userForm, result);
 		
 		// 같은 이메일 아이디가 이미 존재할 경우 다시 form 띄움
 		if (userService.getUserByUserId(userForm.getUser().getUserId()) != null) {
-			System.out.println("222222222"+userForm.getUser().getUserId());
 			result.reject("sameIdExist", new Object[] {}, null);
 			return formViewName;
 		}
 		
 		if (result.hasErrors()) {
-			System.out.println("3333333333"+userForm.getUser().getUserId());
 			return formViewName;
 		} else {
-			System.out.println("4444444444"+userForm.getUser().getUserId());
 			userService.createUser(userForm.getUser());
 			model.addAttribute("loginForm", new LoginForm());
-			//return formViewName;
 
 			return successViewName;
 		}

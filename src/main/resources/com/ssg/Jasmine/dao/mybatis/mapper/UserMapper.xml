@@ -4,11 +4,11 @@
 <mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.UserMapper">
   <cache />
   
-  <select id="getUser" parameterType="String" resultType="com.ssg.Jasmine.domain.User">
+  <select id="getUser" resultType="com.ssg.Jasmine.domain.User">
     SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
-    WHERE USERID = #{userId}
-      AND PASSWORD = #{password}
+    WHERE USERID = #{param1}
+      AND PASSWORD = #{param2}
   </select> 
   
   <select id="getUserByEmail" parameterType="String" resultType="com.ssg.Jasmine.domain.User">

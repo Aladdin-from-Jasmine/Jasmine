@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LogoutController {
 	
-	@Value("user/login")
+	@Value("index")
 	private String formViewName;
 	
 	@ModelAttribute("loginForm")

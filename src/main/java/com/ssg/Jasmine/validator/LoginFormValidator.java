@@ -4,6 +4,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import com.ssg.Jasmine.controller.user.LoginForm;
+import com.ssg.Jasmine.controller.user.UserForm;
 import com.ssg.Jasmine.domain.User;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,5 @@ public class LoginFormValidator implements Validator {
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required");
-	
 	}
 }

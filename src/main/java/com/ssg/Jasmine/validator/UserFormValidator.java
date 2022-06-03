@@ -1,5 +1,6 @@
 package com.ssg.Jasmine.validator;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -7,6 +8,7 @@ import org.springframework.validation.Validator;
 import com.ssg.Jasmine.controller.user.UserForm;
 import com.ssg.Jasmine.domain.User;
 
+@Component
 public class UserFormValidator implements Validator {
 	
 	@Override
@@ -27,6 +29,20 @@ public class UserFormValidator implements Validator {
 		User user = regReq.getUser();
 		
 		/* userID 체크하는 부분 만들어야 됨~~*/
+		if (regReq.isNewUser()) {
+			//user.setStatus("OK");
+			//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userId", "USER_ID_REQUIRED", "User ID is required.");
+			if (user.getPassword() == null || user.getPassword().length() < 1 ||
+					!user.getPassword().equals(regReq.getRepeatedPassword())) {
+				errors.reject("PASSWORD_MISMATCH",
+					 "Passwords did not match or were not provided. Matching passwords are required.");
+			}
+		}
+		else if (user.getPassword() != null && user.getPassword().length() > 0) {
+			if (!user.getPassword().equals(regReq.getRepeatedPassword())) {
+				errors.reject("PASSWORD_MISMATCH", "Passwords did not match. Matching passwords are required.");
+			}
+		}
 		
 		String emailRegax = "^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$";
 		if (!user.getEmail().equals("") && !user.getEmail().matches(emailRegax)) {

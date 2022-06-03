@@ -4,34 +4,34 @@
 <mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.UserMapper">
   <cache />
   
-  <select id="getUser" resultType="User">
+  <select id="getUser" parameterType="String" resultType="com.ssg.Jasmine.domain.User">
     SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
-    WHERE USERID = #{param1}
-      AND PASSWORD = #{param2}
+    WHERE USERID = #{userId}
+      AND PASSWORD = #{password}
   </select> 
   
-  <select id="getUserByEmail" resultType="User">
+  <select id="getUserByEmail" parameterType="String" resultType="com.ssg.Jasmine.domain.User">
   	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
-    WHERE USERID = #{param1}
+    WHERE USERID = #{userId}
   </select>
   
-  <select id="getUserByUserId" resultType="User">
+  <select id="getUserByUserId" parameterType="String" resultType="com.ssg.Jasmine.domain.User">
   	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
-    WHERE USERID = #{param1}
+    WHERE USERID = #{userId}
   </select>
   
-  <insert id="createUser" parameterType="User">
+  <insert id="createUser" parameterType="com.ssg.Jasmine.domain.User">
   	INSERT INTO USER_ 
-  	( USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE)
+  	( userId, email, password, username, address, phone)
   	VALUES 
-  	(USERID_SEQ.nextval, #{email}, #{password}, #{userName}, 
-  	#{address, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}, 
+  	(#{userId}, #{email}, #{password}, #{username}, 
+  	#{address, jdbcType=VARCHAR}, #{phone, jdbcType=VARCHAR}) 
   </insert>
   
-  <update id="updateUser" parameterType="User">
+  <update id="updateUser" parameterType="com.ssg.Jasmine.domain.User">
   	UPDATE USER_ SET
   		PASSWORD = #{password},
   		ADDRESS = #{address},
@@ -39,7 +39,7 @@
   	WHERE USERID = #{userId}
   </update>
   
-  <update id="deleteUser" parameterType="User">
+  <update id="deleteUser" parameterType="com.ssg.Jasmine.domain.User">
   	UPDATE USER_ SET
   		EMAIL = '알수없음@deleted.user',
   		PASSWORD = '알수없음',
@@ -72,7 +72,7 @@
   </select> --> <!-- user가 등록한 GroupBuyList를 가져옴 for 마이페이지 공동구매 등록 목록 보기 -->
   
     <select id="getAuctionList" parameterType="int"
-  		resultType="Auction">
+  		resultType="com.ssg.Jasmine.domain.Auction">
   	SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, count, maxPrice, state, menuId, userId
   	FROM auctions
   	WHERE userId = #{userId}

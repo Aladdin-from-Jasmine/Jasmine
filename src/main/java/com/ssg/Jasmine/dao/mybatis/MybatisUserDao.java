@@ -15,7 +15,7 @@ import com.ssg.Jasmine.domain.User;
 @Repository
 public class MybatisUserDao implements UserDao {
 	
-	@Autowired(required=false)
+	@Autowired
 	private UserMapper userMapper;
 	
 	public User getUser(String userId, String password) throws DataAccessException {

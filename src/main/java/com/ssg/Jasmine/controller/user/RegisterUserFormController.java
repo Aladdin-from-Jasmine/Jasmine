@@ -72,9 +72,9 @@ public class RegisterUserFormController {
 			System.out.println("4444444444"+userForm.getUser().getUserId());
 			userService.createUser(userForm.getUser());
 			model.addAttribute("loginForm", new LoginForm());
-			return formViewName;
+			//return formViewName;
 
-			//return successViewName;
+			return successViewName;
 		}
 	}
 

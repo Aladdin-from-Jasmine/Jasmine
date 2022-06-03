@@ -1,8 +1,11 @@
 package com.ssg.Jasmine.controller.user;
 
+import java.io.Serializable;
+
 import com.ssg.Jasmine.domain.User;
 
-public class UserForm { 
+@SuppressWarnings("serial")
+public class UserForm implements Serializable { 
 	
 	private User user;
 	private boolean newUser;

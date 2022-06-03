@@ -2,6 +2,8 @@ package com.ssg.Jasmine.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+
 
 @SuppressWarnings("serial")
 public class User implements Serializable {

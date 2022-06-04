@@ -17,7 +17,7 @@ import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.validator.UserFormValidator;
 
 @Controller
-@RequestMapping("/user/update.do")
+@RequestMapping("/user/update")
 public class UpdateUserFormController {
 
 	@Value("user/user_update")
@@ -35,7 +35,7 @@ public class UpdateUserFormController {
 	@ModelAttribute("userForm")
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		return new UserForm(userService.getUserByUserId(userSession.getUser().getEmail()));
+		return new UserForm(userService.getUserByUserId(userSession.getUser().getUserId()));
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
@@ -61,7 +61,7 @@ public class UpdateUserFormController {
 			return successViewName;
 		}
 		
-		UserSession userSession = new UserSession(userService.getUserByUserId(userForm.getUser().getEmail()));
+		UserSession userSession = new UserSession(userService.getUserByUserId(userForm.getUser().getUserId()));
 		session.setAttribute("userSession", userSession);
 		return successViewName;
 	}

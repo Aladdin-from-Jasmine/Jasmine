@@ -21,7 +21,7 @@ public class DetailUserController {
 	@ModelAttribute("userForm")
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
-		return new UserForm(userService.getUserByUserId(userSession.getUser().getEmail()));
+		return new UserForm(userService.getUserByUserId(userSession.getUser().getUserId()));
 	}
 	
 	@RequestMapping("/user/detail")

@@ -1,6 +1,9 @@
 package com.ssg.Jasmine.domain;
 
-public class Book {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Book implements Serializable{
 	private int bookId;
 	private int isbn;
 	private int price;

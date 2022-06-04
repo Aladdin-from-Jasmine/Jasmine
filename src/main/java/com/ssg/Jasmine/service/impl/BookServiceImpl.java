@@ -20,9 +20,9 @@ public class BookServiceImpl implements BookService{
 	private ThreadPoolTaskScheduler scheduler;
 
 	@Override
-	public Book getBook(String bookId) {
+	public Book getBookByBookId(int bookId) {
 		// TODO Auto-generated method stub
-		return bookDao.getBook(bookId);
+		return bookDao.getBookByBookId(bookId);
 	}
 
 	@Override

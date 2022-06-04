@@ -63,11 +63,13 @@
 	</div>
 
 	<br> <br> 
-	<a id="a-btn" href="<c:url value='/user/list'></c:url>">책/경매</a> &nbsp; 
-	<a id="a-btn" href="<c:url value='/user/order'></c:url>">결제</a> &nbsp; 
-	<a id="a-btn" href="<c:url value='/user/update'></c:url>">회원 정보 수정</a> &nbsp; 
-	<a id="a-btn" href="javascript:logoutCheck()">로그아웃</a> &nbsp; 
-	<a id="a-btn" href="javascript:removeCheck()">회원 탈퇴</a>
+	<a id="a-btn" href="<c:url value='/user/book'></c:url>">📚책</a> &nbsp; 
+	<a id="a-btn" href="<c:url value='/user/auction'></c:url>">⌛경매</a> &nbsp; 
+	<a id="a-btn" href="<c:url value='/user/order'></c:url>">💳결제</a> &nbsp; 
+	<a id="a-btn" href="<c:url value='/user/update'></c:url>">💁🏻‍♀회원 정보 수정</a> &nbsp; 
+	<br><br><br>
+	<a id="check-btn" href="javascript:logoutCheck()">로그아웃</a> &nbsp; &nbsp; &nbsp; 
+	<a id="check-btn" href="javascript:removeCheck()">회원 탈퇴</a>
 </div>
 
 

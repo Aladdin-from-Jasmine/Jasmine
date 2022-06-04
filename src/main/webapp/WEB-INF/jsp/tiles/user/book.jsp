@@ -3,5 +3,5 @@
 
 <div class="container">
 	<h1>My Page</h1>
-	<h3>order 💳</h3>
+	<h3>book 📚</h3>
 </div>

@@ -65,7 +65,6 @@
 	<br> <br> 
 	<a id="a-btn" href="<c:url value='/user/list'></c:url>">목록보기</a> &nbsp; 
 	<a id="a-btn" href="<c:url value='/user/update'></c:url>">회원 정보 수정</a> &nbsp; 
-	<a id="a-btn" href="<c:url value='/noti/list'></c:url>">알림 목록 보기</a> &nbsp;
 	<a id="a-btn" href="javascript:logoutCheck()">로그아웃</a> &nbsp; 
 	<a id="a-btn" href="javascript:removeCheck()">회원 탈퇴</a>
 </div>

@@ -11,7 +11,7 @@
 	<h1>My Page</h1>
 
 	<a id="a-btn" href="<c:url value='list'> <c:param name="menuId" value ="1" /> </c:url>"> 경매등록 목록 보기</a> 
-	<a id="a-btn" href="<c:url value='list'> <c:param name="menuId" value ="2" /> </c:url>"> 공동 구매 등록 목록 보기</a> 
+	<a id="a-btn" href="<c:url value='list'> <c:param name="menuId" value ="2" /> </c:url>"> 책 구매/등록 목록 보기</a> 
 	<a id="a-btn" href="<c:url value='list'> <c:param name="menuId" value ="0" /> </c:url>">결제 목록 보기</a> 
 
 	<c:if test="${menuId eq 0}">
@@ -28,7 +28,7 @@
 	</c:if>
 	<c:if test="${menuId eq 2}">
 		<h2>
-			<b>공동 구매 등록 목록 보기</b>
+			<b>책 구매/등록 목록 보기</b>
 		</h2>
 		<br>
 	</c:if>

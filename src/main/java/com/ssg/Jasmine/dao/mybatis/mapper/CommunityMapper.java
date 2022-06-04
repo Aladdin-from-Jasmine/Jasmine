@@ -1,15 +1,16 @@
-package com.ssg.Jasmine.dao;
+package com.ssg.Jasmine.dao.mybatis.mapper;
 
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import org.apache.ibatis.annotations.Mapper;
 import com.ssg.Jasmine.domain.Community;
-import com.ssg.Jasmine.domain.User;
 
-public interface CommunityDao {
-
-	Community getCommunity(int communityId) throws DataAccessException;
+@Mapper
+public interface CommunityMapper {
+	
+	Community getCommunity(int postId) throws DataAccessException;
 	
 	Community getCommunityByUserId(String userId) throws DataAccessException;
 	
@@ -17,7 +18,7 @@ public interface CommunityDao {
 
 	void updatePost(Community community) throws DataAccessException;
 
-	void deletePost(int communityId) throws DataAccessException;
+	void deletePost(int postId) throws DataAccessException;
 
 	List<Community> getCommunityList() throws DataAccessException;	
 

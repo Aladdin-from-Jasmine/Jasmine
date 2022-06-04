@@ -244,3 +244,41 @@ h2, h1, h3 {
 	color: #ff0000;
 	/* font-weight: bold; */
 }
+
+table.listTb {
+	color: black;
+	background-color: white;
+	width: 40%;
+	border:1px solid gray;
+	text-align:center;
+	border-collapse: collapse;
+}
+
+table.listTb tr td{
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: gray;
+	border-collapse: collapse; 
+}
+
+table.listTb tr th{
+	border: 1px;
+}
+
+.listTb-1{
+	width:30%;
+}
+
+.listTb-2{
+	width:30%;
+}
+
+.listTb-tr1{
+	font-size:18px;
+	font-weight: bold;
+	height:40px;
+}
+
+.listTb-tr2{
+	height:40px;
+}

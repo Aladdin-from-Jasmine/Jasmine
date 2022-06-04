@@ -1,7 +1,5 @@
 package com.ssg.Jasmine.controller.user;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

@@ -8,13 +8,13 @@
 <script>
 	function logoutCheck() {
 		if (confirm("로그아웃 하시겠습니까?")) {
-			location.href = "logout.do";
+			location.href = "logout";
 		}
 	}
 
 	function removeCheck() {
 		if (confirm("정말 탈퇴하시겠습니까?")) {
-			location.href = "delete.do";
+			location.href = "delete";
 		}
 	}
 </script>
@@ -63,7 +63,8 @@
 	</div>
 
 	<br> <br> 
-	<a id="a-btn" href="<c:url value='/user/list'></c:url>">목록보기</a> &nbsp; 
+	<a id="a-btn" href="<c:url value='/user/list'></c:url>">책/경매</a> &nbsp; 
+	<a id="a-btn" href="<c:url value='/user/order'></c:url>">결제</a> &nbsp; 
 	<a id="a-btn" href="<c:url value='/user/update'></c:url>">회원 정보 수정</a> &nbsp; 
 	<a id="a-btn" href="javascript:logoutCheck()">로그아웃</a> &nbsp; 
 	<a id="a-btn" href="javascript:removeCheck()">회원 탈퇴</a>

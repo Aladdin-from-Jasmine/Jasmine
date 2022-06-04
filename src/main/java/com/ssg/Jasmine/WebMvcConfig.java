@@ -32,11 +32,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/manager/auction").setViewName("manager/auction");
 		registry.addViewController("/manager/community").setViewName("manager/community");
 
+		//user
 		registry.addViewController("/user/register").setViewName("user/register");
 		registry.addViewController("/user/detail").setViewName("user/detail");
 		registry.addViewController("/user/list").setViewName("user/list");
+		registry.addViewController("/user/order").setViewName("user/order");
 		registry.addViewController("/user/update").setViewName("user/update");
 		registry.addViewController("/user/login").setViewName("user/login");
+		registry.addViewController("/user/logout").setViewName("user/logout");
+		registry.addViewController("/user/delete").setViewName("user/delete");
 		
 		//aution
 		registry.addViewController("/auction/auction_list").setViewName("auction/auction_list");

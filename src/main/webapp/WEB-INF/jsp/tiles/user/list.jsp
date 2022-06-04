@@ -6,9 +6,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
 <div class="container">
 	<h1>My Page</h1>
+	<h3>book/auction</h3>
 
 	<a id="a-btn" href="<c:url value='list'> <c:param name="menuId" value ="1" /> </c:url>"> 경매등록 목록 보기</a> 
 	<a id="a-btn" href="<c:url value='list'> <c:param name="menuId" value ="2" /> </c:url>"> 책 구매/등록 목록 보기</a> 
@@ -32,7 +32,6 @@
 		</h2>
 		<br>
 	</c:if>
-
 
 	<!-- 결제 목록 보기 -->
 	<c:if test="${menuId eq 0}">

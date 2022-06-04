@@ -25,12 +25,6 @@
 	      </td>
 	      <td style="text-align:right" width="27%">
 				<c:if test="${empty userSession.user}" > <!-- no login -->
-			        <a href="/user/cart">
-			          		<img border="0" name="img_cart" src="/images/cart.png" /></a>
-			           	<img border="0" src="/images/separator.gif" />
-			           	<a href="/user/mypage">
-			            	<img border="0" name="img_mypage" src="/images/mypage.png" /></a> 
-			         	<img border="0" src="/images/separator.gif" />
 			            <a href="/user/login">
 			            	<img border="0" name="img_join" src="/images/login.png" /></a>	
 				</c:if>
@@ -42,7 +36,7 @@
 						<a href="/user/cart">
 			          		<img border="0" name="img_cart" src="/images/cart.png" /></a>
 			           	<img border="0" src="/images/separator.gif" />
-			           	<a href="/user/mypage">
+			           	<a href="/user/detail">
 			            	<img border="0" name="img_mypage" src="/images/mypage.png" /></a> 
 			         	<img border="0" src="/images/separator.gif" />
 			         </c:if>

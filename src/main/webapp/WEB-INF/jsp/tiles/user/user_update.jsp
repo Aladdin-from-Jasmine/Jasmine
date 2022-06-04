@@ -6,8 +6,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
-
 <div class="container">
 	<h1>My Page</h1>
 	<h3>update 💁🏻‍♀</h3>

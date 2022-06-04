@@ -73,8 +73,8 @@
   
     <select id="getAuctionList" parameterType="int"
   		resultType="com.ssg.Jasmine.domain.Auction">
-  	SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, count, maxPrice, state, menuId, userId
-  	FROM auctions
+  	SELECT auctionId, title, content_, img, startPrice, uploadDate, endDate, count, maxPrice, state, menuId, userId
+  	FROM auction
   	WHERE userId = #{userId}
   	ORDER BY auctionId DESC
   </select> <!-- user가 등록한 AuctionList를 가져옴 for 마이페이지 경매 등록 목록 보기 -->

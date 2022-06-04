@@ -8,7 +8,7 @@
   <resultMap id="resultMap" type="Auction">
   	<id column="auctionId" property="auctionId" />
   	<result column="title" property="title" />
-  	<result column="content" property="content" />
+  	<result column="content_" property="content_" />
   	<result column="img" property="img" />
   	<result column="startPrice" property="startPrice" />
   	<result column="uploadDate" property="uploadDate" />
@@ -27,7 +27,7 @@
   <!-- 
   <select id="getAuction" parameterType="java.lang.Integer" resultType="com.ssg.Jasmine.domain.Auction">  bid없는 Auction객체 위해 필요 -->
   <select id="getAuction" resultType="com.ssg.Jasmine.domain.Auction"> <!-- bid없는 Auction객체 위해 필요 -->
-    SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, 
+    SELECT auctionId, title, content_, img, startPrice, uploadDate, endDate, 
     		count, maxPrice, state, menuId, userId
     FROM AUCTION
     WHERE auctionId = #{auctionId}
@@ -36,7 +36,7 @@
   <!-- 
   <select id="getAuctionWithBids" parameterType="java.lang.Integer" resultMap="resultMap">  bid있는 Auction객체, 경매 결제에서 이용 -->
   <select id="getAuctionWithBids"  resultMap="resultMap"> <!-- bid있는 Auction객체, 경매 결제에서 이용 -->
-    SELECT a.auctionId, a.title, a.content, a.img, a.startPrice, a.uploadDate, 
+    SELECT a.auctionId, a.title, a.content_, a.img, a.startPrice, a.uploadDate, 
     		a.endDate, a.count, a.maxPrice, a.state, a.menuId, 
     		a.userId AS writerId, b.bidId, b.bidPrice
     FROM AUCTION a, BID b
@@ -48,14 +48,14 @@
   		SELECT auctionId_seq.nextval AS auctionId FROM DUAL
      </selectKey>
   	INSERT INTO AUCTION
-	VALUES (#{auctionId}, #{title}, #{content}, #{img}, #{startPrice}, 
+	VALUES (#{auctionId}, #{title}, #{content_}, #{img}, #{startPrice}, 
 			#{uploadDate}, #{endDate}, #{count}, #{maxPrice}, #{state}, 
 			#{menuId}, #{userId})
   </insert>
   
   <update id="updateAuction" parameterType="com.ssg.Jasmine.domain.Auction">
    	UPDATE AUCTION
-    SET title=#{title}, content=#{content}, img=#{img}, startPrice=#{startPrice}, 
+    SET title=#{title}, content_=#{content_}, img=#{img}, startPrice=#{startPrice}, 
  		ENDDATE=#{endDate}, MAXPRICE=#{maxPrice}, state=#{state}
   	WHERE  AUCTIONID=#{auctionId}
   </update>
@@ -78,7 +78,7 @@
   
   <!-- Get all auctions -->
   <select id="getAuctionList" resultType="com.ssg.Jasmine.domain.Auction">
-    SELECT auctionId, title, content, img, startPrice, uploadDate, 
+    SELECT auctionId, title, content_, img, startPrice, uploadDate, 
     		endDate, count, maxPrice, state, menuId, userId
     FROM AUCTION
     ORDER BY uploadDate DESC
@@ -87,7 +87,7 @@
   <!-- Search auctions by Keyword -->
   <select id="auctionListByKeyword" resultType="com.ssg.Jasmine.domain.Auction">
   	<bind name="pattern" value="'%' + _parameter + '%'" />
-	  	SELECT auctionId, title, content, img, startPrice, 
+	  	SELECT auctionId, title, content_, img, startPrice, 
 	  			uploadDate, endDate, count,
     			maxPrice, state, menuId, userId
     	FROM AUCTION

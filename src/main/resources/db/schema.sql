@@ -1,4 +1,6 @@
 
+
+
 CREATE TABLE User_
 (
    userId               VARCHAR2(20) NOT NULL ,

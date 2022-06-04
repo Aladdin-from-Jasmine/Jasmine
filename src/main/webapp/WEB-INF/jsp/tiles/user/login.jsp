@@ -15,18 +15,31 @@
 		<br />
 				<form:form modelAttribute="loginForm" method="POST" action="/user/login" id="signup-form-form">
 					<form:errors cssClass="error" /> <br />
-					<div class="form-group">
-						<label for="userId">ID</label> 
-						<form:input path="userId" class="form-control" placeholder="userId" />
-						<form:errors path="userId" cssClass="error" />
-					</div>
-
-					<div class="form-group">
-				<label for="password">Password</label>
-				<form:input path="password" type="password" class="form-control"
-					placeholder="password" />
-				<form:errors path="password" cssClass="error" />
-			</div>
+					<table align="center">
+					<tr text-align="right">
+						<td>
+							<div class="form-group">
+								<label for="userId">ID</label> 
+							</div>
+						</td>
+						<td>
+							<form:input path="userId" class="form-control" placeholder="userId" />
+							<form:errors path="userId" cssClass="error" />
+						</td>
+					</tr>
+					<tr text-align="left">
+						<td>
+							<div class="form-group">
+								<label for="password">Password</label>
+							</div>
+						</td>
+						<td>
+							<form:input path="password" type="password" class="form-control"
+									placeholder="password" />
+							<form:errors path="password" cssClass="error" />
+						</td>
+					</tr>
+					</table>				
 			<br />
 
 			<div class="form-group" >

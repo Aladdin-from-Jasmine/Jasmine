@@ -116,9 +116,8 @@ function auctionSubmit(isNewAuction) {
 		<div class="auction-form-sub">
 			<label for="auction.report">대표 이미지</label>
 			<form:errors path="auction.report" cssClass="error" />
-<!-- 
-			<form:input type="file" path="auction.report" />   -->
-			<form:text path="file" path="auction.report" /> 
+
+			<form:input type="file" path="auction.report" />   
 		</div>
 
 

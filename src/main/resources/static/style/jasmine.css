@@ -146,7 +146,7 @@ table#footer tr td {
 	padding: 20px;
 }
 
-h2, h1 {
+h2, h1, h3 {
 	text-align: center;
 	font-weight: bold;
 	color: rgb(128, 128, 192);
@@ -194,7 +194,7 @@ h2, h1 {
 }
 
 
-#signup-form-form, #auctionForm {
+#signup-form-form, #auctionForm, #updateform {
 	padding: 20px;
 	background-color: rgb(231, 226, 235);
 	border-radius: 70px;
@@ -213,7 +213,7 @@ h2, h1 {
 	color: #282d2f;
 }
 
-#auctionForm {
+#auctionForm, #updateform {
 	margin:3% 16%;
 }
 
@@ -238,8 +238,6 @@ h2, h1 {
 #auction-register-btn {
 	border:2px solid rgb(128, 128, 192);
 }
-
-
 
 .error 
 {

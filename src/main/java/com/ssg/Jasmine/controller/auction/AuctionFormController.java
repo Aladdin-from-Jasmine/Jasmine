@@ -87,7 +87,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 		}
 //		AuctionForm객체 validation
 		if (result.hasErrors()) {
-			if (requestUrl.equals("/auction/update.do")) {
+			if (requestUrl.equals("/auction/update")) {
 				model.addAttribute("auctionId", auctionForm.getAuction().getAuctionId());
 				return AUCTION_FORM;
 			} else {
@@ -102,7 +102,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 		auctionForm.getAuction().timeSet();
 
 //		경매 update/create 작업
-		if (requestUrl.equals("/auction/update.do")) { // update
+		if (requestUrl.equals("/auction/update")) { // update
 			Auction oldAuction = auctionService.getAuction(auctionForm.getAuction().getAuctionId());
 //			기존 파일 삭제 후 파일 업로드
 			String[] oldFileName = oldAuction.getImg().split("/");

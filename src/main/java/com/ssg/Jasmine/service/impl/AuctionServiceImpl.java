@@ -20,10 +20,12 @@ import com.ssg.Jasmine.service.AuctionService;
 @Service
 public class AuctionServiceImpl implements AuctionService {
 	
-	@Autowired(required=false)
+//	@Autowired(required=false)
+	@Autowired
 	private AuctionDao auctionDao;
 	
-	@Autowired(required=false)
+//	@Autowired(required=false)
+	@Autowired
 	private BidDao bidDao;
 	
 //	@Autowired

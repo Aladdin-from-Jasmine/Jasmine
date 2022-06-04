@@ -2,8 +2,11 @@ package com.ssg.Jasmine.dao.mybatis.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.ssg.Jasmine.domain.Bid;
 
+@Mapper
 public interface BidMapper {
 
 	Bid getBid(int bidId);

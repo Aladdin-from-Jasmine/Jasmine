@@ -3,10 +3,12 @@ package com.ssg.Jasmine.dao.mybatis.mapper;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 
 import com.ssg.Jasmine.domain.Auction;
 
+@Mapper
 public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이름과 일치해야함!
 	
 	Auction getAuction(int auctionId) throws DataAccessException;

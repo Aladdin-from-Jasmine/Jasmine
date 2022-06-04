@@ -37,7 +37,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/user/login").setViewName("user/login");
 		
 		//aution
-		registry.addViewController("/aution/aution_list").setViewName("aution/aution_list");
+		registry.addViewController("/auction/auction_list").setViewName("auction/auction_list");
+		registry.addViewController("/auction/auction_form").setViewName("auction/auction_form");
+		registry.addViewController("/auction/auction_detail").setViewName("auction/auction_detail");
 	}
 	
 //	@Override

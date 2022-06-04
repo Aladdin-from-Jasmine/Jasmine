@@ -9,23 +9,23 @@
 
 <div class="container">
 	<h1 class="text-center">Auction</h1>
-	<p class="lead">솜솜이들이 갖고 있던 학교 굿즈를 경매하는 공간</p>
+	<p class="lead">책 경매</p>
 </div>
 
 
-<!-- 
 <div class="site-section">
 	<div class="container">
 		<a class="btn btn-primary py-3 px-5"
-			href="<c:url value='/auction/form.do'></c:url>">경매 등록</a> <br /> <br />
+			href="<c:url value='/auction/form'></c:url>">경매 등록</a> <br /> <br />
+			
 		<div class="row">
 			<c:forEach var="auction" items="${auctionList}" varStatus="status">
 				<div class="col-lg-4 col-md-6 mb-4">
 					<div class="post-entry-1 h-100">
 
 						<a
-							href="<c:url value='/auction/detail.do'><c:param name="auctionId" value="${auction.auctionId}"/></c:url>">
-							<img src="${auction.img}" alt="Image" class="img-fluid">
+							href="<c:url value='/auction/detail'><c:param name="auctionId" value="${auction.auctionId}"/></c:url>">
+							<!-- <img src="${auction.img}" alt="Image" class="img-fluid"> -->
 						</a>
 
 						<div class="post-entry-1-contents">
@@ -70,4 +70,3 @@
 		</div>
 	</div>
 </div>
- -->

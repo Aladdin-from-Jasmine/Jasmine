@@ -3,7 +3,8 @@
 
 <!-- AuctionMapper 인터페이스의 package이름과 같아야 함 -->
 <mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.AuctionMapper">
-
+  <cache />
+  
   <resultMap id="resultMap" type="Auction">
   	<id column="auctionId" property="auctionId" />
   	<result column="title" property="title" />
@@ -17,24 +18,28 @@
   	<result column="state" property="state" />
   	<result column="menuId" property="menuId" />
   	<result column="writerId" property="userId" />
-  	<collection property="bids" ofType="Bid">
+  	<collection property="bid" ofType="Bid">
   		<id property="bidId" column="bidId"/>
   		<result property="bidPrice" column="bidPrice"/>
   	</collection>
   </resultMap>
   
-  
-  <select id="getAuction" parameterType="java.lang.Integer" resultType="Auction"> <!-- bid없는 Auction객체 위해 필요 -->
-    SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, count,
-    		maxPrice, state, menuId, userId
-    FROM AUCTIONS
+  <!-- 
+  <select id="getAuction" parameterType="java.lang.Integer" resultType="com.ssg.Jasmine.domain.Auction">  bid없는 Auction객체 위해 필요 -->
+  <select id="getAuction" resultType="com.ssg.Jasmine.domain.Auction"> <!-- bid없는 Auction객체 위해 필요 -->
+    SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, 
+    		count, maxPrice, state, menuId, userId
+    FROM AUCTION
     WHERE auctionId = #{auctionId}
   </select>
   
-  <select id="getAuctionWithBids" parameterType="java.lang.Integer" resultMap="resultMap"> <!-- bid있는 Auction객체, 경매 결제에서 이용 -->
-    SELECT a.auctionId, a.title, a.content, a.img, a.startPrice, a.uploadDate, a.endDate, a.count,
-    		a.maxPrice, a.state, a.menuId, a.userId AS writerId, b.bidId, b.bidPrice
-    FROM AUCTIONS a, BIDS b
+  <!-- 
+  <select id="getAuctionWithBids" parameterType="java.lang.Integer" resultMap="resultMap">  bid있는 Auction객체, 경매 결제에서 이용 -->
+  <select id="getAuctionWithBids"  resultMap="resultMap"> <!-- bid있는 Auction객체, 경매 결제에서 이용 -->
+    SELECT a.auctionId, a.title, a.content, a.img, a.startPrice, a.uploadDate, 
+    		a.endDate, a.count, a.maxPrice, a.state, a.menuId, 
+    		a.userId AS writerId, b.bidId, b.bidPrice
+    FROM AUCTION a, BID b
     WHERE a.auctionId = b.auctionId AND a.auctionId = #{auctionId}
   </select>
   
@@ -42,60 +47,62 @@
   	<selectKey keyProperty="auctionId" resultType="int" order="BEFORE">
   		SELECT auctionId_seq.nextval AS auctionId FROM DUAL
      </selectKey>
-  	INSERT INTO AUCTIONS
+  	INSERT INTO AUCTION
 	VALUES (#{auctionId}, #{title}, #{content}, #{img}, #{startPrice}, 
-			#{uploadDate}, #{endDate}, #{count}, #{maxPrice}, #{state}, #{menuId}, #{userId})
+			#{uploadDate}, #{endDate}, #{count}, #{maxPrice}, #{state}, 
+			#{menuId}, #{userId})
   </insert>
   
   <update id="updateAuction" parameterType="com.ssg.Jasmine.domain.Auction">
-   	UPDATE AUCTIONS
+   	UPDATE AUCTION
     SET title=#{title}, content=#{content}, img=#{img}, startPrice=#{startPrice}, 
  		ENDDATE=#{endDate}, MAXPRICE=#{maxPrice}, state=#{state}
   	WHERE  AUCTIONID=#{auctionId}
   </update>
   
   <update id="updateAuctionMaxPrice" parameterType="com.ssg.Jasmine.domain.Auction">
-  	UPDATE AUCTIONS
-	SET MAXPRICE = #{param1}
-	WHERE AUCTIONID = #{param2}
+  	UPDATE AUCTION
+	SET MAXPRICE = #{maxPrice}
+	WHERE AUCTIONID = #{auctionId}
   </update>
    
   <delete id="deleteAuction" parameterType="java.lang.Integer">
-    DELETE FROM AUCTIONS
+    DELETE FROM AUCTION
     WHERE  AUCTIONID=#{auctionId}
   </delete>
   
   <delete id="deleteAuctionByUserId" parameterType="java.lang.Integer">
-    DELETE FROM AUCTIONS
+    DELETE FROM AUCTION
     WHERE  USERID = #{userId}
   </delete>
   
   <!-- Get all auctions -->
-  <select id="getAuctionList" resultType="Auction">
-    SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, count,
-    		maxPrice, state, menuId, userId
-    FROM AUCTIONS
+  <select id="getAuctionList" resultType="com.ssg.Jasmine.domain.Auction">
+    SELECT auctionId, title, content, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, menuId, userId
+    FROM AUCTION
     ORDER BY uploadDate DESC
   </select>
   
   <!-- Search auctions by Keyword -->
-  <select id="auctionListByKeyword" resultType="Auction">
+  <select id="auctionListByKeyword" resultType="com.ssg.Jasmine.domain.Auction">
   	<bind name="pattern" value="'%' + _parameter + '%'" />
-	  	SELECT auctionId, title, content, img, startPrice, uploadDate, endDate, count,
-    		maxPrice, state, menuId, userId
-    	FROM AUCTIONS
+	  	SELECT auctionId, title, content, img, startPrice, 
+	  			uploadDate, endDate, count,
+    			maxPrice, state, menuId, userId
+    	FROM AUCTION
 	    WHERE title LIKE #{pattern}
   </select>
   
   <update id="increaseCount" parameterType="com.ssg.Jasmine.domain.Auction">
-  	UPDATE AUCTIONS
+  	UPDATE AUCTION
   	SET  COUNT=#{count}
   	WHERE AUCTIONID=#{auctionId}
   </update>
   
   <update id="closeEvent" parameterType="Date">
     <![CDATA[
-     UPDATE AUCTIONS SET STATE = 'closed'
+     UPDATE AUCTION SET STATE = 'closed'
      WHERE ENDDATE <= #{curTime}
     ]]>
   </update>
@@ -103,7 +110,7 @@
   <select id="getRecentAuctionList" resultType="com.ssg.Jasmine.domain.Auction">
    <![CDATA[
     SELECT * FROM
-    	(SELECT * FROM AUCTIONS
+    	(SELECT * FROM AUCTION
     	 ORDER BY COUNT DESC)
     WHERE ROWNUM <= 3
    ]]>
@@ -111,7 +118,7 @@
   
  <select id="getSuccessBidderUserId" parameterType="int" resultType="Integer">
  	SELECT DISTINCT b.userId
-	FROM AUCTIONS a, BIDS b
+	FROM AUCTION a, BID b
 	WHERE a.auctionId = b.auctionId AND a.maxPrice = b.bidPrice AND a.auctionId = #{auctionId}
  </select>
 </mapper>

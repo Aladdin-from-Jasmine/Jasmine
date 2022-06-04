@@ -6,7 +6,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<%@ include file="../IncludeTop.jsp" %> 
+<%--  <%@ include file="../IncludeTop.jsp" %>    --%>
+
 
 <script>
 function auctionSubmit(isNewAuction) {
@@ -28,7 +29,7 @@ function auctionSubmit(isNewAuction) {
 }
 </style>
 
-<%@ include file="../IncludeBanner.jsp" %> 
+<%--  <%@ include file="../IncludeBanner.jsp" %>  --%>
 
 		<div class="site-section-cover">
 			<div class="container">
@@ -155,5 +156,5 @@ function auctionSubmit(isNewAuction) {
 		</div>
 
 
-<%@ include file="../IncludeBottom.jsp" %>
+<%--    <%@ include file="../IncludeBottom.jsp" %>   --%>
 

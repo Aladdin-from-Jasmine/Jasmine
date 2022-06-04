@@ -16,11 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Auction;
-import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.domain.Bid;
 import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
+import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.BidService;
 
 @Controller

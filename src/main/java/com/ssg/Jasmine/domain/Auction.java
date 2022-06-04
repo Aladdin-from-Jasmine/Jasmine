@@ -239,7 +239,7 @@ public class Auction implements Serializable {
 	
 //	기본 이미지 지정하는 메서드
 	public void initImg(String contextPath) {
-		img = contextPath + "/resources/images/somsom.jpg";
+		img = contextPath + "/resources/static/images/snoopy.gif";
 	}
 
 	@Override

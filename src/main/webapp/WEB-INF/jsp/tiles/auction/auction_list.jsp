@@ -8,21 +8,18 @@
 
 
 <div class="container">
-	<h1 class="text-center">Auction</h1>
-	<p class="lead">책 경매</p>
+	<h1>Auction</h1>
 </div>
 
 
-<div class="site-section">
 	<div class="container">
-		<a class="btn btn-primary py-3 px-5"
+		<a id="auction-register-btn"
 			href="<c:url value='/auction/form'></c:url>">경매 등록</a> <br /> <br />
 			
 		<div class="row">
 			<c:forEach var="auction" items="${auctionList}" varStatus="status">
 				<div class="col-lg-4 col-md-6 mb-4">
 					<div class="post-entry-1 h-100">
-
 						<a
 							href="<c:url value='/auction/detail'><c:param name="auctionId" value="${auction.auctionId}"/></c:url>">
 							<!-- <img src="${auction.img}" alt="Image" class="img-fluid"> -->
@@ -68,5 +65,4 @@
 			</div>
 
 		</div>
-	</div>
 </div>

@@ -205,7 +205,7 @@ h2, h1 {
 	margin:3% 16%;
 }
 
-#register-btn, #a-btn {
+#register-btn, #a-btn, #auction-register-btn {
 	color: rgb(128, 128, 192);
 	font-weight: bold;
 	background-color: white;
@@ -218,9 +218,13 @@ h2, h1 {
 	border: 0px;
 }
 
-#a-btn {
+#a-btn, #auction-register-btn {
 	font-size: 15px;
 	text-decoration: none;
+}
+
+#auction-register-btn {
+	border:2px solid rgb(128, 128, 192);
 }
 
 .error 

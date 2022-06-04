@@ -29,9 +29,9 @@
 			</div>
 			<br />
 
-			<div class="form-group" align="center">
+			<div class="form-group" >
 				<input type="submit" value="Login" id="register-btn">
-				&nbsp; <a id="login-register-btn" href="<c:url value='/user/register'></c:url>">Register</a>
+				&nbsp; <a id="a-btn" href="<c:url value='/user/register'></c:url>">Register</a>
 			</div>		
 			</form:form>
 	</div>

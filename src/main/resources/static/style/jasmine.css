@@ -146,7 +146,7 @@ table#footer tr td {
 	padding: 20px;
 }
 
-h2 {
+h2, h1 {
 	text-align: center;
 	font-weight: bold;
 	color: rgb(128, 128, 192);
@@ -164,7 +164,9 @@ h2 {
 	font-size: 20px;
 }
 
+
 .form-group {
+	text-align: center;
 	padding: 10px;
 }
 
@@ -174,13 +176,36 @@ h2 {
 	border-radius: 70px;
 }
 
-#signup-form-form {
+ .select {
+	width: 150px;
+	  height: 35px;
+	  border-radius: 15px;
+	  border: 2px solid white;
+}
+
+.auction-form-sub {
+	padding: 2% 0;
+}
+
+#auction-des-form {
+	border-radius: 20px;
+	width:500px;
+	height:300px;
+}
+
+
+#signup-form-form, #auctionForm {
 	padding: 20px;
 	background-color: rgb(231, 226, 235);
 	border-radius: 70px;
 }
 
-#register-btn, #login-register-btn {
+
+#auctionForm {
+	margin:3% 16%;
+}
+
+#register-btn, #a-btn {
 	color: rgb(128, 128, 192);
 	font-weight: bold;
 	background-color: white;
@@ -193,7 +218,7 @@ h2 {
 	border: 0px;
 }
 
-#login-register-btn {
+#a-btn {
 	font-size: 15px;
 	text-decoration: none;
 }

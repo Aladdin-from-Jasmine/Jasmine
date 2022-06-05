@@ -1,10 +1,11 @@
 package com.ssg.Jasmine.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
-public class Bid {
+public class Bid  implements Serializable{
 	int bidId;
 	String userId;
 	int auctionId;
@@ -14,7 +15,6 @@ public class Bid {
 	Date bidDate;
 	User user = new User();
 	
-	String auctionTitle;
 	public Bid() {
 		
 	}
@@ -82,14 +82,6 @@ public class Bid {
 		this.bidDate = bidDate;
 	}
 	
-	public String getAuctionTitle() {
-		return auctionTitle;
-	}
-	
-	public void setAuctionTitle(String auctionTitle) {
-		this.auctionTitle = auctionTitle;
-	}
-
 	public String toString() {
 		String str = "Bid [ bidId: " + bidId + ", userId" + userId + ", auctionId" + auctionId 
 				 + ", bidPrice" + bidPrice + ", isBidded" + isBidded + ", bidDate" + bidDate;

@@ -70,7 +70,7 @@ function orderAuction() {
          <!-- betting -->
          <c:if test="${isWriter eq false}">
               <form:form modelAttribute="bidForm" method="post"
-                  action="/goodsom/auction/bid/create.do">
+                  action="/auction/bid/create"> 
                   베팅 금액
                      <form:input type="hidden" path="bid.auctionId"
                         value="${auction.auctionId}" />
@@ -103,5 +103,5 @@ function orderAuction() {
          <a href="javascript:updateAuction()">수정</a>
          <a href="javascript:deleteAuction()">삭제</a>
       </c:if>
-      <a id="auction-register-btn" href="<c:url value='/auction/auction_list'></c:url>">목록</a>
+      <a id="auction-register-btn" href="<c:url value='/auction/list'></c:url>">목록</a>
 </div>

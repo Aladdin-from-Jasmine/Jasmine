@@ -30,7 +30,7 @@ public interface AuctionService {
 	
 	public void deadLineScheduler(Date endDate, int auctionId);
 	
-	public Integer getSuccessBidderUserId(int auctionId);
+	public String getSuccessBidderUserId(int auctionId);
 	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);
 	

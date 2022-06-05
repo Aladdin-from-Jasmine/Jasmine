@@ -114,8 +114,8 @@
    ]]>
   </select>
   
- <select id="getSuccessBidderUserId" parameterType="int" resultType="Integer">
- 	SELECT DISTINCT b.userId
+ <select id="getSuccessBidderUserId" parameterType="int" resultType="String" >
+ 	SELECT DISTINCT b.userId 
 	FROM AUCTION a, BID b
 	WHERE a.auctionId = b.auctionId AND a.maxPrice = b.bidPrice AND a.auctionId = #{auctionId}
  </select>

@@ -51,7 +51,7 @@ public class Auction implements Serializable {
 	String bookauthor;
 	String bookpublisher;
 	
-	List<Bid> bids = new ArrayList<Bid>();
+	List<Bid> bid = new ArrayList<Bid>();
 	
 	public String getUserId() {
 		return userId;
@@ -62,11 +62,11 @@ public class Auction implements Serializable {
 	}
 	
 	public List<Bid> getBids() {
-		return bids;
+		return bid;
 	}
 
 	public void setBids(List<Bid> bids) {
-		this.bids = bids;
+		this.bid = bid;
 	}
 
 	public int getMenuId() {

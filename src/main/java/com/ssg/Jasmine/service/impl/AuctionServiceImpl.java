@@ -98,7 +98,7 @@ public class AuctionServiceImpl implements AuctionService {
 		System.out.println("Auction updateTableRunner has been scheduled to execute at " + endDate);
 	}
 	
-	public Integer getSuccessBidderUserId(int auctionId) {
+	public String getSuccessBidderUserId(int auctionId) {
 		return auctionDao.getSuccessBidderUserId(auctionId);
 	}
 	

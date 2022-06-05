@@ -2,7 +2,7 @@ package com.ssg.Jasmine.domain;
 
 public class SuccessBidder {
 	int bidId;
-	int userId;
+	String userId;
 	int orderId;
 	int auctionId;
 
@@ -14,11 +14,11 @@ public class SuccessBidder {
 		this.bidId = bidId;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

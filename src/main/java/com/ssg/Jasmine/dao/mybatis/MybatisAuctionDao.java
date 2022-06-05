@@ -94,7 +94,7 @@ public class MybatisAuctionDao implements AuctionDao {
 	}
 		
 	@Override
-	public Integer getSuccessBidderUserId(int auctionId) {
+	public String getSuccessBidderUserId(int auctionId) {
 		return auctionMapper.getSuccessBidderUserId(auctionId);
 	}
 	

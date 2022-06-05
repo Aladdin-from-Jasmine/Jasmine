@@ -47,6 +47,10 @@ public class Auction implements Serializable {
 	int hour;
 	int minute;
 	
+	String booktitle;
+	String bookauthor;
+	String bookpublisher;
+	
 	List<Bid> bids = new ArrayList<Bid>();
 	
 	public String getUserId() {
@@ -186,6 +190,34 @@ public class Auction implements Serializable {
 		this.minute = minute;
 	}
 	
+
+	
+	public String getBooktitle() {
+		return booktitle;
+	}
+
+	public void setBooktitle(String booktitle) {
+		this.booktitle = booktitle;
+	}
+
+	public String getBookauthor() {
+		return bookauthor;
+	}
+
+	public void setBookauthor(String bookauthor) {
+		this.bookauthor = bookauthor;
+	}
+
+	public String getBookpublisher() {
+		return bookpublisher;
+	}
+
+	public void setBookpublisher(String bookpublisher) {
+		this.bookpublisher = bookpublisher;
+	}
+	
+	
+	
 	public void initAuction(User user) {
 		Calendar calendar = Calendar.getInstance();
         java.util.Date date = calendar.getTime();
@@ -242,13 +274,22 @@ public class Auction implements Serializable {
 		img = contextPath + "/resources/static/images/snoopy.gif";
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Auction [auctionId=" + auctionId + ", title=" + title + ", report=" + report + ", content_=" + content_
+//				+ ", img=" + img + ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate
+//				+ ", count=" + count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId
+//				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids="
+//				+ bids + "]";
+//	}
+	
 	@Override
 	public String toString() {
 		return "Auction [auctionId=" + auctionId + ", title=" + title + ", report=" + report + ", content_=" + content_
 				+ ", img=" + img + ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate
 				+ ", count=" + count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId
-				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids="
-				+ bids + "]";
+				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute 
+				+ ", booktitle=" + booktitle + ", bookauthor=" + bookauthor + ", bookpublisher=" + bookpublisher + "]";
 	}
 
 	

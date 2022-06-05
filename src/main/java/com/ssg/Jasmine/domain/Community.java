@@ -1,30 +1,32 @@
 package com.ssg.Jasmine.domain;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Community implements Serializable{
 	
-	private int communityId;
+	private int postId;
 	private String title;
-	private String communityDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date communityDate;
 	private String content;
 	
-	public Community() {
-		
-	}
+	public Community() { }
 	
-	public Community(int communityId, String title, String communityDate, String content) {
-		this.communityId = communityId;
+	public Community(int postId, String title, Date communityDate, String content) {
+		this.postId = postId;
 		this.communityDate = communityDate;
 		this.content = content;
 		this.title = title;
 	}
 	
-	public int getCommunityId() {
-		return communityId;
+	public int getPostId() {
+		return postId;
 	}
-	public void setCommunityId(int communityId) {
-		this.communityId = communityId;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
 	public String getTitle() {
 		return title;
@@ -32,10 +34,10 @@ public class Community implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getCommunityDate() {
+	public Date getCommunityDate() {
 		return communityDate;
 	}
-	public void setCommunityDate(String communityDate) {
+	public void setCommunityDate(Date communityDate) {
 		this.communityDate = communityDate;
 	}
 	public String getContent() {
@@ -44,7 +46,5 @@ public class Community implements Serializable{
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
-	
+
 }

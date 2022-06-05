@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.CommunityMapper">
+  <cache />
+  
+  <select id="getCommunity" parameterType="int" resultType="com.ssg.Jasmine.domain.Community">
+    SELECT postId, title, communityDate, content_, userId
+    FROM Community 
+    WHERE postId = #{param1}
+  </select>
+  
+  <select id="getCommunityByUserId" parameterType="String" resultType="com.ssg.Jasmine.domain.Community">
+  	SELECT postId, title, communityDate, content_, userId
+    FROM Community 
+    WHERE userId = #{userId}
+  </select>
+  
+  <insert id="createPost" parameterType="com.ssg.Jasmine.domain.Community">
+  	INSERT INTO Community 
+  	(seq_postId.nextval, title, communityDate, content_, userId)
+  	VALUES 
+  	(#{title}, #{communityDate}, #{content_}, #{userId}) 
+  </insert>
+  
+  <update id="updatePost" parameterType="com.ssg.Jasmine.domain.Community">
+  	UPDATE Community SET
+  		title = #{title},
+  		communityDate = #{communityDate},
+  		content_ = #{content_}
+  	WHERE postId = #{postId}
+  </update>
+  
+  <update id="deletePost" parameterType="int">
+  	DELETE FROM Community
+  	WHERE postId = #{postId}
+  </update>
+
+   <select id="getCommunityList" resultType="com.ssg.Jasmine.domain.Community">
+  	SELECT postId, title, content_, communityDate
+  	FROM Community
+  	ORDER BY postId DESC
+  </select> 
+  
+  <select id="getUserCommunityList" parameterType="String"
+  		resultType="com.ssg.Jasmine.domain.Community">
+  	SELECT postId, title, content_, communityDate, userId
+  	FROM Community
+  	WHERE userId = #{userId}
+  	ORDER BY postId DESC
+  </select> 
+  
+</mapper>

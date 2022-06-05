@@ -1,4 +1,4 @@
-package com.ssg.Jasmine.dao;
+package com.ssg.Jasmine.service;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import com.ssg.Jasmine.domain.Community;
 import com.ssg.Jasmine.domain.User;
 
-public interface CommunityDao {
+public interface CommunityService {
 
 	Community getCommunity(int communityId) throws DataAccessException;
 	
@@ -19,7 +19,7 @@ public interface CommunityDao {
 
 	void deletePost(int communityId) throws DataAccessException;
 
-	List<Community> getCommunityList() throws DataAccessException;	
-
-	List<Community> getUserCommunityList(String userId) throws DataAccessException;	
+	List<Community> getCommunityList() throws DataAccessException;
+	
+	List<Community> getUserCommunityList(String userId) throws DataAccessException;
 }

@@ -5,12 +5,12 @@
   <cache />
 
 	<insert id="insertSuccessBidder" parameterType="SuccessBidder">
-		INSERT INTO SuccessBidders (bidId, userId, orderId, auctionId)
-		VALUES (#{bidId}, #{userId}, #{orderId}, #{auctionId})
+		INSERT INTO SuccessBidders (bidId, userId, auctionId)
+		VALUES (#{bidId}, #{userId}, #{auctionId})
 	</insert>
 
 	<select id="getSuccessBidderByAuctionId" parameterType="int" resultType="SuccessBidder">
-		SELECT bidId, userId, orderId, auctionId
+		SELECT bidId, userId, auctionId
 		FROM SuccessBidders
 		WHERE auctionId = #{auctionId}
 	</select>

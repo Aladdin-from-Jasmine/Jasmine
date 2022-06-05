@@ -45,7 +45,7 @@
   
   <insert id="createAuction" parameterType="com.ssg.Jasmine.domain.Auction">
   	<selectKey keyProperty="auctionId" resultType="int" order="BEFORE">
-  		SELECT auctionId_seq.nextval AS auctionId FROM DUAL
+  		SELECT seq_auctionId.nextval AS auctionId FROM DUAL
      </selectKey>
   	INSERT INTO AUCTION
 	VALUES (#{auctionId}, #{title}, #{content_}, #{img}, #{startPrice}, 

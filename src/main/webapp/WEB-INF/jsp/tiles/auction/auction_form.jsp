@@ -6,18 +6,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<%--  <%@ include file="../IncludeTop.jsp" %>    --%>
-
-
 <script>
 function auctionSubmit(isNewAuction) {
 
    if(isNewAuction){
       alert("경매를 등록합니다.");
-      document.auctionForm.action="create.do";
+      document.auctionForm.action="create";
    }else{
       alert("경매를 수정합니다.");
-      document.auctionForm.action="update.do";
+      document.auctionForm.action="update";
    }
    document.auctionForm.submit();
 }
@@ -30,7 +27,7 @@ function auctionSubmit(isNewAuction) {
 
 
       <div class="auction-form-sub">
-         <label for="auction.title">제목</label> &nbsp;&nbsp;&nbsp;
+         <label for="auction.title">제목</label>
          <form:errors path="auction.title" cssClass="error" />
          <form:input path="auction.title" class="form-control"
             placeholder="Title" />
@@ -106,8 +103,7 @@ function auctionSubmit(isNewAuction) {
                   placeholder="Write description." id="auction-des-form" />
             </c:when>
             <c:otherwise>
-               <form:textarea path="auction.content" class="form-control"
-                  cols="30" rows="10" />
+               <form:textarea path="auction.content" class="form-control" id="auction-des-form"/>
             </c:otherwise>
          </c:choose>
       </div>
@@ -119,9 +115,8 @@ function auctionSubmit(isNewAuction) {
          <form:input type="file" path="auction.report" />   
       </div>
       
-      
       <div class="auction-form-sub">
-         <label for="auction.booktitle">책 제목</label>
+         <label for="auction.booktitle">책 제목</label> 
          <form:input path="auction.booktitle" class="form-control"
              />
       </div>
@@ -131,7 +126,7 @@ function auctionSubmit(isNewAuction) {
              />
       </div>
          <div class="auction-form-sub">
-         <label for="auction.bookpublisher">책 출판사</label>
+         <label for="auction.bookpublisher">책 출판사</label> 
          <form:input path="auction.bookpublisher" class="form-control"
             />
       </div>

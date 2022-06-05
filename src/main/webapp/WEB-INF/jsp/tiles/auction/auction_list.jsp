@@ -11,18 +11,17 @@
 	<h1>Auction</h1>
 </div>
 
-
 	<div class="container">
 		<a id="auction-register-btn"
-			href="<c:url value='/auction/form'></c:url>">경매 등록</a> <br /> <br />
+			href="<c:url value='/auction/auction_form'></c:url>">경매 등록</a> <br /> <br />
 			
 		<div class="row">
 			<c:forEach var="auction" items="${auctionList}" varStatus="status">
 				<div class="col-lg-4 col-md-6 mb-4">
 					<div class="post-entry-1 h-100">
 						<a
-							href="<c:url value='/auction/detail'><c:param name="auctionId" value="${auction.auctionId}"/></c:url>">
-							<!-- <img src="${auction.img}" alt="Image" class="img-fluid"> -->
+							href="<c:url value='/auction/auction_detail'><c:param name="auctionId" value="${auction.auctionId}"/></c:url>">
+							<img src="${auction.img}" alt="Image">
 						</a>
 
 						<div class="post-entry-1-contents">
@@ -43,12 +42,12 @@
 
 							<h2>
 								<a
-									href="<c:url value='/auction/detail.do'>
+									href="<c:url value='/auction/auction_detail'>
 											<c:param name="auctionId" value="${auction.auctionId}"/>
 											</c:url>">${auction.title}</a>
 							</h2>
 
-							<span class="meta d-inline-block mb-3"> <span>현재 최고
+							<span> <span>현재 최고
 									금액</span> &nbsp; <a href="#"><fmt:formatNumber
 										value="${auction.maxPrice}" pattern="#,###원" /></a>
 							</span>
@@ -59,10 +58,10 @@
 				</div>
 			</c:forEach>
 
-			<div class="col-12 mt-5 text-center">
-				<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a href="#"
-					class="p-3">3</a> <a href="#" class="p-3">4</a>
-			</div>
+<!-- 			<div class="col-12 mt-5 text-center"> -->
+<!-- 				<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a href="#" -->
+<!-- 					class="p-3">3</a> <a href="#" class="p-3">4</a> -->
+<!-- 			</div> -->
 
 		</div>
 </div>

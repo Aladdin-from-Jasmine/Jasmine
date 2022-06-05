@@ -1,5 +1,20 @@
+DROP TABLE User_ CASCADE CONSTRAINTS PURGE;
 
+DROP TABLE Community CASCADE CONSTRAINTS PURGE;
 
+DROP TABLE Auction CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE Bid CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE Book CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE Order CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE BookCategory CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE Cart CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CartItem CASCADE CONSTRAINTS PURGE;
 
 CREATE TABLE User_
 (
@@ -31,28 +46,23 @@ CREATE UNIQUE INDEX XPKCommunity ON Community
 
 ALTER TABLE Community
    ADD CONSTRAINT  XPKCommunity PRIMARY KEY (postId);
-
+   
 CREATE TABLE Auction
 (
-   auctionId            INTEGER NOT NULL ,
-   title                VARCHAR2(20) NULL ,
-   report               VARCHAR2(20) NULL ,
-   content_             VARCHAR2(20) NULL ,
-   img                  VARCHAR2(20) NULL ,
-   startPrice           INTEGER NULL ,
-   uploadDate           DATE NULL ,
-   endDate              DATE NULL ,
-   count                INTEGER NULL ,
-   maxPrice             INTEGER NULL ,
-   state                VARCHAR2(20) NULL ,
-   menuId               INTEGER NULL ,
-   isAmPm               VARCHAR2(20) NULL ,
-   hour                 INTEGER NULL ,
-   minute               INTEGER NULL ,
-   bookTitle            VARCHAR2(20) NULL ,
-   bookAuthor           VARCHAR2(20) NULL ,
-   bookPublisher        VARCHAR2(20) NULL ,
-   userId               VARCHAR2(20) NULL 
+	auctionId            INTEGER NOT NULL ,
+	title                VARCHAR2(20) NULL ,
+	content_             VARCHAR2(20) NULL ,
+	img                  VARCHAR2(20) NULL ,
+	startPrice           INTEGER NULL ,
+	uploadDate           DATE NULL ,
+	endDate              DATE NULL ,
+	count                INTEGER NULL ,
+	maxPrice             INTEGER NULL ,
+	state                VARCHAR2(20) NULL ,
+	bookTitle            VARCHAR2(20) NULL ,
+	bookAuthor           VARCHAR2(20) NULL ,
+	bookPublisher        VARCHAR2(20) NULL ,
+	userId               VARCHAR2(20) NULL 
 );
 
 CREATE UNIQUE INDEX XPKAuction ON Auction
@@ -63,13 +73,12 @@ ALTER TABLE Auction
 
 CREATE TABLE Bid
 (
-   bidId                INTEGER NOT NULL ,
-   bidPrice             INTEGER NULL ,
-   isBidded             VARCHAR2(20) NULL ,
-   bidDate              DATE NULL ,
-   auctionTitle         VARCHAR2(20) NULL ,
-   auctionId            INTEGER NULL ,
-   userId               VARCHAR2(20) NULL 
+	bidId                INTEGER NOT NULL ,
+	bidPrice             INTEGER NULL ,
+	isBidded             VARCHAR2(20) NULL ,
+	bidDate              DATE NULL ,
+	auctionId            INTEGER NULL ,
+	userId               VARCHAR2(20) NULL 
 );
 
 CREATE UNIQUE INDEX XPKBid ON Bid
@@ -180,3 +189,22 @@ ALTER TABLE CartItem
 
 ALTER TABLE CartItem
    ADD (CONSTRAINT R_11 FOREIGN KEY (bookId) REFERENCES Book (bookId) ON DELETE SET NULL);
+   
+   
+   
+   
+CREATE SEQUENCE SEQ_AUCTIONID
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE SEQ_BIDID
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE SEQ_BOOKID
+START WITH 1
+INCREMENT BY 1;
+
+CREATE SEQUENCE SEQ_POSTID
+START WITH 1
+INCREMENT BY 1;

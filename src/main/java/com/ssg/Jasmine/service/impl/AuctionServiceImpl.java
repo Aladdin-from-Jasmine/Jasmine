@@ -84,7 +84,7 @@ public class AuctionServiceImpl implements AuctionService {
 				
 				if(auctionDao.getAuction(auctionId).getState().equals("closed")) {
 					Bid bid = bidDao.getSuccessBidByAuctionId(auctionId);
-					bid.setAuctionTitle(auctionDao.getAuction(auctionId).getTitle());
+				//	bid.setAuctionTitle(auctionDao.getAuction(auctionId).getTitle());
 //					notiDao.createNoti_a(bid);
 					System.out.println("****closed auction and create noti ");
 

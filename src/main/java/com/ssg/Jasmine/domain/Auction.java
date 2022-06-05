@@ -26,7 +26,7 @@ public class Auction implements Serializable {
 	String title;
 	MultipartFile report;
 	@NotEmpty
-	String content;
+	String content_;
 	String img;
 	@NotNull @Positive
 	int startPrice;
@@ -101,11 +101,11 @@ public class Auction implements Serializable {
 	}
 
 	public String getContent() {
-		return content;
+		return content_;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContent(String content_) {
+		this.content_ = content_;
 	}
 
 	public String getImg() {
@@ -244,7 +244,7 @@ public class Auction implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Auction [auctionId=" + auctionId + ", title=" + title + ", report=" + report + ", content=" + content
+		return "Auction [auctionId=" + auctionId + ", title=" + title + ", report=" + report + ", content_=" + content_
 				+ ", img=" + img + ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate
 				+ ", count=" + count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId
 				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids="

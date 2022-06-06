@@ -16,9 +16,9 @@ public class MybatisCommunityDao implements CommunityDao {
 	@Autowired
 	private CommunityMapper communityMapper;
 	
-	public Community getCommunity(int communityId) throws DataAccessException
+	public Community getCommunity(int postId) throws DataAccessException
 	{
-		return communityMapper.getCommunity(communityId);		
+		return communityMapper.getCommunity(postId);		
 	}
 	
 	public Community getCommunityByUserId(String userId) throws DataAccessException
@@ -36,9 +36,9 @@ public class MybatisCommunityDao implements CommunityDao {
 		communityMapper.updatePost(community);
 	}
 
-	public void deletePost(int communityId) throws DataAccessException
+	public void deletePost(int postId) throws DataAccessException
 	{
-		communityMapper.deletePost(communityId);
+		communityMapper.deletePost(postId);
 	}
 
 	public List<Community> getCommunityList() throws DataAccessException

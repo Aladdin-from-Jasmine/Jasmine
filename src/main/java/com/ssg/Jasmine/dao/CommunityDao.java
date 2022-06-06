@@ -12,7 +12,7 @@ public interface CommunityDao {
 	Community getCommunity(int communityId) throws DataAccessException;
 	
 	Community getCommunityByUserId(String userId) throws DataAccessException;
-	
+
 	void createPost(Community community) throws DataAccessException;
 
 	void updatePost(Community community) throws DataAccessException;

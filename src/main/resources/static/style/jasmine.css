@@ -270,11 +270,15 @@ table.listTb tr th{
 }
 
 .listTb-1{
-	width:30%;
+	width:20%;
 }
 
 .listTb-2{
 	width:30%;
+}
+
+.listTb-3{
+	width:20%;
 }
 
 .listTb-tr1{
@@ -285,4 +289,9 @@ table.listTb tr th{
 
 .listTb-tr2{
 	height:40px;
+}
+
+.form-control2 {
+	border: 0px;
+	padding: 8px 15px;
 }

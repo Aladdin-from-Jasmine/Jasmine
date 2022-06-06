@@ -14,60 +14,29 @@
 	<div id="signup-form">
 		<h2 class="text-center">게시물 등록</h2>
 		<br />
-		<form:form modelAttribute="userForm" method="POST"
-			action="/user/register" id="signup-form-form">
+		<form:form modelAttribute="communityForm" method="POST"
+			action="/community/list" id="signup-form-form">
 			<div class="form-group">
-				<label for="name">ID</label>
-				<form:input path="user.userId" class="form-control" />
-				<%-- <form:errors path="user.userId" cssClass="error" />
+ 				<label for="userId">Writer</label>
+ 				<form:input path="community.userId" class="form-control" placeholder="${userId}" readonly="true" />
+ 				<%-- <form:errors path="community.postId" cssClass="error" />
 						<form:errors cssClass="error" /> --%>
 			</div>
 			<div class="form-group">
-				<label for="name">Email</label>
-				<form:input path="user.email" class="form-control"
-					placeholder="Email ex) 20170000@dongduk.ac.kr" />
-				<%-- <form:errors path="user.email" cssClass="error" />
+				<label for="title">Title</label>
+				<form:input path="community.title" class="form-control"
+					placeholder="제목을 입력하세요." />
+				<%-- <form:errors path="community.title" cssClass="error" />
 						<form:errors cssClass="error" /> --%>
 			</div>
 
 			<div class="form-group">
-				<label for="name">Password</label>
-				<form:input path="user.password" type="password"
-					class="form-control" placeholder="Password" />
-				<%-- 						<form:errors path="user.passwd" cssClass="error" />
+				<label for="name">Content</label></br>
+				<form:textarea path="community.content_" cols="50" rows="10"
+					class="form-control2" placeholder="내용을 입력하세요." />
+				<%-- 	<form:errors path="community.content_" cssClass="error" />
  --%>
 			</div>
-
-			<div class="form-group">
-				<label for="name">Check Password</label>
-				<form:input path="repeatedPassword" type="password"
-					class="form-control" placeholder="Password" />
-				<%-- 						<form:errors path="repeatedPassword" cssClass="error" />
- --%>
-			</div>
-
-			<div class="form-group">
-				<label for="name">Name</label>
-				<form:input path="user.username" class="form-control"
-					placeholder="Name" />
-				<%-- 						<form:errors path="user.username" cssClass="error" />
- --%>
-			</div>
-
-			<div class="form-group">
-				<label for="name">Phone</label>
-				<form:input path="user.phone" class="form-control"
-					placeholder="Phone ex) 010-0000-0000" />
-				<%-- 						<form:errors path="user.phone" cssClass="error" />
- --%>
-			</div>
-
-			<div class="form-group">
-				<label for="name">Address</label>
-				<form:input path="user.address" class="form-control" />
-			</div>
-
-			<br />
 
 			<div class="form-group" align="center">
 				<input type="submit" value="REGISTER" id="register-btn">

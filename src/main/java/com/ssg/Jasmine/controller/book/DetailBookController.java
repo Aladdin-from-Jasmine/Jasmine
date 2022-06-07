@@ -19,7 +19,7 @@ import com.ssg.Jasmine.service.UserService;
 
 @Controller
 @RequestMapping("/book/detail/{bookId}")
-public class BookdetailController {
+public class DetailBookController {
 
 	//private static final String BOOK_LIST = "book/detail";
 

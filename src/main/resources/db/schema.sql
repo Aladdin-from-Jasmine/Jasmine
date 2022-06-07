@@ -112,7 +112,7 @@ CREATE UNIQUE INDEX XPKOrder ON Order
 ALTER TABLE Order
    ADD CONSTRAINT  XPKOrder PRIMARY KEY (orderId);
 
-CREATE TABLE BookCategory
+CREATE TABLE Category
 (
    categoryId           INTEGER NOT NULL ,
    genre                VARCHAR2(20) NULL 

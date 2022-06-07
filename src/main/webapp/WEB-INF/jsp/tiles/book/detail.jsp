@@ -17,13 +17,13 @@
 				<th>제목</th>
 				<td>${book.title}</td>
 			</tr>
-			<%-- <tr>
+			<tr>
 				<th>판매자 이름</th>
-				<td>${userForm.user.username}</td>
-			</tr> --%>
+				<td>${book.userId}</td>
+			</tr>
 			<tr>
 				<th>카테고리</th>
-				<td>${book.categoryId}</td>
+				<td>${genre}</td>
 			</tr>
 			<tr>
 				<th>ISBN</th>

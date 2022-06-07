@@ -11,6 +11,8 @@ public class Book implements Serializable{
 	private String title;
 	private String author;
 	private String publisher;
+	private String userId;
+	//db에 이대로 넣을거임
 	
 	public int getBookId() {
 		return bookId;
@@ -54,6 +56,14 @@ public class Book implements Serializable{
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
+	
 
 	
 	

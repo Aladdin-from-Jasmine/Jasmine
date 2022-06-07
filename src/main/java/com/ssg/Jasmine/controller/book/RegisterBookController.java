@@ -14,7 +14,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.ssg.Jasmine.controller.user.UserSession;
+import com.ssg.Jasmine.domain.Book;
+import com.ssg.Jasmine.domain.Category;
 
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
@@ -33,8 +38,8 @@ public class RegisterBookController {
 //	UserService userService;
 	
 	@ModelAttribute("genres")
-	public List<String> genreList(HttpServletRequest request) throws Exception {
-		List<String> genres = categoryService.getAllGenres();
+	public List<Category> genreList(HttpServletRequest request) throws Exception {
+		List<Category> genres = categoryService.getAllGenres();
 		return genres;
 	}
 	
@@ -42,8 +47,6 @@ public class RegisterBookController {
 	@ModelAttribute("bookForm")
 	public BookForm formBackingObect(HttpServletRequest request) throws Exception {
 		return new BookForm();
-		
-		
 	}
 	
 //	@RequestMapping(method=RequestMethod.GET)
@@ -54,20 +57,49 @@ public class RegisterBookController {
 //	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public void test(ModelMap model) {
+	public void showRegisterForm(ModelMap model) {
 		BookForm bookForm=new BookForm();
 		
 		model.addAttribute("bookForm",bookForm);
-		System.out.println("Tst");
+		System.out.println("get 호출됨");
 	}
 	
-//	@RequestMapping(method=RequestMethod.POST)
-//	public String submit(HttpServletRequest request, HttpSession session,
-//			@ModelAttribute("bookForm") BookForm bookForm, BindingResult result, Model model) throws Exception {
-//		
-//		
-//		
-//		return "book/detail"; //리다이렉트 하는게 나을듯?
-//	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public String submit(HttpServletRequest request, HttpSession session,
+			@ModelAttribute("bookForm") BookForm bookForm, BindingResult result,
+			Model model, SessionStatus sessionStatus) throws Exception {
+		
+		UserSession user = (UserSession)request.getSession().getAttribute("userSession");
+		String userId = user.getUser().getUserId();
+		session.setAttribute("bookForm", bookForm);
+		
+		//String bookId =bookForm.getTitle();
+		model.addAttribute("userId",userId);
+		model.addAttribute("bookForm", bookForm);
+		
+		//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
+		
+		Book book = new Book();
+		book.setIsbn(bookForm.getIsbn());
+		book.setPrice(bookForm.getIsbn());
+		book.setCategoryId(bookForm.getCategoryId());
+		book.setTitle(bookForm.getTitle());
+		book.setAuthor(bookForm.getAuthor());
+		book.setPublisher(bookForm.getPublisher());
+		book.setUserId(userId);
+		
+		
+		System.out.println(userId);
+		
+		bookService.createBook(book);
+		
+		
+		sessionStatus.setComplete();
+		
+		
+		return "redirect:/book/detail/"+book.getBookId(); //리다이렉트 하는게 나을듯?
+	}
 	
 }

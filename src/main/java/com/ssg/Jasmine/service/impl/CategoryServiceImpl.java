@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssg.Jasmine.dao.CategoryDao;
+import com.ssg.Jasmine.domain.Category;
 import com.ssg.Jasmine.service.CategoryService;
 
 @Service
@@ -16,7 +17,7 @@ public class CategoryServiceImpl implements CategoryService{
 	
 	
 	@Override
-	public List<String> getAllGenres() {
+	public List<Category> getAllGenres() {
 		// TODO Auto-generated method stub
 		return categoryDao.getAllGenres();
 	}

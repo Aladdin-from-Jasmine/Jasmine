@@ -5,20 +5,33 @@
   <cache />
   
   <select id="getBookByBookId" resultType="com.ssg.Jasmine.domain.Book">
-    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID
     FROM BOOK 
     WHERE BOOKID = #{bookId}
   </select> 
   
-  <insert id="createUser" parameterType="com.ssg.Jasmine.domain.Book">
+  
+  
+  <insert id="createBook" parameterType="com.ssg.Jasmine.domain.Book">
+  
+  <selectKey keyProperty="bookId" resultType="int" order="BEFORE">
+  	select SEQ_bookID.nextval FROM DUAL
+  </selectKey>
+  
   	INSERT INTO BOOK 
-  	( BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORY)
+  	( BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID)
   	VALUES 
   	(#{bookId}, #{isbn}, #{price}, #{title , jdbcType=VARCHAR}, 
-  	#{author, jdbcType=VARCHAR}, #{publisher, jdbcType=VARCHAR}, #{category}) 
+  	#{author, jdbcType=VARCHAR}, #{publisher, jdbcType=VARCHAR}, #{categoryId}, #{userId}) 
+  
+  <!--<selectKey keyProperty="bookId" resultType="Integer" order="AFTER">
+  	select SEQ_bookid.currval
+  </selectKey>-->
+  
+  
   </insert>
   
-  <update id="updateUser" parameterType="com.ssg.Jasmine.domain.Book">
+  <update id="updateBook" parameterType="com.ssg.Jasmine.domain.Book">
   	UPDATE BOOK SET
   		ISBN = #{isbn},
   		PRICE = #{address},
@@ -29,7 +42,7 @@
   	WHERE USERID = #{param1}
   </update>
   
-  <delete id="deleteUser" parameterType="com.ssg.Jasmine.domain.Book">
+  <delete id="deleteBook" parameterType="com.ssg.Jasmine.domain.Book">
   	DELETE BOOK 
   	WHERE USERID = #{param1}
   </delete>

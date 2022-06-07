@@ -11,11 +11,11 @@
   </select>--> 
   
   <select id="getAllGenres" resultType="com.ssg.Jasmine.domain.Category">
-  	select genre
+  	select categoryid, genre
   	from category
   </select>
   
-  <select id="getGenreByCategoryId" parameterType="com.ssg.Jasmine.domain.Category" resultType="com.ssg.Jasmine.domain.Category">
+  <select id="getGenreByCategoryId" parameterType="com.ssg.Jasmine.domain.Category" resultType="java.lang.String">
   	select genre
   	from category
   	where categoryid=#{categoryId}

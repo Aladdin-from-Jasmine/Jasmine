@@ -10,7 +10,7 @@ public class BookForm implements Serializable {
 	//private String userName;
 	private int isbn;
 	private int price;
-	private String categoryId;
+	private int categoryId;
 	private String title;
 	private String author;
 	private String publisher;
@@ -19,6 +19,9 @@ public class BookForm implements Serializable {
 		System.out.println("test bookform");
 		return new BookForm();
 	}
+	
+	
+	
 	
 	public int getIsbn() {
 		return isbn;
@@ -32,10 +35,10 @@ public class BookForm implements Serializable {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getCategoryId() {
+	public int getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(String categoryId) {
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
 	public String getTitle() {

@@ -20,10 +20,10 @@ public class MybatisBookDao implements BookDao{
 	}
 
 	@Override
-	public void insertBook(Book book) {
+	public int insertBook(Book book) {
 		// TODO Auto-generated method stub
 		
-		bookMapper.createBook(book);
+		return bookMapper.createBook(book);
 	}
 
 	@Override

@@ -96,6 +96,7 @@ CREATE TABLE Book
    author               VARCHAR2(20) NULL ,
    publisher            VARCHAR2(20) NULL ,
    categoryId           INTEGER NULL 
+   userId				VARCHAR2(20)
 );
 
 CREATE UNIQUE INDEX XPKBook ON Book
@@ -190,7 +191,9 @@ ALTER TABLE CartItem
 ALTER TABLE CartItem
    ADD (CONSTRAINT R_11 FOREIGN KEY (bookId) REFERENCES Book (bookId) ON DELETE SET NULL);
    
-   
+ALTER TABLE book
+	ADD (CONSTRAINT R_30 FOREIGN KEY (userId) REFERENCES Book (userId) ON DELETE SET NULL);
+
    
    
 CREATE SEQUENCE SEQ_AUCTIONID

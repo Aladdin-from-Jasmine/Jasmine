@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ssg.Jasmine.dao.CategoryDao;
 import com.ssg.Jasmine.dao.mybatis.mapper.CategoryMapper;
+import com.ssg.Jasmine.domain.Category;
 
 @Repository
 public class MybatisCategoryDao implements CategoryDao{
@@ -15,7 +16,7 @@ public class MybatisCategoryDao implements CategoryDao{
 	CategoryMapper categoryMapper;
 	
 	@Override
-	public List<String> getAllGenres() {
+	public List<Category> getAllGenres() {
 		// TODO Auto-generated method stub
 		return categoryMapper.getAllGenres();
 	}

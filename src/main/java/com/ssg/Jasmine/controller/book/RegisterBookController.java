@@ -113,7 +113,7 @@ public class RegisterBookController implements ApplicationContextAware{
 		
 		Book book = new Book();
 		book.setIsbn(bookForm.getIsbn());
-		book.setPrice(bookForm.getIsbn());
+		book.setPrice(bookForm.getPrice());
 		book.setCategoryId(bookForm.getCategoryId());
 		book.setTitle(bookForm.getTitle());
 		book.setAuthor(bookForm.getAuthor());

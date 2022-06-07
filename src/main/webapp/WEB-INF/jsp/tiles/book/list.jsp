@@ -18,3 +18,7 @@
 		검색결과가 없습니다.
 	</div>
 </c:if>
+
+<h1>Book</h1>
+
+   <a href="<c:url value='/book/register'></c:url>">경매 등록</a> <br />

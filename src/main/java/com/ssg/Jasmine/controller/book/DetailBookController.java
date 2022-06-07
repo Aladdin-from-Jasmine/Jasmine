@@ -45,9 +45,9 @@ public class DetailBookController {
 		try {
 			
 			System.out.println("input id:"+bookId);
-			System.out.println("book title"+book.getIsbn());
+			System.out.println("book  isbn"+book.getIsbn());
 			
-			System.out.println("bookid:"+book.getBookId());
+			System.out.println("book price :"+book.getPrice());
 //			
 //			return "Book";;;;
 //			

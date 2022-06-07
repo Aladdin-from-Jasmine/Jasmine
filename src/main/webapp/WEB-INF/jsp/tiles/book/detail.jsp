@@ -39,7 +39,7 @@
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td>${book.price}</td>
+				<td>${book.price}원</td>
 			</tr>
 			<tr>
 				<th>출판사</th>

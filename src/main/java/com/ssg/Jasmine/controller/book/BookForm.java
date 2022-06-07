@@ -2,6 +2,8 @@ package com.ssg.Jasmine.controller.book;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @SuppressWarnings("serial")
 public class BookForm implements Serializable {
 	
@@ -14,6 +16,9 @@ public class BookForm implements Serializable {
 	private String title;
 	private String author;
 	private String publisher;
+	private String img;
+	private MultipartFile report;
+
 	
 	public BookForm bookForm(){
 		System.out.println("test bookform");
@@ -58,6 +63,22 @@ public class BookForm implements Serializable {
 	}
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public MultipartFile getReport() {
+		return report;
+	}
+
+	public void setReport(MultipartFile report) {
+		this.report = report;
 	}
 	
 	

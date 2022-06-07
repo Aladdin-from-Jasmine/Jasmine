@@ -1,20 +1,30 @@
 package com.ssg.Jasmine.controller.book;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssg.Jasmine.controller.user.UserSession;
@@ -27,7 +37,12 @@ import com.ssg.Jasmine.service.UserService;
 
 @Controller
 @RequestMapping(value="/book/register")
-public class RegisterBookController {
+public class RegisterBookController implements ApplicationContextAware{
+	@Value("/images/")
+	private String uploadDirLocal;
+//	파일 업로드 위한 변수
+	private WebApplicationContext context;	
+	private String uploadDir;
 	
 	@Autowired
 	BookService bookService;
@@ -36,6 +51,14 @@ public class RegisterBookController {
 	
 //	@Autowired
 //	UserService userService;
+	
+	@Override					// life-cycle callback method
+	public void setApplicationContext(ApplicationContext appContext)
+		throws BeansException {
+		this.context = (WebApplicationContext) appContext;
+		this.uploadDir = context.getServletContext().getRealPath(this.uploadDirLocal);
+		System.out.println(this.uploadDir);
+	}
 	
 	@ModelAttribute("genres")
 	public List<Category> genreList(HttpServletRequest request) throws Exception {
@@ -56,6 +79,7 @@ public class RegisterBookController {
 //		
 //	}
 	
+	//GET
 	@RequestMapping(method = RequestMethod.GET)
 	public void showRegisterForm(ModelMap model) {
 		BookForm bookForm=new BookForm();
@@ -65,11 +89,17 @@ public class RegisterBookController {
 	}
 	
 	
-	
+	//POST
 	@RequestMapping(method=RequestMethod.POST)
 	public String submit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("bookForm") BookForm bookForm, BindingResult result,
 			Model model, SessionStatus sessionStatus) throws Exception {
+		
+		MultipartFile report = bookForm.getReport();
+		String filename = uploadFile(report);
+		model.addAttribute("fileUrl", this.uploadDirLocal + filename);
+
+		
 		
 		UserSession user = (UserSession)request.getSession().getAttribute("userSession");
 		String userId = user.getUser().getUserId();
@@ -89,6 +119,10 @@ public class RegisterBookController {
 		book.setAuthor(bookForm.getAuthor());
 		book.setPublisher(bookForm.getPublisher());
 		book.setUserId(userId);
+		book.setImg(this.uploadDirLocal + filename);
+		
+		System.out.println("img: "+book.getImg());
+		
 		
 		
 		System.out.println(userId);
@@ -100,6 +134,18 @@ public class RegisterBookController {
 		
 		
 		return "redirect:/book/detail/"+book.getBookId(); //리다이렉트 하는게 나을듯?
+	}
+	
+	private String uploadFile(MultipartFile report) {
+		String filename = UUID.randomUUID().toString() 
+						+ "_" + report.getOriginalFilename();
+		File file = new File(this.uploadDir + filename);
+		try {
+			report.transferTo(file);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		return filename;
 	}
 	
 }

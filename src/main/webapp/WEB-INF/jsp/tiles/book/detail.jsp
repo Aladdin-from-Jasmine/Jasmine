@@ -14,6 +14,14 @@
 		<table class="mypage-table">
 			
 			<tr>
+				<th>이미지</th>
+				<td><img src= "${book.img}" /></td>
+			</tr>
+			
+			
+			
+			
+			<tr>
 				<th>제목</th>
 				<td>${book.title}</td>
 			</tr>

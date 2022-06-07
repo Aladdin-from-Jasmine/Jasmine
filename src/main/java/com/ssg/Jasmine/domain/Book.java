@@ -2,6 +2,8 @@ package com.ssg.Jasmine.domain;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @SuppressWarnings("serial")
 public class Book implements Serializable{
 	private int bookId;
@@ -12,6 +14,9 @@ public class Book implements Serializable{
 	private String author;
 	private String publisher;
 	private String userId;
+	private String img;
+	private MultipartFile report;
+
 	//db에 이대로 넣을거임
 	
 	public int getBookId() {
@@ -61,6 +66,18 @@ public class Book implements Serializable{
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public MultipartFile getReport() {
+		return report;
+	}
+	public void setReport(MultipartFile report) {
+		this.report = report;
 	}
 	
 	

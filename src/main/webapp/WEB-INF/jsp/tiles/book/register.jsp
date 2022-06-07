@@ -9,8 +9,13 @@
 <body>
 <h1>책 등록</h1>
  <form:form modelAttribute="bookForm" method="POST"
-action="/book/register">
-<!-- book이랑 카테고리 조인..하고 user정보도 넘겨줘야할거같은데,,? -->>
+action="/book/register" enctype="multipart/form-data">
+<!-- book이랑 카테고리 조인..하고 user정보도 넘겨줘야할거같은데,,? -->
+
+상품 사진
+<form:input type="file" path="report" /> 
+
+
 책 제목
 <form:input path="title"/>
 <br>

@@ -26,7 +26,7 @@ public class Auction implements Serializable {
 	String title;
 	MultipartFile report;
 	@NotEmpty
-	String content;
+	String content_;
 	String img;
 	@NotNull @Positive
 	int startPrice;
@@ -47,7 +47,11 @@ public class Auction implements Serializable {
 	int hour;
 	int minute;
 	
-	List<Bid> bids = new ArrayList<Bid>();
+	String booktitle;
+	String bookauthor;
+	String bookpublisher;
+	
+	List<Bid> bid = new ArrayList<Bid>();
 	
 	public String getUserId() {
 		return userId;
@@ -58,11 +62,11 @@ public class Auction implements Serializable {
 	}
 	
 	public List<Bid> getBids() {
-		return bids;
+		return bid;
 	}
 
 	public void setBids(List<Bid> bids) {
-		this.bids = bids;
+		this.bid = bid;
 	}
 
 	public int getMenuId() {
@@ -101,11 +105,11 @@ public class Auction implements Serializable {
 	}
 
 	public String getContent() {
-		return content;
+		return content_;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContent(String content_) {
+		this.content_ = content_;
 	}
 
 	public String getImg() {
@@ -186,6 +190,34 @@ public class Auction implements Serializable {
 		this.minute = minute;
 	}
 	
+
+	
+	public String getBooktitle() {
+		return booktitle;
+	}
+
+	public void setBooktitle(String booktitle) {
+		this.booktitle = booktitle;
+	}
+
+	public String getBookauthor() {
+		return bookauthor;
+	}
+
+	public void setBookauthor(String bookauthor) {
+		this.bookauthor = bookauthor;
+	}
+
+	public String getBookpublisher() {
+		return bookpublisher;
+	}
+
+	public void setBookpublisher(String bookpublisher) {
+		this.bookpublisher = bookpublisher;
+	}
+	
+	
+	
 	public void initAuction(User user) {
 		Calendar calendar = Calendar.getInstance();
         java.util.Date date = calendar.getTime();
@@ -242,13 +274,22 @@ public class Auction implements Serializable {
 		img = contextPath + "/resources/static/images/snoopy.gif";
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Auction [auctionId=" + auctionId + ", title=" + title + ", report=" + report + ", content_=" + content_
+//				+ ", img=" + img + ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate
+//				+ ", count=" + count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId
+//				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids="
+//				+ bids + "]";
+//	}
+	
 	@Override
 	public String toString() {
-		return "Auction [auctionId=" + auctionId + ", title=" + title + ", report=" + report + ", content=" + content
+		return "Auction [auctionId=" + auctionId + ", title=" + title + ", report=" + report + ", content_=" + content_
 				+ ", img=" + img + ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate
 				+ ", count=" + count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId
-				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids="
-				+ bids + "]";
+				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute 
+				+ ", booktitle=" + booktitle + ", bookauthor=" + bookauthor + ", bookpublisher=" + bookpublisher + "]";
 	}
 
 	

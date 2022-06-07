@@ -84,7 +84,7 @@ public class AuctionServiceImpl implements AuctionService {
 				
 				if(auctionDao.getAuction(auctionId).getState().equals("closed")) {
 					Bid bid = bidDao.getSuccessBidByAuctionId(auctionId);
-					bid.setAuctionTitle(auctionDao.getAuction(auctionId).getTitle());
+				//	bid.setAuctionTitle(auctionDao.getAuction(auctionId).getTitle());
 //					notiDao.createNoti_a(bid);
 					System.out.println("****closed auction and create noti ");
 
@@ -98,7 +98,7 @@ public class AuctionServiceImpl implements AuctionService {
 		System.out.println("Auction updateTableRunner has been scheduled to execute at " + endDate);
 	}
 	
-	public Integer getSuccessBidderUserId(int auctionId) {
+	public String getSuccessBidderUserId(int auctionId) {
 		return auctionDao.getSuccessBidderUserId(auctionId);
 	}
 	

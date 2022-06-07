@@ -100,7 +100,7 @@ public class BidFormController {
 
 //		Auction객체의 최고 금액 변경 후 Auction객체 다시 가져와 넘겨주기
 		int updatedAutionId = auctionService.updateAuctionMaxPrice(bidForm.getBid().getBidPrice(), auctionId); // auction table maxPrice update
-		model.addAttribute("auction", auctionService.getAuction(updatedAutionId));;
+		model.addAttribute("auction", auctionService.getAuction(updatedAutionId));
 		
 //		auction_detail.jsp에 넘겨줄 model 값 설정
 		model.addAttribute("date_maxBid", bid.getBidDate());
@@ -108,6 +108,7 @@ public class BidFormController {
 		model.addAttribute("user_maxBid", user_maxBid.getUsername());
 		session.setAttribute("bidForm", new BidForm());
 		model.addAttribute("bidForm", session.getAttribute("bidForm"));
+		
 		return AUCTION_DETAIL;
 	}
 

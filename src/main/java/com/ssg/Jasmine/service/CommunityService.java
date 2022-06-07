@@ -9,7 +9,7 @@ import com.ssg.Jasmine.domain.User;
 
 public interface CommunityService {
 
-	Community getCommunity(int communityId) throws DataAccessException;
+	Community getCommunity(int postId) throws DataAccessException;
 	
 	Community getCommunityByUserId(String userId) throws DataAccessException;
 	
@@ -17,7 +17,7 @@ public interface CommunityService {
 
 	void updatePost(Community community) throws DataAccessException;
 
-	void deletePost(int communityId) throws DataAccessException;
+	void deletePost(int postId) throws DataAccessException;
 
 	List<Community> getCommunityList() throws DataAccessException;
 	

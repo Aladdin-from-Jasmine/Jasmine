@@ -25,7 +25,7 @@ public class CommunityServiceImpl implements CommunityService {
 	public Community getCommunityByUserId(String userId) throws DataAccessException {
 		return communityDao.getCommunityByUserId(userId);
 	}
-
+	
 	@Override
 	public void createPost(Community community) throws DataAccessException {
 		communityDao.createPost(community);

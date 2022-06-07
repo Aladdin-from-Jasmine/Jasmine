@@ -16,7 +16,6 @@
   	<result column="count" property="count" />
   	<result column="maxPrice" property="maxPrice" />
   	<result column="state" property="state" />
-  	<result column="menuId" property="menuId" />
   	<result column="writerId" property="userId" />
   	<collection property="bid" ofType="Bid">
   		<id property="bidId" column="bidId"/>
@@ -24,33 +23,32 @@
   	</collection>
   </resultMap>
   
-  <!-- 
-  <select id="getAuction" parameterType="java.lang.Integer" resultType="com.ssg.Jasmine.domain.Auction">  bid없는 Auction객체 위해 필요 -->
-  <select id="getAuction" resultType="com.ssg.Jasmine.domain.Auction"> <!-- bid없는 Auction객체 위해 필요 -->
+
+  <select id="getAuction" parameterType="java.lang.Integer" resultType="com.ssg.Jasmine.domain.Auction">  <!--   bid없는 Auction객체 위해 필요 -->
     SELECT auctionId, title, content_, img, startPrice, uploadDate, endDate, 
-    		count, maxPrice, state, menuId, userId
+    		count, maxPrice, state, userId
     FROM AUCTION
     WHERE auctionId = #{auctionId}
   </select>
   
-  <!-- 
-  <select id="getAuctionWithBids" parameterType="java.lang.Integer" resultMap="resultMap">  bid있는 Auction객체, 경매 결제에서 이용 -->
-  <select id="getAuctionWithBids"  resultMap="resultMap"> <!-- bid있는 Auction객체, 경매 결제에서 이용 -->
+
+  <select id="getAuctionWithBids" parameterType="java.lang.Integer" resultMap="resultMap">   <!--  bid있는 Auction객체, 경매 결제에서 이용 -->
     SELECT a.auctionId, a.title, a.content_, a.img, a.startPrice, a.uploadDate, 
-    		a.endDate, a.count, a.maxPrice, a.state, a.menuId, 
+    		a.endDate, a.count, a.maxPrice, a.state, 
     		a.userId AS writerId, b.bidId, b.bidPrice
     FROM AUCTION a, BID b
     WHERE a.auctionId = b.auctionId AND a.auctionId = #{auctionId}
   </select>
   
+  <!-- Auction Create -->
   <insert id="createAuction" parameterType="com.ssg.Jasmine.domain.Auction">
   	<selectKey keyProperty="auctionId" resultType="int" order="BEFORE">
-  		SELECT auctionId_seq.nextval AS auctionId FROM DUAL
+  		SELECT seq_auctionId.nextval AS auctionId FROM DUAL
      </selectKey>
   	INSERT INTO AUCTION
 	VALUES (#{auctionId}, #{title}, #{content_}, #{img}, #{startPrice}, 
 			#{uploadDate}, #{endDate}, #{count}, #{maxPrice}, #{state}, 
-			#{menuId}, #{userId})
+			#{booktitle}, #{bookauthor}, #{bookpublisher}, #{userId} )
   </insert>
   
   <update id="updateAuction" parameterType="com.ssg.Jasmine.domain.Auction">
@@ -79,7 +77,7 @@
   <!-- Get all auctions -->
   <select id="getAuctionList" resultType="com.ssg.Jasmine.domain.Auction">
     SELECT auctionId, title, content_, img, startPrice, uploadDate, 
-    		endDate, count, maxPrice, state, menuId, userId
+    		endDate, count, maxPrice, state, userId
     FROM AUCTION
     ORDER BY uploadDate DESC
   </select>
@@ -89,7 +87,7 @@
   	<bind name="pattern" value="'%' + _parameter + '%'" />
 	  	SELECT auctionId, title, content_, img, startPrice, 
 	  			uploadDate, endDate, count,
-    			maxPrice, state, menuId, userId
+    			maxPrice, state, userId
     	FROM AUCTION
 	    WHERE title LIKE #{pattern}
   </select>
@@ -116,8 +114,8 @@
    ]]>
   </select>
   
- <select id="getSuccessBidderUserId" parameterType="int" resultType="Integer">
- 	SELECT DISTINCT b.userId
+ <select id="getSuccessBidderUserId" parameterType="int" resultType="String" >
+ 	SELECT DISTINCT b.userId 
 	FROM AUCTION a, BID b
 	WHERE a.auctionId = b.auctionId AND a.maxPrice = b.bidPrice AND a.auctionId = #{auctionId}
  </select>

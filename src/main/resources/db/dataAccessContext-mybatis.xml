@@ -86,4 +86,5 @@
         <property name="basePackage" value="com.jpetstore.dao.mybatis.mapper" />
     </bean> 
     -->
+    
 </beans>

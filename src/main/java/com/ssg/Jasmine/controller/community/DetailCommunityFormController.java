@@ -1,5 +1,11 @@
 package com.ssg.Jasmine.controller.community;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -16,32 +22,42 @@ import com.ssg.Jasmine.domain.Community;
 import com.ssg.Jasmine.service.CommunityService;
 import com.ssg.Jasmine.validator.CommunityFormValidator;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 @Controller
-@RequestMapping("/community/list")
-public class ListCommunityController {
+@SessionAttributes("userSession")
+@RequestMapping("/community/detail")
+public class DetailCommunityFormController { 
 
 	@Autowired
 	private CommunityService communityService;
 
-	@Value("community/create")
-	private String formViewName;
 	@Value("community/list")
+	private String formViewName;
+	@Value("community/detail")
 	private String successViewName;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView handleRequest() throws Exception {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpSession session, 
+			@ModelAttribute("communityForm") CommunityForm communityForm) throws Exception {
 		
-		List<Community> communityList = communityService.getCommunityList();
+		int postId = Integer.parseInt(request.getParameter("postId"));
+		Community community = communityService.getCommunity(postId);
 		
+		String postUserId = community.getUserId();
+		boolean isUser = false;
+		
+		UserSession userSession  = (UserSession)session.getAttribute("userSession");
+		if(userSession != null) {
+			String userId = userSession.getUser().getUserId();
+			if(userId.equals(postUserId)) {
+				isUser = true;
+			}
+		}
+
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("communityList", communityList);
-		mav.addObject("listSize", communityList.size());
+		mav.addObject("community", community);
+		mav.addObject("isUser", isUser);
 		mav.setViewName(successViewName); 
 		return mav;
 	}
+
 }

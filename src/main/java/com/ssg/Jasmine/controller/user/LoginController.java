@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ssg.Jasmine.domain.Auction;
-//import com.ssg.Jasmine.domain.GroupBuy;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
-//import com.ssg.Jasmine.service.GroupBuyService;
 import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.validator.LoginFormValidator;
 
@@ -32,8 +30,7 @@ public class LoginController {
 
 	@Autowired
 	private UserService userService;
-//	@Autowired
-//	private GroupBuyService groupBuyService;
+
 	//@Autowired
 	private AuctionService auctionService;
 	
@@ -60,17 +57,8 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView(formViewName);
 		}
-
-//		List<GroupBuy> recentGroupBuy = groupBuyService.getRecentGroupBuyList();
-		//List<Auction> recentAuction = auctionService.getRecentAuctionList();
-		
 		User user = userService.getUser(loginForm.getUserId(), loginForm.getPassword());
 
-	//	model.addAttribute("recentGroupBuy", recentGroupBuy);
-		//model.addAttribute("recentAuction", recentAuction);
-		
-		System.out.println("LoginForm : " + loginForm);
-		
 		try {
 			authenticator.authenticate(loginForm); // email과 password가 맞는지 검증
 			UserSession userSession = new UserSession(user);

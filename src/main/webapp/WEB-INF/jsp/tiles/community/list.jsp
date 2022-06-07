@@ -5,6 +5,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script>
+	function create(){		
+		if(confirm("로그인 후 가능한 기능입니다.")){
+			window.location.href = "http://localhost:8080/user/login";
+		}
+	}
+</script>
+
 <div class="container">
 	<h1>Community List</h1>
 </div>
@@ -14,6 +22,10 @@
 		<a id="auction-register-btn"
 			href="<c:url value='/community/create'></c:url>">게시물 등록
 		</a> <br/> <br/> <br/>
+	</c:if>
+	<c:if test="${empty userSession.user}">
+		<input id="auction-register-btn" type="button" value="게시물 등록" onClick="create()" />
+		<br/> <br/> <br/>
 	</c:if>
 		<div class="row">
 			<div class="col-lg-4 col-md-6 mb-4">
@@ -28,7 +40,7 @@
 							</tr>
 							<c:forEach var="community" items="${communityList}">
 								<tr class="listTb-tr2">
-									<td><a href="<c:url value='/community/list'>
+									<td><a id="a2-btn" href="<c:url value='/community/detail'>
 	  											<c:param name="postId" value="${community.postId}"/>
 											  </c:url>">${community.postId}</a>
 									</td>
@@ -47,12 +59,6 @@
 						</div>
 					</div>
 				</div>
-			
 			<br/><br/>
-			<div class="col-12 mt-5 text-center">
-				<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a href="#"
-					class="p-3">3</a> <a href="#" class="p-3">4</a>
-			</div>
-
 		</div>
 </div>

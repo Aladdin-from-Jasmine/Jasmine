@@ -11,7 +11,7 @@ public class Community implements Serializable{
 
 	private int postId;
 	private String title;
-	//@DateTimeFormat(pattern="yyyy-MM-dd")
+//	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date communityDate;
 	private String content_;
 	private String userId;

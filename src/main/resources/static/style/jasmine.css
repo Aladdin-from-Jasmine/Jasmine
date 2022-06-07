@@ -295,3 +295,48 @@ table.listTb tr th{
 	border: 0px;
 	padding: 8px 15px;
 }
+
+.td1 {
+	font-size:15px;
+	font-weight: bold;
+	font-family: serif;
+	height:40px;
+	width: 40%;
+	background-color: #f4e9f7;
+}
+
+.td1-4 {
+	font-size:15px;
+	font-family: serif;
+	font-weight: bold;
+	height:200px;
+	background-color: #f4e9f7;
+}
+
+.td2 {
+	width: 60%;
+}
+
+table.TB1 {
+	width: 400px;
+	height: 30px;
+	color: black;
+	background-color: white;
+	border:1px solid gray;
+	text-align:center;
+	border-collapse: collapse;	
+}
+
+table.TB1 tr td{
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: #d0d5db;
+	border-collapse: collapse; 
+}
+
+#a2-btn {
+	color: rgb(128, 128, 192);
+	font-weight: bold;
+	font-size: 15px;
+	text-decoration: none;
+}

@@ -71,7 +71,7 @@
 					</td>
 				</tr>			
 			</table><br/>
-			<c:if test="${isUser==true}" >
+			<c:if test="${isUser==true || isManager==true}" >
 				<div class="form-group" align="center">
 					<a href="<c:url value='/community/updateFrom'>
 	  					<c:param name="postId" value="${community.postId}"/>

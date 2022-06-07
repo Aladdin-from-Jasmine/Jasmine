@@ -44,6 +44,7 @@ public class DetailCommunityFormController {
 		
 		String postUserId = community.getUserId();
 		boolean isUser = false;
+		boolean isManager = false;
 		
 		UserSession userSession  = (UserSession)session.getAttribute("userSession");
 		if(userSession != null) {
@@ -51,11 +52,15 @@ public class DetailCommunityFormController {
 			if(userId.equals(postUserId)) {
 				isUser = true;
 			}
+			if(userId.equals("admin")) {
+				isManager = true;
+			}
 		}
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("community", community);
 		mav.addObject("isUser", isUser);
+		mav.addObject("isUser", isManager);
 		mav.setViewName(successViewName); 
 		return mav;
 	}

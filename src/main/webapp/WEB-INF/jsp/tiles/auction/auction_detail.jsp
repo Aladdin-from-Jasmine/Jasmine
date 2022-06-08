@@ -20,10 +20,15 @@ function updateAuction() {
    }
 }
 
-function bid() {
+function bid(max, now) {
 
+	var txt = document.getElementById("bidPrice").value;
+	
    if (confirm("배팅 하시겠습니까?")) {
-      bidForm.submit();
+	   if(max >= txt)
+		   alert("작아욘");
+	   else
+      	bidForm.submit();
    }
    
 }
@@ -76,8 +81,8 @@ function orderAuction() {
                         value="${auction.auctionId}" />
                      <c:if test="${auction.state eq 'proceeding'}">
                         <form:input type="number" path="bid.bidPrice"
-                           class="form-control" /> &nbsp;&nbsp;
-                        <input id="register-btn" type="button" value="신청하기" onClick="bid()">
+                           class="form-control" id="bidPrice"/> &nbsp;&nbsp;
+                        <input id="register-btn" type="button" value="신청하기" onClick="bid(${auction.maxPrice})">
                      </c:if>
 
                      <c:if test="${auction.state eq 'closed'}">

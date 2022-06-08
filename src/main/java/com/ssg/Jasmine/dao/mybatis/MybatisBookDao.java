@@ -1,5 +1,7 @@
 package com.ssg.Jasmine.dao.mybatis;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -38,5 +40,9 @@ public class MybatisBookDao implements BookDao{
 		bookMapper.deleteBook(book);
 	}
 	
+	
+	public List<Book> getBookList() {
+		return bookMapper.getBookList();
+	}
 
 }

@@ -10,8 +10,7 @@
     WHERE BOOKID = #{bookId}
   </select> 
   
-  
-  
+
   <insert id="createBook" parameterType="com.ssg.Jasmine.domain.Book">
   
   <selectKey keyProperty="bookId" resultType="int" order="BEFORE">
@@ -23,12 +22,7 @@
   	VALUES 
   	(#{bookId}, #{isbn}, #{price}, #{title , jdbcType=VARCHAR}, 
   	#{author, jdbcType=VARCHAR}, #{publisher, jdbcType=VARCHAR}, #{categoryId}, #{userId}, #{img}) 
-  
-  <!--<selectKey keyProperty="bookId" resultType="Integer" order="AFTER">
-  	select SEQ_bookid.currval
-  </selectKey>-->
-  
-  
+
   </insert>
   
   <update id="updateBook" parameterType="com.ssg.Jasmine.domain.Book">
@@ -46,5 +40,13 @@
   	DELETE BOOK 
   	WHERE USERID = #{param1}
   </delete>
+  
+  <select id="getBookList" resultType="com.ssg.Jasmine.domain.Book">
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG
+    FROM BOOK
+    ORDER BY BOOKID DESC
+  </select> 
+  
+  
 
 </mapper>

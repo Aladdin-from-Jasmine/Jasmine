@@ -194,6 +194,8 @@ h2, h1, h3 {
 }
 
 
+
+
 #signup-form-form, #auctionForm, #updateform {
 	padding: 20px;
 	background-color: rgb(231, 226, 235);
@@ -289,6 +291,11 @@ table.listTb tr th{
 
 .listTb-tr2{
 	height:40px;
+}
+
+.listTb-tr2:hover{
+		background-color: #f4e9f7;
+	
 }
 
 .form-control2 {

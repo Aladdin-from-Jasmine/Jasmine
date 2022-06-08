@@ -1,5 +1,7 @@
 package com.ssg.Jasmine.dao;
 
+import java.util.List;
+
 import com.ssg.Jasmine.domain.Book;
 
 public interface BookDao {
@@ -10,5 +12,8 @@ public interface BookDao {
 	void updateBook(Book book);
 	
 	void deleteBook(Book book); //근데 bookId로 하는게 나을거같기두..???
+	
+	List<Book> getBookList();
+
 	
 }

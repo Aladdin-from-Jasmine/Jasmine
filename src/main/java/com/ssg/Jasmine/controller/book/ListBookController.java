@@ -26,30 +26,24 @@ import com.ssg.Jasmine.domain.User;
 //import com.ssg.Jasmine.service.BidService;
 
 @Controller
+@RequestMapping("/book/list")
+public class ListBookController {
 
-public class BookController {
-	
-	private static final String BOOK_LIST = "book/list";
-	//private static final String AUCTION_DETAIL = "auction/auction_detail";
-	
 	@Autowired
 	BookService bookService;
 	@Autowired
 	UserService userService;
 
 		
-	@RequestMapping(value="book/list", method=RequestMethod.GET)
-	public ModelAndView bookList(SessionStatus sessionStatus, HttpSession session){
-		ModelAndView mav = new ModelAndView(BOOK_LIST);
-		List<Book> bookList = null;
-		bookList = bookService.getBookList();
-		if (bookList == null) {
-			System.out.println("BookController] auctionList가 null");
-		} else {
-			mav.addObject("bookList", bookList);			
-		}
-		//session.removeAttribute("bidForm");
-		sessionStatus.setComplete();
+	@RequestMapping(method=RequestMethod.GET)
+	public ModelAndView bookList(SessionStatus sessionStatus, HttpSession session)
+	{
+		ModelAndView mav = new ModelAndView("book/list");
+		
+		List<Book> bookList = bookService.getBookList();
+		mav.addObject("bookList", bookList);		
+		mav.addObject("listSize", bookList.size());
+		
 		return mav;
 	}
 }

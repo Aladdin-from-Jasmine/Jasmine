@@ -13,7 +13,7 @@ import com.ssg.Jasmine.service.BookService;
 @Service
 public class BookServiceImpl implements BookService{
 	
-	@Autowired(required=false)
+	@Autowired
 	private BookDao bookDao;
 	
 	@Autowired(required=false)
@@ -40,8 +40,10 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<Book> getBookList() {
 		// TODO Auto-generated method stub
-		return null;
+		return bookDao.getBookList();
 	}
+	
+	
 	
 	
 	

@@ -37,6 +37,7 @@ public class ListCommunityController {
 	public ModelAndView handleRequest(HttpServletRequest request) throws Exception {
 		
 		List<Community> communityList = communityService.getCommunityList();
+		
 		/*String sortByPostId = request.getParameter("sortByPostId");
 		if(sortByPostId != null) {
 			communityList = communityService.getCommunitySortedList(sortByPostId);

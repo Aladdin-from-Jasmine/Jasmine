@@ -15,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.Validator;
 
 import com.ssg.Jasmine.domain.Bid;
 import com.ssg.Jasmine.service.BidService;

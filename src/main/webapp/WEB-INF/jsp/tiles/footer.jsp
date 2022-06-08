@@ -10,7 +10,7 @@
 	      <td align="right" width="50%">
 	        <a href="https://github.com/Aladdin-from-Jasmine"> 
 	           <img border="0"
-	                src="../images/github-logo.png"
+	                src="/images/github-logo.png"
 	                alt="Go to our github link" />
 	        </a>
 	      </td>

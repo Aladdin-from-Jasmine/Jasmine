@@ -51,7 +51,7 @@
 							</tr>
 							<c:forEach var="book" items="${bookList}">
 								<tr class="listTb-tr2" onClick="bookDetail(${book.bookId})">
-									<td><img src= "${book.img}" /></td>
+									<td><img src= "${book.img}" width="200px" height="200px"/></td>
 									<td>${book.title}</td>
 									<td>${book.userId}</td>
 									<td>

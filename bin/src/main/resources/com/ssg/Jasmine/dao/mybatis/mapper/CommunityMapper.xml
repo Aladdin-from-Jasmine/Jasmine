@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.CommunityMapper">
+  <cache />
+  
+  <select id="getCommunity" parameterType="int" resultType="com.ssg.Jasmine.domain.Community">
+    SELECT postId, title, communityDate, content_, userId
+    FROM Community 
+    WHERE postId = #{param1}
+  </select>
+  
+  <select id="getCommunityByUserId" parameterType="String" resultType="com.ssg.Jasmine.domain.Community">
+  	SELECT postId, title, communityDate, content_, userId
+    FROM Community 
+    WHERE userId = #{param1}
+  </select>
+  
+   <insert id="createPost" parameterType="com.ssg.Jasmine.domain.Community">
+  	<!-- <selectKey keyProperty="postId" resultType="int" order="BEFORE">
+  		SELECT seq_postId.nextval AS postId FROM Community
+    </selectKey>  -->
+  	INSERT INTO Community 
+  	VALUES 
+  	(seq_postId.nextval, #{title}, SYSDATE, #{content_}, #{userId}) 
+  </insert> 
+  
+  <update id="updatePost" parameterType="com.ssg.Jasmine.domain.Community">
+  	UPDATE Community SET
+  		title = #{title},
+  		communityDate = SYSDATE,
+  		content_ = #{content_}
+  	WHERE postId = #{postId}
+  </update>
+  
+  <update id="deletePost" parameterType="int">
+  	DELETE FROM Community
+  	WHERE postId = #{postId}
+  </update>
+
+   <select id="getCommunityList" resultType="com.ssg.Jasmine.domain.Community">
+  	SELECT postId, title, content_, communityDate, userId
+  	FROM Community
+  	ORDER BY communityDate DESC
+  </select> 
+  
+   <select id="getCommunitySortedList" resultType="com.ssg.Jasmine.domain.Community">
+  	SELECT postId, title, content_, communityDate, userId
+  	FROM Community
+  	ORDER BY postId DESC
+  </select> 
+  
+  <select id="getUserCommunityList" parameterType="String"
+  		resultType="com.ssg.Jasmine.domain.Community">
+  	SELECT postId, title, content_, communityDate, userId
+  	FROM Community
+  	WHERE userId = #{userId}
+  	ORDER BY postId DESC
+  </select> 
+  
+</mapper>

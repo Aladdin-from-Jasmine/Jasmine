@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.SuccessBidderMapper">
+  <cache />
+
+	<insert id="insertSuccessBidder" parameterType="SuccessBidder">
+		INSERT INTO SuccessBidders (bidId, userId, auctionId)
+		VALUES (#{bidId}, #{userId}, #{auctionId})
+	</insert>
+
+	<select id="getSuccessBidderByAuctionId" parameterType="int" resultType="SuccessBidder">
+		SELECT bidId, userId, auctionId
+		FROM SuccessBidders
+		WHERE auctionId = #{auctionId}
+	</select>
+
+</mapper>

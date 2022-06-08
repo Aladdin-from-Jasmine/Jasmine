@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 
 import com.ssg.Jasmine.domain.Auction;
@@ -19,7 +20,7 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 	int updateAuction(Auction auction) throws DataAccessException;
 	
-	void updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException;
+	void updateAuctionMaxPrice(@Param("maxPrice")int maxPrice, @Param("auctionId")int auctionId) throws DataAccessException;
 	
 	void deleteAuction(int auctionId) throws DataAccessException;
 	

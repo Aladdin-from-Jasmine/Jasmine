@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.BookMapper">
+  <cache />
+  
+  <select id="getBookByBookId" resultType="com.ssg.Jasmine.domain.Book">
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG
+    FROM BOOK 
+    WHERE BOOKID = #{bookId}
+  </select> 
+  
+  
+  
+  <insert id="createBook" parameterType="com.ssg.Jasmine.domain.Book">
+  
+  <selectKey keyProperty="bookId" resultType="int" order="BEFORE">
+  	select SEQ_bookID.nextval FROM DUAL
+  </selectKey>
+  
+  	INSERT INTO BOOK 
+  	( BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG)
+  	VALUES 
+  	(#{bookId}, #{isbn}, #{price}, #{title , jdbcType=VARCHAR}, 
+  	#{author, jdbcType=VARCHAR}, #{publisher, jdbcType=VARCHAR}, #{categoryId}, #{userId}, #{img}) 
+  
+  <!--<selectKey keyProperty="bookId" resultType="Integer" order="AFTER">
+  	select SEQ_bookid.currval
+  </selectKey>-->
+  
+  
+  </insert>
+  
+  <update id="updateBook" parameterType="com.ssg.Jasmine.domain.Book">
+  	UPDATE BOOK SET
+  		ISBN = #{isbn},
+  		PRICE = #{address},
+  		TITLE = #{phone},
+  		AUTHOR ={author},
+  		PUBLISHER ={publisher},
+  		CATEGORY={category}
+  	WHERE USERID = #{param1}
+  </update>
+  
+  <delete id="deleteBook" parameterType="com.ssg.Jasmine.domain.Book">
+  	DELETE BOOK 
+  	WHERE USERID = #{param1}
+  </delete>
+
+</mapper>

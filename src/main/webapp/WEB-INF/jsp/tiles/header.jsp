@@ -10,7 +10,7 @@
   <meta http-equiv="expires" content="0">
   <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
   <meta http-equiv="Pragma" content="no-cache">
-  <link rel="stylesheet" href="../style/jasmine.css" type="text/css" />
+  <link rel="stylesheet" href="/style/jasmine.css" type="text/css" />
 </head>
 <body bgcolor="white">
 

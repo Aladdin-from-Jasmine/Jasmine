@@ -16,21 +16,17 @@
 <div class="container">
 	<h1>Community List</h1>
 </div>
-
 	<div class="container">
-	<c:if test="${!empty userSession.user}">
-		<a id="auction-register-btn"
-			href="<c:url value='/community/create'></c:url>">게시물 등록
-		</a> 
-	</c:if>
-	<c:if test="${empty userSession.user}">
-		<input id="auction-register-btn" type="button" value="게시물 등록" onClick="create()" />
-	</c:if><%-- &nbsp&nbsp
-	<a id="auction-register-btn"
+	<a id="a-btn"
 		href="<c:url value='/community/list'>
-					<c:param name="sortByPostId" value="postId" />
-			</c:url>">🔻 PostId로 정렬
-	</a> --%> <br/> <br/> <br/>  
+					<c:param name="sortByPostId" value="true" />
+			</c:url>">🔻 PostId순
+	</a>&nbsp
+	<a id="a-btn"
+		href="<c:url value='/community/list'>
+					<c:param name="sortByPostId" value="false" />
+			</c:url>">🔻 최신순
+	</a> <br/> <br/> <br/>  
 		<div class="row">
 			<div class="col-lg-4 col-md-6 mb-4">
 				<div class="post-entry-1 h-100">
@@ -65,4 +61,12 @@
 				</div>
 			<br/><br/>
 		</div>
+		<c:if test="${!empty userSession.user}">
+		<a id="auction-register-btn"
+			href="<c:url value='/community/create'></c:url>">게시물 등록
+		</a> 
+	</c:if>
+	<c:if test="${empty userSession.user}">
+		<input id="auction-register-btn" type="button" value="게시물 등록" onClick="create()" />
+	</c:if>
 </div>

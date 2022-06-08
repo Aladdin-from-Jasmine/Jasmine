@@ -44,10 +44,10 @@
   	ORDER BY communityDate DESC
   </select> 
   
-   <select id="getCommunitySortedList" parameterType="String" resultType="com.ssg.Jasmine.domain.Community">
+   <select id="getCommunitySortedList" resultType="com.ssg.Jasmine.domain.Community">
   	SELECT postId, title, content_, communityDate, userId
   	FROM Community
-  	ORDER BY #{param1} DESC
+  	ORDER BY postId DESC
   </select> 
   
   <select id="getUserCommunityList" parameterType="String"

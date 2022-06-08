@@ -38,10 +38,10 @@ public class ListCommunityController {
 		
 		List<Community> communityList = communityService.getCommunityList();
 		
-		/*String sortByPostId = request.getParameter("sortByPostId");
-		if(sortByPostId != null) {
-			communityList = communityService.getCommunitySortedList(sortByPostId);
-		}*/
+		String isSortWithPost = request.getParameter("sortByPostId");
+		if(isSortWithPost != null && isSortWithPost.equals("true")) {
+			communityList = communityService.getCommunitySortedList(isSortWithPost);
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("communityList", communityList);

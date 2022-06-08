@@ -6,7 +6,7 @@
 <script>
 	function home(targetUri) {
 		form.action = targetUri;
-		form.submit();
+		form.submit(); 
 	}
 
 </script>

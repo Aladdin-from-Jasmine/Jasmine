@@ -26,7 +26,7 @@ import com.ssg.Jasmine.domain.User;
 //import com.ssg.Jasmine.service.BidService;
 
 @Controller
-@RequestMapping("/book/list")
+
 public class BookController {
 	
 	private static final String BOOK_LIST = "book/list";

@@ -14,16 +14,24 @@
 		<table class="mypage-table">
 			
 			<tr>
+				<th>이미지</th>
+				<td><img src= "${book.img}" /></td>
+			</tr>
+			
+			
+			
+			
+			<tr>
 				<th>제목</th>
 				<td>${book.title}</td>
 			</tr>
-			<%-- <tr>
+			<tr>
 				<th>판매자 이름</th>
-				<td>${userForm.user.username}</td>
-			</tr> --%>
+				<td>${book.userId}</td>
+			</tr>
 			<tr>
 				<th>카테고리</th>
-				<td>${book.categoryId}</td>
+				<td>${genre}</td>
 			</tr>
 			<tr>
 				<th>ISBN</th>
@@ -31,7 +39,7 @@
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td>${book.price}</td>
+				<td>${book.price}원</td>
 			</tr>
 			<tr>
 				<th>출판사</th>

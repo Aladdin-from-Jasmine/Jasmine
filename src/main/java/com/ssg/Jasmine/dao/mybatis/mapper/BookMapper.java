@@ -13,7 +13,7 @@ public interface BookMapper {
 	
 	Book getBookByBookId(int BookId);
 	
-	void createBook(Book book);
+	int createBook(Book book);
 
 	int updateBook(Book book);
 

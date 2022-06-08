@@ -5,7 +5,7 @@ import com.ssg.Jasmine.domain.Book;
 public interface BookDao {
 	Book getBookByBookId(int bookId);
 	
-	void insertBook(Book book);
+	int insertBook(Book book);
 	
 	void updateBook(Book book);
 	

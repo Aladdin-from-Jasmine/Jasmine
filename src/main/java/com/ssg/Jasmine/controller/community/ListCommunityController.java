@@ -34,9 +34,13 @@ public class ListCommunityController {
 	private String successViewName;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView handleRequest() throws Exception {
+	public ModelAndView handleRequest(HttpServletRequest request) throws Exception {
 		
 		List<Community> communityList = communityService.getCommunityList();
+		/*String sortByPostId = request.getParameter("sortByPostId");
+		if(sortByPostId != null) {
+			communityList = communityService.getCommunitySortedList(sortByPostId);
+		}*/
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("communityList", communityList);

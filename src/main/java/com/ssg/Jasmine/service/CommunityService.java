@@ -21,5 +21,7 @@ public interface CommunityService {
 
 	List<Community> getCommunityList() throws DataAccessException;
 	
+	List<Community> getCommunitySortedList(String sortItem) throws DataAccessException;
+	
 	List<Community> getUserCommunityList(String userId) throws DataAccessException;
 }

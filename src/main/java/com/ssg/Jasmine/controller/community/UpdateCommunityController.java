@@ -35,12 +35,15 @@ public class UpdateCommunityController {
 		
 		int postId = Integer.parseInt(request.getParameter("postId"));
 		Community community = communityService.getCommunity(postId);
-
+		communityForm.getCommunity().setContent_(community.getContent_());	
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("community", community);
+		mav.addObject("communityForm", communityForm);
 		mav.setViewName(formViewName); 
 		return mav;
 	}
+
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(HttpServletRequest request, HttpSession session,

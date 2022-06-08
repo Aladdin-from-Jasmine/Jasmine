@@ -60,7 +60,7 @@ public class DetailCommunityFormController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("community", community);
 		mav.addObject("isUser", isUser);
-		mav.addObject("isUser", isManager);
+		mav.addObject("isManager", isManager);
 		mav.setViewName(successViewName); 
 		return mav;
 	}

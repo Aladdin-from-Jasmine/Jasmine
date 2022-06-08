@@ -46,6 +46,11 @@ public class CommunityServiceImpl implements CommunityService {
 		return communityDao.getCommunityList();
 	}
 	
+	@Override
+	public List<Community> getCommunitySortedList(String sortItem) throws DataAccessException {
+		return communityDao.getCommunitySortedList(sortItem);
+	}
+	
 	public List<Community> getUserCommunityList(String userId) throws DataAccessException {
 		return communityDao.getUserCommunityList(userId);
 	}

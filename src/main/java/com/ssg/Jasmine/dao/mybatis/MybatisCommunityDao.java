@@ -46,6 +46,11 @@ public class MybatisCommunityDao implements CommunityDao {
 		return communityMapper.getCommunityList();
 	}
 	
+	public List<Community> getCommunitySortedList(String sortItem) throws DataAccessException
+	{
+		return communityMapper.getCommunitySortedList(sortItem);
+	}
+	
 	public List<Community> getUserCommunityList(String userId) throws DataAccessException
 	{
 		return communityMapper.getUserCommunityList(userId);

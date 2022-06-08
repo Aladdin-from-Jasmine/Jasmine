@@ -7,7 +7,7 @@
 
 <script>
 	function create(){		
-		if(confirm("로그인 후 가능한 기능입니다.")){
+		if(confirm("로그인 후 가능한 기능입니다.\n로그인 페이지로 이동하시겠습니까?")){
 			window.location.href = "http://localhost:8080/user/login";
 		}
 	}
@@ -21,12 +21,16 @@
 	<c:if test="${!empty userSession.user}">
 		<a id="auction-register-btn"
 			href="<c:url value='/community/create'></c:url>">게시물 등록
-		</a> <br/> <br/> <br/>
+		</a> 
 	</c:if>
 	<c:if test="${empty userSession.user}">
 		<input id="auction-register-btn" type="button" value="게시물 등록" onClick="create()" />
-		<br/> <br/> <br/>
-	</c:if>
+	</c:if><%-- &nbsp&nbsp
+	<a id="auction-register-btn"
+		href="<c:url value='/community/list'>
+					<c:param name="sortByPostId" value="postId" />
+			</c:url>">🔻 PostId로 정렬
+	</a> --%> <br/> <br/> <br/>  
 		<div class="row">
 			<div class="col-lg-4 col-md-6 mb-4">
 				<div class="post-entry-1 h-100">

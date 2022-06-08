@@ -73,7 +73,7 @@
 			</table><br/>
 			<c:if test="${isUser==true || isManager==true}" >
 				<div class="form-group" align="center">
-					<a href="<c:url value='/community/updateFrom'>
+					<a href="<c:url value='/community/update'>
 	  					<c:param name="postId" value="${community.postId}"/>
 					</c:url>" id="a-btn">수정</a>
 					<input id="a-btn" type="button" value="삭제" onClick="deleteComm()" />

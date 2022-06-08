@@ -68,7 +68,7 @@
 					</td>
 					<td class="td2">
 						<form:textarea path="community.content_" cols="30" rows="10"
-						class="form-control2" placeholder="${community.content_}" />
+						class="form-control2"  />
 						<form:errors path="community.content_" cssClass="error" />
 					</td>
 				</tr>			

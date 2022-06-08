@@ -123,28 +123,7 @@
 			<scope>test</scope>
 		</dependency>
 		
-
-	 <dependency>
-	 	<groupId>org.hibernate</groupId>
-	 	<artifactId>hibernate-validator</artifactId>
-	 	<version>4.2.0.Final</version>
-	 </dependency>
-	 
-	 <!-- Bean Validation API // 이부분 필요하면 주석 없애고 쓰삼.. 빨간줄 떠서 추석처리함...
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>${bean-validation-api.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernate-validator.version}</version>
-		</dependency>
-		-->
-		
-
-		
+				
 		
    </dependencies>
 

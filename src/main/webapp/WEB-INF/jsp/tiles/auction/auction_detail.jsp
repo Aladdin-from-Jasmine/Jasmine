@@ -10,13 +10,13 @@
 
 function deleteAuction() {
    if (confirm("경매를 삭제하시겠습니까?")) {
-      location.href= "delete.do?auctionId=${auction.auctionId}";
+      location.href= "delete?auctionId=${auction.auctionId}";
    }
 }
 
 function updateAuction() {
    if (confirm("경매를 수정하시겠습니까?")) {
-      location.href= "form.do?auctionId=${auction.auctionId}";
+      location.href= "form?auctionId=${auction.auctionId}";
    }
 }
 
@@ -99,10 +99,11 @@ function orderAuction() {
                </form:form>
          </c:if>
       </div>
+      
+         <p>${isWriter}</p><!-- 얘 나중에 삭제하기 -->
    </div>
 
    <div class="form-group" >
-      <%-- <c:if test="${(isWriter eq true) and (empty bids) and (auction.state eq 'proceeding')}"> --%>
       <c:if test="${(isWriter eq true) and (empty auction.bids)}">
          <a href="javascript:updateAuction()">수정</a>
          <a href="javascript:deleteAuction()">삭제</a>

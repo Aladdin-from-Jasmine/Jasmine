@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +29,8 @@ import com.ssg.Jasmine.service.AuctionService;
 
 
 @Controller
-@SessionAttributes("bidForm")
+@SessionAttributes("bidForm")	
+@EnableJpaRepositories(basePackages="/validation.properties")
 @RequestMapping("/auction/bid/create")
 public class BidFormController {
 

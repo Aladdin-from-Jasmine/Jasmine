@@ -60,7 +60,7 @@ public class UpdateCommunityController {
 		UserSession userSession  = (UserSession)session.getAttribute("userSession");
 		String userId = userSession.getUser().getUserId();
 		String writer = communityForm.getCommunity().getUserId();
-		if(!writer.equals(userId)) {
+		if(!writer.equals(userId) && !userId.equals("admin")) {
 			isSameUser = false;
 			mav.addObject("isSameUser", isSameUser);
 			mav.setViewName(formViewName);

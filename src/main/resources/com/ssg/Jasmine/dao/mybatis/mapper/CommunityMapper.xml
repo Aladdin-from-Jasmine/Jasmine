@@ -48,6 +48,20 @@
   	SELECT postId, title, content_, communityDate, userId
   	FROM Community
   	ORDER BY postId DESC
+  </select>
+  
+  <select id="getSearchCommunityList" parameterType="String" resultType="com.ssg.Jasmine.domain.Community">
+  	SELECT postId, title, content_, communityDate, userId
+  	FROM Community
+  	WHERE title LIKE '%'||#{param1}||'%' or content_ LIKE '%'||#{param1}||'%'
+  	ORDER BY communityDate DESC
+  </select> 
+  
+  <select id="getSearchSortedCommunityList" parameterType="String" resultType="com.ssg.Jasmine.domain.Community">
+  	SELECT postId, title, content_, communityDate, userId
+  	FROM Community
+  	WHERE title LIKE '%'||#{param1}||'%' or content_ LIKE '%'||#{param1}||'%'
+  	ORDER BY postId DESC
   </select> 
   
   <select id="getUserCommunityList" parameterType="String"

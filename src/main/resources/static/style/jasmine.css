@@ -83,6 +83,10 @@ table.t1 tr {
 	padding: 100px 30px 100px 30px;
 }
 
+table.t1-1{
+	align: top;
+}
+
 table.t1-1 tr td {
 	border-width: 0px 1px 1px 1px;
 	border-style: solid;
@@ -194,8 +198,12 @@ h2, h1, h3 {
 	height:300px;
 }
 
-
-
+#search-form-form {
+	padding: 20px;
+	background-color: rgb(231, 226, 235);
+	border-radius: 70px;
+	width: 40%;
+}
 
 #signup-form-form, #auctionForm, #updateform {
 	padding: 20px;

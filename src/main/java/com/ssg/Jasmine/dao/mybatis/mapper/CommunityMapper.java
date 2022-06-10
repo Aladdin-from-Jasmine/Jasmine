@@ -23,6 +23,10 @@ public interface CommunityMapper {
 	List<Community> getCommunityList() throws DataAccessException;	
 
 	List<Community> getUserCommunityList(String userId) throws DataAccessException;
+	
+	List<Community> getSearchCommunityList(String keyword) throws DataAccessException;
+	
+	List<Community> getSearchSortedCommunityList(String keyword) throws DataAccessException;
 
 	List<Community> getCommunitySortedList(String sortItem);	
 }

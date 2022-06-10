@@ -17,6 +17,9 @@
   	<result column="maxPrice" property="maxPrice" />
   	<result column="state" property="state" />
   	<result column="writerId" property="userId" />
+  	<result column="booktitle" property="booktitle" />
+  	<result column="bookauthor" property="bookauthor" />
+  	<result column="bookpublisher" property="bookpublisher" />
   	<collection property="bid" ofType="Bid">
   		<id property="bidId" column="bidId"/>
   		<result property="bidPrice" column="bidPrice"/>

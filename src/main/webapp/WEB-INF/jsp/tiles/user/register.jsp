@@ -19,8 +19,8 @@
 			<div class="form-group">
 				<label for="name">ID</label>
 				<form:input path="user.userId" class="form-control" />
-				<%-- <form:errors path="user.userId" cssClass="error" />
-						<form:errors cssClass="error" /> --%>
+				<form:errors path="user.userId" cssClass="error" />
+				<form:errors cssClass="error" />
 			</div>
 			<div class="form-group">
 				<label for="name">Email</label>

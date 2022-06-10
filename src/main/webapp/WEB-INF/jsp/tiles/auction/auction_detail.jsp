@@ -56,7 +56,9 @@ function orderAuction() {
             작성일 : <fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" /><br><br> 
             조회수 : ${auction.count} <br><br> 
             설명 : ${auction.content}<br><br>
-    		
+            책 제목 : ${auction.booktitle}<br><br>
+            책 저자 : ${auction.bookauthor}<br><br>
+            책 출판사 : ${auction.bookpublisher}<br><br>
          </p>
             시작 금액 : <fmt:formatNumber value="${auction.startPrice}" pattern="#,###원" /><br><br> 
             마감일 : <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" />

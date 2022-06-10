@@ -11,22 +11,35 @@
 	<h3>book 📚</h3>
 </div>
 
-<c:forEach var="auction" items="${auctionList}" varStatus="status">
-	<c:param name="auctionId" value ="${auction.auctionId}" />
-<%-- 		<img src="${auction.img}" alt="Image" class="img-fluid">  --%>
-		<c:if test="${auction.state eq 'proceeding'}">
-			<h5>Proceeding</h5>
-		</c:if> 
-		<c:if test="${auction.state eq 'closed'}">
-			<h5>Closed</h5>
-		</c:if> 
-		<span> &nbsp; ~ 
-			<fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" /> 								
-		</span> 
-			<c:param name="auctionId" value="${auction.auctionId}" /> 
-			<h2>${auction.title} </h2>
-		<span>현재 최고 금액&nbsp; 
-		<fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" />
-		</span>
-	<p>${auction.content}</p>
-</c:forEach>
+
+<div class="row">
+			<div class="col-lg-4 col-md-6 mb-4">
+				<div class="post-entry-1 h-100">
+					<div class="post-entry-1-contents">
+						<table class="listTb" align="center">
+							<tr class="listTb-tr1">
+								<td class="listTb-1">책 사진</td>
+								<td class="listTb-2">제목</td>
+								<td class="listTb-3">등록자</td>
+								<td class="listTb-2">가격</td>
+							</tr>
+							<c:forEach var="book" items="${bookList}">
+								<tr class="listTb-tr2" onClick="bookDetail(${book.bookId})">
+									<td><img src= "${book.img}" width="200px" height="200px"/></td>
+									<td>${book.title}</td>
+									<td>${book.userId}</td>
+									<td>
+										<div class="price-wrap d-flex">
+											<span class="meta d-inline-block mb-3"> &nbsp;
+												${book.price}
+											</span>
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+						</div>
+					</div>
+				</div>
+			<br/><br/>
+		</div>

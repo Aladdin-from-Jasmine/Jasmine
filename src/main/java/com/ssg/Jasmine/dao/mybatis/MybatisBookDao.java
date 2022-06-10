@@ -17,24 +17,18 @@ public class MybatisBookDao implements BookDao{
 	
 	@Override
 	public Book getBookByBookId(int BookId) {
-		// TODO Auto-generated method stub
 		return bookMapper.getBookByBookId(BookId);
 	}
 
 	@Override
 	public int insertBook(Book book) {
-		// TODO Auto-generated method stub
-		
 		return bookMapper.createBook(book);
 	}
 
 	@Override
 	public void updateBook(Book book) {
-		// TODO Auto-generated method stub
-		bookMapper.updateBook(book);
-		
-	}
-	
+		bookMapper.updateBook(book);	
+	}	
 	
 	public void deleteBook(Book book) {
 		bookMapper.deleteBook(book);
@@ -43,6 +37,11 @@ public class MybatisBookDao implements BookDao{
 	
 	public List<Book> getBookList() {
 		return bookMapper.getBookList();
+	}
+
+	@Override
+	public Book getBookByUserId(String userId) {
+		return bookMapper.getBookByUserId(userId);
 	}
 
 }

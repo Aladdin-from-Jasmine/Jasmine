@@ -1,5 +1,6 @@
 package com.ssg.Jasmine.validator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -7,6 +8,7 @@ import org.springframework.validation.Validator;
 
 import com.ssg.Jasmine.controller.user.UserForm;
 import com.ssg.Jasmine.domain.User;
+import com.ssg.Jasmine.service.UserService;
 
 @Component
 public class UserFormValidator implements Validator {
@@ -31,7 +33,6 @@ public class UserFormValidator implements Validator {
 		/* userID 체크하는 부분 만들어야 됨~~*/
 		if (regReq.isNewUser()) {
 			//user.setStatus("OK");
-			//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.userId", "USER_ID_REQUIRED", "User ID is required.");
 			if (user.getPassword() == null || user.getPassword().length() < 1 ||
 					!user.getPassword().equals(regReq.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH",
@@ -49,9 +50,14 @@ public class UserFormValidator implements Validator {
 			errors.rejectValue("user.email", "typeMismatch"); // email type 검증
 		}
 		
-		if (user.getPassword() != null && user.getPassword().length() > 0) {
-			if (!user.getPassword().equals(regReq.getRepeatedPassword())) {
-				errors.rejectValue("repeatedPassword", "invalidPassword");
+		if(user.getPassword().length() < 6) {
+			errors.rejectValue("user.password", "shortPassword");
+		}
+		else {
+			if (user.getPassword() != null && user.getPassword().length() > 0) {
+				if (!user.getPassword().equals(regReq.getRepeatedPassword())) {
+					errors.rejectValue("repeatedPassword", "invalidPassword");
+				}
 			}
 		}
 

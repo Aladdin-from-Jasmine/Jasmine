@@ -44,12 +44,16 @@ public class RegisterUserFormController {
 				
 		new UserFormValidator().validate(userForm, result);
 		
+		boolean isSameIdExist = false;
 		// 같은 이메일 아이디가 이미 존재할 경우 다시 form 띄움
 		if (userService.getUserByUserId(userForm.getUser().getUserId()) != null) {
-			result.reject("sameIdExist", new Object[] {}, null);
+			//result.reject("sameIdExist", new Object[] {}, null);
+			isSameIdExist = true;
+			model.addAttribute("sameIdExist", true);
 			return formViewName;
 		}
 		
+		model.addAttribute("sameIdExist", false);
 		if (result.hasErrors()) {
 			return formViewName;
 		} else {

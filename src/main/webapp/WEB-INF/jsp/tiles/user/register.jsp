@@ -20,41 +20,44 @@
 			<div class="form-group">
 				<label for="name">ID</label>
 				<form:input path="user.userId" class="form-control" />
-				<form:errors path="user.userId"  />
+				<c:if test="${sameIdExist == true}"  >
+					<p class="error"> 이미 존재하는 아이디입니다. </p>
+				</c:if>
+				<form:errors path="user.userId" class="error" />
 			</div>
 			<div class="form-group">
 				<label for="name">Email</label>
 				<form:input path="user.email" class="form-control"
 					placeholder="Email ex) 20170000@dongduk.ac.kr" />
-				 <form:errors path="user.email" />
+				 <form:errors path="user.email" class="error" />
 			</div>
 
 			<div class="form-group">
 				<label for="name">Password</label>
 				<form:input path="user.password" type="password"
 					class="form-control" placeholder="Password" />
-				<form:errors path="user.password" />
+				<form:errors path="user.password" class="error" />
 			</div>
 
 			<div class="form-group">
 				<label for="name">Check Password</label>
 				<form:input path="repeatedPassword" type="password"
 					class="form-control" placeholder="Password" />
-				<form:errors path="repeatedPassword" />
+				<form:errors path="repeatedPassword" class="error" />
 			</div>
 
 			<div class="form-group">
 				<label for="name">Name</label>
 				<form:input path="user.username" class="form-control"
 					placeholder="Name" />
-				<form:errors path="user.username" cssClass="error" />
+				<form:errors path="user.username" class="error" />
 			</div>
 
 			<div class="form-group">
 				<label for="name">Phone</label>
 				<form:input path="user.phone" class="form-control"
 					placeholder="Phone ex) 010-0000-0000" />
-				<form:errors path="user.phone" />
+				<form:errors path="user.phone" class="error" />
 			</div>
 
 			<div class="form-group">

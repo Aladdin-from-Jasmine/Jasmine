@@ -29,15 +29,15 @@ public class MybatisBookDao implements BookDao{
 	}
 
 	@Override
-	public void updateBook(Book book) {
+	public int updateBook(Book book) {
 		// TODO Auto-generated method stub
-		bookMapper.updateBook(book);
+		return bookMapper.updateBook(book);
 		
 	}
 	
 	
-	public void deleteBook(Book book) {
-		bookMapper.deleteBook(book);
+	public int deleteBook(Book book) {
+		return bookMapper.deleteBook(book);
 	}
 	
 	

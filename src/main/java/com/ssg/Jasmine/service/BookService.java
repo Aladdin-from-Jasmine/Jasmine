@@ -11,5 +11,7 @@ public interface BookService {
 	
 	int updateBook(Book book);
 	
+	int deleteBook(Book book);
+
 	List<Book> getBookList();
 }

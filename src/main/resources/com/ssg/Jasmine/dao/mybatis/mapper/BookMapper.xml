@@ -33,12 +33,12 @@
   		AUTHOR ={author},
   		PUBLISHER ={publisher},
   		CATEGORY={category}
-  	WHERE USERID = #{param1}
+  	WHERE BOOKID = #{bookId}
   </update>
   
   <delete id="deleteBook" parameterType="com.ssg.Jasmine.domain.Book">
   	DELETE BOOK 
-  	WHERE USERID = #{param1}
+  	WHERE BOOKID = #{bookId}
   </delete>
   
   <select id="getBookList" resultType="com.ssg.Jasmine.domain.Book">

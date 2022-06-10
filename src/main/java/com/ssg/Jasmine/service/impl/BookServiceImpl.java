@@ -34,7 +34,13 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public int updateBook(Book book) {
 		// TODO Auto-generated method stub
-		return 0;
+		return bookDao.updateBook(book);
+	}
+	
+	@Override
+	public int deleteBook(Book book) {
+		// TODO Auto-generated method stub
+		return bookDao.deleteBook(book);
 	}
 
 	@Override

@@ -61,7 +61,7 @@ public class Auction implements Serializable {
 		return userId;
 	}
 
-		public void setUserId(String userId) {
+	public void setUserId(String userId) {
 			this.userId = userId;
 	}
 	

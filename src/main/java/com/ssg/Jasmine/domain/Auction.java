@@ -47,8 +47,12 @@ public class Auction implements Serializable {
 	int hour;
 	int minute;
 	
+
+	@NotNull
 	String booktitle;
+	@NotNull
 	String bookauthor;
+	@NotNull
 	String bookpublisher;
 	
 	List<Bid> bid = new ArrayList<Bid>();

@@ -20,7 +20,7 @@
   <select id="getUserByUserId" parameterType="String" resultType="com.ssg.Jasmine.domain.User">
   	SELECT USERID, EMAIL, PASSWORD, USERNAME, ADDRESS, PHONE
     FROM USER_ 
-    WHERE USERID = #{userId}
+    WHERE USERID = #{param1}
   </select>
   
   <insert id="createUser" parameterType="com.ssg.Jasmine.domain.User">

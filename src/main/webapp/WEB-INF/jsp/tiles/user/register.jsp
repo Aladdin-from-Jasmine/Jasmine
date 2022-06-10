@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
 	function home(targetUri) {
@@ -20,7 +21,7 @@
 			<div class="form-group">
 				<label for="name">ID</label>
 				<form:input path="user.userId" class="form-control" />
-				<c:if test="${sameIdExist == true}"  >
+				<c:if test="${sameIdExist==true}"  >
 					<p class="error"> 이미 존재하는 아이디입니다. </p>
 				</c:if>
 				<form:errors path="user.userId" class="error" />

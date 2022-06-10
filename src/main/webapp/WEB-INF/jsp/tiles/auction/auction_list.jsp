@@ -23,7 +23,7 @@
                                  <c:param name="auctionId" value="${auction.auctionId}"/>
                                  </c:url>">${auction.title}</a>
 				</h2>
-				<img src="${auction.img}" alt="Image">
+				<img src="${auction.img}" alt="Image" width="200px" height="200px">
 				<div>
 					<c:if test="${auction.state eq 'proceeding'}">
 						<h5>Proceeding</h5>

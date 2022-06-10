@@ -131,4 +131,5 @@
 	FROM AUCTION a, BID b
 	WHERE a.auctionId = b.auctionId AND a.maxPrice = b.bidPrice AND a.auctionId = #{auctionId}
  </select>
+ 
 </mapper>

@@ -20,5 +20,6 @@ public class LoginFormValidator implements Validator {
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required");
+		
 	}
 }

@@ -32,7 +32,6 @@ public class UserFormValidator implements Validator {
 	
 		User user = regReq.getUser();
 		
-		/* userID 체크하는 부분 만들어야 됨~~*/
 		if (regReq.isNewUser()) {
 			//user.setStatus("OK");
 			if (user.getPassword() == null || user.getPassword().length() < 1 ||

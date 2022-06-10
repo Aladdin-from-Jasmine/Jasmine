@@ -13,21 +13,19 @@
 			<div class="form-group">
  				<label for="userId">Writer</label>
  				<form:input path="community.userId" class="form-control" placeholder="${userId}" readonly="true" />
- 				<form:errors path="community.postId" cssClass="error" />
-				<form:errors cssClass="error" />
+ 				<form:errors path="community.postId" class="error" />
 			</div>
 			<div class="form-group">
 				<label for="title">Title</label>
 				<form:input path="community.title" class="form-control"
 					placeholder="제목을 입력하세요." />
-				<form:errors path="community.title" cssClass="error" />
-				<form:errors cssClass="error" />
+				<form:errors path="community.title" class="error" />
 			</div>
 			<div class="form-group">
 				<label for="name">Content</label></br>
 				<form:textarea path="community.content_" cols="50" rows="10"
-					class="form-control2" placeholder="내용을 입력하세요." />
-				<form:errors path="community.content_" cssClass="error" />
+					class="form-control2" placeholder="내용을 입력하세요." /></br>
+				<form:errors path="community.content_" class="error" />
 			</div>
 			<div class="form-group" align="center">
 				<input type="submit" value="REGISTER" id="register-btn">

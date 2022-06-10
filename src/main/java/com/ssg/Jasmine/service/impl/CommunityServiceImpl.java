@@ -47,6 +47,16 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 	
 	@Override
+	public List<Community> getSearchCommunityList(String keyword) throws DataAccessException {
+		return communityDao.getSearchCommunityList(keyword);
+	}
+	
+	@Override
+	public List<Community> getSearchSortedCommunityList(String keyword) throws DataAccessException {
+		return communityDao.getSearchSortedCommunityList(keyword);
+	}
+	
+	@Override
 	public List<Community> getCommunitySortedList(String sortItem) throws DataAccessException {
 		return communityDao.getCommunitySortedList(sortItem);
 	}

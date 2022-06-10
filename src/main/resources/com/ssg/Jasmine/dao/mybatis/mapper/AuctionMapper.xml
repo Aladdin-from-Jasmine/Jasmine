@@ -29,7 +29,7 @@
 
   <select id="getAuction" parameterType="java.lang.Integer" resultType="com.ssg.Jasmine.domain.Auction">  <!--   bid없는 Auction객체 위해 필요 -->
     SELECT auctionId, title, content_, img, startPrice, uploadDate, endDate, 
-    		count, maxPrice, state, userId, booktitle, bookauthor, bookpublisher
+    		count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
     FROM AUCTION
     WHERE auctionId = #{auctionId}
   </select>
@@ -81,8 +81,16 @@
   <!-- Get all auctions -->
   <select id="getAuctionList" resultType="com.ssg.Jasmine.domain.Auction">
     SELECT auctionId, title, content_, img, startPrice, uploadDate, 
-    		endDate, count, maxPrice, state, userId, booktitle, bookauthor, bookpublisher
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
     FROM AUCTION
+    ORDER BY uploadDate DESC
+  </select>
+  
+  <select id="getAuctionListByUserId" resultType="com.ssg.Jasmine.domain.Auction">
+    SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
+    FROM AUCTION
+    WHERE USERID = #{userId}
     ORDER BY uploadDate DESC
   </select>
   
@@ -91,7 +99,7 @@
   	<bind name="pattern" value="'%' + _parameter + '%'" />
 	  	SELECT auctionId, title, content_, img, startPrice, 
 	  			uploadDate, endDate, count,
-    			maxPrice, state, userId, booktitle, bookauthor, bookpublisher
+    			maxPrice, state, booktitle, bookauthor, bookpublisher, userId
     	FROM AUCTION
 	    WHERE title LIKE #{pattern}
   </select>

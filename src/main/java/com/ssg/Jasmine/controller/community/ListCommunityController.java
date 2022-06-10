@@ -62,7 +62,7 @@ public class ListCommunityController {
 				communityList = communityService.getCommunitySortedList(isSortWithPost);
 			}
 		}
-
+		
 		mav.addObject("communityList", communityList);
 		mav.addObject("listSize", communityList.size());
 		mav.setViewName(successViewName); 
@@ -75,13 +75,7 @@ public class ListCommunityController {
 		String keyword = request.getParameter("keyword");
 		List<Community> communityList = communityService.getSearchCommunityList(keyword);
 		
-		/*String isSortWithPost = request.getParameter("sortByPostId");
-		if(isSortWithPost != null && isSortWithPost.equals("true")) {
-			communityList = communityService.getCommunitySortedList(isSortWithPost);
-		}*/
-		
 		ModelAndView mav = new ModelAndView();
-		//mav.addObject("searched", true);
 		mav.addObject("communityList", communityList);
 		mav.addObject("keyword", keyword);
 		mav.setViewName(successViewName); 

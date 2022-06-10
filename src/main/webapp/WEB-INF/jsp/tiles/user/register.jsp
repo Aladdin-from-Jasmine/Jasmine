@@ -20,7 +20,7 @@
 			<div class="form-group">
 				<label for="name">ID</label>
 				<form:input path="user.userId" class="form-control" />
-				 <form:errors path="user.userId"  />
+				<form:errors path="user.userId"  />
 			</div>
 			<div class="form-group">
 				<label for="name">Email</label>

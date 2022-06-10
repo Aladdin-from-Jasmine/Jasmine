@@ -48,18 +48,17 @@ function orderAuction() {
 
 <div class="container">
       <div id="auctionForm">
-      <!-- 사진 주석처리 함 / 사진 되면 주석 푸세요~~ -->
-<!--       <p> -->
-<%--           <img src="${auction.img}" --%>
-<%--             onerror="this.src='<%=request.getContextPath()%>/resources/static/images/snoopy.gif'" --%>
-<!--             alt="Image"> -->
-<!--       </p> -->
+       <p> 
+          <img src= "${auction.img}" width="300px" height="350px"/>
+      </p> 
          <p>
             작성자 : ${writer} <br> <br> 
             작성일 : <fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" /><br><br> 
             조회수 : ${auction.count} <br><br> 
             설명 : ${auction.content}<br><br>
-    		
+            책 제목 : ${auction.booktitle}<br><br>
+            책 저자 : ${auction.bookauthor}<br><br>
+            책 출판사 : ${auction.bookpublisher}<br><br>
          </p>
             시작 금액 : <fmt:formatNumber value="${auction.startPrice}" pattern="#,###원" /><br><br> 
             마감일 : <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" />

@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
@@ -38,9 +39,15 @@ public class AuctionFormController implements ApplicationContextAware  {
 //	request handler가 보내줄 view이름 지정
 	private static final String AUCTION_FORM = "auction/auction_form";
 	private static final String AUCTION_DETAIL = "auction/auction_detail";
+
+	@Value("/images/")
+	private String uploadDirLocal;
 //	파일 업로드 위한 변수
 	private WebApplicationContext context;	
 	private String uploadDir;
+	
+	
+	
 //	Service 객체
 	@Autowired
 	private AuctionService auctionService;
@@ -49,7 +56,8 @@ public class AuctionFormController implements ApplicationContextAware  {
 	public void setApplicationContext(ApplicationContext appContext)
 		throws BeansException {
 		this.context = (WebApplicationContext) appContext;
-		this.uploadDir = context.getServletContext().getRealPath("/resources/images/");
+		this.uploadDir = context.getServletContext().getRealPath(this.uploadDirLocal);
+		System.out.println(this.uploadDir);
 	}
 
 	@ModelAttribute("auctionForm")
@@ -80,6 +88,10 @@ public class AuctionFormController implements ApplicationContextAware  {
 //		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
 		String reqPage = request.getServletPath();
 		String requestUrl = reqPage.trim();
+		
+		MultipartFile report = auctionForm.getAuction().getReport();
+		String filename = uploadFile(report);
+		model.addAttribute("fileUrl", this.uploadDirLocal + filename);
 
 //		대표 이미지 선택 안 했을 시
 		if (auctionForm.getAuction().getReport().getSize() == 0) {
@@ -97,7 +109,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 		
 //		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
-		System.out.println(user.toString());
+//		System.out.println(user.toString());
 //		시간세팅
 		auctionForm.getAuction().timeSet();
 
@@ -111,7 +123,6 @@ public class AuctionFormController implements ApplicationContextAware  {
 			}
 //			파일 업로드 기능
 			String savedFileName = uploadFile(auctionForm.getAuction().getReport());
-			auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/"+ savedFileName);
 			
 			System.out.println(auctionForm.getAuction().toString());
 			auctionForm.getAuction().setState("proceeding");
@@ -120,8 +131,9 @@ public class AuctionFormController implements ApplicationContextAware  {
 		} else { // create
 //			파일 업로드 기능
 			String savedFileName = uploadFile(auctionForm.getAuction().getReport());
-			auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
-			
+//			auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
+			auctionForm.getAuction().setImg(this.uploadDirLocal + filename);
+
             auctionForm.getAuction().initAuction(user.getUser());
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
 			auctionService.createAuction(auctionForm.getAuction());
@@ -149,18 +161,15 @@ public class AuctionFormController implements ApplicationContextAware  {
 	
 //	파일명 랜덤생성 메서드
 	private String uploadFile(MultipartFile report) {
-//		uuid 생성(Universal Unique IDentifier, 범용 고유 식별자)
-		UUID uuid = UUID.randomUUID();
-//		랜덤생성 + 파일이름 저장
-		String savedName = uuid.toString() + "_" + report.getOriginalFilename();
-//		임시디렉토리에 저장된 업로드된 파일을 지정된 디렉토리로 복사
-		File file = new File(uploadDir + savedName);
+		String filename = UUID.randomUUID().toString() 
+						+ "_" + report.getOriginalFilename();
+		File file = new File(this.uploadDir + filename);
 		try {
 			report.transferTo(file);
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
-		return savedName;
+		return filename;
 	}
 	
 //	파일명 삭제 메서드

@@ -15,26 +15,27 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
+import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Book;
+import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
 import com.ssg.Jasmine.service.UserService;
 
 @Controller
-@RequestMapping("/user/book")
 public class MypageController {
-	
-	private static final String detailViewName = "user/user_detail";
-	
 	@Autowired
 	UserService userService; 
 	@Autowired
 	BookService bookService;
-	@Autowired
-	CategoryService categoryService;
+//	@Autowired
+//	CategoryService categoryService;
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView userBook(HttpServletRequest request, SessionStatus sessionStatus, HttpSession session){
+	@Autowired
+	AuctionService auctionService;
+	
+	@RequestMapping(value="/user/book", method=RequestMethod.GET)
+	public ModelAndView userBook(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView("user/book");
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		
@@ -43,4 +44,22 @@ public class MypageController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/user/auction", method=RequestMethod.GET)
+	public ModelAndView userAuction(HttpServletRequest request, SessionStatus sessionStatus, HttpSession session ){
+		ModelAndView mav = new ModelAndView("user/auction");
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		
+		List<Auction> auctionList = auctionService.getAuctionListByUserId(userSession.getUser().getUserId());
+		if (auctionList == null) {
+			System.out.println("[DetailAuctionController] auctionList가 null");
+		} else {
+			mav.addObject("auctionList", auctionList);			
+		}
+		session.removeAttribute("bidForm");
+		sessionStatus.setComplete();
+		return mav;
+	}
+	
+	
 }

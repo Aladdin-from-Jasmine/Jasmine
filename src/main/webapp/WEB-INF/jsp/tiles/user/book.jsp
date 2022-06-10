@@ -5,7 +5,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<script>
+	function bookDetail(bookId) {
+		window.location.href = "http://localhost:8080/book/detail/"+ bookId;
+	}
+</script>
 <div class="container">
 	<h1>My Page</h1>
 	<h3>book 📚</h3>

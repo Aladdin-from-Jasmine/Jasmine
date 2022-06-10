@@ -41,7 +41,7 @@ public class BookServiceImpl implements BookService{
 	}
 	
 	@Override
-	public Book getBookByUserId(String userId) {
+	public List<Book> getBookByUserId(String userId) {
 		return bookDao.getBookByUserId(userId);
 	}
 	

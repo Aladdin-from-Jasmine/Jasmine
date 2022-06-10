@@ -40,7 +40,7 @@ public class MybatisBookDao implements BookDao{
 	}
 
 	@Override
-	public Book getBookByUserId(String userId) {
+	public List<Book> getBookByUserId(String userId) {
 		return bookMapper.getBookByUserId(userId);
 	}
 

@@ -11,7 +11,7 @@ public interface BookMapper {
 	
 	Book getBookByBookId(int BookId);
 	
-	Book getBookByUserId(String userId);
+	List<Book> getBookByUserId(String userId);
 	
 	int createBook(Book book);
 

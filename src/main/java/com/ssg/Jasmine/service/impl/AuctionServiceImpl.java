@@ -105,5 +105,10 @@ public class AuctionServiceImpl implements AuctionService {
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId) {
 		return auctionDao.getSuccessBidderByAuctionId(auctionId);
 	}
+
+	@Override
+	public List<Auction> getAuctionListByUserId(String userId) {
+		return auctionDao.getAuctionListByUserId(userId);
+	}
 	
 }

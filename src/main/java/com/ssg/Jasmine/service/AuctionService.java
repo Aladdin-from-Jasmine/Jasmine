@@ -22,6 +22,8 @@ public interface AuctionService {
 	
 	List<Auction> getAuctionList();
 	
+	List<Auction> getAuctionListByUserId(String userId);
+	
 	boolean isAuctionClosed(int auctionId, Date endDate);
 	
 	void increaseCount(Auction auction);

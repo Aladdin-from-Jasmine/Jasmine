@@ -86,6 +86,14 @@
     ORDER BY uploadDate DESC
   </select>
   
+    <select id="getAuctionListByUserId" resultType="com.ssg.Jasmine.domain.Auction">
+    SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, userId, booktitle, bookauthor, bookpublisher
+    FROM AUCTION
+    WHERE USERID = #{userId}
+    ORDER BY uploadDate DESC
+  </select>
+  
   <!-- Search auctions by Keyword -->
   <select id="auctionListByKeyword" resultType="com.ssg.Jasmine.domain.Auction">
   	<bind name="pattern" value="'%' + _parameter + '%'" />

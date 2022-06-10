@@ -27,6 +27,8 @@ public class UserFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.email", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.password", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.username", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.phone", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.address", "required");
 	
 		User user = regReq.getUser();
 		

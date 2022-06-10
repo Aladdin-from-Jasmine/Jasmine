@@ -96,14 +96,14 @@ function auctionSubmit(isNewAuction) {
 
       <div class="auction-form-sub">
          <label for="auction.content">상세 설명</label>
-         <form:errors path="auction.content" cssClass="error" />
+         <form:errors path="auction.content_" cssClass="error" />
          <c:choose>
             <c:when test="${auctionForm.newAuction}">
-               <form:textarea path="auction.content" class="form-control"
+               <form:textarea path="auction.content_" class="form-control"
                   placeholder="Write description." id="auction-des-form" />
             </c:when>
             <c:otherwise>
-               <form:textarea path="auction.content" class="form-control" id="auction-des-form"/>
+               <form:textarea path="auction.content_" class="form-control" id="auction-des-form"/>
             </c:otherwise>
          </c:choose>
       </div>

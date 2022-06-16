@@ -42,6 +42,10 @@ public class AuctionServiceImpl implements AuctionService {
 	public List<Auction> getAuctionList() {
 		return auctionDao.getAuctionList();
 	}
+	
+	public List<Auction> getSearchAuctionList(String keyword) {
+		return auctionDao.getSearchAuctionList(keyword);
+	}
 
 	public int createAuction(Auction auction) {
 		return auctionDao.createAuction(auction);

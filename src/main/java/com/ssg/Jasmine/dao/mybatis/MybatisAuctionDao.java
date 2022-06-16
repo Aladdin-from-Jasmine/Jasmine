@@ -62,6 +62,11 @@ public class MybatisAuctionDao implements AuctionDao {
 	public List<Auction> getAuctionList() throws DataAccessException {
 		return auctionMapper.getAuctionList();
 	}
+	
+	@Override
+	public List<Auction> getSearchAuctionList(String keyword) throws DataAccessException {
+		return auctionMapper.getSearchAuctionList(keyword);
+	}
 
 	@Override
 	public List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException {

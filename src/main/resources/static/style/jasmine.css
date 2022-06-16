@@ -211,6 +211,18 @@ h2, h1, h3 {
 	border-radius: 70px;
 }
 
+#search-auction-form {
+	font-weight: bold;
+	background-color: white;
+	border-radius: 300px;
+	padding: 10px 20px;
+	font-weight: bold;
+	border: 0px;
+	font-size: 15px;
+	text-decoration: none;
+	border:2px solid #d164c4;
+}
+
 .mypage-table-class {
 	margin:3% 20%;
 	padding:3% 15%;

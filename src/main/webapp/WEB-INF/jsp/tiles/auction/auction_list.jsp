@@ -10,6 +10,14 @@
 <h1>Auction</h1>
 </br>
 <div class="container">
+	<div align="center">
+		<form method="POST" action="/auction/list" >
+			<input id="search-auction-form" type="text" name="keyword" class="form-control" />
+			<input id="search-auction-form" type="submit" value="검색" id="register-btn">
+		</form>
+	</div></br>
+
+	<a href="<c:url value='/auction/list'/>" id="a-btn">🔮 전체목록</a>
 	<c:if test="${!empty userSession.user}">
 		<a id="auction-register-btn"
 			href="<c:url value='/auction/auction_form'></c:url>">경매 등록</a>

@@ -25,6 +25,8 @@ public interface AuctionDao {
 	
 	List<Auction> getAuctionList() throws DataAccessException;
 	
+	List<Auction> getSearchAuctionList(String keyword) throws DataAccessException;
+	
 	List<Auction> getAuctionListByUserId(String userId) throws DataAccessException;
 	
 	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;

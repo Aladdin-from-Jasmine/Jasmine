@@ -18,6 +18,7 @@ import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.domain.Bid;
+import com.ssg.Jasmine.domain.Community;
 import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
@@ -48,6 +49,23 @@ public class AuctionController {
 		}
 		session.removeAttribute("bidForm");
 		sessionStatus.setComplete();
+		return mav;
+	}
+	
+	@RequestMapping(value="/auction/list", method=RequestMethod.POST)
+	public ModelAndView auctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
+		ModelAndView mav = new ModelAndView(AUCTION_LIST);
+		List<Auction> auctionList = null;
+		
+		String keyword = request.getParameter("keyword");	
+		auctionList = auctionService.getSearchAuctionList(keyword);
+		if (auctionList == null) {
+			System.out.println("[DetailAuctionController] auctionList가 null");
+		} else {
+			mav.addObject("auctionList", auctionList);			
+		}
+		session.removeAttribute("bidForm");
+		sessionStatus.setComplete(); 
 		return mav;
 	}
 	

@@ -79,9 +79,17 @@ function orderAuction() {
       	
       	<table class="TB2" align="center">
       		<tr class="td1">
-      			<td>경매 마감일</td>
+      			<c:if test="${auction.state eq 'closed'}">
+	      			<td>진행상황</td>
+	      			<td>낙찰되었습니다.</td>
+      			</c:if>
+      			<c:if test="${auction.state eq 'proceeding'}">
+	      			<td>경매 마감일</td>
+      				<td><fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+      			</c:if>
+      		<%-- 	<td>경매 마감일</td>
       			<td><fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" /></td>
-      		</tr>
+      		 --%></tr>
       		<tr class="td1">
       			<td>시작 금액</td>
       			<td><fmt:formatNumber value="${auction.startPrice}" pattern="#,###원" /></td>
@@ -166,6 +174,11 @@ function orderAuction() {
       <c:if test="${((isWriter eq true) and (empty auction.bids)) or (isManager eq true)}">
          <a id="auction-register-btn" href="javascript:updateAuction()">수정</a>
          <a id="auction-register-btn" href="javascript:deleteAuction()">삭제</a>
+      </c:if>
+      <c:if test="${(isWriter eq true) and (!empty auction.bids) and (!empty isClosed)}">
+         <a id="auction-register-btn" href="<c:url value='/auction/bid/success'>
+         					<c:param name="auctionId" value="${auction.auctionId}"/>
+         				</c:url>">낙찰</a>
       </c:if>
       <a id="auction-register-btn" href="<c:url value='/auction/list'></c:url>">목록</a>
 </div>

@@ -17,7 +17,7 @@
 		</form>
 	</div></br>
 
-	<a href="<c:url value='/auction/list'/>" id="a-btn">🔮 전체목록</a>
+	<a id="auction-register-btn" href="<c:url value='/auction/list'/>" id="a-btn">🔮 전체목록</a>
 	<c:if test="${!empty userSession.user}">
 		<a id="auction-register-btn"
 			href="<c:url value='/auction/auction_form'></c:url>">경매 등록</a>
@@ -25,7 +25,7 @@
 	<br />
 
 	<div>
-		<c:forEach var="auction" items="${auctionList}" varStatus="status">
+		<c:forEach var="auction" items="${auctionList.pageList}" varStatus="status">
 			<div id="auctionForm">
 				<table class="TB3" align="center">
 					<tr>
@@ -76,14 +76,13 @@
 				</table>
 			</div>
 		</c:forEach>
-
-		<!-- 
-      <div class="col-12 mt-5 text-center">
-      		<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a href="#"
-      		<class="p-3">3</a> <a href="#" class="p-3">4</a>
-      </div>
-      
-       -->
-
+		<c:if test="${!auctionList.firstPage}">
+	          <a href="/auction/list?page=previous" style=""><font color="#d164c4"><B>&lt;&lt;
+	                Prev</B></font></a>
+	        </c:if> 
+	        <c:if test="${!auctionList.lastPage}">
+	          <a href="/auction/list?page=next"><font color="#d164c4"><B>Next
+	                &gt;&gt;</B></font></a>
+	        </c:if>
 	</div>
 </div>

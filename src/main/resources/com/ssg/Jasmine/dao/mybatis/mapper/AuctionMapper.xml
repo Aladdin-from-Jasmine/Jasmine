@@ -62,6 +62,12 @@
   	WHERE  AUCTIONID=#{auctionId}
   </update>
   
+  <update id="updateStateAuction" parameterType="com.ssg.Jasmine.domain.Auction">
+   	UPDATE AUCTION
+    SET  state=#{state}
+  	WHERE  AUCTIONID=#{auctionId}
+  </update>
+  
   <update id="updateAuctionMaxPrice" parameterType="com.ssg.Jasmine.domain.Auction">
   	UPDATE AUCTION
 	SET MAXPRICE = #{maxPrice}

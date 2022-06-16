@@ -94,7 +94,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 		model.addAttribute("fileUrl", this.uploadDirLocal + filename);
 
 //		대표 이미지 선택 안 했을 시
-		if (auctionForm.getAuction().getReport().getSize() == 0) {
+		if (report.getSize() == 0) {
 			result.rejectValue("auction.report", "notSelected");
 		}
 //		AuctionForm객체 validation
@@ -118,11 +118,12 @@ public class AuctionFormController implements ApplicationContextAware  {
 			Auction oldAuction = auctionService.getAuction(auctionForm.getAuction().getAuctionId());
 //			기존 파일 삭제 후 파일 업로드
 			String[] oldFileName = oldAuction.getImg().split("/");
-			if (deleteFile(uploadDir + oldFileName[4])) {
+			if (deleteFile(uploadDir + oldFileName[2])) {
 				System.out.println("파일 삭제 성공! 이제부터 파일 업로드.");
 			}
 //			파일 업로드 기능
 			String savedFileName = uploadFile(auctionForm.getAuction().getReport());
+			auctionForm.getAuction().setImg(this.uploadDirLocal + filename);
 			
 			System.out.println(auctionForm.getAuction().toString());
 			auctionForm.getAuction().setState("proceeding");

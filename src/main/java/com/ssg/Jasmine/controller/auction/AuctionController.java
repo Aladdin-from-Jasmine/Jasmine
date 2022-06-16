@@ -72,19 +72,27 @@ public class AuctionController {
 		}
 		
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
-		if (user.getUser().getUserId().equals(auction.getUserId())) {
-			mav.addObject("isWriter", true);
-			
-			System.out.println("user.userid== "+ user.getUser().getUserId());
-			System.out.println("auction.getUserId== "+auction.getUserId());
-		} else {
+		if(user != null) {
+			if (user.getUser().getUserId().equals(auction.getUserId())) {
+				mav.addObject("isWriter", true);
+				
+				System.out.println("user.userid== "+ user.getUser().getUserId());
+				System.out.println("auction.getUserId== "+auction.getUserId());
+			} else {
+				auction.setCount(auction.getCount()+1);
+				auctionService.increaseCount(auction);
+				mav.addObject("isWriter", false);
+				
+				System.out.println("user.userid== "+ user.getUser().getUserId());
+				System.out.println("auction.getUserId== "+auction.getUserId());
+			}
+		}
+		else {
 			auction.setCount(auction.getCount()+1);
 			auctionService.increaseCount(auction);
 			mav.addObject("isWriter", false);
-			
-			System.out.println("user.userid== "+ user.getUser().getUserId());
-			System.out.println("auction.getUserId== "+auction.getUserId());
 		}
+
 
 		if (auction.getBids().isEmpty()) {// 아무도 입찰 안 했을 때
 			mav.addObject("date_maxBid", "");

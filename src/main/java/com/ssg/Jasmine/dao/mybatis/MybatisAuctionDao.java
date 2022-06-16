@@ -48,6 +48,12 @@ public class MybatisAuctionDao implements AuctionDao {
 	}
 	
 	@Override
+	public int updateStateAuction(int auctionId, String state) throws DataAccessException {
+		auctionMapper.updateStateAuction(auctionId, state);
+		return auctionId;
+	}
+	
+	@Override
 	public int updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException {
 		auctionMapper.updateAuctionMaxPrice(maxPrice, auctionId);
 		return auctionId;

@@ -55,6 +55,10 @@ public class AuctionServiceImpl implements AuctionService {
 		return auctionDao.updateAuction(auction);
 	}
 	
+	public int updateStateAuction(int auctionId, String state) {
+		return auctionDao.updateStateAuction(auctionId, state);
+	}
+	
 	public int updateAuctionMaxPrice(int maxPrice, int auctionId) {
 		return auctionDao.updateAuctionMaxPrice(maxPrice, auctionId);
 	}

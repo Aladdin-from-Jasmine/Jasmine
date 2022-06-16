@@ -30,8 +30,9 @@ public class MybatisBookDao implements BookDao{
 		bookMapper.updateBook(book);	
 	}	
 	
-	public void deleteBook(Book book) {
-		bookMapper.deleteBook(book);
+	@Override
+	public void deleteBook(int bookId) {
+		bookMapper.deleteBook(bookId);
 	}
 	
 	

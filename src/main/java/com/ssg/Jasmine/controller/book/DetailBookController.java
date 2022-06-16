@@ -43,7 +43,6 @@ public class DetailBookController {
 		boolean isUser = false;
 		boolean isManager = false;
 		
-		
 		String bookUserId = book.getUserId();
 
 		UserSession userSession  = (UserSession)request.getSession().getAttribute("userSession");
@@ -57,7 +56,8 @@ public class DetailBookController {
 			}
 		}
 		
-		String userId = userSession.getUser().getUserId();
+		
+		
 
 		
 		try {

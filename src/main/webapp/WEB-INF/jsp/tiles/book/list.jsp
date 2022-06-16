@@ -22,6 +22,14 @@
 	<h1>Book List</h1>
 </div>
 
+<div align="center">
+		<form method="POST" action="/book/list" >
+			<input id="search-book-form" type="text" name="keyword" class="form-control" />
+			<input id="search-book-form" type="submit" value="검색" id="register-btn">
+		</form>
+	</div>
+	</br>
+
 	<div class="container">
 	<c:if test="${!empty userSession.user}">
 		<a id="auction-register-btn"

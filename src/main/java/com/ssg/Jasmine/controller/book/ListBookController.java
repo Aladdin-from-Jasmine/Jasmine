@@ -46,4 +46,16 @@ public class ListBookController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView search(SessionStatus sessionStatus, HttpSession session)
+	{
+		ModelAndView mav = new ModelAndView("book/list");
+		
+		List<Book> bookList = bookService.getBookList();
+		mav.addObject("bookList", bookList);		
+		mav.addObject("listSize", bookList.size());
+		
+		return mav;
+	}
 }

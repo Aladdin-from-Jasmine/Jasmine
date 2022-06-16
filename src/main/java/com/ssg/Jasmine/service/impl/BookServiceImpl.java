@@ -31,8 +31,7 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public int updateBook(Book book) {
-		return 0;
+	public void updateBook(Book book) {
 	}
 
 	@Override
@@ -43,6 +42,12 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<Book> getBookByUserId(String userId) {
 		return bookDao.getBookByUserId(userId);
+	}
+
+	@Override
+	public void deleteBook(int bookId) {
+		// TODO Auto-generated method stub
+		bookDao.deleteBook(bookId);
 	}
 	
 }

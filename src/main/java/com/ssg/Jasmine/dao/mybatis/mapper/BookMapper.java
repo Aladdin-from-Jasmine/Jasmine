@@ -15,9 +15,9 @@ public interface BookMapper {
 	
 	int createBook(Book book);
 
-	int updateBook(Book book);
+	void updateBook(Book book);
 
-	int deleteBook(Book book);
+	void deleteBook(int BookId);
 	
 	List<Book> getBookList();
 }

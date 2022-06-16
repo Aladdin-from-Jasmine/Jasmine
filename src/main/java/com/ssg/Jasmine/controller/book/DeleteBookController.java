@@ -19,7 +19,8 @@ public class DeleteBookController {
 	@RequestMapping("/book/delete/{bookId}")
 	public String handleRequest(@PathVariable("bookId") int bookId) throws Exception {
 	
-		BookService.deleteBook(BookService.getBookByBookId(bookId));
+		BookService.deleteBook(bookId);
+		
 		return "redirect:/book/list";
 	}
 }

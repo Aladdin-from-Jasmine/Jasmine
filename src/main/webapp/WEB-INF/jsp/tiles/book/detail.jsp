@@ -13,6 +13,24 @@
 			alert("책을 삭제했습니다.");
 		} 
 	}
+	
+	function AddtoCart() {
+		const openButton = document.getElementById("a-btn");
+		const modal = document.querySelector(".modal");
+		const overlay = modal.querySelector(".md_overlay");
+		const closeButton = modal.querySelector("button");
+		//동작함수
+		const openModal = () => {
+			modal.classList.remove("hidden");
+		}
+		const closeModal = () => {
+			modal.classList.add("hidden");
+		}
+		//클릭 이벤트
+		openButton.addEventListener("click", openModal);
+		closeButton.addEventListener("click", closeModal);
+		
+	}
 </script>
 
 <div class="container">
@@ -97,11 +115,25 @@
 			</table><br/>
 			<c:if test="${isUser==true || isManager==true}" >
 				<div class="form-group" align="center">
-					<a href="<c:url value='/book/update/${book.bookId}'>
-<%-- 	  					<c:param name="bookId" value="${book.bookId}"/>
- --%>					</c:url>" id="a-btn">수정</a>
+					<a href="<c:url value='/book/update/${book.bookId}'></c:url>" id="a-btn">수정</a>
 					<input id="a-btn" type="button" value="삭제" onClick="deleteBook()" />
 			</c:if>
+			<c:if test="${isUser==false && isManager==false}" >
+				<div class="form-group" align="center">
+					
+					<input id="a-btn" type="button" value="카트에 담기" onClick="AddtoCart(${book.bookId})" />
+					<div class="modal hidden">
+						<div class="md_overlay"></div>
+						<div class="md_content">
+							<h1>샘플 모달창</h1>
+							<div class="modal_text">
+								장바구니에 담았습니다.
+							</div>
+							<button>X</button>
+						</div>
+					</div>
+			</c:if>
+			
 					<a href="<c:url value='/book/list'/>" id="a-btn">목록</a>
 				</div>
 		</form:form>

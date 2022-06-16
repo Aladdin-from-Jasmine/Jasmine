@@ -66,6 +66,16 @@
 									</td>
 								</tr>
 							</c:forEach>
+							<%-- <tr>
+      <td>
+        <c:if test="${!communityList.firstPage}">
+          <a href="?page=previous"><font color="white"><B>&lt;&lt; Prev</B></font></a>
+        </c:if> 
+        <c:if test="${!communityList.lastPage}">
+          <a href="?page=next"><font color="white"><B>Next &gt;&gt;</B></font></a>
+        </c:if>
+      </td>
+    </tr> --%>
 						</table>
 						</div>
 					</div>

@@ -2,6 +2,7 @@ package com.ssg.Jasmine.controller.community;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,6 +39,10 @@ public class ListCommunityController {
 	public ModelAndView handleRequest(HttpServletRequest request) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
+		
+		//PagedListHolder<Community> communityList = new PagedListHolder<Community>(communityService.getCommunityList());
+		//communityList.setPageSize(4);
+		
 		List<Community> communityList = communityService.getCommunityList();
 		String keyword = request.getParameter("keyword");
 		String isSortWithPost = request.getParameter("sortByPostId");
@@ -64,7 +69,7 @@ public class ListCommunityController {
 		}
 		
 		mav.addObject("communityList", communityList);
-		mav.addObject("listSize", communityList.size());
+		mav.addObject("listSize", ((List<Community>) communityList).size());
 		mav.setViewName(successViewName); 
 		return mav;
 	}

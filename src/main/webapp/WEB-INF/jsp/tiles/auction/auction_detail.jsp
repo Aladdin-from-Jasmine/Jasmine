@@ -55,7 +55,7 @@ function orderAuction() {
             작성자 : ${writer} <br> <br> 
             작성일 : <fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" /><br><br> 
             조회수 : ${auction.count} <br><br> 
-            설명 : ${auction.content}<br><br>
+            설명 : ${auction.content_}<br><br>
             책 제목 : ${auction.booktitle}<br><br>
             책 저자 : ${auction.bookauthor}<br><br>
             책 출판사 : ${auction.bookpublisher}<br><br>
@@ -72,7 +72,10 @@ function orderAuction() {
             <br>
 
          <!-- betting -->
-         <c:if test="${isWriter eq false}">
+         <c:if test="${empty userSession.user}">
+         	<p class="error">배팅을 하시려면 로그인을 해주세요!</p>
+         </c:if>
+         <c:if test="${!empty userSession.user && isWriter eq false}">
               <form:form modelAttribute="bidForm" method="post"
                   action="/auction/bid/create"> 
                   베팅 금액
@@ -105,8 +108,8 @@ function orderAuction() {
 
    <div class="form-group" >
       <c:if test="${(isWriter eq true) and (empty auction.bids)}">
-         <a href="javascript:updateAuction()">수정</a>
-         <a href="javascript:deleteAuction()">삭제</a>
+         <a id="auction-register-btn" href="javascript:updateAuction()">수정</a>
+         <a id="auction-register-btn" href="javascript:deleteAuction()">삭제</a>
       </c:if>
       <a id="auction-register-btn" href="<c:url value='/auction/list'></c:url>">목록</a>
 </div>

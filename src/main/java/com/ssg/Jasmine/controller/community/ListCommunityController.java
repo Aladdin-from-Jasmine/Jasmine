@@ -40,9 +40,6 @@ public class ListCommunityController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		//PagedListHolder<Community> communityList = new PagedListHolder<Community>(communityService.getCommunityList());
-		//communityList.setPageSize(4);
-		
 		List<Community> communityList = communityService.getCommunityList();
 		String keyword = request.getParameter("keyword");
 		String isSortWithPost = request.getParameter("sortByPostId");

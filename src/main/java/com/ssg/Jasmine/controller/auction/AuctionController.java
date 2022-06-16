@@ -5,7 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+
 import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.service.UserService;
@@ -38,10 +41,11 @@ public class AuctionController {
 	BidService bidService;
 		
 	@RequestMapping(value="/auction/list", method=RequestMethod.GET)
-	public ModelAndView auctionList(SessionStatus sessionStatus, HttpSession session){
+	public ModelAndView auctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView(AUCTION_LIST);
 		List<Auction> auctionList = null;
 		auctionList = auctionService.getAuctionList();
+		
 		if (auctionList == null) {
 			System.out.println("[DetailAuctionController] auctionList가 null");
 		} else {
@@ -49,24 +53,65 @@ public class AuctionController {
 		}
 		session.removeAttribute("bidForm");
 		sessionStatus.setComplete();
-		return mav;
+		
+		String page = request.getParameter("page");
+		PagedListHolder<Auction> pagedAuctionList;
+		if (page == null) {
+			pagedAuctionList = new PagedListHolder<Auction>(auctionList);
+			pagedAuctionList.setPageSize(3);
+			request.getSession().setAttribute("AuctionController_auctionList", pagedAuctionList);
+		}
+		else {
+			pagedAuctionList = (PagedListHolder<Auction>)request.getSession().getAttribute("AuctionController_auctionList");
+			if (pagedAuctionList == null) {
+				return new ModelAndView("Error", "message", "Your session has timed out. Please start over again.");
+			}
+			if ("next".equals(page)) {
+				pagedAuctionList.nextPage();
+			}
+			else if ("previous".equals(page)) {
+				pagedAuctionList.previousPage();
+			}	
+		}
+		return new ModelAndView(AUCTION_LIST, "auctionList", pagedAuctionList);
 	}
 	
 	@RequestMapping(value="/auction/list", method=RequestMethod.POST)
-	public ModelAndView auctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
+	public ModelAndView searchAuctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView(AUCTION_LIST);
 		List<Auction> auctionList = null;
 		
 		String keyword = request.getParameter("keyword");	
 		auctionList = auctionService.getSearchAuctionList(keyword);
+		
 		if (auctionList == null) {
 			System.out.println("[DetailAuctionController] auctionList가 null");
 		} else {
 			mav.addObject("auctionList", auctionList);			
 		}
 		session.removeAttribute("bidForm");
-		sessionStatus.setComplete(); 
-		return mav;
+		sessionStatus.setComplete();
+		
+		String page = request.getParameter("page");
+		PagedListHolder<Auction> pagedAuctionList;
+		if (page == null) {
+			pagedAuctionList = new PagedListHolder<Auction>(auctionList);
+			pagedAuctionList.setPageSize(3);
+			request.getSession().setAttribute("AuctionController_auctionList", pagedAuctionList);
+		}
+		else {
+			pagedAuctionList = (PagedListHolder<Auction>)request.getSession().getAttribute("AuctionController_auctionList");
+			if (pagedAuctionList == null) {
+				return new ModelAndView("Error", "message", "Your session has timed out. Please start over again.");
+			}
+			if ("next".equals(page)) {
+				pagedAuctionList.nextPage();
+			}
+			else if ("previous".equals(page)) {
+				pagedAuctionList.previousPage();
+			}	
+		}
+		return new ModelAndView(AUCTION_LIST, "auctionList", pagedAuctionList);
 	}
 	
 	@RequestMapping(value="/auction/detail", method=RequestMethod.GET)

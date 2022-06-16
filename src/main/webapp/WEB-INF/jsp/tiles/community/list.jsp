@@ -17,16 +17,27 @@
 	<h1>Community List</h1>
 </div>
 	<div class="container">
-	<a id="a-btn"
-		href="<c:url value='/community/list'>
-					<c:param name="sortByPostId" value="true" />
-			</c:url>">🔻 PostId순
-	</a>&nbsp
-	<a id="a-btn"
-		href="<c:url value='/community/list'>
-					<c:param name="sortByPostId" value="false" />
-			</c:url>">🔻 최신순
-	</a> <br/> <br/> <br/>  
+			<div align="center">
+				<form method="POST"
+				action="/community/list" id="search-form-form">
+					<input type="text" name="keyword" class="form-control" />
+					<input type="submit" value="검색" id="register-btn">
+				</form>
+			</div>
+		<a id="a-btn"
+			href="<c:url value='/community/list'>
+						<c:param name="sortByPostId" value="true" />
+						<c:param name="keyword" value="${keyword}" />
+				</c:url>">🔻 PostId순
+		</a>&nbsp
+		<a id="a-btn"
+			href="<c:url value='/community/list'>
+						<c:param name="sortByPostId" value="false" />
+						<c:param name="keyword" value="${keyword}" />
+				</c:url>">🔻 최신순
+		</a>&nbsp 
+		<a href="<c:url value='/community/list'/>" id="a-btn">🔮 전체목록</a>
+		 <br/> <br/> 
 		<div class="row">
 			<div class="col-lg-4 col-md-6 mb-4">
 				<div class="post-entry-1 h-100">
@@ -55,6 +66,16 @@
 									</td>
 								</tr>
 							</c:forEach>
+							<%-- <tr>
+      <td>
+        <c:if test="${!communityList.firstPage}">
+          <a href="?page=previous"><font color="white"><B>&lt;&lt; Prev</B></font></a>
+        </c:if> 
+        <c:if test="${!communityList.lastPage}">
+          <a href="?page=next"><font color="white"><B>Next &gt;&gt;</B></font></a>
+        </c:if>
+      </td>
+    </tr> --%>
 						</table>
 						</div>
 					</div>

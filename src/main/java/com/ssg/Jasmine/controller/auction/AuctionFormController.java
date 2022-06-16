@@ -28,7 +28,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Auction;
+import com.ssg.Jasmine.domain.Bid;
+import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
+import com.ssg.Jasmine.service.BidService;
+import com.ssg.Jasmine.service.UserService;
 
 
 @Controller
@@ -45,12 +49,14 @@ public class AuctionFormController implements ApplicationContextAware  {
 //	파일 업로드 위한 변수
 	private WebApplicationContext context;	
 	private String uploadDir;
-	
-	
-	
+
 //	Service 객체
 	@Autowired
 	private AuctionService auctionService;
+	@Autowired
+	UserService userService;
+	@Autowired
+	BidService bidService;
 
 	@Override					// life-cycle callback method
 	public void setApplicationContext(ApplicationContext appContext)
@@ -86,21 +92,23 @@ public class AuctionFormController implements ApplicationContextAware  {
 			Model model, SessionStatus sessionStatus, HttpSession session) {
 		System.out.println(auctionForm.toString());
 //		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
+		Auction auction = auctionForm.getAuction();
+		
 		String reqPage = request.getServletPath();
 		String requestUrl = reqPage.trim();
 		
-		MultipartFile report = auctionForm.getAuction().getReport();
+		MultipartFile report = auction.getReport();
 		String filename = uploadFile(report);
 		model.addAttribute("fileUrl", this.uploadDirLocal + filename);
 
 //		대표 이미지 선택 안 했을 시
-		if (auctionForm.getAuction().getReport().getSize() == 0) {
+		if (report.getSize() == 0) {
 			result.rejectValue("auction.report", "notSelected");
 		}
 //		AuctionForm객체 validation
 		if (result.hasErrors()) {
 			if (requestUrl.equals("/auction/update")) {
-				model.addAttribute("auctionId", auctionForm.getAuction().getAuctionId());
+				model.addAttribute("auctionId", auction.getAuctionId());
 				return AUCTION_FORM;
 			} else {
 				return AUCTION_FORM;
@@ -111,33 +119,41 @@ public class AuctionFormController implements ApplicationContextAware  {
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 //		System.out.println(user.toString());
 //		시간세팅
-		auctionForm.getAuction().timeSet();
+		auction.timeSet();
 
 //		경매 update/create 작업
 		if (requestUrl.equals("/auction/update")) { // update
-			Auction oldAuction = auctionService.getAuction(auctionForm.getAuction().getAuctionId());
+			Auction oldAuction = auctionService.getAuction(auction.getAuctionId());
 //			기존 파일 삭제 후 파일 업로드
 			String[] oldFileName = oldAuction.getImg().split("/");
-			if (deleteFile(uploadDir + oldFileName[4])) {
+			if (deleteFile(uploadDir + oldFileName[2])) {
 				System.out.println("파일 삭제 성공! 이제부터 파일 업로드.");
 			}
 //			파일 업로드 기능
-			String savedFileName = uploadFile(auctionForm.getAuction().getReport());
+			String savedFileName = uploadFile(auction.getReport());
+			auction.setImg(this.uploadDirLocal + filename);
 			
-			System.out.println(auctionForm.getAuction().toString());
-			auctionForm.getAuction().setState("proceeding");
-			int auctionId = auctionService.updateAuction(auctionForm.getAuction());
+			System.out.println(auction.toString());
+			auction.setState("proceeding");
+			int auctionId = auctionService.updateAuction(auction);
 			model.addAttribute("auction", auctionService.getAuction(auctionId));
+			
+			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); 
+			model.addAttribute("date_maxBid", maxPriceBid.getBidDate());
+			User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
+			model.addAttribute("user_maxBid", user_maxBid.getUsername());
 		} else { // create
 //			파일 업로드 기능
-			String savedFileName = uploadFile(auctionForm.getAuction().getReport());
+			String savedFileName = uploadFile(auction.getReport());
 //			auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
-			auctionForm.getAuction().setImg(this.uploadDirLocal + filename);
+			auction.setImg(this.uploadDirLocal + filename);
 
-            auctionForm.getAuction().initAuction(user.getUser());
+			auction.initAuction(user.getUser());
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
-			auctionService.createAuction(auctionForm.getAuction());
-			model.addAttribute("auction", auctionForm.getAuction());
+			auctionService.createAuction(auction);
+			model.addAttribute("auction", auction);
+			model.addAttribute("date_maxBid", "");
+			model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
 		}
 		
 //		스케줄러 => create / update 시 endDate로 설정
@@ -145,10 +161,17 @@ public class AuctionFormController implements ApplicationContextAware  {
 		
 //		view에 전송할 attribute
 		session.setAttribute("bidForm", new BidForm());
-		model.addAttribute("date_maxBid", "");
-		model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
 //		작성자만 수정/삭제 버튼 보이게 하기 위해 isWriter, 작성자 출력 위해 writer값을 넘겨준다.
-		model.addAttribute("isWriter", true);
+		if(user.getUser().getUserId().equals("admin")) {
+			model.addAttribute("isManager", true);
+			model.addAttribute("isWriter", false);
+			
+			System.out.println("user.userid== "+ user.getUser().getUserId());
+			System.out.println("auction.getUserId== "+auction.getUserId());
+		}
+		else {
+			model.addAttribute("isWriter", true);
+		}
 		model.addAttribute("writer", user.getUser().getUsername());
 		model.addAttribute("bidForm", session.getAttribute("bidForm"));
 		sessionStatus.setComplete();

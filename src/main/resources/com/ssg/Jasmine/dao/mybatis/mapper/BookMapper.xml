@@ -47,6 +47,12 @@
     ORDER BY BOOKID DESC
   </select> 
   
+    <select id="getBookByUserId" resultType="com.ssg.Jasmine.domain.Book">
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG
+    FROM BOOK 
+    WHERE USERID = #{userId}
+  </select> 
+  
   
 
 </mapper>

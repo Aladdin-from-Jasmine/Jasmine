@@ -18,6 +18,8 @@
 	<div id="signup-form">
 		<h2 class="text-center">게시물 수정하기</h2>
 		<br />
+		
+		<spring:hasBindErrors name="userForm"></spring:hasBindErrors>
 		<form:form modelAttribute="communityForm" method="POST" name="form" id="signup-form-form"
 			action="/community/update" ><br />
 			<table class="TB1" align="center">
@@ -27,8 +29,6 @@
 					</td>
 					<td class="td2">
 	  					<form:input path="community.postId" class="form-control" value="${community.postId}" readonly="true" />
-	  					 <form:errors path="community.postId" cssClass="error" />
-							<form:errors cssClass="error" /> 
 					</td>
 				</tr>
 				<tr>
@@ -37,8 +37,6 @@
 					</td>
 					<td class="td2">
 	 	 				<form:input path="community.userId" class="form-control" value="${community.userId}" readonly="true" />
-						 <form:errors path="community.postId" cssClass="error" />
-						 <form:errors cssClass="error" /> 
 					</td>
 				</tr>
 				<tr>
@@ -46,9 +44,7 @@
 						<label for="communityDate">생성 날짜</label>
 					</td>
 					<td class="td2">
-						<fmt:formatDate value="${community.communityDate}" pattern="yyyy-MM-dd HH:mm" />
- 						 <form:errors path="community.postId" cssClass="error" />
-						<form:errors cssClass="error" /> 
+  						<fmt:formatDate value="${community.communityDate}" pattern="yyyy-MM-dd HH:mm" />
 					</td>
 				</tr>
 				<tr>
@@ -57,9 +53,8 @@
 					</td>
 					<td class="td2">
 						<form:input path="community.title" class="form-control"
-						value="${community.title}" />
-						<form:errors path="community.title" cssClass="error" />
-						<form:errors cssClass="error" />
+						value="${community.title}" /></br>
+						<form:errors path="community.title" class="error" />
 					</td>
 				</tr>
 				<tr>
@@ -69,16 +64,27 @@
 					<td class="td2">
 						<form:textarea path="community.content_" cols="30" rows="10"
 						class="form-control2"  />
-						<form:errors path="community.content_" cssClass="error" />
+						<form:errors path="community.content_" class="error" />
 					</td>
 				</tr>			
 			</table><br/>
 			<div class="form-group" align="center">
- 				<input type="submit" value="수정하기" id="register-btn">
- 				<!-- <input type="button" value="수정하기" id="register-btn" onclick="update()"> -->
-				<a href="<c:url value='/community/detail'>
-	  				<c:param name="postId" value="${community.postId}"/>
-				</c:url>" id="a-btn">취소</a>
+				<c:if test="${isSameUser==false}">
+					<p class="error">수정 권한이 없습니다.</p></br>
+				</c:if>
+				<c:if test="${isSameUser==true || empty isSameUser}">
+ 					<input type="submit" value="완료" id="register-btn">
+ 				</c:if>
+
+				<!-- error가 있으면 postId를 못가져옴.. -->
+ 				<c:if test="${!empty community.postId}">
+ 					<a href="<c:url value='/community/detail'>
+	  							<c:param name="postId" value="${community.postId}"/>
+							</c:url>" id="a-btn">취소</a>
+ 				</c:if>
+				<c:if test="${empty community.postId}">
+ 					<a href="<c:url value='/community/list'/>" id="a-btn">취소</a>
+ 				</c:if>
 			</div>
 		</form:form>
 	</div>

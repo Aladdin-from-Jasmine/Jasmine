@@ -15,7 +15,7 @@ public class CommunityFormValidator implements Validator {
 	}
 	
 	public void validate(Object target, Errors errors) {
-		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "required");
-		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "content_", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "community.title", "title");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "community.content_", "content_");
 	}
 }

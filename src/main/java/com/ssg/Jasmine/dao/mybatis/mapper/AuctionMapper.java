@@ -20,6 +20,8 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 	int updateAuction(Auction auction) throws DataAccessException;
 	
+	int updateStateAuction(@Param("auctionId")int auctionId, @Param("state")String state) throws DataAccessException;
+	
 	void updateAuctionMaxPrice(@Param("maxPrice")int maxPrice, @Param("auctionId")int auctionId) throws DataAccessException;
 	
 	void deleteAuction(int auctionId) throws DataAccessException;
@@ -27,6 +29,10 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	int deleteAuctionByUserId(int userId) throws DataAccessException;
 	
 	List<Auction> getAuctionList() throws DataAccessException;
+	
+	List<Auction> getSearchAuctionList(String keyword) throws DataAccessException;
+	
+	List<Auction> getAuctionListByUserId(String userId) throws DataAccessException;
 	
 	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;
 	

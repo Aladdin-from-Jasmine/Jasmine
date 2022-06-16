@@ -48,6 +48,12 @@ public class MybatisAuctionDao implements AuctionDao {
 	}
 	
 	@Override
+	public int updateStateAuction(int auctionId, String state) throws DataAccessException {
+		auctionMapper.updateStateAuction(auctionId, state);
+		return auctionId;
+	}
+	
+	@Override
 	public int updateAuctionMaxPrice(int maxPrice, int auctionId) throws DataAccessException {
 		auctionMapper.updateAuctionMaxPrice(maxPrice, auctionId);
 		return auctionId;
@@ -61,6 +67,11 @@ public class MybatisAuctionDao implements AuctionDao {
 	@Override
 	public List<Auction> getAuctionList() throws DataAccessException {
 		return auctionMapper.getAuctionList();
+	}
+	
+	@Override
+	public List<Auction> getSearchAuctionList(String keyword) throws DataAccessException {
+		return auctionMapper.getSearchAuctionList(keyword);
 	}
 
 	@Override
@@ -105,5 +116,10 @@ public class MybatisAuctionDao implements AuctionDao {
 //	keyword로 검색
 	public List<Auction> auctionListByKeyword(String keyword) {
 		return auctionMapper.auctionListByKeyword(keyword);
+	}
+
+	@Override
+	public List<Auction> getAuctionListByUserId(String userId) throws DataAccessException {
+		return auctionMapper.getAuctionListByUserId(userId);
 	}
 }

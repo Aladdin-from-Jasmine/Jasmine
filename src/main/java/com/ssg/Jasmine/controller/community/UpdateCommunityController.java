@@ -1,5 +1,8 @@
 package com.ssg.Jasmine.controller.community;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Community;
 import com.ssg.Jasmine.service.CommunityService;
 import com.ssg.Jasmine.validator.CommunityFormValidator;
+import com.ssg.Jasmine.validator.UserFormValidator;
 
 @Controller
 @RequestMapping("/community/update")
@@ -43,22 +48,39 @@ public class UpdateCommunityController {
 		mav.setViewName(formViewName); 
 		return mav;
 	}
-
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(HttpServletRequest request, HttpSession session,
+	public ModelAndView onSubmit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("communityForm") CommunityForm communityForm, BindingResult result, Model model) throws Exception {
-				
+			
+		new CommunityFormValidator().validate(communityForm, result);	
+		ModelAndView mav = new ModelAndView();
+		boolean isSameUser = true;
+		
+		UserSession userSession  = (UserSession)session.getAttribute("userSession");
+		String userId = userSession.getUser().getUserId();
+		String writer = communityForm.getCommunity().getUserId();
+		if(!writer.equals(userId) && !userId.equals("admin")) {
+			isSameUser = false;
+			mav.addObject("isSameUser", isSameUser);
+			mav.setViewName(formViewName);
+			return mav;
+		}
+		
+		isSameUser = true;
 		if (result.hasErrors()) {
-			return formViewName;
+			mav.addObject("isSameUser", isSameUser);
+			mav.setViewName(formViewName);
 		} else {
 			communityService.updatePost(communityForm.getCommunity());
 			
 			int postId = communityForm.getCommunity().getPostId();
 			Community community = communityService.getCommunity(postId);
 
-			return "redirect:" + successViewUri;
+			mav.setViewName("redirect:" + successViewUri);	
 		}
+		
+		return mav;
 	}
 
 }

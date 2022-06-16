@@ -17,6 +17,9 @@
   	<result column="maxPrice" property="maxPrice" />
   	<result column="state" property="state" />
   	<result column="writerId" property="userId" />
+  	<result column="booktitle" property="booktitle" />
+  	<result column="bookauthor" property="bookauthor" />
+  	<result column="bookpublisher" property="bookpublisher" />
   	<collection property="bid" ofType="Bid">
   		<id property="bidId" column="bidId"/>
   		<result property="bidPrice" column="bidPrice"/>
@@ -26,7 +29,7 @@
 
   <select id="getAuction" parameterType="java.lang.Integer" resultType="com.ssg.Jasmine.domain.Auction">  <!--   bid없는 Auction객체 위해 필요 -->
     SELECT auctionId, title, content_, img, startPrice, uploadDate, endDate, 
-    		count, maxPrice, state, userId
+    		count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
     FROM AUCTION
     WHERE auctionId = #{auctionId}
   </select>
@@ -34,7 +37,7 @@
 
   <select id="getAuctionWithBids" parameterType="java.lang.Integer" resultMap="resultMap">   <!--  bid있는 Auction객체, 경매 결제에서 이용 -->
     SELECT a.auctionId, a.title, a.content_, a.img, a.startPrice, a.uploadDate, 
-    		a.endDate, a.count, a.maxPrice, a.state, 
+    		a.endDate, a.count, a.maxPrice, a.state, a.booktitle, a.bookauthor, a.bookpublisher, 
     		a.userId AS writerId, b.bidId, b.bidPrice
     FROM AUCTION a, BID b
     WHERE a.auctionId = b.auctionId AND a.auctionId = #{auctionId}
@@ -54,7 +57,14 @@
   <update id="updateAuction" parameterType="com.ssg.Jasmine.domain.Auction">
    	UPDATE AUCTION
     SET title=#{title}, content_=#{content_}, img=#{img}, startPrice=#{startPrice}, 
- 		ENDDATE=#{endDate}, MAXPRICE=#{maxPrice}, state=#{state}
+ 		ENDDATE=#{endDate}, MAXPRICE=#{maxPrice}, state=#{state}, 
+ 		booktitle=#{booktitle}, bookauthor=#{bookauthor}, bookpublisher=#{bookpublisher}
+  	WHERE  AUCTIONID=#{auctionId}
+  </update>
+  
+  <update id="updateStateAuction" parameterType="com.ssg.Jasmine.domain.Auction">
+   	UPDATE AUCTION
+    SET  state=#{state}
   	WHERE  AUCTIONID=#{auctionId}
   </update>
   
@@ -77,8 +87,25 @@
   <!-- Get all auctions -->
   <select id="getAuctionList" resultType="com.ssg.Jasmine.domain.Auction">
     SELECT auctionId, title, content_, img, startPrice, uploadDate, 
-    		endDate, count, maxPrice, state, userId
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
     FROM AUCTION
+    ORDER BY uploadDate DESC
+  </select>
+  
+   <select id="getSearchAuctionList" parameterType="String" resultType="com.ssg.Jasmine.domain.Auction">
+    SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
+    FROM AUCTION
+    WHERE title LIKE '%'||#{param1}||'%' or content_ LIKE '%'||#{param1}||'%'
+    	or booktitle LIKE '%'||#{param1}||'%' or bookauthor LIKE '%'||#{param1}||'%'
+    ORDER BY uploadDate DESC
+  </select>
+  
+  <select id="getAuctionListByUserId" resultType="com.ssg.Jasmine.domain.Auction">
+    SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
+    FROM AUCTION
+    WHERE USERID = #{userId}
     ORDER BY uploadDate DESC
   </select>
   
@@ -87,7 +114,7 @@
   	<bind name="pattern" value="'%' + _parameter + '%'" />
 	  	SELECT auctionId, title, content_, img, startPrice, 
 	  			uploadDate, endDate, count,
-    			maxPrice, state, userId
+    			maxPrice, state, booktitle, bookauthor, bookpublisher, userId
     	FROM AUCTION
 	    WHERE title LIKE #{pattern}
   </select>

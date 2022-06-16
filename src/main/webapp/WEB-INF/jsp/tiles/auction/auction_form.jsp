@@ -96,14 +96,14 @@ function auctionSubmit(isNewAuction) {
 
       <div class="auction-form-sub">
          <label for="auction.content">상세 설명</label>
-         <form:errors path="auction.content" cssClass="error" />
+         <form:errors path="auction.content_" cssClass="error" />
          <c:choose>
             <c:when test="${auctionForm.newAuction}">
-               <form:textarea path="auction.content" class="form-control"
+               <form:textarea path="auction.content_" class="form-control"
                   placeholder="Write description." id="auction-des-form" />
             </c:when>
             <c:otherwise>
-               <form:textarea path="auction.content" class="form-control" id="auction-des-form"/>
+               <form:textarea path="auction.content_" class="form-control" id="auction-des-form"/>
             </c:otherwise>
          </c:choose>
       </div>
@@ -117,18 +117,20 @@ function auctionSubmit(isNewAuction) {
       
       <div class="auction-form-sub">
          <label for="auction.booktitle">책 제목</label> 
-         <form:input path="auction.booktitle" class="form-control"
-             />
+         <form:input path="auction.booktitle" class="form-control" />     
+         <form:errors path="auction.booktitle" cssClass="error" />
       </div>
-         <div class="auction-form-sub">
+      
+      <div class="auction-form-sub">
          <label for="auction.bookauthor">책 저자</label> 
-         <form:input path="auction.bookauthor" class="form-control"
-             />
+         <form:input path="auction.bookauthor" class="form-control" />
+         <form:errors path="auction.bookauthor" cssClass="error" />
       </div>
-         <div class="auction-form-sub">
+      
+      <div class="auction-form-sub">
          <label for="auction.bookpublisher">책 출판사</label> 
-         <form:input path="auction.bookpublisher" class="form-control"
-            />
+         <form:input path="auction.bookpublisher" class="form-control" />
+         <form:errors path="auction.bookpublisher" cssClass="error" />
       </div>
       
 

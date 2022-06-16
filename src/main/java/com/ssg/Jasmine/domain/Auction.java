@@ -47,8 +47,12 @@ public class Auction implements Serializable {
 	int hour;
 	int minute;
 	
+
+	@NotNull
 	String booktitle;
+	@NotNull
 	String bookauthor;
+	@NotNull
 	String bookpublisher;
 	
 	List<Bid> bid = new ArrayList<Bid>();
@@ -57,7 +61,7 @@ public class Auction implements Serializable {
 		return userId;
 	}
 
-		public void setUserId(String userId) {
+	public void setUserId(String userId) {
 			this.userId = userId;
 	}
 	
@@ -104,11 +108,11 @@ public class Auction implements Serializable {
 		this.report = report;
 	}
 
-	public String getContent() {
+	public String getContent_() {
 		return content_;
 	}
 
-	public void setContent(String content_) {
+	public void setContent_(String content_) {
 		this.content_ = content_;
 	}
 

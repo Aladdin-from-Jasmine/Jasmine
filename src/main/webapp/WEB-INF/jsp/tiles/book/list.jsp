@@ -12,13 +12,9 @@
 		}
 	}
 	
-
-	
 	function bookDetail(bookId) {
 		window.location.href = "http://localhost:8080/book/detail/"+ bookId;
 	}
-
-	
 	
 </script>
 

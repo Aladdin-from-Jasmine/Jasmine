@@ -73,7 +73,14 @@ public class AuctionController {
 		
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if(user != null) {
-			if (user.getUser().getUserId().equals(auction.getUserId())) {
+			String userId = user.getUser().getUserId();
+			if(userId.equals("admin")) {
+				mav.addObject("isManager", true);
+				
+				System.out.println("user.userid== "+ user.getUser().getUserId());
+				System.out.println("auction.getUserId== "+auction.getUserId());
+			}
+			if (userId.equals(auction.getUserId())) {
 				mav.addObject("isWriter", true);
 				
 				System.out.println("user.userid== "+ user.getUser().getUserId());

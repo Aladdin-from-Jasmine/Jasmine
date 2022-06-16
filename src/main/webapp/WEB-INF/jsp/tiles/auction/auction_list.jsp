@@ -8,7 +8,7 @@
 
 
 <h1>Auction</h1>
-
+</br>
 <div class="container">
 	<c:if test="${!empty userSession.user}">
 		<a id="auction-register-btn"
@@ -19,7 +19,7 @@
 	<div>
 		<c:forEach var="auction" items="${auctionList}" varStatus="status">
 			<div id="auctionForm">
-				<table align="center">
+				<table class="TB3" align="center">
 					<tr>
 						<td rowspan="5">
 							<img src="${auction.img}" alt="Image" width="200px" height="200px">

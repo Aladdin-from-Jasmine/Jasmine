@@ -187,11 +187,14 @@ public class AuctionController {
 	@RequestMapping(value="/auction/delete")
 	public ModelAndView auctionDelete(HttpServletRequest request,
 			@RequestParam("auctionId") int auctionId){
-		
-		ModelAndView mav = new ModelAndView(AUCTION_LIST);
+	
 		List<Auction> auctionList = auctionService.deleteAuction(auctionId);
-		mav.addObject("auctionList", auctionList);
 		
-		return mav;
+		PagedListHolder<Auction> pagedAuctionList = new PagedListHolder<Auction>(auctionList);
+		pagedAuctionList.setPageSize(3);
+		request.getSession().setAttribute("AuctionController_auctionList", pagedAuctionList);
+
+		return new ModelAndView(AUCTION_LIST, "auctionList", pagedAuctionList);
+
 	}
 }

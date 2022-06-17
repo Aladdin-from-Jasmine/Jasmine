@@ -87,9 +87,7 @@ function orderAuction() {
 	      			<td>경매 마감일</td>
       				<td><fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" /></td>
       			</c:if>
-      		<%-- 	<td>경매 마감일</td>
-      			<td><fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" /></td>
-      		 --%></tr>
+      		</tr>
       		<tr class="td1">
       			<td>시작 금액</td>
       			<td><fmt:formatNumber value="${auction.startPrice}" pattern="#,###원" /></td>

@@ -135,7 +135,7 @@ function orderAuction() {
             <br> --%>
 
          <!-- betting -->
-         <c:if test="${empty userSession.user}">
+         <c:if test="${empty userSession.user and auction.state eq 'proceeding'}">
          	<p class="error">배팅을 하시려면 로그인을 해주세요!</p>
          </c:if>
          <c:if test="${!empty userSession.user && isWriter eq false}">
@@ -175,7 +175,7 @@ function orderAuction() {
          <a id="auction-register-btn" href="javascript:updateAuction()">수정</a>
          <a id="auction-register-btn" href="javascript:deleteAuction()">삭제</a>
       </c:if>
-      <c:if test="${(isWriter eq true) and (!empty auction.bids) and (!empty isClosed)}">
+      <c:if test="${(isWriter eq true) and (!empty auction.bids) and (auction.state eq 'proceeding')}">
          <a id="auction-register-btn" href="<c:url value='/auction/bid/success'>
          					<c:param name="auctionId" value="${auction.auctionId}"/>
          				</c:url>">낙찰</a>

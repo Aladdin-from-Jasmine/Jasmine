@@ -4,10 +4,27 @@
 <mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.SuccessBidderMapper">
   <cache />
 
-	<insert id="insertSuccessBidder" parameterType="SuccessBidder">
+	<select id="getSuccessBidder" parameterType="int" resultType="SuccessBidder">
+		SELECT bidId, userId, auctionId
+		FROM SuccessBidders
+		WHERE bidId = #{bidId}
+	</select>
+
+	<insert id="createSuccessBidder" parameterType="SuccessBidder">
 		INSERT INTO SuccessBidders (bidId, userId, auctionId)
 		VALUES (#{bidId}, #{userId}, #{auctionId})
 	</insert>
+	
+	<select id="getSuccessBidderList" resultType="SuccessBidder">
+		SELECT bidId, userId, auctionId
+		FROM SuccessBidders
+	</select>
+
+	<select id="getSuccessBidderUserId" parameterType="String" resultType="SuccessBidder">
+		SELECT bidId, userId, auctionId
+		FROM SuccessBidders
+		WHERE userId = #{userId}
+	</select>
 
 	<select id="getSuccessBidderByAuctionId" parameterType="int" resultType="SuccessBidder">
 		SELECT bidId, userId, auctionId

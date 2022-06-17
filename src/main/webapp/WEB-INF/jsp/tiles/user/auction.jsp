@@ -8,51 +8,66 @@
 
 <div class="container">
 	<h1>My Page</h1>
-	<h3>auction ⌛</h3>
+	<h3>내가 올린 경매⌛</h3>
 </div>
-<div class="container">
-<h3>내가 올린 경매</h3>
-	<div>
-		<c:forEach var="auction" items="${auctionList}" varStatus="status">
+		<div>
+		<c:forEach var="auction" items="${auctionList.pageList}" varStatus="status">
 			<div id="auctionForm">
-				<h2>
-					<a
-						href="<c:url value='/auction/detail'>
-                                 <c:param name="auctionId" value="${auction.auctionId}"/>
-                                 </c:url>">${auction.title}</a>
-				</h2>
-				<img src="${auction.img}" alt="Image" width="200px" height="200px">
-				<div>
-					<c:if test="${auction.state eq 'proceeding'}">
-						<h5>Proceeding</h5>
-					</c:if>
-
-					<c:if test="${auction.state eq 'closed'}">
-						<h5>Closed</h5>
-					</c:if>
-
-					<span> &nbsp; ~ <fmt:formatDate value="${auction.endDate}"
-							pattern="yyyy-MM-dd" />
-					</span>
-				</div>
-
-
-
-				<span> <span>최고가 : </span> &nbsp; <fmt:formatNumber
-						value="${auction.maxPrice}" pattern="#,###원" />
-				</span>
-
-				<p>${auction.content_}</p>
+				<table class="TB3" align="center">
+					<tr>
+						<td rowspan="5">
+							<img src="${auction.img}" alt="Image" width="200px" height="200px">
+						</td>
+						<td>
+							<h3>
+								경매제목 :&nbsp;
+								<a href="<c:url value='/auction/detail'>
+		                                 <c:param name="auctionId" value="${auction.auctionId}"/>
+		                               </c:url>">${auction.title}</a>
+							</h3>
+						</td>
+					</tr>
+					<tr>
+						<td text-align="center">
+							<div>
+								<h5>진행상황 :&nbsp;
+									<c:if test="${auction.state eq 'proceeding'}">
+										Proceeding
+									</c:if>
+									<c:if test="${auction.state eq 'closed'}">
+										Closed
+									</c:if>
+								</h5>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td text-align="center">
+							<span>마감일 : &nbsp;	<fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd" />
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td text-align="center">
+							<span> <span>최고가 : </span> &nbsp; 
+									<fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" />
+							</span>	
+						</td>
+					</tr>
+					<tr>
+						<td text-align="center">
+							<p>경매내용 : ${auction.content_}</p>
+						</td>
+					</tr>		
+				</table>
 			</div>
 		</c:forEach>
-
-		<!-- 
-      <div class="col-12 mt-5 text-center">
-      		<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a href="#"
-      		<class="p-3">3</a> <a href="#" class="p-3">4</a>
-      </div>
-      
-       -->
+		<c:if test="${!auctionList.firstPage}">
+	          <a href="/user/auction?page=previous" style=""><font color="#d164c4"><B>&lt;&lt;
+	                Prev</B></font></a>
+	        </c:if> 
+	        <c:if test="${!auctionList.lastPage}">
+	          <a href="/user/auction?page=next"><font color="#d164c4"><B>Next
+	                &gt;&gt;</B></font></a>
+	        </c:if>
 	</div>
-	<h3>낙찰된 경매</h3>
-</div>

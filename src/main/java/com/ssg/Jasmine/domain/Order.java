@@ -1,10 +1,11 @@
 package com.ssg.Jasmine.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
 	int orderId;
 	String cardBank;
 	String cardNo;

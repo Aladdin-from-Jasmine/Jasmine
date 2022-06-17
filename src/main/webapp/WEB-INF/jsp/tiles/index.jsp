@@ -9,37 +9,26 @@
 
 <h1>Book</h1>
 
-		<div class="row">
-			<div class="col-lg-4 col-md-6 mb-4">
-				<div class="post-entry-1 h-100">
-					<div class="post-entry-1-contents">
-						<table class="listTb" align="center">
-							<tr class="listTb-tr1">
-								<td class="listTb-1">책 사진</td>
-								<td class="listTb-2">제목</td>
-								<td class="listTb-3">등록자</td>
-								<td class="listTb-2">가격</td>
-							</tr>
-							<c:forEach var="book" items="${bookList}">
-								<tr class="listTb-tr2" onClick="bookDetail(${book.bookId})">
-									<td><img src= "${book.img}" width="200px" height="200px"/></td>
-									<td>${book.title}</td>
-									<td>${book.userId}</td>
-									<td>
-										<div class="price-wrap d-flex">
-											<span class="meta d-inline-block mb-3"> &nbsp;
-												${book.price}
-											</span>
-										</div>
-									</td>
-								</tr>
-							</c:forEach>
-						</table>
-						</div>
-					</div>
-				</div>
-			<br/><br/>
-		</div>
+	<div>
+	<c:forEach var="book" items="${bookList}">
+		<div id="auctionForm2">
+				<table class="TB4" align="center">
+					<tr class="TB4" onClick="bookDetail(${book.bookId})">
+						<td><img src= "${book.img}" width="200px" height="200px"/></td>
+						<td>제목: ${book.title}</td>
+						<td>등록자: ${book.userId}</td>
+						<td>
+							<div class="price-wrap d-flex">
+								<span class="meta d-inline-block mb-3"> &nbsp;
+									가격: ${book.price}
+								</span>
+							</div>
+						</td>
+					</tr>
+				</table>
+		</div>	
+	</c:forEach>
+	</div>
 
 <h1>Auction</h1>
 	<div>

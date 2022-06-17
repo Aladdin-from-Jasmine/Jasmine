@@ -5,7 +5,7 @@
   <cache />
   
   <select id="getBookByBookId" resultType="com.ssg.Jasmine.domain.Book">
-    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG, REGISTERDATE
     FROM BOOK 
     WHERE BOOKID = #{bookId}
   </select> 
@@ -18,10 +18,10 @@
   </selectKey>
   
   	INSERT INTO BOOK 
-  	( BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG)
+  	( BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE)
   	VALUES 
   	(#{bookId}, #{isbn}, #{price}, #{title , jdbcType=VARCHAR}, 
-  	#{author, jdbcType=VARCHAR}, #{publisher, jdbcType=VARCHAR}, #{categoryId}, #{userId}, #{img}) 
+  	#{author, jdbcType=VARCHAR}, #{publisher, jdbcType=VARCHAR}, #{categoryId}, #{userId}, #{img}, SYSDATE) 
 
   </insert>
   
@@ -42,7 +42,7 @@
   </delete>
   
   <select id="getBookList" resultType="com.ssg.Jasmine.domain.Book">
-    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG, REGISTERDATE
     FROM BOOK
     ORDER BY BOOKID DESC
   </select> 
@@ -52,6 +52,44 @@
     FROM BOOK 
     WHERE USERID = #{userId}
   </select> 
+  
+  
+  
+  <!-- Search auctions by Keyword -->
+  <select id="auctionListByKeyword" resultType="com.ssg.Jasmine.domain.Auction">
+  	<bind name="pattern" value="'%' + _parameter + '%'" />
+	  	SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG
+    	FROM BOOK
+	    WHERE title LIKE #{pattern}
+  </select>
+  
+  
+  
+  <select id="bookListCnt" resultType="int">
+  		SELECT count(*)
+  		FROM BOOK
+  </select>
+  
+  <select id="bookList" resultType="com.ssg.Jasmine.domain.Book" parameterType="hashmap">
+		
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG, REGISTERDATE
+  FROM (
+        SELECT ROW_NUMBER() OVER (ORDER BY bookid desc) NUM
+             , A.*
+          FROM book A
+         ORDER BY bookid desc
+        ) 
+ WHERE NUM BETWEEN #{pageStart} AND #{perPageNum}
+		
+		
+		
+		
+		
+		
+	</select>
+
+  
+  
   
   
 

@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <script>
 	function goLoginForm(){		
@@ -48,10 +49,11 @@
 					<div class="post-entry-1-contents">
 						<table class="listTb" align="center">
 							<tr class="listTb-tr1">
-								<td class="listTb-1">책 사진</td>
-								<td class="listTb-2">제목</td>
-								<td class="listTb-3">등록자</td>
-								<td class="listTb-2">가격</td>
+								<td class="listTb-2">책 사진</td>
+								<td class="listTb-1">제목</td>
+								<td class="listTb-1">등록자</td>
+								<td class="listTb-1">가격</td>
+								<td class="listTb-2">등록날짜</td>
 							</tr>
 							<c:forEach var="book" items="${bookList}">
 								<tr class="listTb-tr2" onClick="bookDetail(${book.bookId})">
@@ -65,6 +67,10 @@
 											</span>
 										</div>
 									</td>
+									<td>
+										<fmt:formatDate value="${book.registerDate}" pattern="MM-dd HH:mm" />
+									</td>
+									
 								</tr>
 							</c:forEach>
 						</table>
@@ -73,4 +79,19 @@
 				</div>
 			<br/><br/>
 		</div>
+		
+		<ul class="paging">
+    <c:if test="${paging.prev}">
+    	<span><a href='<c:url value="/book/list?page=${paging.startPage-1}"/>'>이전</a></span>
+    </c:if>
+    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
+    	<span><a href='<c:url value="/book/list?page=${num}"/>'>${num}</a></span>
+    </c:forEach>
+    <c:if test="${paging.next && paging.endPage>0}">
+    	<span><a href='<c:url value="/book/list?page=${paging.endPage+1}"/>'>다음</a></span>
+    </c:if>
+</ul>
+		
+		
+		
 </div>

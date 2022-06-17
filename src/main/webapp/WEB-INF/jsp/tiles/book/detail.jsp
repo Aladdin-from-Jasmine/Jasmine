@@ -61,6 +61,14 @@
 				</tr>
 				<tr>
 					<td class="td1">
+						<label for="title">등록날짜</label>			
+					</td>
+					<td class="td2">
+						<fmt:formatDate value="${book.registerDate}" pattern="yyyy-MM-dd HH:mm" />
+					</td>
+				</tr>
+				<tr>
+					<td class="td1">
 						<label for="userId">판매자 이름</label>
 					</td>
 					<td class="td2">

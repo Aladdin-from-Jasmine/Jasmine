@@ -12,7 +12,7 @@
 </script>
 <div class="container">
 	<h1>My Page</h1>
-	<h3>book 📚</h3>
+	<h3>내가 올린 책 📚</h3>
 </div>
 
 <div class="row">

@@ -6,11 +6,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
+<h1>Auction</h1>
 	<div>
 		<c:forEach var="auction" items="${auctionList}" varStatus="status">
-			<div id="auctionForm">
-				<table class="TB3" align="center">
+			<div id="auctionForm2">
+				<table class="TB4" align="center">
 					<tr>
 						<td rowspan="5">
 							<img src="${auction.img}" alt="Image" width="200px" height="200px">

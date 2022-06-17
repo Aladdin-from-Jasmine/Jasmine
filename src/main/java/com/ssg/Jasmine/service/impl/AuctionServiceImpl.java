@@ -123,5 +123,35 @@ public class AuctionServiceImpl implements AuctionService {
 	public List<Auction> getAuctionTop3() {
 		return auctionDao.getAuctionTop3();
 	}
+
+	// 검색 후 proceed로 정렬
+	@Override
+	public List<Auction> getSearchProceedAuctionList(String keyword) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return auctionDao.getSearchProceedAuctionList(keyword);
+	}
+
+	// 그냥 proceed로 정렬
+	@Override
+	public List<Auction> getAuctionProceedList(String sortItem) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return auctionDao.getAuctionProceedList(sortItem);
+	}
+
+	// 검색 후 closed으로 정렬
+	@Override
+	public List<Auction> getSearchClosedAuctionList(String keyword) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return auctionDao.getSearchClosedAuctionList(keyword);
+	}
+
+	// 그냥 closed로 정렬
+	@Override
+	public List<Auction> getAuctionClosedList(String sortItem) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return auctionDao.getAuctionClosedList(sortItem);
+	}
+
+	
 	
 }

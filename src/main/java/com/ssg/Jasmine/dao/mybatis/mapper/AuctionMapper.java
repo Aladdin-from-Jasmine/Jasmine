@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 
 import com.ssg.Jasmine.domain.Auction;
+import com.ssg.Jasmine.domain.Community;
 
 @Mapper
 public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이름과 일치해야함!
@@ -46,6 +47,19 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 	String getSuccessBidderUserId(int auctionId);
 	
-	List<Auction> auctionListByKeyword(String keyword);
+	List<Auction> auctionListByKeyword(String keyword);	
+
+	// 검색 후 proceed로 정렬
+	List<Auction> getSearchProceedAuctionList(String keyword) throws DataAccessException;
+
+	// 그냥 proceed로 정렬
+	List<Auction> getAuctionProceedList(String sortItem) throws DataAccessException;
+
+	// 검색 후 closed으로 정렬
+	List<Auction> getSearchClosedAuctionList(String keyword) throws DataAccessException;
+
+	// 그냥 closed로 정렬
+	List<Auction> getAuctionClosedList(String sortItem) throws DataAccessException;
+
 
 }

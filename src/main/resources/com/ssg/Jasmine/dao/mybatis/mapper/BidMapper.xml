@@ -41,8 +41,8 @@
   	  (SEQ_BIDID.nextval, #{bidPrice}, #{bidDate}, #{userId}, #{auctionId}) 
   </insert>
   
-  <select id="getBidByUserId" resultType="Bid" parameterType="int">
-    SELECT *
+  <select id="getBidByUserId" parameterType="int" resultType="String" >
+   SELECT *
    FROM BID
    WHERE USERID = #{userId}
   </select> 

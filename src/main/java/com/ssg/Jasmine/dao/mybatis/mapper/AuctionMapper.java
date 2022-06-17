@@ -30,6 +30,8 @@ public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이
 	
 	List<Auction> getAuctionList() throws DataAccessException;
 	
+	List<Auction> getAuctionTop3() throws DataAccessException;
+	
 	List<Auction> getSearchAuctionList(String keyword) throws DataAccessException;
 	
 	List<Auction> getAuctionListByUserId(String userId) throws DataAccessException;

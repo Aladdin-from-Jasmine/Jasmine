@@ -67,7 +67,6 @@ public class BidSuccessController {
 			User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
 			mav.addObject("user_maxBid", user_maxBid.getUsername());
 			
-			model.addAttribute("isClosed", true);
 			model.addAttribute("isWriter", true);
 			model.addAttribute("writer", user.getUser().getUsername());
 			model.addAttribute("bidForm", session.getAttribute("bidForm"));

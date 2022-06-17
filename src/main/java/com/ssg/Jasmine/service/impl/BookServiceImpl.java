@@ -1,11 +1,13 @@
 package com.ssg.Jasmine.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 
+import com.ssg.Jasmine.controller.book.ListBookCriteria;
 import com.ssg.Jasmine.dao.BookDao;
 import com.ssg.Jasmine.domain.Book;
 import com.ssg.Jasmine.service.BookService;
@@ -31,8 +33,7 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public int updateBook(Book book) {
-		return 0;
+	public void updateBook(Book book) {
 	}
 
 	@Override
@@ -46,9 +47,21 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public List<Book> getBookRecent3() {
+	public void deleteBook(int bookId) {
 		// TODO Auto-generated method stub
-		return bookDao.getBookRecent3();
+		bookDao.deleteBook(bookId);
+	}
+
+	@Override
+	public int bookListCnt() {
+		// TODO Auto-generated method stub
+		return bookDao.bookListCnt();
+	}
+
+	@Override
+	public List<Book> bookList(ListBookCriteria cri) {
+		// TODO Auto-generated method stub
+		return bookDao.bookList(cri);
 	}
 	
 }

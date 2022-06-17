@@ -39,25 +39,36 @@ public class DetailBookController {
 	public ModelAndView bookDetail(@PathVariable("bookId") int bookId, HttpServletRequest request, HttpSession session) {
 		Book book =  bookService.getBookByBookId(bookId);
 		String genre = categoryService.getGenreByCategoryId(book.getCategoryId());
-		//UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
-		//String userId = user.getUser().getUserId();
 
+		boolean isUser = false;
+		boolean isManager = false;
+		
+		String bookUserId = book.getUserId();
+
+		UserSession userSession  = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession != null) {
+			String userId = userSession.getUser().getUserId();
+			if(userId.equals(bookUserId)) {
+				isUser = true;
+			}
+			if(userId.equals("admin")) {
+				isManager = true;
+			}
+		}
+		
+		
+		
+
+		
 		try {
-			
-			System.out.println("input id:"+bookId);
-			System.out.println("book  isbn"+book.getIsbn());
-			
-			System.out.println("book price :"+book.getPrice());
-//			
-//			return "Book";;;;
-//			
 			ModelAndView mav = new ModelAndView("book/detail");
-			//mav.addObject("userId", userId);
-			
-			
+
 			mav.addObject("book", book);
 			mav.addObject("genre", genre);
-			
+			mav.addObject("isUser", isUser);
+			mav.addObject("isManager", isManager);
+			mav.addObject("bookId", bookId);
+
 			System.out.println(book.getCategoryId());
 			
 			return mav;
@@ -65,7 +76,5 @@ public class DetailBookController {
 			// TODO: handle exception
 			return new ModelAndView("book/detail_error");
 		}
-		
-		
 	}
 }

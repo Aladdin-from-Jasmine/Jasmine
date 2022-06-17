@@ -1,10 +1,12 @@
 package com.ssg.Jasmine.dao.mybatis;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ssg.Jasmine.controller.book.ListBookCriteria;
 import com.ssg.Jasmine.dao.BookDao;
 import com.ssg.Jasmine.dao.mybatis.mapper.BookMapper;
 import com.ssg.Jasmine.domain.Book;
@@ -30,8 +32,9 @@ public class MybatisBookDao implements BookDao{
 		bookMapper.updateBook(book);	
 	}	
 	
-	public void deleteBook(Book book) {
-		bookMapper.deleteBook(book);
+	@Override
+	public void deleteBook(int bookId) {
+		bookMapper.deleteBook(bookId);
 	}
 	
 	
@@ -45,9 +48,15 @@ public class MybatisBookDao implements BookDao{
 	}
 
 	@Override
-	public List<Book> getBookRecent3() {
+	public int bookListCnt() {
 		// TODO Auto-generated method stub
-		return bookMapper.getBookRecent3();
+		return bookMapper.bookListCnt();
+	}
+
+	@Override
+	public List<Book> bookList(ListBookCriteria cri) {
+		// TODO Auto-generated method stub
+		return bookMapper.bookList(cri);
 	}
 
 }

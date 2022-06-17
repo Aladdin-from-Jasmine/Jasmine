@@ -9,38 +9,45 @@
 <body>
 <h1>책 등록</h1>
  <form:form modelAttribute="bookForm" method="POST"
-action="/book/register" enctype="multipart/form-data">
+action="/book/update" enctype="multipart/form-data">
 <!-- book이랑 카테고리 조인..하고 user정보도 넘겨줘야할거같은데,,? -->
 
+
+
 상품 사진
-<form:input type="file" path="report" /> 
+<img src="${bookForm.img}" width="300px" height="350px"/>
+
+<form:input type="file" path="report"/> 
+
+
 <br>
 
+
 책 제목
-<form:input path="title"/>
+<form:input path="title" value="${title}"/>
 <br>
 ISBN
-<form:input path="isbn"/>
+<form:input path="isbn" value="${isbn}"/>
 <br>
 가격
-<form:input path="price"/>
+<form:input path="price" value="${price}"/>
 
 <br>
 작가
-<form:input path="author"/>
+<form:input path="author" value="${author}"/>
 
 <br>
 출판사
-<form:input path="publisher"/>
+<form:input path="publisher" value="${publisher}"/>
 
 <br>
 카테고리
 <form:select path="categoryId">
-<option value="">카테고리를 선택해주세요.</option>
+<option value="categoryId">${categoryId}</option>
 <form:options items="${genres}" itemValue="categoryId" itemLabel="genre"/>
 </form:select> 
-<br>
-<input type="submit" value="REGISTER" id="a-btn">
+
+<input type="submit" value="REGISTER" id="register-btn">
 			
 <!-- 근데 이런식으로 할거면,, category를 그냥 string으로 두는게 나을거같은뎅.. -->
 <!--  근데 있는 카테고리만 써야하니까,, 이렇게 할 ㅜㅅ ㅏㅂㄲ에 없는건가,, -->

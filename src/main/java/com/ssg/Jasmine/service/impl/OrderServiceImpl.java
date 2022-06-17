@@ -67,6 +67,16 @@ public class OrderServiceImpl implements OrderService {
 		}
 		return auctionOrderList;
 	}
+
+	@Override
+	public List<Order> getOrderListByUserId(String userId) {
+		return orderDao.getOrderListByUserId(userId);
+	}
+
+	@Override
+	public List<Auction> getAuctionListByUserId(String userId) {
+		return orderDao.getAuctionListByUserId(userId);
+	}
 	
 //	public List<Order> setGroupBuyInfo(List<Order> groupBuyOrderList) {
 //		

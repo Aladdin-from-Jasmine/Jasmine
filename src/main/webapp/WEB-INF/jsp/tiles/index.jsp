@@ -6,13 +6,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Auction</h1>
-</br>
-<div class="container">
-	<div align="center">
-		<form method="POST" action="/auction/list" >
-		</form>
-	</div></br>
 
 	<div>
 		<c:forEach var="auction" items="${auctionList.pageList}" varStatus="status">
@@ -75,7 +68,6 @@
 	                &gt;&gt;</B></font></a>
 	        </c:if>
 	</div>
-</div>
         
         <p align="center">
           <b> Welcome to the Jasmine, by Aladdin </b>

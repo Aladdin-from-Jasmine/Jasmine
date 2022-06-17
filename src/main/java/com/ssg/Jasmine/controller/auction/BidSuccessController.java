@@ -20,10 +20,7 @@ import javax.validation.Valid;
 import javax.validation.Validator;
 
 import com.ssg.Jasmine.domain.Bid;
-import com.ssg.Jasmine.domain.Order;
-import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.service.BidService;
-import com.ssg.Jasmine.service.SuccessBidderService;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.UserService;
 
@@ -51,9 +48,6 @@ public class BidSuccessController {
 
 	@Autowired
 	AuctionService auctionService;
-	
-	@Autowired
-	SuccessBidderService successBidderService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView create(HttpServletRequest request, @Valid @ModelAttribute("auctionForm") AuctionForm auctionForm, BindingResult result,
@@ -68,17 +62,12 @@ public class BidSuccessController {
 			UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 			session.setAttribute("bidForm", new BidForm());
 		
-			// Bid Success
-			//Order order = new Order();
-			//order.initOrder(user.getUser(), auction);
 			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); 
-			SuccessBidder successBidder = new SuccessBidder(maxPriceBid.getBidId(), user.getUser().getUserId(), auction.getAuctionId());
-			successBidderService.createSuccessBidder(successBidder);	
-			
 			mav.addObject("date_maxBid", maxPriceBid.getBidDate());
 			User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
 			mav.addObject("user_maxBid", user_maxBid.getUsername());
 			
+			model.addAttribute("isClosed", true);
 			model.addAttribute("isWriter", true);
 			model.addAttribute("writer", user.getUser().getUsername());
 			model.addAttribute("bidForm", session.getAttribute("bidForm"));

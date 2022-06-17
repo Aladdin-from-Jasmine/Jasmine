@@ -18,7 +18,7 @@ public class BookForm implements Serializable {
 	private String publisher;
 	private String img;
 	private MultipartFile report;
-	
+
 	
 	public BookForm bookForm(){
 		System.out.println("test bookform");

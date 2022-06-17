@@ -70,7 +70,7 @@ public class LoginController {
 			}
 			session.setAttribute("isManager", isManager);
 			
-			return new ModelAndView("redirect:/index");
+			return new ModelAndView("index");
 		} catch (AuthenticationException e) { // 검증 실패 시
 			ModelAndView mav = new ModelAndView();
 			bindingResult.reject(e.getMessage(), new Object[] { loginForm.getUserId() }, null); // error message

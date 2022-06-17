@@ -1,20 +1,11 @@
 package com.ssg.Jasmine.domain;
 
-import java.io.Serializable;
-
-public class SuccessBidder implements Serializable{
+public class SuccessBidder {
 	int bidId;
 	String userId;
-	int orderId = 0;
+	int orderId;
 	int auctionId;
 
-	public SuccessBidder() {}
-	public SuccessBidder(int bidId, String userId, int auctionId) {
-		this.bidId = bidId;
-		this.userId = userId;
-		this.auctionId = auctionId;
-	}
-	
 	public int getBidId() {
 		return bidId;
 	}

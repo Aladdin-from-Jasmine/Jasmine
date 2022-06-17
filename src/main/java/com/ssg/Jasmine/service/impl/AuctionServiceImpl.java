@@ -118,10 +118,5 @@ public class AuctionServiceImpl implements AuctionService {
 	public List<Auction> getAuctionListByUserId(String userId) {
 		return auctionDao.getAuctionListByUserId(userId);
 	}
-
-	@Override
-	public List<Auction> getAuctionTop3() {
-		return auctionDao.getAuctionTop3();
-	}
 	
 }

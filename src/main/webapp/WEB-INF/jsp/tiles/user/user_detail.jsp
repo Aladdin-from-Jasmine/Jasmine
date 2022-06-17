@@ -66,7 +66,6 @@
 	<br> <br> 
 	<a id="a-btn" href="<c:url value='/user/book'></c:url>">📚책</a> &nbsp; 
 	<a id="a-btn" href="<c:url value='/user/auction'></c:url>">⌛경매</a> &nbsp; 
-	<a id="a-btn" href="<c:url value='/user/bid'></c:url>">⌛낙찰된 경매</a> &nbsp; 
 	<a id="a-btn" href="<c:url value='/user/order'></c:url>">💳결제</a> &nbsp; 
 	<a id="a-btn" href="<c:url value='/user/update'></c:url>">💁🏻‍♀회원 정보 수정</a> &nbsp; 
 	<br><br><br>

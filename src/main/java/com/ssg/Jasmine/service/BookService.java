@@ -1,9 +1,7 @@
 package com.ssg.Jasmine.service;
 
 import java.util.List;
-import java.util.Map;
 
-import com.ssg.Jasmine.controller.book.ListBookCriteria;
 import com.ssg.Jasmine.domain.Book;
 
 public interface BookService {
@@ -13,14 +11,10 @@ public interface BookService {
 	
 	int createBook(Book book);
 	
-	void updateBook(Book book);
+	int updateBook(Book book);
 	
-	void deleteBook(int bookId);
-
 	List<Book> getBookList();
-
-	int bookListCnt();
 	
-	List<Book> bookList(ListBookCriteria cri);
-
+	List<Book> getBookRecent3();
+	
 }

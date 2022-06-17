@@ -138,6 +138,10 @@ public class AuctionFormController implements ApplicationContextAware  {
 			int auctionId = auctionService.updateAuction(auction);
 			model.addAttribute("auction", auctionService.getAuction(auctionId));
 			
+			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); 
+			model.addAttribute("date_maxBid", maxPriceBid.getBidDate());
+			User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
+			model.addAttribute("user_maxBid", user_maxBid.getUsername());
 		} else { // create
 //			파일 업로드 기능
 			String savedFileName = uploadFile(auction.getReport());
@@ -148,6 +152,8 @@ public class AuctionFormController implements ApplicationContextAware  {
 			System.out.println("[AuctionFormController] auctionForm 값: " + auctionForm.toString());
 			auctionService.createAuction(auction);
 			model.addAttribute("auction", auction);
+			model.addAttribute("date_maxBid", "");
+			model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
 		}
 		
 //		스케줄러 => create / update 시 endDate로 설정
@@ -166,8 +172,6 @@ public class AuctionFormController implements ApplicationContextAware  {
 		else {
 			model.addAttribute("isWriter", true);
 		}
-		model.addAttribute("date_maxBid", "");
-		model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
 		model.addAttribute("writer", user.getUser().getUsername());
 		model.addAttribute("bidForm", session.getAttribute("bidForm"));
 		sessionStatus.setComplete();

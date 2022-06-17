@@ -47,14 +47,6 @@
     ORDER BY BOOKID DESC
   </select> 
   
-   <select id="getBookRecent3" resultType="com.ssg.Jasmine.domain.Book">
-   	 <![CDATA[
-	    SELECT *
-		FROM (SELECT * FROM BOOK ORDER BY bookid DESC)
-		WHERE rownum <= 3
-	  ]]>
-  </select> 
-  
     <select id="getBookByUserId" resultType="com.ssg.Jasmine.domain.Book">
     SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG
     FROM BOOK 

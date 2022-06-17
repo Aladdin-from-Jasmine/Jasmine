@@ -50,10 +50,4 @@
 			value="/WEB-INF/jsp/tiles/auction/{1}.jsp" />
 	</definition> 
 	
-	<definition name="order/*" extends="base_layout">
-	 	<put-attribute name="title" value="Jasmine | Order" type="string"/>
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/tiles/order/{1}.jsp" />
-	</definition> 
-	
 </tiles-definitions>

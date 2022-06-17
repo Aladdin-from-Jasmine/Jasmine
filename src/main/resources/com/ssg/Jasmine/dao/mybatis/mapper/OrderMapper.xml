@@ -56,12 +56,11 @@
   </select> -->
 
   <insert id="createOrder" parameterType="Order">
-		<!-- <selectKey keyProperty="orderId" resultType="int" order="BEFORE">
-			SELECT SEQ_ORDERID.nextval AS orderId FROM Order_
-		</selectKey> -->
-   
+  	<selectKey keyProperty="orderId" resultType="int" order="BEFORE">
+  		SELECT seq_orderId.nextval AS orderId FROM Order_
+     </selectKey>
   	INSERT INTO Order_ (<include refid="BaseColumns" />)
-  	VALUES (seq_orderId.nextval, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
+  	VALUES (#{orderId}, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
   		#{address},  #{phone}, #{refundBank}, #{refundAccount}, #{totalPrice}, 
   		SYSDATE, #{userId}, #{auction.auctionId})
   </insert>
@@ -76,6 +75,12 @@
   	SELECT auctionId
 	FROM successBidders
 	WHERE orderId = #{orderId}
+  </select>
+  
+  <select id="getOrderByAuctionId" parameterType="int" resultType="int">
+  	SELECT orderId
+	FROM Order_
+	WHERE auctionId = #{auctionId}
   </select>
   
   <delete id="deleteOrderByUserId" parameterType="Integer">

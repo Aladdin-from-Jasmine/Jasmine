@@ -8,7 +8,9 @@ public interface OrderDao {
 	  Order getOrder(int orderId) throws DataAccessException;
 
 	  void createOrder(Order order) throws DataAccessException;
-
+	  
+	  int getOrderByAuctionId(int auctionId) throws DataAccessException;
+	  
 	  Order getOrderWithLineGroupBuys(int orderId) throws DataAccessException;
 
 	// orderList에서 공동구매 정보 출력을 위해서 필요

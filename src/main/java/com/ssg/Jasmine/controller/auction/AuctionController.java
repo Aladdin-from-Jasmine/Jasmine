@@ -1,7 +1,7 @@
 package com.ssg.Jasmine.controller.auction;
 
 import java.util.List;
-//hihi
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,7 @@ import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.BidService;
+import com.ssg.Jasmine.service.OrderService;
 import com.ssg.Jasmine.service.SuccessBidderService;
 
 @Controller
@@ -43,7 +44,8 @@ public class AuctionController {
 	UserService userService;
 	@Autowired
 	BidService bidService;
-	
+	@Autowired
+	OrderService orderService;
 
 	@Value("auction/list")
 	private String successViewName;
@@ -121,11 +123,7 @@ public class AuctionController {
 		mav.setViewName(successViewName); 
 		return mav;
 	}
-	
-	
-	
-	
-	
+
 	@RequestMapping(value="/auction/list", method=RequestMethod.POST)
 	public ModelAndView searchAuctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView(AUCTION_LIST);
@@ -175,14 +173,14 @@ public class AuctionController {
 		
 // 		낙찰자 정보 가져오기 (낙찰자의 userId) -> 낙찰자에게만 '결제하기'버튼이 보이게 하기 위해
 		SuccessBidder successBidder = successBidderService.getSuccessBidderByAuctionId(auctionId);
-		if(successBidder != null) {
-			Bid bid = bidService.getBid(successBidder.getBidId());  
-			String successBidderUserId = bid.getUserId();
+		if(successBidder != null) { 
+			String successBidderUserId = successBidder.getUserId();
 			mav.addObject("successBidderUserId", successBidderUserId);
-		
-//	 		낙찰자가 결제까지 완료한 경우
-			//SuccessBidder successBidder = auctionService.getSuccessBidderByAuctionId(auctionId);
-			if (successBidder.getOrderId() != 0) {
+			System.out.println("successBidderUserId: "+ successBidderUserId);
+			
+			int orderId = orderService.getOrderByAuctionId(auctionId);
+			// 낙찰자가 결제까지 완료한 경우
+			if (orderId > 0) {
 				mav.addObject("completeOrder", 1);
 			} else {
 				mav.addObject("completeOrder", 0);

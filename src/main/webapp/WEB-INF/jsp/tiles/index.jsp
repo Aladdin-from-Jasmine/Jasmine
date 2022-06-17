@@ -6,6 +6,18 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<script>
+	function goLoginForm(){		
+		if(confirm("로그인 후 가능한 기능입니다.")){
+			window.location.href = "http://localhost:8080/user/login";
+		}
+	}
+	
+	function bookDetail(bookId) {
+		window.location.href = "http://localhost:8080/book/detail/"+ bookId;
+	}
+	
+</script>
 
 <h1>Book</h1>
 

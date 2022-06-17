@@ -127,4 +127,28 @@ public class MybatisAuctionDao implements AuctionDao {
 	public List<Auction> getAuctionTop3() throws DataAccessException {
 		return auctionMapper.getAuctionTop3();
 	}
+
+	@Override
+	public List<Auction> getSearchProceedAuctionList(String keyword) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return auctionMapper.getSearchProceedAuctionList(keyword);
+	}
+
+	@Override
+	public List<Auction> getAuctionProceedList(String sortItem) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return auctionMapper.getAuctionProceedList(sortItem);
+	}
+
+	@Override
+	public List<Auction> getSearchClosedAuctionList(String keyword) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return auctionMapper.getSearchClosedAuctionList(keyword);
+	}
+
+	@Override
+	public List<Auction> getAuctionClosedList(String sortItem) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return auctionMapper.getAuctionClosedList(sortItem);
+	}
 }

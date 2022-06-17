@@ -23,6 +23,19 @@
 			href="<c:url value='/auction/auction_form'></c:url>">경매 등록</a>
 	</c:if>	 <br />
 	<br />
+	
+	<a id="a-btn"
+			href="<c:url value='/auction/list'>
+						<c:param name="sortByProceed" value="true" />
+						<c:param name="keyword" value="${keyword}" />
+				</c:url>">🔻 Proceeding only
+		</a>&nbsp
+		<a id="a-btn"
+			href="<c:url value='/auction/list'>
+						<c:param name="sortByClosed" value="true" />
+						<c:param name="keyword" value="${keyword}" />
+				</c:url>">🔻 Closed only
+		</a>&nbsp 
 
 	<div>
 		<c:forEach var="auction" items="${auctionList.pageList}" varStatus="status">

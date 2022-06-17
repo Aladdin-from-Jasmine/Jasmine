@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -42,6 +43,10 @@ public class AuctionController {
 	UserService userService;
 	@Autowired
 	BidService bidService;
+	
+
+	@Value("auction/list")
+	private String successViewName;
 		
 	@RequestMapping(value="/auction/list", method=RequestMethod.GET)
 	public ModelAndView auctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
@@ -79,9 +84,47 @@ public class AuctionController {
 		return new ModelAndView(AUCTION_LIST, "auctionList", pagedAuctionList);
 	}
 	
-	//index에서 리스트
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView handleRequest(HttpServletRequest request) throws Exception {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		List<Auction> auctionList = auctionService.getAuctionList();
+		String keyword = request.getParameter("keyword");
+		String isSortWithProceeding = request.getParameter("sortByProceed");
+		String isSortWithClosed = request.getParameter("sortByClosed");
+		
+		// proceeding만 정렬
+		if(isSortWithProceeding != null && isSortWithProceeding.equals("true")) {
+			if(keyword != null) {	// 검색 후 proceed로 정렬
+				auctionList = auctionService.getSearchProceedAuctionList(keyword);
+				mav.addObject("keyword", keyword);
+			}
+			else {		//그냥 proceed로 정렬
+				auctionList = auctionService.getAuctionProceedList(isSortWithProceeding);
+			}
+		}
+		
+		// closed만 정렬
+		if(isSortWithClosed != null && isSortWithClosed.equals("true")) {
+			if(keyword != null) {	// 검색 후 closed으로 정렬
+				auctionList = auctionService.getSearchClosedAuctionList(keyword);
+			}
+			else {		//그냥 closed로 정렬
+				auctionList = auctionService.getAuctionClosedList(isSortWithClosed);
+			}
+		}
+		
+		mav.addObject("auctionList", auctionList);
+		mav.addObject("listSize", ((List<Auction>) auctionList).size());
+		mav.setViewName(successViewName); 
+		return mav;
+	}
 	
-	//
+	
+	
+	
 	
 	@RequestMapping(value="/auction/list", method=RequestMethod.POST)
 	public ModelAndView searchAuctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){

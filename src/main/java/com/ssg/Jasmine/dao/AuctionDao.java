@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Bid;
+import com.ssg.Jasmine.domain.Community;
 //import com.ssg.Jasmine.domain.GroupBuy; - 우리에겐 없는 기능인듯
 import com.ssg.Jasmine.domain.SuccessBidder;
 
@@ -49,6 +50,20 @@ public interface AuctionDao {
 	
 //	keyword로 검색
 	public List<Auction> auctionListByKeyword(String keyword);
+	
+
+	// 검색 후 proceed로 정렬
+	List<Auction> getSearchProceedAuctionList(String keyword) throws DataAccessException;
+
+	// 그냥 proceed로 정렬
+	List<Auction> getAuctionProceedList(String sortItem) throws DataAccessException;
+
+	// 검색 후 closed으로 정렬
+	List<Auction> getSearchClosedAuctionList(String keyword) throws DataAccessException;
+
+	// 그냥 closed로 정렬
+	List<Auction> getAuctionClosedList(String sortItem) throws DataAccessException;	
+
 
 
 }

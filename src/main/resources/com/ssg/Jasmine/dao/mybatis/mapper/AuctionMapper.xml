@@ -95,8 +95,8 @@
    <select id="getAuctionTop3" resultType="com.ssg.Jasmine.domain.Auction">
    <![CDATA[
 	    SELECT *
-FROM (SELECT * FROM AUCTION ORDER BY count DESC)
-WHERE state='proceeding' AND rownum <= 3
+		FROM (SELECT * FROM AUCTION ORDER BY count DESC)
+		WHERE state='proceeding' AND rownum <= 3
 	    ]]>
   </select>
   

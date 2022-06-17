@@ -20,4 +20,6 @@ public interface BookMapper {
 	int deleteBook(Book book);
 	
 	List<Book> getBookList();
+	
+	List<Book> getBookRecent3();
 }

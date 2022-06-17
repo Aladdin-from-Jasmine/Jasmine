@@ -44,5 +44,11 @@ public class BookServiceImpl implements BookService{
 	public List<Book> getBookByUserId(String userId) {
 		return bookDao.getBookByUserId(userId);
 	}
+
+	@Override
+	public List<Book> getBookRecent3() {
+		// TODO Auto-generated method stub
+		return bookDao.getBookRecent3();
+	}
 	
 }

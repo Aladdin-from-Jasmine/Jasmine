@@ -8,7 +8,7 @@
 
 
 	<div>
-		<c:forEach var="auction" items="${auctionList.pageList}" varStatus="status">
+		<c:forEach var="auction" items="${auctionList}" varStatus="status">
 			<div id="auctionForm">
 				<table class="TB3" align="center">
 					<tr>
@@ -59,14 +59,6 @@
 				</table>
 			</div>
 		</c:forEach>
-		<c:if test="${!auctionList.firstPage}">
-	          <a href="/auction/list?page=previous" style=""><font color="#d164c4"><B>&lt;&lt;
-	                Prev</B></font></a>
-	        </c:if> 
-	        <c:if test="${!auctionList.lastPage}">
-	          <a href="/auction/list?page=next"><font color="#d164c4"><B>Next
-	                &gt;&gt;</B></font></a>
-	        </c:if>
 	</div>
         
         <p align="center">

@@ -9,7 +9,7 @@
 <div class="container">
 	<h1>My Page</h1>
 	<h3>내가 올린 경매⌛</h3>
-</div>
+
 		<div>
 		<c:forEach var="auction" items="${auctionList.pageList}" varStatus="status">
 			<div id="auctionForm">
@@ -71,3 +71,4 @@
 	                &gt;&gt;</B></font></a>
 	        </c:if>
 	</div>
+</div>

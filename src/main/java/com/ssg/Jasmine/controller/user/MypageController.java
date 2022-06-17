@@ -24,6 +24,7 @@ import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.BidService;
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
+import com.ssg.Jasmine.service.SuccessBidderService;
 import com.ssg.Jasmine.service.UserService;
 
 @Controller
@@ -34,6 +35,9 @@ public class MypageController {
 	BookService bookService;
 	@Autowired
 	BidService bidService;
+	@Autowired
+	SuccessBidderService sucBidService;
+	
 	@Autowired
 	AuctionService auctionService;
 	
@@ -92,17 +96,14 @@ public class MypageController {
 		ModelAndView mav = new ModelAndView("user/bid");
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		
-		//List<Auction> successBidList = auctionService.getAuctionListByUserId(userSession.getUser().getUserId());
-		
-		List<Bid> bidList = bidService.getBidByUserId(userSession.getUser().getUserId());
-		if (bidList == null) {
-			System.out.println("[MypageController] bidList가 null");
+		List<Auction> auctionList = sucBidService.getSuccessBidderListByUserId(userSession.getUser().getUserId());
+
+		if (auctionList == null) {
+			System.out.println("[MypageController] AuctionList가 null");
 		} else {
-			mav.addObject("bidList", bidList);		
+			mav.addObject("auctionList", auctionList);		
 		}
-		
 		return mav;
-		
 	}
 	
 	

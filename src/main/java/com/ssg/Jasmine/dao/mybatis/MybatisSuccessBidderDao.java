@@ -44,4 +44,9 @@ public class MybatisSuccessBidderDao implements SuccessBidderDao {
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId) throws DataAccessException {
 		return successBidderMapper.getSuccessBidderByAuctionId(auctionId);
 	}
+
+	@Override
+	public List<Auction> getSuccessBidderListByUserId(String userId) throws DataAccessException {
+		return successBidderMapper.getSuccessBidderListByUserId(userId);
+	}
 }

@@ -23,6 +23,7 @@ public interface SuccessBidderDao {
 	//int updateAuctionMaxPrice(int maxPrice, int auctionId);
 	
 	//List<SuccessBidder> deleteAuction(int auctionId);
+	List<Auction> getSuccessBidderListByUserId(String userId) throws DataAccessException;
 	
 	List<SuccessBidder> getSuccessBidderList() throws DataAccessException;
 	

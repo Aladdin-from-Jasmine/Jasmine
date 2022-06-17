@@ -16,6 +16,8 @@ public interface SuccessBidderMapper {
 	
 	List<SuccessBidder> getSuccessBidderList();
 	
+	List<Auction> getSuccessBidderListByUserId(String userId);
+	
 	public String getSuccessBidderUserId(String userId);
 	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);

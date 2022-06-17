@@ -72,7 +72,7 @@ public class BidSuccessController {
 			//Order order = new Order();
 			//order.initOrder(user.getUser(), auction);
 			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); 
-			SuccessBidder successBidder = new SuccessBidder(maxPriceBid.getBidId(), user.getUser().getUserId(), auction.getAuctionId());
+			SuccessBidder successBidder = new SuccessBidder(maxPriceBid.getBidId(), maxPriceBid.getUserId(), auction.getAuctionId());
 			successBidderService.createSuccessBidder(successBidder);	
 			
 			mav.addObject("date_maxBid", maxPriceBid.getBidDate());

@@ -23,9 +23,7 @@ public class OrderFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.cardNo", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.validDate", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.cvc", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address1", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address2", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address3", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.address", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.phone", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.refundBank", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "order.refundAccount", "required");
@@ -49,7 +47,6 @@ public class OrderFormValidator implements Validator {
 		if (!phone.equals("") && !phone.matches("^[0][1]\\d{1}-\\d{3,4}-\\d{4}$")) {
 			errors.rejectValue("order.phone", "typeMismatch"); // 01x-xxx-xxxx or 01x-xxxx-xxxx인지 검증
 		}
-
 	}
 
 }

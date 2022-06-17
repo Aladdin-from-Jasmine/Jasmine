@@ -17,7 +17,7 @@ import com.ssg.Jasmine.service.OrderService;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-	//@Autowired
+	@Autowired
 	private OrderDao orderDao;
 	@Autowired
 	private AuctionDao auctionDao;
@@ -63,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
 		for (Order order : auctionOrderList) {
 			int auctionId = order.getAuctionId();
 			order.setAuction(auctionDao.getAuction(auctionId));
-			order.setMenuId(1);
+			//order.setMenuId(1);
 		}
 		return auctionOrderList;
 	}

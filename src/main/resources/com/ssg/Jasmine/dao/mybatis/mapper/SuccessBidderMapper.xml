@@ -9,6 +9,13 @@
 		FROM SuccessBidders
 		WHERE bidId = #{bidId}
 	</select>
+	
+	<select id="getSuccessBidderListByUserId" parameterType="String" resultType="Auction">
+		SELECT a.*
+		FROM SuccessBidders s, Bid b, Auction a
+		WHERE s.userId = #{userId} AND b.auctionId=a.auctionId AND s.bidId=b.bidId
+	</select>
+	
 
 	<insert id="createSuccessBidder" parameterType="SuccessBidder">
 		INSERT INTO SuccessBidders (bidId, userId, auctionId)

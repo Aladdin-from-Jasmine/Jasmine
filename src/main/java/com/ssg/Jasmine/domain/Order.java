@@ -18,13 +18,17 @@ public class Order {
 	Date orderDate;
 	String userId;
 	
-//	List<LineGroupBuy> lineGroupBuys;
+	// 추가
+	String status;
+	int bookId;
+
+	//	List<LineGroupBuy> lineGroupBuys;
 //	GroupBuy groupBuy;
 	SuccessBidder successBidder;
 	Auction auction;
 	
-	int menuId; // auction과 groupBuy를 구분하기 위함.
-	int groupBuyId;
+	//int menuId; // auction과 groupBuy를 구분하기 위함.
+	//int groupBuyId;
 	int auctionId;
 	int totalQuantity; // groupBuy의 state를 update하기 위함
 
@@ -37,6 +41,30 @@ public class Order {
 //		this.groupBuyId = groupBuyId;
 //	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+	
 	public int getAuctionId() {
 		return auctionId;
 	}
@@ -45,13 +73,13 @@ public class Order {
 		this.auctionId = auctionId;
 	}
 
-	public int getMenuId() {
-		return menuId;
-	}
-
-	public void setMenuId(int menuId) {
-		this.menuId = menuId;
-	}
+//	public int getMenuId() {
+//		return menuId;
+//	}
+//
+//	public void setMenuId(int menuId) {
+//		this.menuId = menuId;
+//	}
 
 //	public GroupBuy getGroupBuy() {
 //		return groupBuy;
@@ -149,14 +177,6 @@ public class Order {
 		this.cvc = cvc;
 	}
 
-	public String getAddress1() {
-		return address;
-	}
-
-	public void setAddress1(String address) {
-		this.address = address;
-	}
-
 	public String getPhone() {
 		return phone;
 	}
@@ -239,7 +259,7 @@ public class Order {
 			auctionId = auction.getAuctionId();
 			this.auction = auction;
 			
-			successBidder = new SuccessBidder();
+			/*successBidder = new SuccessBidder();
 			successBidder.setAuctionId(auctionId);
 			successBidder.setUserId(user.getUserId());
 			
@@ -248,7 +268,7 @@ public class Order {
 					successBidder.setBidId(bid.getBidId());
 					break;
 				}
-			}
+			}*/
 		}
 
 	}
@@ -258,8 +278,7 @@ public class Order {
 		return "Order [orderId=" + orderId + ", cardBank=" + cardBank + ", cardNo=" + cardNo + ", validDate="
 				+ validDate + ", cvc=" + cvc + ", address=" + address + ", phone=" + phone + ", refundBank=" + refundBank + ", refundAccount=" + refundAccount
 				+ ", userId=" + userId + ", successBidder=" + successBidder + ", auction=" + auction + ", totalPrice=" + totalPrice
-				+ ", orderDate=" + orderDate + ", menuId=" + menuId + ", groupBuyId="
-				+ groupBuyId + ", auctionId=" + auctionId + "]";
+				+ ", orderDate=" + orderDate + ", auctionId=" + auctionId + "]";
 	}
 
 }

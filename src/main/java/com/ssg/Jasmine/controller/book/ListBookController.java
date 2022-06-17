@@ -86,7 +86,7 @@ public class ListBookController {
 		
 		paging.setCri(test);
 		
-		List<Book> list = bookService.bookList(new ListBookCriteria(1,5));		
+		List<Book> list = bookService.bookList(test);		
 		
 		
 		model.addAttribute("bookList", list);	

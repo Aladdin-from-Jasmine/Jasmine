@@ -87,16 +87,14 @@ function orderAuction() {
 	      			<td>경매 마감일</td>
       				<td><fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" /></td>
       			</c:if>
-      		<%-- 	<td>경매 마감일</td>
-      			<td><fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" /></td>
-      		 --%></tr>
+      		</tr>
       		<tr class="td1">
       			<td>시작 금액</td>
       			<td><fmt:formatNumber value="${auction.startPrice}" pattern="#,###원" /></td>
       		</tr>
       		<tr class="td1">
       			<td style="color: #f57ad4">현재 최고가</td>
-      			<td style="color: #f57ad4"style="color: rgb(128, 128, 192)"><fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" /></td>
+      			<td style="color: #f57ad4"><fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" /></td>
       		</tr>
       		<tr class="td1">
       			<td>최고가 배팅 User</td>

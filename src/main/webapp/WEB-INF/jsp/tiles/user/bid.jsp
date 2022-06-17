@@ -1,47 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
-<h1>Auction</h1>
-</br>
 <div class="container">
-	<div align="center">
-	
-
-		<form method="POST" action="/auction/list" >
-		<a id="a-btn"
-			href="<c:url value='/auction/list'>
-						<c:param name="sortByProceed" value="true" />
-						<c:param name="keyword" value="${keyword}" />
-				</c:url>">🔻 Proceeding only
-		</a>&nbsp
-		<a id="a-btn"
-			href="<c:url value='/auction/list'>
-						<c:param name="sortByClosed" value="true" />
-						<c:param name="keyword" value="${keyword}" />
-				</c:url>">🔻 Closed only
-		</a>&nbsp 
-			<input id="search-auction-form" type="text" name="keyword" class="form-control" />
-			<input id="search-auction-form" type="submit" value="검색" id="register-btn">
-		</form>
-	</div></br>
-
-	<a id="auction-register-btn" href="<c:url value='/auction/list'/>" id="a-btn">🔮 전체목록</a>
-	<c:if test="${!empty userSession.user}">
-		<a id="auction-register-btn"
-			href="<c:url value='/auction/auction_form'></c:url>">경매 등록</a>
-	</c:if>	 <br />
-	<br />
-	
-	
-
+	<h1>My Page</h1>
+	<h3>낙찰된 경매 ⌛</h3>
+</div>
 	<div>
-		<c:forEach var="auction" items="${auctionList.pageList}" varStatus="status">
+		<c:forEach var="auction" items="${auctionList}" varStatus="status">
 			<div id="auctionForm">
 				<table class="TB3" align="center">
 					<tr>
@@ -92,16 +62,4 @@
 				</table>
 			</div>
 		</c:forEach>
-		
-		<c:if test="${!auctionList.firstPage}">
-	          <a href="/auction/list?page=previous" style=""><font color="#d164c4"><B>&lt;&lt;
-	                Prev</B></font></a>
-        </c:if> 
-        
-        <c:if test="${!auctionList.lastPage}">
-          <a href="/auction/list?page=next"><font color="#d164c4"><B>Next
-                &gt;&gt;</B></font></a>
-        </c:if>
-        
 	</div>
-</div>

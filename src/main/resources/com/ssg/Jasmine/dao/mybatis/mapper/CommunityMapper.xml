@@ -17,9 +17,6 @@
   </select>
   
    <insert id="createPost" parameterType="com.ssg.Jasmine.domain.Community">
-  	<!-- <selectKey keyProperty="postId" resultType="int" order="BEFORE">
-  		SELECT seq_postId.nextval AS postId FROM Community
-    </selectKey>  -->
   	INSERT INTO Community 
   	VALUES 
   	(seq_postId.nextval, #{title}, SYSDATE, #{content_}, #{userId}) 

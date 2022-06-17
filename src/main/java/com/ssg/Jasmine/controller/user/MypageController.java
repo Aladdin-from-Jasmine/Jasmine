@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 import com.ssg.Jasmine.domain.Auction;
+import com.ssg.Jasmine.domain.Bid;
 import com.ssg.Jasmine.domain.Book;
+import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.service.AuctionService;
+import com.ssg.Jasmine.service.BidService;
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
+import com.ssg.Jasmine.service.SuccessBidderService;
 import com.ssg.Jasmine.service.UserService;
 
 @Controller
@@ -28,8 +33,10 @@ public class MypageController {
 	UserService userService; 
 	@Autowired
 	BookService bookService;
-//	@Autowired
-//	CategoryService categoryService;
+	@Autowired
+	BidService bidService;
+	@Autowired
+	SuccessBidderService sucBidService;
 	
 	@Autowired
 	AuctionService auctionService;
@@ -58,6 +65,44 @@ public class MypageController {
 		}
 		session.removeAttribute("bidForm");
 		sessionStatus.setComplete();
+		
+		String page = request.getParameter("page");
+		PagedListHolder<Auction> pagedAuctionList;
+		if (page == null) {
+			pagedAuctionList = new PagedListHolder<Auction>(auctionList);
+			pagedAuctionList.setPageSize(3);
+			request.getSession().setAttribute("MypageController_auctionList", pagedAuctionList);
+		}
+		else {
+			pagedAuctionList = (PagedListHolder<Auction>)request.getSession().getAttribute("MypageController_auctionList");
+			if (pagedAuctionList == null) {
+				return new ModelAndView("Error", "message", "Your session has timed out. Please start over again.");
+			}
+			if ("next".equals(page)) {
+				pagedAuctionList.nextPage();
+			}
+			else if ("previous".equals(page)) {
+				pagedAuctionList.previousPage();
+			}	
+		}
+		
+		return new ModelAndView("user/auction", "auctionList", pagedAuctionList);
+		
+	}
+	
+	
+	@RequestMapping(value="/user/bid", method=RequestMethod.GET)
+	public ModelAndView userSuccessBid(HttpServletRequest request, SessionStatus sessionStatus, HttpSession session ){
+		ModelAndView mav = new ModelAndView("user/bid");
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		
+		List<Auction> auctionList = sucBidService.getSuccessBidderListByUserId(userSession.getUser().getUserId());
+
+		if (auctionList == null) {
+			System.out.println("[MypageController] AuctionList가 null");
+		} else {
+			mav.addObject("auctionList", auctionList);		
+		}
 		return mav;
 	}
 	

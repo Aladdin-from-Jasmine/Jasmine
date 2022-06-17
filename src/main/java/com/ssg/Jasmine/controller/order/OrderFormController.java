@@ -1,0 +1,151 @@
+package com.ssg.Jasmine.controller.order;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
+
+import com.ssg.Jasmine.controller.user.UserSession;
+import com.ssg.Jasmine.domain.User;
+import com.ssg.Jasmine.service.AuctionService;
+import com.ssg.Jasmine.service.OrderService;
+import com.ssg.Jasmine.validator.OrderFormValidator;
+
+@Controller
+@SessionAttributes({"lineGroupBuyForm", "orderForm"})
+public class OrderFormController {
+	
+	private static final String orderFormView = "order/order_create";
+	private static final String detailView = "order/payment_detail";
+
+	private static final int FAIL = 0; // 결제가 실패했을 경우
+	
+	@Autowired
+	private OrderService orderService;
+	@Autowired
+	private AuctionService auctionService;
+	//@Autowired
+	//private NotiService notiService;
+
+	
+	@ModelAttribute("orderForm")
+	public OrderForm formBacking(HttpServletRequest request) {
+		return new OrderForm();
+	}
+	
+	@ModelAttribute("cardBanks")
+	public List<String> cardBanksData() {
+		ArrayList<String> cardBanks = new ArrayList<String>();
+		cardBanks.add("신한");
+		cardBanks.add("하나");
+		cardBanks.add("우리");
+		cardBanks.add("농협");
+		cardBanks.add("국민"); 
+		// add more
+		return cardBanks;			
+	}
+	
+	/*@RequestMapping(value = "/order/groupBuy/create.do", method = RequestMethod.GET) // form 출력
+	public ModelAndView groupBuyOrderForm(HttpServletRequest request,
+			@ModelAttribute("orderForm") OrderForm orderForm) throws ModelAndViewDefiningException {
+
+		LineGroupBuyForm lineGroupBuyForm = request.getParameter("lineGroupBuyForm");
+		ModelAndView mav = new ModelAndView(orderFormView);
+		
+		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+		User user = (User) userSession.getUser();
+
+		orderForm.getOrder().initOrder(user, null);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/order/groupBuy/create.do", method = RequestMethod.POST) // 결과 출력
+	protected ModelAndView groupBuyOrderSubmit(
+			@ModelAttribute("orderForm") OrderForm orderForm,
+			BindingResult bindingResult, SessionStatus status) {
+		
+		System.out.println("command 객체: " + orderForm);
+		new OrderFormValidator().validate(orderForm, bindingResult);
+		
+		// 검증 오류 발생 시 다시 form view로 이동
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView(orderFormView);
+		}
+		
+		String beforeState = orderForm.getOrder().getGroupBuy().getState();
+		int totalQuantity = orderForm.getOrder().getTotalQuantity();
+		orderForm.getOrder().getGroupBuy().orderSet(totalQuantity);
+		
+		GroupBuy groupBuy = orderForm.getOrder().getGroupBuy();
+		if(groupBuy.getState().equals("achieved") && beforeState.equals("proceeding")) {
+			notiService.createNoti_g(groupBuy);
+		}
+		
+		int result = orderService.createOrder(orderForm.getOrder());
+		
+		ModelAndView mav = new ModelAndView(detailView);
+		mav.addObject("order", orderForm.getOrder());
+		
+		if (result == FAIL) {
+			mav.addObject("message", "결제에 실패했습니다.");
+		} else {
+			mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
+		}
+		status.setComplete();  // remove session lineGroupBuyForm and orderForm from session
+		return mav;
+	}*/
+	
+	@RequestMapping(value = "/order/auction/create", method = RequestMethod.GET) // form 출력
+	public ModelAndView auctionOrderForm(HttpServletRequest request,
+			@RequestParam("auctionId") int auctionId,
+			@ModelAttribute("orderForm") OrderForm orderForm
+			) throws ModelAndViewDefiningException {
+		ModelAndView mav = new ModelAndView(orderFormView);
+		
+		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+		User user = (User) userSession.getUser();
+
+		orderForm.getOrder().initOrder(user, auctionService.getAuction(auctionId));
+		return mav;
+	}
+	
+	@RequestMapping(value = "/order/auction/create", method = RequestMethod.POST) // 결과 출력
+	protected ModelAndView auctionOrderSubmit(
+			@ModelAttribute("orderForm") OrderForm orderForm, 
+			SessionStatus status, BindingResult bindingResult) {
+		
+		System.out.println("command 객체: " + orderForm);
+		System.out.println("order 객체: " + orderForm.getOrder());
+		new OrderFormValidator().validate(orderForm, bindingResult);
+		
+		// 검증 오류 발생 시 다시 form view로 이동
+		if (bindingResult.hasErrors()) {
+			return new ModelAndView(orderFormView);
+		}
+		
+		int result = orderService.createOrder(orderForm.getOrder());
+		
+		ModelAndView mav = new ModelAndView(detailView);
+		mav.addObject("order", orderForm.getOrder());
+		
+		if (result == FAIL) {
+			mav.addObject("message", "결제에 실패했습니다.");
+		} else {
+			mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
+		}
+		status.setComplete();  // remove session lineGroupBuyForm and orderForm from session
+		return mav;
+	}
+}

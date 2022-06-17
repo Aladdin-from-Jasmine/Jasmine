@@ -17,6 +17,7 @@
 	<h1>Community List</h1>
 </div>
 	<div class="container">
+	
 			<div align="center">
 				<form method="POST"
 				action="/community/list" id="search-form-form">
@@ -24,18 +25,7 @@
 					<input type="submit" value="검색" id="register-btn">
 				</form>
 			</div>
-		<a id="a-btn"
-			href="<c:url value='/community/list'>
-						<c:param name="sortByPostId" value="true" />
-						<c:param name="keyword" value="${keyword}" />
-				</c:url>">🔻 PostId순
-		</a>&nbsp
-		<a id="a-btn"
-			href="<c:url value='/community/list'>
-						<c:param name="sortByPostId" value="false" />
-						<c:param name="keyword" value="${keyword}" />
-				</c:url>">🔻 최신순
-		</a>&nbsp 
+	
 		<a href="<c:url value='/community/list'/>" id="a-btn">🔮 전체목록</a>
 		 <br/> <br/> 
 		 

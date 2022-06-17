@@ -92,6 +92,14 @@
     ORDER BY uploadDate DESC
   </select>
   
+   <select id="getAuctionTop3" resultType="com.ssg.Jasmine.domain.Auction">
+   <![CDATA[
+	    SELECT *
+		FROM (SELECT * FROM AUCTION ORDER BY count DESC)
+		WHERE state='proceeding' AND rownum <= 3
+	    ]]>
+  </select>
+  
    <select id="getSearchAuctionList" parameterType="String" resultType="com.ssg.Jasmine.domain.Auction">
     SELECT auctionId, title, content_, img, startPrice, uploadDate, 
     		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
@@ -146,4 +154,46 @@
 	FROM AUCTION a, BID b
 	WHERE a.auctionId = b.auctionId AND a.maxPrice = b.bidPrice AND a.auctionId = #{auctionId}
  </select>
+ 
+ 
+ <!-- proceeding and closed list -->
+ 
+  <!-- proceeding + search -->
+  <select id="getSearchProceedAuctionList" parameterType="String" resultType="com.ssg.Jasmine.domain.Auction">
+  	SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
+  	FROM AUCTION
+  	WHERE title LIKE '%'||#{param1}||'%' or content_ LIKE '%'||#{param1}||'%' and state LIKE 'proceeding' 
+  	ORDER BY uploadDate DESC
+  </select> 
+  
+  <!-- proceeding only -->
+  <select id="getAuctionProceedList" parameterType="String" resultType="com.ssg.Jasmine.domain.Auction">
+  	SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
+  	FROM AUCTION
+  	WHERE state LIKE 'proceeding' 
+  	ORDER BY uploadDate DESC
+  </select> 
+  
+  
+  <!-- closed + search -->
+  <select id="getSearchClosedAuctionList" parameterType="String" resultType="com.ssg.Jasmine.domain.Auction">
+  	SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
+  	FROM AUCTION
+  	WHERE title LIKE '%'||#{param1}||'%' or content_ LIKE '%'||#{param1}||'%' and state LIKE 'proceeding' 
+  	ORDER BY uploadDate DESC
+  </select> 
+  
+  
+  <!-- closed only -->
+  <select id="getAuctionClosedList" parameterType="String" resultType="com.ssg.Jasmine.domain.Auction">
+  	SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
+  	FROM AUCTION
+  	WHERE state LIKE 'closed'
+  	ORDER BY uploadDate DESC
+  </select> 
+ 
 </mapper>

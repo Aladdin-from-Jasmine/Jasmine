@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -39,12 +40,42 @@ public class AuctionController {
 	UserService userService;
 	@Autowired
 	BidService bidService;
+	
+
+	@Value("auction/list")
+	private String successViewName;
 		
 	@RequestMapping(value="/auction/list", method=RequestMethod.GET)
 	public ModelAndView auctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView(AUCTION_LIST);
-		List<Auction> auctionList = null;
-		auctionList = auctionService.getAuctionList();
+		List<Auction> auctionList = auctionService.getAuctionList();
+		
+		String keyword = request.getParameter("keyword");
+		String isSortWithProceeding = request.getParameter("sortByProceed");
+		String isSortWithClosed = request.getParameter("sortByClosed");
+		
+		// proceeding만 정렬
+		if(isSortWithProceeding != null && isSortWithProceeding.equals("true")) {
+			if(keyword.equals("")) {		//그냥 proceed로 정렬
+				auctionList = auctionService.getAuctionProceedList(isSortWithProceeding);
+			}
+			else {	// 검색 후 proceed로 정렬
+				auctionList = auctionService.getSearchProceedAuctionList(keyword);
+				mav.addObject("keyword", keyword);
+			}
+		}
+		
+		// closed만 정렬
+		if(isSortWithClosed != null && isSortWithClosed.equals("true")) {
+			if(keyword.equals("")) {	//그냥 closed로 정렬
+				auctionList = auctionService.getAuctionClosedList(isSortWithClosed);
+			}
+			else {		// 검색 후 closed으로 정렬
+				auctionList = auctionService.getSearchClosedAuctionList(keyword);
+				mav.addObject("keyword", keyword);
+			}
+		}
+		
 		
 		if (auctionList == null) {
 			System.out.println("[DetailAuctionController] auctionList가 null");

@@ -14,4 +14,7 @@ public interface BookService {
 	int updateBook(Book book);
 	
 	List<Book> getBookList();
+	
+	List<Book> getBookRecent3();
+	
 }

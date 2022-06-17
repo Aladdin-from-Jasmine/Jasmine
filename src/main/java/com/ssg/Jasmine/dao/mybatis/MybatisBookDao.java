@@ -44,4 +44,10 @@ public class MybatisBookDao implements BookDao{
 		return bookMapper.getBookByUserId(userId);
 	}
 
+	@Override
+	public List<Book> getBookRecent3() {
+		// TODO Auto-generated method stub
+		return bookMapper.getBookRecent3();
+	}
+
 }

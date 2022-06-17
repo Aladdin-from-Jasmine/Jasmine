@@ -15,9 +15,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssg.Jasmine.domain.Auction;
+import com.ssg.Jasmine.domain.Book;
 import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.BidService;
 import com.ssg.Jasmine.service.UserService;
+import com.ssg.Jasmine.service.BookService;
 
 @Controller
 @RequestMapping("/index")
@@ -25,6 +27,8 @@ public class IndexController {
 	
 	@Autowired
 	AuctionService auctionService;
+	@Autowired
+	BookService bookService;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -41,14 +45,27 @@ public class IndexController {
 		ModelAndView mav = new ModelAndView("index");
 		
 		List<Auction> auctionList = null;
+		List<Book> bookList = bookService.getBookList();
+
 		auctionList = auctionService.getAuctionTop3();
+		bookList = bookService.getBookRecent3();
 		
 		if (auctionList == null) {
 			System.out.println("[IndexController] auctionList가 null");
 		} else {
-			mav.addObject("auctionList", auctionList);			
+			mav.addObject("auctionList", auctionList);	
+			mav.addObject("bookList", bookList);			
 		}
 		
 		return mav;
 	}
+	
+	
+
+	
+	
+
+	
+	
+	
 }

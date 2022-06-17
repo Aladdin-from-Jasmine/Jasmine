@@ -6,9 +6,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<%@ include file="../IncludeTop.jsp"%>
-
-<%@ include file="../IncludeBanner.jsp" %> 
 
 <div class="site-section-cover">
 	<div class="container">
@@ -35,12 +32,12 @@
 							</h1>
 							<br />
 						<c:choose>
-							<c:when test="${not empty order.groupBuy}">	
+							<%-- <c:when test="${not empty order.groupBuy}">	
 								<h3>
 									<button disabled>공동구매</button>
 									&nbsp; ${order.groupBuy.title}
 								</h3>
-							</c:when>
+							</c:when> --%>
 							<c:when test="${not empty order.auction}">
 								<h3>
 									<button disabled>경매</button>
@@ -52,7 +49,7 @@
 						<br>
 
 						<c:choose>
-							<c:when test="${not empty order.groupBuy}">	
+							<%-- <c:when test="${not empty order.groupBuy}">	
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100" style="width:1000px;">
 									<div class="post-entry-1-contents" style="width:1000px;">
@@ -76,7 +73,7 @@
 									&nbsp;
 								</div>
 							</div>
-							</c:when>
+							</c:when> --%>
 							<c:when test="${not empty order.auction}">	
 							<div class="col-lg-4 col-md-6 mb-4">
 								<div class="post-entry-1 h-100" style="width:1000px;">
@@ -106,11 +103,11 @@
 							<table class="table table-striped">
 								<tbody>
 									<tr>
-										<th scope="row">cardInfo</th>
+										<th scope="row">카드정보</th>
 										<td>${order.cardBank} &nbsp; ${order.cardNo}</td>
 									</tr>
 									<tr>
-										<th scope="row">validDate</th>
+										<th scope="row">유효기간</th>
 										<td>${order.validDate}</td>
 									</tr>
 									<tr>
@@ -118,16 +115,15 @@
 										<td>${order.cvc}</td>
 									</tr>
 									<tr>
-										<th scope="row">Address</th>
-										<td>${order.address1}-${order.address2} -
-											${order.address3}</td>
+										<th scope="row">주소</th>
+										<td>${order.address}</td>
 									</tr>
 									<tr>
-										<th scope="row">Phone</th>
+										<th scope="row">전화번호</th>
 										<td>${order.phone}</td>
 									</tr>
 									<tr>
-										<th scope="row">RefundAccount</th>
+										<th scope="row">환불계좌</th>
 										<td>${order.refundBank} &nbsp; ${order.refundAccount}</td>
 									</tr>
 								</tbody>
@@ -136,7 +132,7 @@
 						<br> <br>
 
 						<div class="container">
-							<a class="btn btn-primary py-3 px-5" href="<c:url value='/mypage/list.do'>
+							<a class="btn btn-primary py-3 px-5" href="<c:url value='/auction/list'>
 																			<c:param name="menuId" value ="0" />
 																	   </c:url>">목록</a>
 							&nbsp;
@@ -148,91 +144,7 @@
 	</section>
 </div>
 
-<!-- 구현 끝 -->
-
-<div class="site-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="service-29191">
-					<span class="wrap-icon mb-4 d-block"> <span
-						class="icon-desktop_windows"></span>
-					</span>
-					<h3 class="mb-3">Interface Design</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Deleniti voluptatem reiciendis minus, a dolores.</p>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="service-29191">
-					<span class="wrap-icon mb-4 d-block"> <span
-						class="icon-explore"></span>
-					</span>
-					<h3 class="mb-3">Product Design</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Deleniti voluptatem reiciendis minus, a dolores.</p>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="service-29191">
-					<span class="wrap-icon mb-4 d-block"> <span
-						class="icon-layers"></span>
-					</span>
-					<h3 class="mb-3">Quality Results</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Deleniti voluptatem reiciendis minus, a dolores.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="site-section bg-primary">
-	<div class="container mb-5">
-		<div class="row">
-			<div class="col-md-7">
-				<h2 class="text-white font-weight-bold">Dongduk Women's
-					University</h2>
-				<p class="text-white lead">Computer Science 17th grade</p>
-				<p class="text-white lead">Software System Development Final
-					Project Goodsom</p>
-			</div>
-		</div>
-	</div>
-	<div class="container-fluid"></div>
-</div>
-
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/jquery-migrate-3.0.0.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.sticky.js"></script>
-	<script src="js/jquery.waypoints.min.js"></script>
-	<script src="js/jquery.animateNumber.min.js"></script>
-	<script src="js/jquery.fancybox.min.js"></script>
-	<script src="js/jquery.stellar.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/bootstrap-datepicker.min.js"></script>
-	<script src="js/isotope.pkgd.min.js"></script>
-	<script src="js/aos.js"></script>
 
 
-	<script src="js/typed.js"></script>
-	<script>
-		var typed = new Typed('.typed-words', {
-			strings : [ "Business", " Startups", " Organization", " Company" ],
-			typeSpeed : 80,
-			backSpeed : 80,
-			backDelay : 4000,
-			startDelay : 1000,
-			loop : true,
-			showCursor : true
-		});
-	</script>
 
-
-	<script src="js/main.js"></script>
-
-	</body>
-	</html>
+	

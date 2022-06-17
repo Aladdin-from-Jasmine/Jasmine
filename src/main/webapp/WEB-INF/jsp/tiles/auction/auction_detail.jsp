@@ -96,7 +96,7 @@ function orderAuction() {
       		</tr>
       		<tr class="td1">
       			<td style="color: #f57ad4">현재 최고가</td>
-      			<td style="color: #f57ad4"style="color: rgb(128, 128, 192)"><fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" /></td>
+      			<td style="color: #f57ad4"><fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" /></td>
       		</tr>
       		<tr class="td1">
       			<td>최고가 배팅 User</td>

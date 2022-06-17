@@ -76,6 +76,10 @@ public class AuctionController {
 		return new ModelAndView(AUCTION_LIST, "auctionList", pagedAuctionList);
 	}
 	
+	//index에서 리스트
+	
+	//
+	
 	@RequestMapping(value="/auction/list", method=RequestMethod.POST)
 	public ModelAndView searchAuctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView(AUCTION_LIST);

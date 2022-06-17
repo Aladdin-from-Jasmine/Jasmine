@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -98,6 +99,8 @@
 		</c:forEach>
 	</div>
         
+=======
+>>>>>>> parent of f1c87a4 (Merge branch 'develop' into yuna)
 =======
 >>>>>>> parent of f1c87a4 (Merge branch 'develop' into yuna)
         <p align="center">

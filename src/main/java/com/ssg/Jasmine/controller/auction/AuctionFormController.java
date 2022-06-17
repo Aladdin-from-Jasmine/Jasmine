@@ -29,9 +29,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Bid;
+import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.BidService;
+import com.ssg.Jasmine.service.SuccessBidderService;
 import com.ssg.Jasmine.service.UserService;
 
 
@@ -141,7 +143,6 @@ public class AuctionFormController implements ApplicationContextAware  {
 		} else { // create
 //			파일 업로드 기능
 			String savedFileName = uploadFile(auction.getReport());
-//			auctionForm.getAuction().setImg(request.getContextPath() + "/resources/images/" + savedFileName);
 			auction.setImg(this.uploadDirLocal + filename);
 
 			auction.initAuction(user.getUser());
@@ -166,6 +167,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 		else {
 			model.addAttribute("isWriter", true);
 		}
+		
 		model.addAttribute("date_maxBid", "");
 		model.addAttribute("user_maxBid", "아직 입찰자가 없습니다.");
 		model.addAttribute("writer", user.getUser().getUsername());

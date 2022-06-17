@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,18 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
+import com.ssg.Jasmine.controller.auction.BidForm;
 import com.ssg.Jasmine.controller.user.UserSession;
+import com.ssg.Jasmine.domain.Auction;
+import com.ssg.Jasmine.domain.Bid;
+import com.ssg.Jasmine.domain.Order;
+import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
+import com.ssg.Jasmine.service.BidService;
 import com.ssg.Jasmine.service.OrderService;
+import com.ssg.Jasmine.service.SuccessBidderService;
+import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.validator.OrderFormValidator;
 
 @Controller
@@ -29,6 +38,7 @@ public class OrderFormController {
 	
 	private static final String orderFormView = "order/order_create";
 	private static final String detailView = "order/payment_detail";
+	private static final String AUCTION_DETAIL = "auction/auction_detail";
 
 	private static final int FAIL = 0; // 결제가 실패했을 경우
 	
@@ -36,9 +46,12 @@ public class OrderFormController {
 	private OrderService orderService;
 	@Autowired
 	private AuctionService auctionService;
-	//@Autowired
-	//private NotiService notiService;
-
+	@Autowired
+	SuccessBidderService successBidderService;
+	@Autowired
+	BidService bidService;
+	@Autowired
+	UserService userService;
 	
 	@ModelAttribute("orderForm")
 	public OrderForm formBacking(HttpServletRequest request) {
@@ -135,17 +148,62 @@ public class OrderFormController {
 			return new ModelAndView(orderFormView);
 		}
 		
-		int result = orderService.createOrder(orderForm.getOrder());
+		Order order = orderForm.getOrder();
+		order.setStatus("success");
+		int result = orderService.createOrder(order);
 		
 		ModelAndView mav = new ModelAndView(detailView);
-		mav.addObject("order", orderForm.getOrder());
+		mav.addObject("order", order);
 		
+		SuccessBidder successBidder = successBidderService.getSuccessBidderByAuctionId(orderForm.getOrder().getAuctionId());
 		if (result == FAIL) {
 			mav.addObject("message", "결제에 실패했습니다.");
+			successBidder.setOrderState("fail");
 		} else {
 			mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
+			successBidder.setOrderState("success");
+			
 		}
 		status.setComplete();  // remove session lineGroupBuyForm and orderForm from session
 		return mav;
 	}
+	
+	@RequestMapping(value="/order/auction/detail", method=RequestMethod.POST)
+	public ModelAndView auctionDetail(HttpServletRequest request, 
+			@RequestParam("orderId") int orderId, HttpSession session) {
+
+		ModelAndView mav = new ModelAndView(AUCTION_DETAIL);
+		int auctionId = orderService.getOrder(orderId).getAuctionId();
+		String bidderId = orderService.getOrder(orderId).getUserId();
+
+		// auction 정보 가져오기
+		Auction auction = auctionService.getAuction(auctionId); 
+		
+		// 낙찰자 정보 가져오기 (낙찰자의 userId) -> 낙찰자에게만 '결제하기'버튼이 보이게 하기 위해
+		SuccessBidder successBidder = successBidderService.getSuccessBidderByAuctionId(auctionId);
+		if(successBidder != null) {
+			Bid bid = bidService.getBid(successBidder.getBidId());  
+			String successBidderUserId = bid.getUserId();
+			mav.addObject("successBidderUserId", successBidderUserId);
+		
+			// 낙찰자가 결제까지 완료한 경우
+			if (successBidder.getOrderId() != 0) {
+				mav.addObject("completeOrder", 1);
+			} else {
+				mav.addObject("completeOrder", 0);
+			}
+		}
+		
+		//	auction의 최고 금액에 해당하는 bid 정보 가져오기
+		Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); 
+		mav.addObject("date_maxBid", maxPriceBid.getBidDate());
+		User user_maxBid = userService.getUserByUserId(maxPriceBid.getUserId());
+		mav.addObject("user_maxBid", user_maxBid.getUsername());
+		
+		//	낙찰된 사람의 정보
+		mav.addObject("auction", auction);
+		mav.addObject("writer", userService.getUserByUserId(auction.getUserId()).getUsername());
+		return mav;
+	}
+
 }

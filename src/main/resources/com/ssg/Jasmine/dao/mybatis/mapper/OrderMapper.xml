@@ -47,7 +47,6 @@
   </select>
   
   <insert id="createOrder" parameterType="Order">
-   
   	INSERT INTO Order_ (<include refid="BaseColumns" />)
   	VALUES (seq_orderId.nextval, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
   		#{address},  #{phone}, #{refundBank}, #{refundAccount}, #{totalPrice}, 
@@ -77,6 +76,12 @@
   	SELECT *
 	FROM Order_
 	WHERE userId = #{userId}
+  </select>
+  
+  <select id="getOrderByAuctionId" parameterType="int" resultType="int">
+  	SELECT orderId
+	FROM Order_
+	WHERE auctionId = #{auctionId}
   </select>
   
   <delete id="deleteOrderByUserId" parameterType="Integer">

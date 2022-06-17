@@ -13,6 +13,8 @@ public interface OrderService {
 	
 	public int createOrder(Order order);
 	
+	public int getOrderByAuctionId(int auctionId);
+	
 	public Auction getAuction(int orderId);
 	
 	public List<Order> getOrderListByUserId(String userId);

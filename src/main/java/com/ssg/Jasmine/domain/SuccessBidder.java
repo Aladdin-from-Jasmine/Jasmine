@@ -5,8 +5,10 @@ import java.io.Serializable;
 public class SuccessBidder implements Serializable{
 	int bidId;
 	String userId;
-	int orderId = 0;
+	int orderId;
 	int auctionId;
+	
+	String orderState;
 
 	public SuccessBidder() {}
 	public SuccessBidder(int bidId, String userId, int auctionId) {
@@ -46,7 +48,15 @@ public class SuccessBidder implements Serializable{
 	public void setAuctionId(int auctionId) {
 		this.auctionId = auctionId;
 	}
-
+	
+	public String getOrderState() {
+		return orderState;
+	}
+	
+	public void setOrderState(String orderState) {
+		this.orderState = orderState;
+	}
+	
 	@Override
 	public String toString() {
 		return "SuccessBidder [bidId=" + bidId + ", userId=" + userId + ", orderId=" + orderId + ", auctionId="

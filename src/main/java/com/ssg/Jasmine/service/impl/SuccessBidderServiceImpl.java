@@ -50,4 +50,9 @@ public class SuccessBidderServiceImpl implements SuccessBidderService {
 		return successBidderDao.getSuccessBidderByAuctionId(auctionId);
 	}
 
+	@Override
+	public List<Auction> getSuccessBidderListByUserId(String userId) {
+		return successBidderDao.getSuccessBidderListByUserId(userId);
+	}
+
 }

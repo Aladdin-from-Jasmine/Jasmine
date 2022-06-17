@@ -24,6 +24,8 @@ public interface SuccessBidderService {
 	
 	List<SuccessBidder> getSuccessBidderList();
 	
+	List<Auction> getSuccessBidderListByUserId(String userId);
+	
 	//List<Auction> getSearchAuctionList(String keyword);
 	
 	public String getSuccessBidderUserId(String userId);

@@ -53,7 +53,7 @@
 	</div> </br> </br>
 	
 	<div class="container">
-		<a id="auction-register-btn" href="<c:url value='/auction/list'>
+		<a id="auction-register-btn" href="<c:url value='/user/order'>
 												<c:param name="menuId" value ="0" />
 											</c:url>">목록</a> &nbsp;
 	</div>

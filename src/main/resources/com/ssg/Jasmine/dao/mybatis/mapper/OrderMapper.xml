@@ -12,14 +12,12 @@
   	totalPrice, 
   	orderDate, 
   	userId,
-  	auctionId
+  	auctionId,
+  	status,
+  	bookId,auctionId,totalQuantity
   </sql>
   
-  <select id="getOrder" parameterType="int" resultType="Order">
-  	SELECT <include refid="BaseColumns" />
-  	FROM Order_
-  	WHERE orderId = #{orderId}
-  </select>
+
   
   <resultMap id="resultMap" type="Order">
 		<id column="orderId" property="orderId" />
@@ -34,31 +32,21 @@
 		<result column="totalPrice" property="totalPrice" />
 		<result column="orderDate" property="orderDate" />
 		<result column="userId" property="userId" />
-		<result column="auctionId" property="auctionId" />
+		<result column="status" property="status" />
+		<result column="bookId" property="bookId" />
+		<result column="auctionId" property="auctionId" />						
+			<result column="totalQuantity" property="totalQuantity" />						
 		
-  		<!-- <collection property="lineGroupBuys" ofType="LineGroupBuy">
-  			<id property="lineId" column="lineId" />
-  			<result property="orderId" column="line_orderId" />
-  			<result property="groupBuyId" column="groupBuyId" />
-  			<result property="quantity" column="quantity" />
-  			<result property="selectOption" column="selectOption" />
-  			<result property="unitPrice" column="unitPrice" />
-  		</collection> -->
+
   </resultMap> 
   
- <!--  <select id="getOrderWithLineGroupBuys" parameterType="int" resultMap="resultMap">
-  	SELECT o.orderId, o.cardBank, o.cardNo, o.validDate, o.cvc,
-  		   o.address, o.phone,
-  		   o.refundBank, o.refundAccount, o.totalPrice, o.orderDate, o.userId,
-  		   l.lineId, l.orderId AS line_orderId, l.groupBuyId, l.quantity, l.selectOption, l.unitPrice
-  	FROM orders o, lineGroupBuys l
-  	WHERE o.orderId = l.orderId AND o.orderId = #{orderId}
-  </select> -->
-
+  <select id="getOrder" parameterType="int" resultType="Order">
+  	SELECT *
+  	FROM Order_
+  	WHERE orderId = #{orderId}
+  </select>
+  
   <insert id="createOrder" parameterType="Order">
-		<!-- <selectKey keyProperty="orderId" resultType="int" order="BEFORE">
-			SELECT SEQ_ORDERID.nextval AS orderId FROM Order_
-		</selectKey> -->
    
   	INSERT INTO Order_ (<include refid="BaseColumns" />)
   	VALUES (seq_orderId.nextval, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
@@ -73,13 +61,26 @@
   </select> -->
   
   <select id="getAuctionId" parameterType="int" resultType="int">
-  	SELECT auctionId
-	FROM successBidders
-	WHERE orderId = #{orderId}
+  	SELECT s.auctionId
+	FROM successBidders s, Order_ o
+	WHERE o.orderId = #{orderId} AND s.auctionId = o.auctionId
+  </select>
+
+  
+  <select id="getAuctionListByUserId" parameterType="String" resultType="Auction"> 
+  	SELECT a.*
+	FROM Order_ o, Auction a
+	WHERE o.userId = #{userId} AND o.auctionId=a.auctionId
+  </select>
+  
+    <select id="getOrderListByUserId" parameterType="String" resultType="Order">
+  	SELECT *
+	FROM Order_
+	WHERE userId = #{userId}
   </select>
   
   <delete id="deleteOrderByUserId" parameterType="Integer">
-  	DELETE FROM ORDERS
+  	DELETE FROM Order_
   	WHERE USERID = #{userId}
   </delete>
  

@@ -19,11 +19,13 @@ import org.springframework.web.util.WebUtils;
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Bid;
 import com.ssg.Jasmine.domain.Book;
+import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.BidService;
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
+import com.ssg.Jasmine.service.OrderService;
 import com.ssg.Jasmine.service.SuccessBidderService;
 import com.ssg.Jasmine.service.UserService;
 
@@ -37,6 +39,8 @@ public class MypageController {
 	BidService bidService;
 	@Autowired
 	SuccessBidderService sucBidService;
+	@Autowired
+	OrderService orderService;
 	
 	@Autowired
 	AuctionService auctionService;
@@ -103,6 +107,24 @@ public class MypageController {
 		} else {
 			mav.addObject("auctionList", auctionList);		
 		}
+		return mav;
+	}
+	
+
+	@RequestMapping(value="/user/order", method=RequestMethod.GET)
+	public ModelAndView userBidOrder(HttpServletRequest request, SessionStatus sessionStatus, HttpSession session ){
+		ModelAndView mav = new ModelAndView("user/order");
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		
+		List<Order> orderList = orderService.getOrderListByUserId(userSession.getUser().getUserId());
+		
+		
+		if (orderList == null) {
+			System.out.println("[MypageController] orderList가 null");
+		} else {
+			mav.addObject("orderList", orderList);		
+		}
+	
 		return mav;
 	}
 	

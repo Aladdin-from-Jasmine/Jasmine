@@ -127,6 +127,7 @@ public class OrderFormController {
 			SessionStatus status, BindingResult bindingResult) {
 		
 		System.out.println("command 객체: " + orderForm);
+		System.out.println("order 객체: " + orderForm.getOrder());
 		new OrderFormValidator().validate(orderForm, bindingResult);
 		
 		// 검증 오류 발생 시 다시 form view로 이동

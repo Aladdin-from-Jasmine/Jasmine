@@ -1,11 +1,13 @@
 package com.ssg.Jasmine.dao.mybatis.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 import com.ssg.Jasmine.domain.Order;
 
+@Mapper
 public interface OrderMapper {
 
-	  /*Order getOrder(int orderId) throws DataAccessException;
+	  Order getOrder(int orderId) throws DataAccessException;
 
 	  int createOrder(Order order) throws DataAccessException;
 	  
@@ -18,4 +20,4 @@ public interface OrderMapper {
 	  int getAuctionId(int orderId) throws DataAccessException; // From SuccessBidders
 	  
 	  int deleteOrderByUserId(int userId) throws DataAccessException; // 회원 탈퇴 시 실행
-*/}
+}

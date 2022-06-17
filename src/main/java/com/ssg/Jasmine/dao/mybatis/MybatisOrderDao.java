@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ssg.Jasmine.dao.OrderDao;
+import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.dao.mybatis.mapper.OrderMapper;
@@ -79,5 +80,15 @@ public class MybatisOrderDao implements OrderDao {
 	@Override
 	public int getAuctionId(int orderId) throws DataAccessException { // From SuccessBidders
 		return orderMapper.getAuctionId(orderId);
+	}
+
+	@Override
+	public List<Order> getOrderListByUserId(String userId) throws DataAccessException {
+		return orderMapper.getOrderListByUserId(userId);
+	}
+
+	@Override
+	public List<Auction> getAuctionListByUserId(String userId) throws DataAccessException {
+		return orderMapper.getAuctionListByUserId(userId);
 	}
 }

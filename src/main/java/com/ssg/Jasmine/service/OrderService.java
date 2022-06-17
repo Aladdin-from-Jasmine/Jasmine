@@ -1,7 +1,6 @@
 package com.ssg.Jasmine.service;
 
 import java.util.List;
-
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.User;
@@ -17,6 +16,10 @@ public interface OrderService {
 	public int getOrderByAuctionId(int auctionId);
 	
 	public Auction getAuction(int orderId);
+	
+	public List<Order> getOrderListByUserId(String userId);
+	
+	public List<Auction> getAuctionListByUserId(String userId);
 	
 	public List<Order> setAuctionInfo(List<Order> orderList);
 	

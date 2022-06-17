@@ -122,4 +122,9 @@ public class MybatisAuctionDao implements AuctionDao {
 	public List<Auction> getAuctionListByUserId(String userId) throws DataAccessException {
 		return auctionMapper.getAuctionListByUserId(userId);
 	}
+
+	@Override
+	public List<Auction> getAuctionTop3() throws DataAccessException {
+		return auctionMapper.getAuctionTop3();
+	}
 }

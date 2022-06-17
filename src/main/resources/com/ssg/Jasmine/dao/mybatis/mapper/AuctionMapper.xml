@@ -92,6 +92,16 @@
     ORDER BY uploadDate DESC
   </select>
   
+   <select id="getAuctionTop3" resultType="com.ssg.Jasmine.domain.Auction">
+   <![CDATA[
+	    SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+	    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
+	    FROM AUCTION
+	    WHERE ROWNUM <= 3 AND state ='proceeding'
+	    ORDER BY count DESC
+	    ]]>
+  </select>
+  
    <select id="getSearchAuctionList" parameterType="String" resultType="com.ssg.Jasmine.domain.Auction">
     SELECT auctionId, title, content_, img, startPrice, uploadDate, 
     		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId

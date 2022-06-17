@@ -63,19 +63,20 @@ public class UpdateBookController implements ApplicationContextAware{
 	}
 	
 
-	@RequestMapping(value="/book/update/{bookId}",method = RequestMethod.GET)
-	public String updateForm (@PathVariable("bookId") int bookId, ModelMap model,HttpSession session) {
+	@RequestMapping(value="/book/update",method = RequestMethod.GET)
+	public String updateForm ( ModelMap model,HttpSession session, HttpServletRequest request) {
 		UserSession userSession  = (UserSession)session.getAttribute("userSession");
 		String userId = userSession.getUser().getUserId();
 		
+		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		
 		Book book = bookService.getBookByBookId(bookId);
 		
 		
 		if(userId.equals(book.getUserId())) {
 			BookForm bookForm=new BookForm();
-
 			
+			bookForm.setBookId(bookId);
 			bookForm.setBookId(bookId);
 			bookForm.setIsbn(book.getIsbn());
 			bookForm.setPrice(book.getPrice());
@@ -104,7 +105,7 @@ public class UpdateBookController implements ApplicationContextAware{
 		
 	}
 	
-	@RequestMapping(value="book/update", method=RequestMethod.POST)
+	@RequestMapping(value="/book/update", method=RequestMethod.POST)
 	public String submit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("bookForm") BookForm bookForm, BindingResult result,
 			Model model, SessionStatus sessionStatus) throws Exception {
@@ -115,7 +116,7 @@ public class UpdateBookController implements ApplicationContextAware{
 		String filename = uploadFile(report);
 		model.addAttribute("fileUrl", this.uploadDirLocal + filename);
 		
-		
+		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		
 		UserSession user = (UserSession)request.getSession().getAttribute("userSession");
 		String userId = user.getUser().getUserId();
@@ -128,7 +129,7 @@ public class UpdateBookController implements ApplicationContextAware{
 		//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
 		
 		Book book = new Book();
-		book.setBookId(bookForm.getBookId());
+		book.setBookId(bookId);
 		book.setIsbn(bookForm.getIsbn());
 		book.setPrice(bookForm.getPrice());
 		book.setCategoryId(bookForm.getCategoryId());

@@ -123,7 +123,7 @@
 			</table><br/>
 			<c:if test="${isUser==true || isManager==true}" >
 				<div class="form-group" align="center">
-					<a href="<c:url value='/book/update/${book.bookId}'></c:url>" id="a-btn">수정</a>
+					<a href="<c:url value='/book/update?bookId=${book.bookId}'></c:url>" id="a-btn">수정</a>
 					<input id="a-btn" type="button" value="삭제" onClick="deleteBook()" />
 			</c:if>
 			<c:if test="${isUser==false && isManager==false}" >

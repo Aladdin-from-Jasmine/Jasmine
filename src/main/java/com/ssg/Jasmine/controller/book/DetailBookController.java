@@ -56,10 +56,6 @@ public class DetailBookController {
 			}
 		}
 		
-		
-		
-
-		
 		try {
 			ModelAndView mav = new ModelAndView("book/detail");
 

@@ -7,9 +7,9 @@
 
 
 <body>
-<h1>책 등록</h1>
+<h1>책 수정</h1>
  <form:form modelAttribute="bookForm" method="POST"
-action="/book/update" enctype="multipart/form-data">
+action="/book/update?bookId=${bookForm.bookId}" enctype="multipart/form-data">
 <!-- book이랑 카테고리 조인..하고 user정보도 넘겨줘야할거같은데,,? -->
 
 

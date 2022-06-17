@@ -42,7 +42,7 @@
 						value="${auction.maxPrice}" pattern="#,###원" />
 				</span>
 
-				<p>${auction.content}</p>
+				<p>${auction.content_}</p>
 			</div>
 		</c:forEach>
 

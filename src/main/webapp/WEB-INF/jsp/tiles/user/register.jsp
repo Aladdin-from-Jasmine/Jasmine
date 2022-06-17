@@ -29,7 +29,7 @@
 			<div class="form-group">
 				<label for="name">Email</label>
 				<form:input path="user.email" class="form-control"
-					placeholder="Email ex) 20170000@dongduk.ac.kr" />
+					placeholder="ex) 20170000@dongduk.ac.kr" />
 				 <form:errors path="user.email" class="error" />
 			</div>
 
@@ -57,7 +57,7 @@
 			<div class="form-group">
 				<label for="name">Phone</label>
 				<form:input path="user.phone" class="form-control"
-					placeholder="Phone ex) 010-0000-0000" />
+					placeholder="ex) 010-0000-0000" />
 				<form:errors path="user.phone" class="error" />
 			</div>
 

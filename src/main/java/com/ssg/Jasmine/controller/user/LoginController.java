@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.UserService;

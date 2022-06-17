@@ -62,6 +62,12 @@
   	WHERE  AUCTIONID=#{auctionId}
   </update>
   
+  <update id="updateStateAuction" parameterType="com.ssg.Jasmine.domain.Auction">
+   	UPDATE AUCTION
+    SET  state=#{state}
+  	WHERE  AUCTIONID=#{auctionId}
+  </update>
+  
   <update id="updateAuctionMaxPrice" parameterType="com.ssg.Jasmine.domain.Auction">
   	UPDATE AUCTION
 	SET MAXPRICE = #{maxPrice}
@@ -83,6 +89,15 @@
     SELECT auctionId, title, content_, img, startPrice, uploadDate, 
     		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
     FROM AUCTION
+    ORDER BY uploadDate DESC
+  </select>
+  
+   <select id="getSearchAuctionList" parameterType="String" resultType="com.ssg.Jasmine.domain.Auction">
+    SELECT auctionId, title, content_, img, startPrice, uploadDate, 
+    		endDate, count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId
+    FROM AUCTION
+    WHERE title LIKE '%'||#{param1}||'%' or content_ LIKE '%'||#{param1}||'%'
+    	or booktitle LIKE '%'||#{param1}||'%' or bookauthor LIKE '%'||#{param1}||'%'
     ORDER BY uploadDate DESC
   </select>
   

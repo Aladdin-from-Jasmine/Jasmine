@@ -45,20 +45,9 @@
 	</definition> 
 	
  	<definition name="auction/*" extends="base_layout">
-	 	<put-attribute name="title" value="Jasmine|Auction" type="string"/>
+	 	<put-attribute name="title" value="Jasmine | Auction" type="string"/>
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/tiles/auction/{1}.jsp" />
 	</definition> 
- 	
-
-	<!-- <definition name="tiles/SignonForm" extends="base_layout">
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/tiles/SignonForm.jsp" />			
-	</definition>
 	
-	<definition name="tiles/EditAccountForm" extends="base_layout">
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/tiles/EditAccountForm.jsp" />			
-	</definition>
-  -->
 </tiles-definitions>

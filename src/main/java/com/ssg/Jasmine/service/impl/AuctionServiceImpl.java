@@ -42,6 +42,10 @@ public class AuctionServiceImpl implements AuctionService {
 	public List<Auction> getAuctionList() {
 		return auctionDao.getAuctionList();
 	}
+	
+	public List<Auction> getSearchAuctionList(String keyword) {
+		return auctionDao.getSearchAuctionList(keyword);
+	}
 
 	public int createAuction(Auction auction) {
 		return auctionDao.createAuction(auction);
@@ -49,6 +53,10 @@ public class AuctionServiceImpl implements AuctionService {
 
 	public int updateAuction(Auction auction) {
 		return auctionDao.updateAuction(auction);
+	}
+	
+	public int updateStateAuction(int auctionId, String state) {
+		return auctionDao.updateStateAuction(auctionId, state);
 	}
 	
 	public int updateAuctionMaxPrice(int maxPrice, int auctionId) {

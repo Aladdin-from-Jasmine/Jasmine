@@ -16,11 +16,15 @@ public interface AuctionService {
 	
 	int updateAuction(Auction auction);
 	
+	int updateStateAuction(int auctionId, String state);
+	
 	int updateAuctionMaxPrice(int maxPrice, int auctionId);
 	
 	List<Auction> deleteAuction(int auctionId);
 	
 	List<Auction> getAuctionList();
+	
+	List<Auction> getSearchAuctionList(String keyword);
 	
 	List<Auction> getAuctionListByUserId(String userId);
 	

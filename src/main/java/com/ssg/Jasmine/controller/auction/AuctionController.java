@@ -132,18 +132,20 @@ public class AuctionController {
 		
 // 		낙찰자 정보 가져오기 (낙찰자의 userId) -> 낙찰자에게만 '결제하기'버튼이 보이게 하기 위해
 		SuccessBidder successBidder = successBidderService.getSuccessBidderByAuctionId(auctionId);
-		Bid bid = bidService.getBid(successBidder.getBidId());  
-		String successBidderUserId = bid.getUserId();
-		mav.addObject("successBidderUserId", successBidderUserId);
-
-// 		낙찰자가 결제까지 완료한 경우
-		//SuccessBidder successBidder = auctionService.getSuccessBidderByAuctionId(auctionId);
-		if (successBidder.getOrderId() != 0) {
-			mav.addObject("completeOrder", 1);
-		} else {
-			mav.addObject("completeOrder", 0);
-		}
+		if(successBidder != null) {
+			Bid bid = bidService.getBid(successBidder.getBidId());  
+			String successBidderUserId = bid.getUserId();
+			mav.addObject("successBidderUserId", successBidderUserId);
 		
+//	 		낙찰자가 결제까지 완료한 경우
+			//SuccessBidder successBidder = auctionService.getSuccessBidderByAuctionId(auctionId);
+			if (successBidder.getOrderId() != 0) {
+				mav.addObject("completeOrder", 1);
+			} else {
+				mav.addObject("completeOrder", 0);
+			}
+		}
+
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if(user != null) {
 			String userId = user.getUser().getUserId();

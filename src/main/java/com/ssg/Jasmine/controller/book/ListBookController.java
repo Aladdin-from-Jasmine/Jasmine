@@ -21,6 +21,7 @@ import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.service.BookService;
 //import com.ssg.Jasmine.domain.Bid;
 import com.ssg.Jasmine.domain.Book;
+import com.ssg.Jasmine.domain.Community;
 //import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
 //import com.ssg.Jasmine.service.BidService;
@@ -46,4 +47,29 @@ public class ListBookController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView searchList(HttpServletRequest request) throws Exception {
+
+		System.out.println("list book post");
+		
+		String keyword = request.getParameter("keyword");
+		
+		System.out.println(keyword);
+		
+		List<Book> bookList = bookService.getSearchBookList(keyword);
+		
+		//System.out.println(bookList.get(0).getBookId());
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("bookList", bookList);
+		mav.addObject("keyword", keyword);
+		
+		mav.setViewName("book/list"); 
+		
+		System.out.println("list ok");
+		
+		return mav;
+	}
+	
 }

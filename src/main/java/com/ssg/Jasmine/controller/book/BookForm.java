@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 @SuppressWarnings("serial")
 public class BookForm implements Serializable {
 	
-	//private int bookId;
+	private int bookId;
 	//등록한사람이 누군지는.. 알아야되니까....
 	//private String userName;
 	private int isbn;
@@ -28,6 +28,20 @@ public class BookForm implements Serializable {
 	
 	
 	
+	public int getBookId() {
+		return bookId;
+	}
+
+
+
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
+
+
+
 	public int getIsbn() {
 		return isbn;
 	}

@@ -30,8 +30,9 @@ public class MybatisBookDao implements BookDao{
 		bookMapper.updateBook(book);	
 	}	
 	
-	public void deleteBook(Book book) {
-		bookMapper.deleteBook(book);
+	@Override
+	public void deleteBook(int bookId) {
+		bookMapper.deleteBook(bookId);
 	}
 	
 	
@@ -48,6 +49,12 @@ public class MybatisBookDao implements BookDao{
 	public List<Book> getBookRecent3() {
 		// TODO Auto-generated method stub
 		return bookMapper.getBookRecent3();
+	}
+
+	@Override
+	public List<Book> getSearchBookList(String keyword) {
+		// TODO Auto-generated method stub
+		return bookMapper.getSearchBookList(keyword);
 	}
 
 }

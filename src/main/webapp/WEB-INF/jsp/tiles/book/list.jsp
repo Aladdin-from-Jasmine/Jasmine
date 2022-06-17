@@ -21,7 +21,13 @@
 <div class="container">
 	<h1>Book List</h1>
 </div>
-
+<div align="center">
+				<form method="POST"
+				action="/book/list" id="search-form-form">
+					<input type="text" name="keyword" class="form-control" />
+					<input type="submit" value="검색" id="register-btn">
+				</form>
+			</div>
 	<div class="container">
 	<c:if test="${!empty userSession.user}">
 		<a id="auction-register-btn"
@@ -44,6 +50,7 @@
 								<td class="listTb-2">제목</td>
 								<td class="listTb-3">등록자</td>
 								<td class="listTb-2">가격</td>
+								<td class="listTb-2">등록날짜</td>
 							</tr>
 							<c:forEach var="book" items="${bookList}">
 								<tr class="listTb-tr2" onClick="bookDetail(${book.bookId})">
@@ -56,6 +63,9 @@
 												${book.price}
 											</span>
 										</div>
+									</td>
+									<td>
+										<fmt:formatDate value="${book.registerDate}" pattern="MM-dd HH:mm" />
 									</td>
 								</tr>
 							</c:forEach>

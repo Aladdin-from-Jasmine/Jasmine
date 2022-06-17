@@ -11,10 +11,14 @@ public interface BookService {
 	
 	int createBook(Book book);
 	
-	int updateBook(Book book);
+	void updateBook(Book book);
 	
 	List<Book> getBookList();
 	
 	List<Book> getBookRecent3();
+	
+	void deleteBook(int bookId);
+	
+	List<Book> getSearchBookList(String keyword);
 	
 }

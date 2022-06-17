@@ -16,10 +16,13 @@ public interface BookDao {
 	
 	void updateBook(Book book);
 	
-	void deleteBook(Book book); //근데 bookId로 하는게 나을거같기두..???
+	void deleteBook(int bookId); //근데 bookId로 하는게 나을거같기두..???
 	
 	List<Book> getBookList();
 	
 	List<Book> getBookRecent3();
+	
+	List<Book> getSearchBookList(String keyword);
+
 	
 }

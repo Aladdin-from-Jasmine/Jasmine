@@ -44,6 +44,10 @@
 			value="/WEB-INF/jsp/tiles/book/{1}.jsp" />
 	</definition> 
 	
+	
+	
+	
+	
  	<definition name="auction/*" extends="base_layout">
 	 	<put-attribute name="title" value="Jasmine | Auction" type="string"/>
 		<put-attribute name="body"

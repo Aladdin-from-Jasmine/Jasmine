@@ -26,6 +26,7 @@ import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.BidService;
+import com.ssg.Jasmine.service.SuccessBidderService;
 
 @Controller
 @SessionAttributes("auctionForm")
@@ -35,6 +36,8 @@ public class AuctionController {
 	
 	@Autowired
 	AuctionService auctionService;
+	@Autowired
+	SuccessBidderService successBidderService;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -75,6 +78,10 @@ public class AuctionController {
 		}
 		return new ModelAndView(AUCTION_LIST, "auctionList", pagedAuctionList);
 	}
+	
+	//index에서 리스트
+	
+	//
 	
 	@RequestMapping(value="/auction/list", method=RequestMethod.POST)
 	public ModelAndView searchAuctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
@@ -124,16 +131,21 @@ public class AuctionController {
 		Auction auction = auctionService.getAuction(auctionId); 
 		
 // 		낙찰자 정보 가져오기 (낙찰자의 userId) -> 낙찰자에게만 '결제하기'버튼이 보이게 하기 위해
-		mav.addObject("successBidderUserId", auctionService.getSuccessBidderUserId(auctionId));
-
-// 		낙찰자가 결제까지 완료한 경우
-		SuccessBidder successBidder = auctionService.getSuccessBidderByAuctionId(auctionId);
-		if (successBidder != null) {
-			mav.addObject("completeOrder", 1);
-		} else {
-			mav.addObject("completeOrder", 0);
-		}
+		SuccessBidder successBidder = successBidderService.getSuccessBidderByAuctionId(auctionId);
+		if(successBidder != null) {
+			Bid bid = bidService.getBid(successBidder.getBidId());  
+			String successBidderUserId = bid.getUserId();
+			mav.addObject("successBidderUserId", successBidderUserId);
 		
+//	 		낙찰자가 결제까지 완료한 경우
+			//SuccessBidder successBidder = auctionService.getSuccessBidderByAuctionId(auctionId);
+			if (successBidder.getOrderId() != 0) {
+				mav.addObject("completeOrder", 1);
+			} else {
+				mav.addObject("completeOrder", 0);
+			}
+		}
+
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 		if(user != null) {
 			String userId = user.getUser().getUserId();

@@ -34,7 +34,7 @@ function bid(max, now) {
 }
 
 function orderAuction() {
-   location.href= "../order/auction/create.do?auctionId=${auction.auctionId}";
+   location.href= "../order/auction/create?auctionId=${auction.auctionId}";
 }
 
 </script>
@@ -109,33 +109,9 @@ function orderAuction() {
       	</table>
       	
       	</br></br>
-      
-      <%-- 
-       <p> 
-          <img src= "${auction.img}" width="300px" height="350px"/>
-      </p> 
-         <p>
-            작성자 : ${writer} <br> <br> 
-            작성일 : <fmt:formatDate value="${auction.uploadDate}" pattern="yyyy-MM-dd" /><br><br> 
-            조회수 : ${auction.count} <br><br> 
-            설명 : ${auction.content_}<br><br>
-            책 제목 : ${auction.booktitle}<br><br>
-            책 저자 : ${auction.bookauthor}<br><br>
-            책 출판사 : ${auction.bookpublisher}<br><br>
-         </p>
-            시작 금액 : <fmt:formatNumber value="${auction.startPrice}" pattern="#,###원" /><br><br> 
-            마감일 : <fmt:formatDate value="${auction.endDate}" pattern="yyyy-MM-dd HH:mm" />
-          <br /><br> <br> 
-
-           <b>현재 최고가 : <fmt:formatNumber value="${auction.maxPrice}" pattern="#,###원" /></b>
-           <p>
-               <fmt:formatDate value="${date_maxBid}" pattern="yyyy-MM-dd" />
-               <br /> ${user_maxBid}
-            </p>
-            <br> --%>
-
+     
          <!-- betting -->
-         <c:if test="${empty userSession.user}">
+         <c:if test="${empty userSession.user and auction.state eq 'proceeding'}">
          	<p class="error">배팅을 하시려면 로그인을 해주세요!</p>
          </c:if>
          <c:if test="${!empty userSession.user && isWriter eq false}">
@@ -165,20 +141,22 @@ function orderAuction() {
                </form:form>
          </c:if>
       </div>
-      
-         <!--<p>${isWriter}</p> 얘 나중에 삭제하기 -->
+
    </div>
 
    <div class="form-group" >
    	  <!-- user이면 작성자이고 경매가 입찰 전이면 수정, 삭제 가능 / 관리자면 입찰 상관없이 수정, 삭제 가능  -->
-      <c:if test="${((isWriter eq true) and (empty auction.bids)) or (isManager eq true)}">
-         <a id="auction-register-btn" href="javascript:updateAuction()">수정</a>
-         <a id="auction-register-btn" href="javascript:deleteAuction()">삭제</a>
+      <c:if test="${auction.state eq 'proceeding'}">
+		  <c:if test="${((isWriter eq true) and (empty auction.bids)) or (isManager eq true)}">
+	         <a id="auction-register-btn" href="javascript:updateAuction()">수정</a>
+	         <a id="auction-register-btn" href="javascript:deleteAuction()">삭제</a>
+	      </c:if>
+	      <c:if test="${(isWriter eq true) and (!empty auction.bids)}">
+	         <a id="auction-register-btn" href="<c:url value='/auction/bid/success'>
+	         					<c:param name="auctionId" value="${auction.auctionId}"/>
+	         				</c:url>">낙찰</a>
+	      </c:if>
       </c:if>
-      <c:if test="${(isWriter eq true) and (!empty auction.bids) and (!empty isClosed)}">
-         <a id="auction-register-btn" href="<c:url value='/auction/bid/success'>
-         					<c:param name="auctionId" value="${auction.auctionId}"/>
-         				</c:url>">낙찰</a>
-      </c:if>
+      
       <a id="auction-register-btn" href="<c:url value='/auction/list'></c:url>">목록</a>
 </div>

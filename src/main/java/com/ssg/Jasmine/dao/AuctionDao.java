@@ -33,6 +33,8 @@ public interface AuctionDao {
 	
 	List<Auction> getAuctionListByKeyword(String keyword) throws DataAccessException;
 	
+	List<Auction> getAuctionTop3() throws DataAccessException;
+	
 	boolean isAuctionClosed(int auctionId, Date currentTime) throws DataAccessException;
 	
 	void increaseCount(Auction auction) throws DataAccessException;
@@ -47,4 +49,6 @@ public interface AuctionDao {
 	
 //	keyword로 검색
 	public List<Auction> auctionListByKeyword(String keyword);
+
+
 }

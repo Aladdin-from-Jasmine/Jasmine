@@ -135,7 +135,7 @@ function auctionSubmit(isNewAuction) {
       
 
       <div class="form-group" align="right">
-         <a id="a-btn" href="<c:url value='/auction/auction_list' ></c:url>">Cancel</a>
+         <a id="a-btn" href="<c:url value='/auction/list' ></c:url>">Cancel</a>
          <input id="register-btn" type="button" value="Save"
             onClick="auctionSubmit(${auctionForm.newAuction})">
       </div>

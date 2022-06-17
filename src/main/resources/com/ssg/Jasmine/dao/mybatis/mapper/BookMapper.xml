@@ -79,11 +79,8 @@
           FROM book A
          ORDER BY bookid desc
         ) 
- WHERE NUM BETWEEN #{pageStart} AND #{perPageNum}
-		
-		
-		
-		
+ WHERE NUM BETWEEN 1+((#{pageStart}-1)*#{perPageNum}) AND #{perPageNum}*#{pageStart}
+	
 		
 		
 	</select>

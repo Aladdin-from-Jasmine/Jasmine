@@ -4,6 +4,11 @@ public class ListBookCriteria {
 	private int page;
 	private int perPageNum;
 	
+	public ListBookCriteria(int page, int perPageNum) {
+		this.page = page;
+		this.perPageNum = perPageNum;
+	}
+	
 	public int getPageStart()
 	{
 		return (this.page-1)*perPageNum;

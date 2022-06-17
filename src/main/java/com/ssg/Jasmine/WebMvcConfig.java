@@ -58,7 +58,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/book/detail_error").setViewName("book/detail_error");
 		registry.addViewController("/book/register").setViewName("book/register");
 		registry.addViewController("/book/update").setViewName("book/update");
+		registry.addViewController("/book/cart").setViewName("book/cart");
+		
+		
 		registry.addViewController("/order/payment_detail").setViewName("order/detail");
+	
+		registry.addViewController("/cart/list").setViewName("cart/list");
+	
 	}
 	
 //	@Override

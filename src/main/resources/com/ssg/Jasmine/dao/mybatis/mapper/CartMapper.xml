@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.CartMapper">
+  <cache />
+  
+  <!-- 아직 x-->
+  <select id="getCartItem" resultType="com.ssg.Jasmine.domain.CartItem">
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE
+    FROM BOOK 
+    WHERE BOOKID = #{bookId}
+  </select> 
+  
+
+  <insert id="registerCartItem" parameterType="com.ssg.Jasmine.domain.CartItem">
+  
+
+  	INSERT INTO CartItem 
+  	( CARTITEMID, QUANTITY, CARTID, BOOKID)
+  	VALUES 
+  	(SEQ_cartITEMID.nextval, #{quantity}, #{cartId}, #{bookId}) 
+
+  </insert>
+
+  
+   <delete id="deleteCartItem" parameterType="com.ssg.Jasmine.domain.CartItem">
+  	DELETE cartitem 
+  	WHERE cartitemid = #{cartitemid}
+  </delete>
+  
+    <!-- 아직 x-->
+  <select id="getCartItemListbyUserId" parameterType="String" resultType="com.ssg.Jasmine.domain.CartItem">
+    SELECT cartitem.CARTITEMID, cartitem.QUANTITY, cartitem.CARTID, cartitem.BOOKID
+    FROM CartItem, cart
+	where cart.userid=#{param1} AND cartitem.cartId = cart.cartid
+	order by cartitem.cartItemId desc
+  </select> 
+  
+  <select id="getCartIdByUserId" parameterType="String" resultType="int">
+  	SELECT CARTID
+  	FROM CART
+  	WHERE USERID=#{param1}
+  </select>
+  
+   <!--<select id="getBookRecent3" resultType="com.ssg.Jasmine.domain.Book">
+   	 <![CDATA[
+	    SELECT *
+		FROM (SELECT * FROM BOOK ORDER BY bookid DESC)
+		WHERE rownum <= 3
+	  ]]>
+  </select> 
+  
+    <select id="getBookByUserId" resultType="com.ssg.Jasmine.domain.Book">
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG, REGISTERDATE
+    FROM BOOK 
+    WHERE USERID = #{userId}
+  </select> 
+  
+  <select id="getSearchBookList" parameterType="String" resultType="com.ssg.Jasmine.domain.Book">
+  	SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE
+  	FROM BOOK
+  	WHERE title LIKE '%'||#{param1}||'%' or author LIKE '%'||#{param1}||'%' or isbn LIKE '%'||#{param1}||'%' or publisher LIKE '%'||#{param1}||'%'
+  	ORDER BY BOOKID DESC
+  </select> -->
+ 
+  
+
+</mapper>

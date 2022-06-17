@@ -44,7 +44,10 @@
 			value="/WEB-INF/jsp/tiles/book/{1}.jsp" />
 	</definition> 
 	
-	
+	<definition name="cart/*" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/cart/{1}.jsp" />
+	</definition> 
 	
 	
 	

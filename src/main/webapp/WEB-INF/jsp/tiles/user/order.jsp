@@ -6,10 +6,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<div class="container">
 	<h1>My Page</h1>
-	<h3>order 💳</h3>
-</div>
+	<h3>order 💳</h3><br>
+	<h3>auction</h3>
 
 	<div class="row">
 			<div class="col-lg-4 col-md-6 mb-4">

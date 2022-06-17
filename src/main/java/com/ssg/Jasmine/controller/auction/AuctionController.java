@@ -51,8 +51,34 @@ public class AuctionController {
 	@RequestMapping(value="/auction/list", method=RequestMethod.GET)
 	public ModelAndView auctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView(AUCTION_LIST);
-		List<Auction> auctionList = null;
-		auctionList = auctionService.getAuctionList();
+		List<Auction> auctionList = auctionService.getAuctionList();
+		
+		String keyword = request.getParameter("keyword");
+		String isSortWithProceeding = request.getParameter("sortByProceed");
+		String isSortWithClosed = request.getParameter("sortByClosed");
+		
+		// proceeding만 정렬
+		if(isSortWithProceeding != null && isSortWithProceeding.equals("true")) {
+			if(keyword.equals("")) {		//그냥 proceed로 정렬
+				auctionList = auctionService.getAuctionProceedList(isSortWithProceeding);
+			}
+			else {	// 검색 후 proceed로 정렬
+				auctionList = auctionService.getSearchProceedAuctionList(keyword);
+				mav.addObject("keyword", keyword);
+			}
+		}
+		
+		// closed만 정렬
+		if(isSortWithClosed != null && isSortWithClosed.equals("true")) {
+			if(keyword.equals("")) {	//그냥 closed로 정렬
+				auctionList = auctionService.getAuctionClosedList(isSortWithClosed);
+			}
+			else {		// 검색 후 closed으로 정렬
+				auctionList = auctionService.getSearchClosedAuctionList(keyword);
+				mav.addObject("keyword", keyword);
+			}
+		}
+		
 		
 		if (auctionList == null) {
 			System.out.println("[DetailAuctionController] auctionList가 null");
@@ -83,48 +109,6 @@ public class AuctionController {
 		}
 		return new ModelAndView(AUCTION_LIST, "auctionList", pagedAuctionList);
 	}
-	
-
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView handleRequest(HttpServletRequest request) throws Exception {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		List<Auction> auctionList = auctionService.getAuctionList();
-		String keyword = request.getParameter("keyword");
-		String isSortWithProceeding = request.getParameter("sortByProceed");
-		String isSortWithClosed = request.getParameter("sortByClosed");
-		
-		// proceeding만 정렬
-		if(isSortWithProceeding != null && isSortWithProceeding.equals("true")) {
-			if(keyword != null) {	// 검색 후 proceed로 정렬
-				auctionList = auctionService.getSearchProceedAuctionList(keyword);
-				mav.addObject("keyword", keyword);
-			}
-			else {		//그냥 proceed로 정렬
-				auctionList = auctionService.getAuctionProceedList(isSortWithProceeding);
-			}
-		}
-		
-		// closed만 정렬
-		if(isSortWithClosed != null && isSortWithClosed.equals("true")) {
-			if(keyword != null) {	// 검색 후 closed으로 정렬
-				auctionList = auctionService.getSearchClosedAuctionList(keyword);
-			}
-			else {		//그냥 closed로 정렬
-				auctionList = auctionService.getAuctionClosedList(isSortWithClosed);
-			}
-		}
-		
-		mav.addObject("auctionList", auctionList);
-		mav.addObject("listSize", ((List<Auction>) auctionList).size());
-		mav.setViewName(successViewName); 
-		return mav;
-	}
-	
-	
-	
-	
 	
 	@RequestMapping(value="/auction/list", method=RequestMethod.POST)
 	public ModelAndView searchAuctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){

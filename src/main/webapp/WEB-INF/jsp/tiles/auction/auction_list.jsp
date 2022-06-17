@@ -11,7 +11,21 @@
 </br>
 <div class="container">
 	<div align="center">
+	
+
 		<form method="POST" action="/auction/list" >
+		<a id="a-btn"
+			href="<c:url value='/auction/list'>
+						<c:param name="sortByProceed" value="true" />
+						<c:param name="keyword" value="${keyword}" />
+				</c:url>">🔻 Proceeding only
+		</a>&nbsp
+		<a id="a-btn"
+			href="<c:url value='/auction/list'>
+						<c:param name="sortByClosed" value="true" />
+						<c:param name="keyword" value="${keyword}" />
+				</c:url>">🔻 Closed only
+		</a>&nbsp 
 			<input id="search-auction-form" type="text" name="keyword" class="form-control" />
 			<input id="search-auction-form" type="submit" value="검색" id="register-btn">
 		</form>
@@ -24,18 +38,7 @@
 	</c:if>	 <br />
 	<br />
 	
-	<a id="a-btn"
-			href="<c:url value='/auction/list'>
-						<c:param name="sortByProceed" value="true" />
-						<c:param name="keyword" value="${keyword}" />
-				</c:url>">🔻 Proceeding only
-		</a>&nbsp
-		<a id="a-btn"
-			href="<c:url value='/auction/list'>
-						<c:param name="sortByClosed" value="true" />
-						<c:param name="keyword" value="${keyword}" />
-				</c:url>">🔻 Closed only
-		</a>&nbsp 
+	
 
 	<div>
 		<c:forEach var="auction" items="${auctionList.pageList}" varStatus="status">

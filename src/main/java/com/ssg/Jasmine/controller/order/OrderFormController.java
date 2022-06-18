@@ -22,12 +22,14 @@ import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Bid;
 import com.ssg.Jasmine.domain.Book;
+import com.ssg.Jasmine.domain.CartItem;
 import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.BidService;
 import com.ssg.Jasmine.service.BookService;
+import com.ssg.Jasmine.service.CartService;
 import com.ssg.Jasmine.service.OrderService;
 import com.ssg.Jasmine.service.SuccessBidderService;
 import com.ssg.Jasmine.service.UserService;
@@ -55,6 +57,8 @@ public class OrderFormController {
 	UserService userService;
 	@Autowired
 	BookService bookService;
+	@Autowired
+	CartService cartService;
 	
 	@ModelAttribute("orderForm")
 	public OrderForm formBacking(HttpServletRequest request) {
@@ -149,6 +153,14 @@ public class OrderFormController {
 			} else {
 				mav.addObject("message", "결제가 성공적으로 완료되었습니다.");
 				book.setOrderState("success");
+				
+				// 결제 완료 시 카트에 담긴 아이템 삭제
+				int bookId = order.getBookId();
+				String userId = order.getUserId();
+				List<CartItem> cartItems = cartService.getCartItemByBookIdAndUserId(bookId, userId);
+				for(CartItem cartItem : cartItems) {
+					cartService.deleteCartItem(cartItem.getCartItemId());
+				}
 			}
 		}
 		

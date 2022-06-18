@@ -15,11 +15,7 @@ public class CartServiceImpl implements CartService{
 	@Autowired
 	private CartDao cartDao;
 	
-	@Override
-	public CartItem getCartItem(int cartId) {
-		// TODO Auto-generated method stub
-		return cartDao.getCartItem(cartId);
-	}
+	
 
 	@Override
 	public int registerCartItem(CartItem cartItem) {
@@ -50,6 +46,12 @@ public class CartServiceImpl implements CartService{
 	public int registerCartbyUserId(String userId) {
 		// TODO Auto-generated method stub
 		return cartDao.registerCartbyUserId(userId);
+	}
+
+	@Override
+	public List<CartItem> getCartItemByBookIdAndUserId(int bookId, String userId) {
+		// TODO Auto-generated method stub
+		return cartDao.getCartItemByBookIdAndUserId(bookId, userId);
 	}
 	
 

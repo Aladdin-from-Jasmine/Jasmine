@@ -11,7 +11,9 @@ public interface OrderService {
 	
 	public Order getOrder(int orderId); // DetailOrderController에서 사용
 	
-	public int createOrder(Order order);
+	public int createAuctionOrder(Order order);
+	
+	public int createBookOrder(Order order);
 	
 	public int getOrderByAuctionId(int auctionId);
 	

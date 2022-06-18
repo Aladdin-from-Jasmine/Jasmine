@@ -28,7 +28,6 @@ public class RegisterUserFormController {
 	
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private CartService cartService;
 
@@ -59,7 +58,6 @@ public class RegisterUserFormController {
 			return formViewName;
 		} else {
 			userService.createUser(userForm.getUser());
-			
 			cartService.registerCartbyUserId(userForm.getUser().getUserId());
 			
 			model.addAttribute("loginForm", new LoginForm());

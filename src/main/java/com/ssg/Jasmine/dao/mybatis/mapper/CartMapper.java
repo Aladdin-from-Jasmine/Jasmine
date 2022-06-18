@@ -13,7 +13,7 @@ public interface CartMapper {
 	List<CartItem> getCartItemByBookIdAndUserId (@Param("bookId") int bookId, @Param("userId") String userId);
 	
 	int registerCartItem(CartItem cartItem);
-	
+
 	void deleteCartItem(int cartId);
 	
 	List<CartItem> getCartItemListbyUserId(String userId);

@@ -4,12 +4,14 @@
 <mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.CartMapper">
   <cache />
   
+
   <select id="getCartItemByBookIdAndUserId" resultType="com.ssg.Jasmine.domain.CartItem">
     SELECT cartitem.CARTITEMID, cartitem.QUANTITY, cartitem.CARTID, cartitem.BOOKID
     FROM cartitem, cart
     WHERE cartitem.BOOKID = #{bookId} AND cart.userid=#{userId}
   </select> 
   
+
 
   <insert id="registerCartItem" parameterType="com.ssg.Jasmine.domain.CartItem">
   

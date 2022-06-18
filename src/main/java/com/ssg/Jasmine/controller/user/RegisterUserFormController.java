@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ssg.Jasmine.service.CartService;
 import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.validator.UserFormValidator;
 
@@ -27,6 +28,9 @@ public class RegisterUserFormController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CartService cartService;
 
 	@ModelAttribute("userForm")
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
@@ -55,6 +59,9 @@ public class RegisterUserFormController {
 			return formViewName;
 		} else {
 			userService.createUser(userForm.getUser());
+			
+			cartService.registerCartbyUserId(userForm.getUser().getUserId());
+			
 			model.addAttribute("loginForm", new LoginForm());
 
 			return successViewName;

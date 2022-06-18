@@ -30,10 +30,9 @@ public class BookForm implements Serializable {
 
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
+	}
 
 	public String getIsbn() {
-
-	public int getIsbn() {
 		return isbn;
 	}
 	public void setIsbn(String isbn) {

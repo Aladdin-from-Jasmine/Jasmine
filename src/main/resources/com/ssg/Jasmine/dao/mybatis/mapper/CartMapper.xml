@@ -22,6 +22,16 @@
 
   </insert>
 
+	<insert id="registerCartbyUserId">
+  
+
+  	INSERT INTO cart 
+  	( cartid, totalprice, userid)
+  	VALUES 
+  	(SEQ_cartID.nextval, 0, #{userId}) 
+
+  </insert>
+
   
    <delete id="deleteCartItem" parameterType="com.ssg.Jasmine.domain.CartItem">
   	DELETE cartitem 

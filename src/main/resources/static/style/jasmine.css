@@ -192,6 +192,10 @@ h2, h1, h3 {
 	padding: 2% 0;
 }
 
+.book-form-sub {
+	padding: 2% 0;
+}
+
 #auction-des-form {
 	border-radius: 20px;
 	width:500px;
@@ -212,12 +216,11 @@ h2, h1, h3 {
 }
 
 #bookForm {
-		text-align: center;
-	
+	text-align: center;
 	padding: 20px;
 	background-color: rgb(231, 226, 235);
 	border-radius: 70px;
-	width:40%;
+	
 	left: 50%;
 
 	

@@ -59,6 +59,7 @@ ISBN
 </div>
 
 <div class="auction-form-sub">
+
 <br>
 카테고리
 <form:select path="categoryId" class="form-control">

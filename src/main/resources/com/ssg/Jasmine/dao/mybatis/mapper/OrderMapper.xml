@@ -91,6 +91,12 @@
 	WHERE bookId = #{param1}
   </select>
   
+   <select id="getOrderByBookId2" parameterType="int" resultType="Order">
+  	SELECT *
+	FROM Order_
+	WHERE bookId = #{bookId}
+  </select>
+  
   <delete id="deleteOrderByUserId" parameterType="Integer">
   	DELETE FROM Order_
   	WHERE USERID = #{userId}

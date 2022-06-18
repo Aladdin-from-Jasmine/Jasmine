@@ -19,6 +19,8 @@ public interface OrderDao {
 	
 	  int getOrderByBookId(int bookId) throws DataAccessException;
 	  
+	  Order getOrderByBookId2(int bookId) throws DataAccessException;
+	  
 	  List<Order> getOrderListByUserId(String userId) throws DataAccessException;
 	  
 	  List<Auction> getAuctionListByUserId(String userId) throws DataAccessException;

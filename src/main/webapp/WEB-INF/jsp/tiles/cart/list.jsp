@@ -36,8 +36,8 @@
 								<td style="width:10%">가격</td>
 
 								<td style="width:20%">등록날짜</td>
-								<td style="width:20%">개별결제</td>
-								<td style="width:10%">삭제</td>
+								<td style="width:15%">개별결제</td>
+								<td style="width:15%">삭제</td>
 
 							</tr>
 							<c:forEach var="book" items="${bookList}">
@@ -61,7 +61,7 @@
 									<td><a  href="<c:url value='/order/book/create'>
 		                                		 <c:param name="bookId" value="${book.bookId}"/>
 		                               		</c:url>">결제하기</a></td>
-						<td onClick="cartDelete(${book.bookId})">삭제하기</td>
+						<td onClick="cartDelete(${book.bookId})">❌</td>
 
 								</tr>
 							</c:forEach>

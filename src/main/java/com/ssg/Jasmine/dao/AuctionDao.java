@@ -15,9 +15,9 @@ public interface AuctionDao {
 	
 	Auction getAuction(int auctionId) throws DataAccessException;
 	
-//	Return auctionID
+
 	int createAuction(Auction auction) throws DataAccessException;
-//	Return auctionID
+
 	int updateAuction(Auction auction) throws DataAccessException;
 	
 	int updateStateAuction(int auctionId, String state) throws DataAccessException;
@@ -41,16 +41,12 @@ public interface AuctionDao {
 	void increaseCount(Auction auction) throws DataAccessException;
 	
 	List<Auction> getRecentAuctionList() throws DataAccessException;
-//	스케줄러
-	void closeEvent(Date curTime);
 	
 	public String getSuccessBidderUserId(int auctionId);
 	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);
 	
-//	keyword로 검색
 	public List<Auction> auctionListByKeyword(String keyword);
-	
 
 	// 검색 후 proceed로 정렬
 	List<Auction> getSearchProceedAuctionList(String keyword) throws DataAccessException;
@@ -63,7 +59,5 @@ public interface AuctionDao {
 
 	// 그냥 closed로 정렬
 	List<Auction> getAuctionClosedList(String sortItem) throws DataAccessException;	
-
-
 
 }

@@ -25,9 +25,6 @@ import com.ssg.Jasmine.service.UserService;
 @Controller
 @RequestMapping("/book/detail/{bookId}")
 public class DetailBookController {
-
-	//private static final String BOOK_LIST = "book/detail";
-
 	@Autowired
 	BookService bookService;
 	@Autowired
@@ -37,9 +34,11 @@ public class DetailBookController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView bookDetail(@PathVariable("bookId") int bookId, HttpServletRequest request, HttpSession session) {
+		System.out.println("여기님");
 		Book book =  bookService.getBookByBookId(bookId);
 		String genre = categoryService.getGenreByCategoryId(book.getCategoryId());
-
+		System.out.println("저자:" + book.getAuthor());
+	
 		boolean isUser = false;
 		boolean isManager = false;
 		
@@ -69,7 +68,6 @@ public class DetailBookController {
 			
 			return mav;
 		} catch (Exception e) {
-			// TODO: handle exception
 			return new ModelAndView("book/detail_error");
 		}
 	}

@@ -23,7 +23,7 @@ public interface BidMapper {
 	
 	Bid getSuccessBidByAuctionId(int auctionId);
 
-	Bid getBidByUserIdAndAuctionId(int userId, int auctionId); // 수정위해(bid 참여한 적이 있는지 확인위해).
+	Bid getBidByUserIdAndAuctionId(int userId, int auctionId); 
 	
 	void updateBid(Bid bid);
 	

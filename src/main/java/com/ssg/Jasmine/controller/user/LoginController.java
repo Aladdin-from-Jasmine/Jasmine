@@ -26,13 +26,8 @@ public class LoginController {
 
 	@Value("user/login")
 	private String formViewName;
-
 	@Autowired
-	private UserService userService;
-
-	//@Autowired
-	private AuctionService auctionService;
-	
+	private UserService userService;	
 	@Autowired
 	private Authenticator authenticator;
 
@@ -52,14 +47,13 @@ public class LoginController {
 
 		new LoginFormValidator().validate(loginForm, bindingResult);
 
-		// 검증 오류 발생 시 다시 form view로 이동
 		if (bindingResult.hasErrors()) {
 			return new ModelAndView(formViewName);
 		}
 		User user = userService.getUser(loginForm.getUserId(), loginForm.getPassword());
 
 		try {
-			authenticator.authenticate(loginForm); // email과 password가 맞는지 검증
+			authenticator.authenticate(loginForm);
 			UserSession userSession = new UserSession(user);
 			session.setAttribute("userSession", userSession);
 			
@@ -71,11 +65,11 @@ public class LoginController {
 			session.setAttribute("isManager", isManager);
 			
 			return new ModelAndView("redirect:/index");
-		} catch (AuthenticationException e) { // 검증 실패 시
+		} catch (AuthenticationException e) {
 			ModelAndView mav = new ModelAndView();
-			bindingResult.reject(e.getMessage(), new Object[] { loginForm.getUserId() }, null); // error message
+			bindingResult.reject(e.getMessage(), new Object[] { loginForm.getUserId() }, null); 
 			mav.addObject("loginForm", loginForm);
-			mav.setViewName(formViewName); // login form 이동
+			mav.setViewName(formViewName);
 			return mav;
 		}
 		

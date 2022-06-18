@@ -16,7 +16,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.validation.Validator;
 
 import com.ssg.Jasmine.domain.Bid;
 import com.ssg.Jasmine.service.BidService;
@@ -25,8 +24,6 @@ import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.service.AuctionService;
-
-
 
 @Controller
 @SessionAttributes("bidForm")	
@@ -54,7 +51,7 @@ public class BidFormController {
 			@Valid @ModelAttribute("bidForm") BidForm bidForm, BindingResult result, 
 			HttpServletResponse response, HttpSession session, Model model, SessionStatus sessionStatus) throws Exception {
 		int auctionId = bidForm.getBid().getAuctionId();
-//		BidForm객체 validation
+
 		Auction auction = auctionService.getAuction(auctionId);
 		model.addAttribute("writer", userService.getUserByUserId(auction.getUserId()).getUsername());
 		model.addAttribute("isWriter", false);
@@ -69,7 +66,6 @@ public class BidFormController {
 			}
 		}
 
-//		BidForm객체 validation
 		if (result.hasErrors()) {
 			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId);
 			if (maxPriceBid == null) {
@@ -84,14 +80,12 @@ public class BidFormController {
 			return AUCTION_DETAIL;
 		}
 		
-//		bid 생성
 		UserSession userSession = (UserSession)session.getAttribute("userSession");
 		String userId = userSession.getUser().getUserId();
 		
 		java.util.Date utilDate = new java.util.Date();
 		java.sql.Date bidDate = new java.sql.Date(utilDate.getTime());
 
-//		해당 경매에 한 번이라도 입찰한 적이 있으면 updateBide(), 없으면 createBid()를 해준다.
 		Bid bid = bidService.getBidByUserIdAndAuctionId(userId, auctionId);
 		if (bid == null) {
 			bid = new Bid(userId, auctionId, bidForm.getBid().getBidPrice(), bidDate);
@@ -101,11 +95,9 @@ public class BidFormController {
 			bidService.updateBid(bid);
 		}
 
-//		Auction객체의 최고 금액 변경 후 Auction객체 다시 가져와 넘겨주기
 		int updatedAutionId = auctionService.updateAuctionMaxPrice(bidForm.getBid().getBidPrice(), auctionId); // auction table maxPrice update
 		model.addAttribute("auction", auctionService.getAuction(updatedAutionId));
 		
-//		auction_detail.jsp에 넘겨줄 model 값 설정
 		model.addAttribute("date_maxBid", bid.getBidDate());
 		User user_maxBid = userService.getUserByUserId(bid.getUserId());
 		model.addAttribute("user_maxBid", user_maxBid.getUsername());

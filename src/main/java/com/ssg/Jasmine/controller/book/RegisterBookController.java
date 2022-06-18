@@ -41,19 +41,15 @@ import com.ssg.Jasmine.validator.BookFormValidator;
 public class RegisterBookController implements ApplicationContextAware{
 	@Value("/images/")
 	private String uploadDirLocal;
-//	파일 업로드 위한 변수
 	private WebApplicationContext context;	
 	private String uploadDir;
 	
 	@Autowired
 	BookService bookService;
 	@Autowired
-	CategoryService categoryService;
+	CategoryService categoryService;	
 	
-//	@Autowired
-//	UserService userService;
-	
-	@Override					// life-cycle callback method
+	@Override					
 	public void setApplicationContext(ApplicationContext appContext)
 		throws BeansException {
 		this.context = (WebApplicationContext) appContext;
@@ -73,14 +69,6 @@ public class RegisterBookController implements ApplicationContextAware{
 		return new BookForm();
 	}
 	
-//	@RequestMapping(method=RequestMethod.GET)
-//	public String showForm(@ModelAttribute("bookForm") BookForm bookForm) {
-//		System.out.println("dd");
-//		return "book/register";
-//		
-//	}
-	
-	//GET
 	@RequestMapping(method = RequestMethod.GET)
 	public void showRegisterForm(ModelMap model) {
 		BookForm bookForm=new BookForm();
@@ -89,8 +77,6 @@ public class RegisterBookController implements ApplicationContextAware{
 		System.out.println("get 호출됨");
 	}
 	
-	
-	//POST
 	@RequestMapping(method=RequestMethod.POST)
 	public String submit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("bookForm") BookForm bookForm, BindingResult result,
@@ -143,12 +129,10 @@ public class RegisterBookController implements ApplicationContextAware{
 			sessionStatus.setComplete();
 			
 			
-			return "redirect:/book/detail/"+book.getBookId(); //리다이렉트 하는게 나을듯?
+			return "redirect:/book/detail/"+book.getBookId();
 		}
 		
-		
-		
-		
+
 	}
 	
 	private String uploadFile(MultipartFile report) {

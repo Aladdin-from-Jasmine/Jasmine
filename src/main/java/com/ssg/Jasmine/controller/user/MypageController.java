@@ -117,8 +117,7 @@ public class MypageController {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 		
 		List<Order> orderList = orderService.getOrderListByUserId(userSession.getUser().getUserId());
-		
-		
+			
 		if (orderList == null) {
 			System.out.println("[MypageController] orderList가 null");
 		} else {

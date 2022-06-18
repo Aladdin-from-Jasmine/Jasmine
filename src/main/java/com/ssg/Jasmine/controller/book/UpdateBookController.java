@@ -36,7 +36,6 @@ import com.ssg.Jasmine.validator.BookFormValidator;
 public class UpdateBookController implements ApplicationContextAware{
 	@Value("/images/")
 	private String uploadDirLocal;
-//	파일 업로드 위한 변수
 	private WebApplicationContext context;	
 	private String uploadDir;
 	
@@ -72,8 +71,7 @@ public class UpdateBookController implements ApplicationContextAware{
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		
 		Book book = bookService.getBookByBookId(bookId);
-		
-		
+			
 		if(userId.equals(book.getUserId())) {
 			BookForm bookForm=new BookForm();
 			
@@ -86,14 +84,9 @@ public class UpdateBookController implements ApplicationContextAware{
 			bookForm.setAuthor(book.getAuthor());
 			bookForm.setPublisher(book.getPublisher());
 			bookForm.setImg(book.getImg());
-			System.out.println("이미지"+book.getImg());
 			
 			model.addAttribute("bookForm",bookForm);
 			model.addAttribute("book", book);
-			
-			
-			
-			System.out.println("get 호출됨");
 			
 			return "book/update";
 		}
@@ -101,16 +94,13 @@ public class UpdateBookController implements ApplicationContextAware{
 			model.addAttribute("bookId", bookId);
 			return "book/update_error";
 		}
-
-			
-		
 	}
 	
 	@RequestMapping(value="/book/update", method=RequestMethod.POST)
 	public String submit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("bookForm") BookForm bookForm, BindingResult result,
 			Model model, SessionStatus sessionStatus) throws Exception {
-		
+
 		new BookFormValidator().validate(bookForm, result);
 
 		if(result.hasErrors()) {
@@ -161,7 +151,7 @@ public class UpdateBookController implements ApplicationContextAware{
 		}
 		
 		
-		
+
 	}
 	
 	private String uploadFile(MultipartFile report) {

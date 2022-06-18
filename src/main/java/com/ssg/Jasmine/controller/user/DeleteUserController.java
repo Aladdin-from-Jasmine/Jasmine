@@ -31,7 +31,6 @@ public class DeleteUserController {
 		UserSession userSession = (UserSession) session.getAttribute("userSession");
 		User user = userSession.getUser();
 		
-		// 작성한 경매, 공동구매 중에 마감되지 않은 것이 있다면 회원탈퇴 불가
 		if (userService.isUnClosedExist(user.getUserId())) {
 			mav.addObject("deleteComplete", NOT_ALLOWED);
 			mav.addObject("userForm", new UserForm(userService.getUserByUserId(userSession.getUser().getEmail())));
@@ -39,7 +38,6 @@ public class DeleteUserController {
 			return mav;
 		} 
 		
-		// User 삭제
 		int result = userService.deleteUser(userSession.getUser());
 		
 		if (result != SUCCESS) {

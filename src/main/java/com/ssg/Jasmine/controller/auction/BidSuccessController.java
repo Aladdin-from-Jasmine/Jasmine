@@ -67,10 +67,7 @@ public class BidSuccessController {
 
 			UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
 			session.setAttribute("bidForm", new BidForm());
-		
-			// Bid Success
-			//Order order = new Order();
-			//order.initOrder(user.getUser(), auction);
+
 			Bid maxPriceBid = bidService.getBidByMaxPrice(auction.getMaxPrice(), auctionId); 
 			SuccessBidder successBidder = new SuccessBidder(maxPriceBid.getBidId(), maxPriceBid.getUserId(), auction.getAuctionId());
 			successBidderService.createSuccessBidder(successBidder);	

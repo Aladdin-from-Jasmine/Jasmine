@@ -12,7 +12,9 @@ public interface OrderDao {
 	  Order getOrder(int orderId) throws DataAccessException;
 
 	  void createOrder(Order order) throws DataAccessException;
-
+	  
+	  int getOrderByAuctionId(int auctionId) throws DataAccessException;
+	  
 	  Order getOrderWithLineGroupBuys(int orderId) throws DataAccessException;
 		
 	  List<Order> getOrderListByUserId(String userId) throws DataAccessException;

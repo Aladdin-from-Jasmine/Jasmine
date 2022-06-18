@@ -129,8 +129,7 @@ function orderAuction() {
                            class="form-control" readonly="true" />&nbsp;&nbsp;
                         <input type="button" value="신청하기" onClick="bid()" disabled>
 
-                        <c:if
-                           test="${completeOrder ne 1 && successBidderUserId eq userSession.user.userId}">
+                        <c:if test="${completeOrder ne 1 && successBidderUserId eq userSession.user.userId}">
                                  &nbsp;&nbsp; <!-- 아래 버튼은 낙찰자만 볼 수 있도록 -->
                            <input type="button" value="결제하기" onClick="orderAuction()">
                         </c:if>

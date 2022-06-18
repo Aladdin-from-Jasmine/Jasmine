@@ -50,8 +50,6 @@ public interface AuctionService {
 	
 	List<Auction> getRecentAuctionList();
 	
-	public void deadLineScheduler(Date endDate, int auctionId);
-	
 	public String getSuccessBidderUserId(int auctionId);
 	
 	public SuccessBidder getSuccessBidderByAuctionId(int auctionId);

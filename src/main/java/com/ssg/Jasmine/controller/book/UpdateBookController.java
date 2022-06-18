@@ -35,7 +35,6 @@ import com.ssg.Jasmine.service.CategoryService;
 public class UpdateBookController implements ApplicationContextAware{
 	@Value("/images/")
 	private String uploadDirLocal;
-//	파일 업로드 위한 변수
 	private WebApplicationContext context;	
 	private String uploadDir;
 	
@@ -71,8 +70,7 @@ public class UpdateBookController implements ApplicationContextAware{
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		
 		Book book = bookService.getBookByBookId(bookId);
-		
-		
+			
 		if(userId.equals(book.getUserId())) {
 			BookForm bookForm=new BookForm();
 			
@@ -85,14 +83,9 @@ public class UpdateBookController implements ApplicationContextAware{
 			bookForm.setAuthor(book.getAuthor());
 			bookForm.setPublisher(book.getPublisher());
 			bookForm.setImg(book.getImg());
-			System.out.println("이미지"+book.getImg());
 			
 			model.addAttribute("bookForm",bookForm);
 			model.addAttribute("book", book);
-			
-			
-			
-			System.out.println("get 호출됨");
 			
 			return "book/update";
 		}
@@ -100,9 +93,6 @@ public class UpdateBookController implements ApplicationContextAware{
 			model.addAttribute("bookId", bookId);
 			return "book/update_error";
 		}
-
-			
-		
 	}
 	
 	@RequestMapping(value="/book/update", method=RequestMethod.POST)
@@ -122,13 +112,11 @@ public class UpdateBookController implements ApplicationContextAware{
 		String userId = user.getUser().getUserId();
 		session.setAttribute("bookForm", bookForm);
 		
-		//String bookId =bookForm.getTitle();
 		model.addAttribute("userId",userId);
 		model.addAttribute("bookForm", bookForm);
 		
-		//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
-		
 		Book book = new Book();
+		
 		book.setBookId(bookId);
 		book.setIsbn(bookForm.getIsbn());
 		book.setPrice(bookForm.getPrice());
@@ -139,18 +127,9 @@ public class UpdateBookController implements ApplicationContextAware{
 		book.setUserId(userId);
 		book.setImg(this.uploadDirLocal + filename);
 		
-		System.out.println("img: "+book.getImg());
-		
-		
-		
-		System.out.println(userId);
-		
 		bookService.updateBook(book);
-		
-		
-		
-		
-		return "redirect:/book/list"; //리다이렉트 하는게 나을듯?
+	
+		return "redirect:/book/list"; 
 	}
 	
 	private String uploadFile(MultipartFile report) {

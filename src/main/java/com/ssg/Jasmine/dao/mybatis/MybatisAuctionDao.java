@@ -18,10 +18,8 @@ public class MybatisAuctionDao implements AuctionDao {
 
 	private static final String closed = "closed";
 	
-//	@Autowired(required=false)
 	@Autowired
 	protected AuctionMapper auctionMapper;
-//	@Autowired(required=false)
 	@Autowired
 	protected SuccessBidderMapper successBidderMapper;
 	

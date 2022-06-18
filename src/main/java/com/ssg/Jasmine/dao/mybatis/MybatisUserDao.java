@@ -48,20 +48,5 @@ public class MybatisUserDao implements UserDao {
 		return null;
 	}
 	
-//	public List<Order> getAuctionOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
-//		return userMapper.getAuctionOrderList(orderId);
-//	}
-//	
-//	public List<Order> getGroupBuyOrderList(int orderId) throws DataAccessException { // 마이페이지 결제 목록 보기
-//		return userMapper.getGroupBuyOrderList(orderId);
-//	}
-	
-//	public List<GroupBuy> getGroupBuyList(int orderId) throws DataAccessException { // 마이페이지 공동구매 등록 목록 보기
-//		return userMapper.getGroupBuyList(orderId);
-//	}
-//	
-//	public List<Auction> getAuctionList(int orderId) throws DataAccessException { // 마이페이지 경매 등록 목록 보기
-//		return userMapper.getAuctionList(orderId);
-//	}
 }
 

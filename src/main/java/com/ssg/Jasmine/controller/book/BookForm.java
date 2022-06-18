@@ -17,6 +17,7 @@ public class BookForm implements Serializable {
 	private String publisher;
 	private String img;
 	private MultipartFile report;
+	private String description;
 
 	
 	public BookForm bookForm(){
@@ -85,4 +86,13 @@ public class BookForm implements Serializable {
 		this.report = report;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	
 }

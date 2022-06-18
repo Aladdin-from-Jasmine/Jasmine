@@ -33,6 +33,8 @@ public class BookFormValidator implements Validator{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "author", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "publisher", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoryId", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "report", "required");
 		
 		
 		

@@ -116,7 +116,7 @@ public class RegisterBookController implements ApplicationContextAware{
 			book.setPublisher(bookForm.getPublisher());
 			book.setUserId(userId);
 			book.setImg(this.uploadDirLocal + filename);
-			
+			book.setDescription(bookForm.getDescription());
 			System.out.println("img: "+book.getImg());
 			
 			

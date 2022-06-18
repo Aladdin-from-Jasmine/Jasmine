@@ -84,6 +84,7 @@ public class UpdateBookController implements ApplicationContextAware{
 			bookForm.setAuthor(book.getAuthor());
 			bookForm.setPublisher(book.getPublisher());
 			bookForm.setImg(book.getImg());
+			bookForm.setDescription(book.getDescription());
 			
 			model.addAttribute("bookForm",bookForm);
 			model.addAttribute("book", book);
@@ -135,7 +136,9 @@ public class UpdateBookController implements ApplicationContextAware{
 			book.setPublisher(bookForm.getPublisher());
 			book.setUserId(userId);
 			book.setImg(this.uploadDirLocal + filename);
+			book.setDescription(bookForm.getDescription());
 			
+			System.out.println("desc"+bookForm.getDescription());
 			System.out.println("img: "+book.getImg());
 			
 			

@@ -19,6 +19,7 @@ public class Book implements Serializable{
 	private String img;
 	private MultipartFile report;
 	Date registerDate;
+	private String description;
 	
 	String orderState;
 
@@ -96,5 +97,10 @@ public class Book implements Serializable{
 	public void setOrderState(String orderState) {
 		this.orderState = orderState;
 	}
-	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

@@ -111,7 +111,19 @@
 					<td class="td2">
 						${book.author}
 					</td>
+				</tr>
+				
+				<tr>
+					<td class="td1">
+						<label for="isbn">내용</label></br>
+					</td>
+					<td class="td2">
+						${book.description}
+					</td>
 				</tr>	
+				
+				
+					
 			</table><br/>
 			<c:if test="${isUser==true || isManager==true}" >
 				<div class="form-group" align="center">

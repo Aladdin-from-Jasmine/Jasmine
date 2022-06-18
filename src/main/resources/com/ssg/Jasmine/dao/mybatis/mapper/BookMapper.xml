@@ -5,7 +5,7 @@
   <cache />
   
   <select id="getBookByBookId" resultType="com.ssg.Jasmine.domain.Book">
-    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE, description
     FROM BOOK 
     WHERE BOOKID = #{bookId}
   </select> 
@@ -17,10 +17,10 @@
   </selectKey>
   
   	INSERT INTO BOOK 
-  	( BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE)
+  	( BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE, DESCRIPTION)
   	VALUES 
   	(#{bookId}, #{isbn}, #{price}, #{title , jdbcType=VARCHAR}, 
-  	#{author, jdbcType=VARCHAR}, #{publisher, jdbcType=VARCHAR}, #{categoryId}, #{userId}, #{img}, SYSDATE) 
+  	#{author, jdbcType=VARCHAR}, #{publisher, jdbcType=VARCHAR}, #{categoryId}, #{userId}, #{img}, SYSDATE, #{description}) 
 
   </insert>
   
@@ -32,7 +32,8 @@
   		AUTHOR =#{author},
   		PUBLISHER =#{publisher},
   		CATEGORYID=#{categoryId},
-  		IMG=#{img}
+  		IMG=#{img},
+  		description=#{description}
   	WHERE BOOKID = #{bookId}
   </update>
   
@@ -42,7 +43,7 @@
   </delete>
   
   <select id="getBookList" resultType="com.ssg.Jasmine.domain.Book">
-    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG, REGISTERDATE
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG, REGISTERDATE, DESCRIPTION
     FROM BOOK
     ORDER BY BOOKID DESC
   </select> 
@@ -56,13 +57,13 @@
   </select> 
   
     <select id="getBookByUserId" resultType="com.ssg.Jasmine.domain.Book">
-    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG, REGISTERDATE
+    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID, USERID, IMG, REGISTERDATE, DESCRIPTION
     FROM BOOK 
     WHERE USERID = #{userId}
   </select> 
   
   <select id="getSearchBookList" parameterType="String" resultType="com.ssg.Jasmine.domain.Book">
-  	SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE
+  	SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE, DESCRIPTION
   	FROM BOOK
   	WHERE title LIKE '%'||#{param1}||'%' or author LIKE '%'||#{param1}||'%' or isbn LIKE '%'||#{param1}||'%' or publisher LIKE '%'||#{param1}||'%'
   	ORDER BY BOOKID DESC

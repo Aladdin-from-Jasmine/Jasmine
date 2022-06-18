@@ -64,6 +64,16 @@ ISBN
 </div>
 
 
+<div class="book-form-sub">
+<br>
+설명
+<form:input path="description" value="${description}" class="form-control"/>
+<form:errors path="description" class="error" />
+</div>
+
+
+
+
 <input type="submit" value="REGISTER" id="register-btn">
 			
  </form:form> 

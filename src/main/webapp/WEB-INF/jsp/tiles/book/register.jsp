@@ -21,6 +21,7 @@ action="/book/register" enctype="multipart/form-data">
 <div class="auction-form-sub">
 상품 사진
 <form:input type="file" path="report" /> 
+<form:errors path="report" class="error" />
 </div>
 
 
@@ -67,6 +68,13 @@ ISBN
 <form:options items="${genres}" itemValue="categoryId" itemLabel="genre"/>
 </form:select> 
 <form:errors path="categoryId" class="error" />
+</div>
+
+<div class="auction-form-sub">
+<br>
+설명
+<form:input path="description" class="description-form-control"/>
+<form:errors path="description" class="error" />
 </div>
 
 <input type="submit" value="REGISTER" id="register-btn">

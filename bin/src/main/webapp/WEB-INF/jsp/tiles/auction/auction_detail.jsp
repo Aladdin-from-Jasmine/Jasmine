@@ -11,7 +11,7 @@
 function deleteAuction() {
    if (confirm("경매를 삭제하시겠습니까?")) {
       location.href= "delete.do?auctionId=${auction.auctionId}";
-   }
+   }ㄴ
 }
 
 function updateAuction() {

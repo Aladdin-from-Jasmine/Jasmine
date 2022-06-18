@@ -23,11 +23,6 @@
 	        </p>
 	      </td>
 	     </tr>
-	     <!-- <tr>
-	      <td align="center" colspan="2">
-	        <p id="footer-copyright">© 2022. Jasmine Co. all rights reserved.</p>
-	      </td> 
-	    </tr> -->
 	  </table>
 	</div>
 </body>

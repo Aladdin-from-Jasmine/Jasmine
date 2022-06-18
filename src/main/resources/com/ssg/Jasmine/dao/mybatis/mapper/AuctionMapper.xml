@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- AuctionMapper 인터페이스의 package이름과 같아야 함 -->
 <mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.AuctionMapper">
   <cache />
   
@@ -25,8 +24,7 @@
   		<result property="bidPrice" column="bidPrice"/>
   	</collection>
   </resultMap>
-  
-
+ 
   <select id="getAuction" parameterType="java.lang.Integer" resultType="com.ssg.Jasmine.domain.Auction">  <!--   bid없는 Auction객체 위해 필요 -->
     SELECT auctionId, title, content_, img, startPrice, uploadDate, endDate, 
     		count, maxPrice, state, booktitle, bookauthor, bookpublisher, userId

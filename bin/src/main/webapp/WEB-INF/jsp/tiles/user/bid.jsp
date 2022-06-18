@@ -9,8 +9,6 @@
 <div class="container">
 	<h1>My Page</h1>
 	<h3>낙찰된 경매 ⌛</h3>
-</div>
-	<div>
 		<c:forEach var="auction" items="${auctionList}" varStatus="status">
 			<div id="auctionForm">
 				<table class="TB3" align="center">

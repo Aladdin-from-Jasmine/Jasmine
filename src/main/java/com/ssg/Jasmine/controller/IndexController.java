@@ -22,7 +22,7 @@ import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.service.BookService;
 
 @Controller
-@RequestMapping("/index")
+@RequestMapping(value = {"/index", "/"})
 public class IndexController {
 	
 	@Autowired

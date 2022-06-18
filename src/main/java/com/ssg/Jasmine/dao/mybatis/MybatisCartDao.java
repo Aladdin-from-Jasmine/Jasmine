@@ -28,12 +28,6 @@ public class MybatisCartDao implements CartDao{
 	}	
 
 	@Override
-	public int registerUserCart(String userId) {
-		// TODO Auto-generated method stub
-		return cartMapper.registerUserCart(userId);
-	}
-
-	@Override
 	public void deleteCartItem(int cartId) {
 		// TODO Auto-generated method stub
 		cartMapper.deleteCartItem(cartId);

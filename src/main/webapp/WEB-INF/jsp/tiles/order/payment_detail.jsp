@@ -6,6 +6,14 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<script>
+
+	function bookDetail(bookId) {
+		window.location.href = "http://localhost:8080/book/detail/"+ bookId;
+	}
+	
+</script>
+
 <h1>결제 내역</h1></br>
 							
 <div>
@@ -24,11 +32,17 @@
 		</c:if>
 		<c:if test="${empty order.auction}">
 			<div>
-				<h2 class="orderForm-h2" style="color: #f57ad4"><button disabled>책</button> &nbsp;
-					<a href="<c:url value='/book/detail'>
-								<c:param name="bookId" value="${order.book.bookId}" />
-							</c:url>"> ${order.book.title}</a>&nbsp;&nbsp;&nbsp;
-					TotalPrice : ${order.totalPrice}원</h2>
+			<h2 class="orderForm-h2">
+				<table>
+					<tr>
+						<td style="color:#2974ff; width:50%; text-align:center;" onClick="bookDetail(${order.book.bookId})">
+							<button disabled>책</button> &nbsp;
+							${order.book.title}
+						</td>
+						<th style="font-size:20px; color: #f57ad4; text-align:center;">totalPrice : ${order.totalPrice}원</th>
+					</tr>
+				</table>	
+			</h2>
 			</div>
 		</c:if>
 			<div id="orderForm">

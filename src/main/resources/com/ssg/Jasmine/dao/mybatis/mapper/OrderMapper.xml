@@ -55,12 +55,6 @@
   		SYSDATE, #{userId}, #{bookId})
   </insert>
   
-<!--   <select id="getGroupBuyId" parameterType="int" resultType="int">
-  	SELECT DISTINCT groupBuyId
-	FROM lineGroupBuys
-	WHERE orderId = #{orderId}
-  </select> -->
-  
   <select id="getAuctionId" parameterType="int" resultType="int">
   	SELECT s.auctionId
 	FROM successBidders s, Order_ o

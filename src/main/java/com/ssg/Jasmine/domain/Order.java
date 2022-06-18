@@ -1,7 +1,6 @@
 package com.ssg.Jasmine.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,30 +17,14 @@ public class Order implements Serializable {
 	int totalPrice;
 	Date orderDate;
 	String userId;
-	
-	// 추가
-	String status;
-	int bookId;
 
-	//	List<LineGroupBuy> lineGroupBuys;
-//	GroupBuy groupBuy;
+	String status;
+	
 	SuccessBidder successBidder;
 	Auction auction;
 	Book book;
-	
-	//int menuId; // auction과 groupBuy를 구분하기 위함.
-	//int groupBuyId;
+	int bookId;
 	int auctionId;
-	int totalQuantity; // groupBuy의 state를 update하기 위함
-
-	
-//	public int getGroupBuyId() {
-//		return groupBuyId;
-//	}
-//
-//	public void setGroupBuyId(int groupBuyId) {
-//		this.groupBuyId = groupBuyId;
-//	}
 
 	public String getAddress() {
 		return address;
@@ -74,22 +57,6 @@ public class Order implements Serializable {
 	public void setAuctionId(int auctionId) {
 		this.auctionId = auctionId;
 	}
-
-//	public int getMenuId() {
-//		return menuId;
-//	}
-//
-//	public void setMenuId(int menuId) {
-//		this.menuId = menuId;
-//	}
-
-//	public GroupBuy getGroupBuy() {
-//		return groupBuy;
-//	}
-//
-//	public void setGroupBuy(GroupBuy groupBuy) {
-//		this.groupBuy = groupBuy;
-//	}
 
 	public Auction getAuction() {
 		return auction;
@@ -138,15 +105,7 @@ public class Order implements Serializable {
 	public void setSuccessBidder(SuccessBidder successBidder) {
 		this.successBidder = successBidder;
 	}
-
-//	public List<LineGroupBuy> getLineGroupBuys() {
-//		return lineGroupBuys;
-//	}
-//
-//	public void setLineGroupBuys(List<LineGroupBuy> lineGroupBuys) {
-//		this.lineGroupBuys = lineGroupBuys;
-//	}
-
+	
 	public int getOrderId() {
 		return orderId;
 	}
@@ -210,14 +169,6 @@ public class Order implements Serializable {
 	public void setRefundAccount(String refundAccount) {
 		this.refundAccount = refundAccount;
 	}
-	
-	public int getTotalQuantity() {
-		return totalQuantity;
-	}
-
-	public void setTotalQuantity(int totalQuantity) {
-		this.totalQuantity = totalQuantity;
-	}
 
 	public void initAuctionOrder(User user, Auction auction) {
 		userId = user.getUserId();
@@ -225,7 +176,6 @@ public class Order implements Serializable {
 		phone = user.getPhone();
 		
 		totalPrice = 0;
-		totalQuantity = 0;
 	
 		if (auction != null) {
 			List<Bid> bids = auction.getBids();
@@ -244,55 +194,6 @@ public class Order implements Serializable {
 		totalPrice = book.getPrice();
 		bookId = book.getBookId();
 		this.book = book;
-			
-			// GroupBuy를 결제하는 경우
-			/*if (lineGroupBuyForm != null) {
-				lineGroupBuys = new ArrayList<LineGroupBuy>();
-				
-				groupBuyId = lineGroupBuyForm.getGroupBuyId();
-				groupBuy = lineGroupBuyForm.getGroupBuy();
-				
-				List<String> options = lineGroupBuyForm.getOptions();
-				List<Integer> quantities = lineGroupBuyForm.getQuantities();
-				List<Integer> unitPrices = new ArrayList<Integer>();
-				
-				for (int i = 0; i < quantities.size(); i++) { // (옵션, 수량)쌍의 갯수 동안
-					int unitPrice = lineGroupBuyForm.getQuantities().get(i) * groupBuy.getPrice();
-					unitPrices.add(unitPrice);
-					
-					LineGroupBuy lineGroupBuy = new LineGroupBuy();
-					lineGroupBuy.setSelectOption(options.get(i));
-					lineGroupBuy.setQuantity(quantities.get(i));
-					lineGroupBuy.setUnitPrice(unitPrice);
-					lineGroupBuy.setGroupBuyId(groupBuyId);
-					lineGroupBuy.setGroupBuy(groupBuy);
-					
-					lineGroupBuys.add(lineGroupBuy);
-					
-					totalPrice += unitPrice;
-					totalQuantity += quantities.get(i);
-				}
-				
-				lineGroupBuyForm.setUnitPrices(unitPrices);
-			}*/
-			
-			
-		
-			//List<Bid> bids = auction.getBids();
-			
-				
-			/*successBidder = new SuccessBidder();
-			successBidder.setAuctionId(auctionId);
-				successBidder.setUserId(user.getUserId());
-				
-				for (Bid bid : bids) {
-					if (bid.getBidPrice() == totalPrice) {
-						successBidder.setBidId(bid.getBidId());
-						break;
-					}
-				}*/
-		
-
 	}
 
 	@Override

@@ -9,16 +9,7 @@
     SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE
     FROM BOOK 
     WHERE BOOKID = #{bookId}
-  </select> 
-
-  <insert id="registerUserCart" parameterType="com.ssg.Jasmine.domain.CartItem">
-  
-  	INSERT INTO Cart 
-  	( CARTID, TOTALPRICE, USERID)
-  	VALUES 
-  	(SEQ_cartID.nextval, 0, #{param1}) 
-
-  </insert>  
+  </select>  
 
   <insert id="registerCartItem" parameterType="com.ssg.Jasmine.domain.CartItem">
   

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ssg.Jasmine.dao.OrderDao;
 import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Order;
-import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.dao.mybatis.mapper.OrderMapper;
 import com.ssg.Jasmine.dao.mybatis.mapper.SuccessBidderMapper;
 
@@ -19,10 +18,6 @@ public class MybatisOrderDao implements OrderDao {
 	
 	@Autowired
 	protected OrderMapper orderMapper;
-	//@Autowired
-	//protected LineGroupBuyMapper lineGroupBuyMapper;
-	//@Autowired
-	//protected GroupBuyMapper groupBuyMapper;
 	@Autowired
 	protected SuccessBidderMapper successBidderMapper;
 	
@@ -52,35 +47,8 @@ public class MybatisOrderDao implements OrderDao {
 	@Transactional
 	public void createBookOrder(Order order) throws DataAccessException{
 		orderMapper.createBookOrder(order);
-		
-		// GroupBuy를 결제하는 경우
-				/*List<LineGroupBuy> lineGroupBuys = order.getLineGroupBuys();
-				if (lineGroupBuys != null) {
-					// LINEGROUPBUYS 테이블에 lineGroupBuy들 삽입
-					for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
-						lineGroupBuy.setOrderId(order.getOrderId());
-						lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
-					}
-					// GROUPBUYS 테이블에 참여자, 달성률, 상태 update
-					groupBuyMapper.updateState(order.getGroupBuy());
-				}*/
-				
-				// Auction을 결제하는 경우
-//				SuccessBidder successBidder = order.getSuccessBidder();
-//				
-//				System.out.println("[SuccessBidder] : " + successBidder);
-//				
-//				if (successBidder != null) {
-//					successBidder.setOrderId(order.getOrderId());
-//					successBidderMapper.createSuccessBidder(successBidder);//?
-//				}
 	}
-	
-	/*@Override
-	public int getGroupBuyId(int orderId) throws DataAccessException { // From LineGroupBuys
-		return orderMapper.getGroupBuyId(orderId);
-	}*/
-	
+
 	@Override
 	public int getAuctionId(int orderId) throws DataAccessException { // From SuccessBidders
 		return orderMapper.getAuctionId(orderId);

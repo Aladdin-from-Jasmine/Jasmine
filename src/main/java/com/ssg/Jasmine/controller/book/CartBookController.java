@@ -75,14 +75,9 @@ public class CartBookController {
 			System.out.println("this is "+cartId);
 			cartItem.setCartId(cartId);
 			
-			
-			
-			
-			
 			cartService.registerCartItem(cartItem);
 			
 			return mav;
-	
 	
 	}
 	

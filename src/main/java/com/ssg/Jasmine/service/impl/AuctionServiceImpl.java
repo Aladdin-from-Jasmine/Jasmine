@@ -20,18 +20,12 @@ import com.ssg.Jasmine.service.AuctionService;
 @Service
 public class AuctionServiceImpl implements AuctionService {
 	
-//	@Autowired(required=false)
 	@Autowired
 	private AuctionDao auctionDao;
-	
-//	@Autowired(required=false)
 	@Autowired
 	private BidDao bidDao;
 	
-//	@Autowired
-	//private NotificationDao notiDao;
-	
-//	스케줄러
+
 	@Autowired(required=false)
 	private ThreadPoolTaskScheduler scheduler;
 	
@@ -80,32 +74,6 @@ public class AuctionServiceImpl implements AuctionService {
 		return auctionDao.getRecentAuctionList();
 	}
 
-	public void deadLineScheduler(Date endDate, final int auctionId) {
-		Runnable updateTableRunner = new Runnable() {	
-			// anonymous class 정의
-			@Override
-			public void run() {   // 스케쥴러에 의해 미래의 특정 시점에 실행될 작업을 정의				
-				Date curTime = new Date();
-				// 실행 시점의 시각을 전달하여 그 시각 이전의 closing time 값을 갖는 event의 상태를 변경 
-				auctionDao.closeEvent(curTime);	// EVENTS 테이블의 레코드 갱신	
-				System.out.println("Auction updateTableRunner is executed at " + curTime);
-				
-				if(auctionDao.getAuction(auctionId).getState().equals("closed")) {
-					Bid bid = bidDao.getSuccessBidByAuctionId(auctionId);
-				//	bid.setAuctionTitle(auctionDao.getAuction(auctionId).getTitle());
-//					notiDao.createNoti_a(bid);
-					System.out.println("****closed auction and create noti ");
-
-				}
-			}
-		};
-		
-		// 스케줄 생성: closingTime에 updateTableRunner.run() 메소드 실행
-		scheduler.schedule(updateTableRunner, endDate);  
-		
-		System.out.println("Auction updateTableRunner has been scheduled to execute at " + endDate);
-	}
-	
 	public String getSuccessBidderUserId(int auctionId) {
 		return auctionDao.getSuccessBidderUserId(auctionId);
 	}
@@ -127,28 +95,24 @@ public class AuctionServiceImpl implements AuctionService {
 	// 검색 후 proceed로 정렬
 	@Override
 	public List<Auction> getSearchProceedAuctionList(String keyword) throws DataAccessException {
-		// TODO Auto-generated method stub
 		return auctionDao.getSearchProceedAuctionList(keyword);
 	}
 
 	// 그냥 proceed로 정렬
 	@Override
 	public List<Auction> getAuctionProceedList(String sortItem) throws DataAccessException {
-		// TODO Auto-generated method stub
 		return auctionDao.getAuctionProceedList(sortItem);
 	}
 
 	// 검색 후 closed으로 정렬
 	@Override
 	public List<Auction> getSearchClosedAuctionList(String keyword) throws DataAccessException {
-		// TODO Auto-generated method stub
 		return auctionDao.getSearchClosedAuctionList(keyword);
 	}
 
 	// 그냥 closed로 정렬
 	@Override
 	public List<Auction> getAuctionClosedList(String sortItem) throws DataAccessException {
-		// TODO Auto-generated method stub
 		return auctionDao.getAuctionClosedList(sortItem);
 	}
 

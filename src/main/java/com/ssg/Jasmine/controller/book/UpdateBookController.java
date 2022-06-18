@@ -30,12 +30,12 @@ import com.ssg.Jasmine.domain.Book;
 import com.ssg.Jasmine.domain.Category;
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
+import com.ssg.Jasmine.validator.BookFormValidator;
 
 @Controller
 public class UpdateBookController implements ApplicationContextAware{
 	@Value("/images/")
 	private String uploadDirLocal;
-//	파일 업로드 위한 변수
 	private WebApplicationContext context;	
 	private String uploadDir;
 	
@@ -71,8 +71,7 @@ public class UpdateBookController implements ApplicationContextAware{
 		int bookId = Integer.parseInt(request.getParameter("bookId"));
 		
 		Book book = bookService.getBookByBookId(bookId);
-		
-		
+			
 		if(userId.equals(book.getUserId())) {
 			BookForm bookForm=new BookForm();
 			
@@ -85,14 +84,9 @@ public class UpdateBookController implements ApplicationContextAware{
 			bookForm.setAuthor(book.getAuthor());
 			bookForm.setPublisher(book.getPublisher());
 			bookForm.setImg(book.getImg());
-			System.out.println("이미지"+book.getImg());
 			
 			model.addAttribute("bookForm",bookForm);
 			model.addAttribute("book", book);
-			
-			
-			
-			System.out.println("get 호출됨");
 			
 			return "book/update";
 		}
@@ -100,57 +94,64 @@ public class UpdateBookController implements ApplicationContextAware{
 			model.addAttribute("bookId", bookId);
 			return "book/update_error";
 		}
-
-			
-		
 	}
 	
 	@RequestMapping(value="/book/update", method=RequestMethod.POST)
 	public String submit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("bookForm") BookForm bookForm, BindingResult result,
 			Model model, SessionStatus sessionStatus) throws Exception {
+
+		new BookFormValidator().validate(bookForm, result);
+
+		if(result.hasErrors()) {
+			return "book/update";
+		}
+		else {
+			System.out.println("update book post");
+			
+			MultipartFile report = bookForm.getReport();
+			String filename = uploadFile(report);
+			model.addAttribute("fileUrl", this.uploadDirLocal + filename);
+			
+			int bookId = Integer.parseInt(request.getParameter("bookId"));
+			
+			UserSession user = (UserSession)request.getSession().getAttribute("userSession");
+			String userId = user.getUser().getUserId();
+			session.setAttribute("bookForm", bookForm);
+			
+			//String bookId =bookForm.getTitle();
+			model.addAttribute("userId",userId);
+			model.addAttribute("bookForm", bookForm);
+			
+			//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
+			
+			Book book = new Book();
+			book.setBookId(bookId);
+			book.setIsbn(bookForm.getIsbn());
+			book.setPrice(bookForm.getPrice());
+			book.setCategoryId(bookForm.getCategoryId());
+			book.setTitle(bookForm.getTitle());
+			book.setAuthor(bookForm.getAuthor());
+			book.setPublisher(bookForm.getPublisher());
+			book.setUserId(userId);
+			book.setImg(this.uploadDirLocal + filename);
+			
+			System.out.println("img: "+book.getImg());
+			
+			
+			
+			System.out.println(userId);
+			
+			bookService.updateBook(book);
+			
+			
+			
+			
+			return "redirect:/book/list"; //리다이렉트 하는게 나을듯?
+		}
 		
-		System.out.println("update book post");
 		
-		MultipartFile report = bookForm.getReport();
-		String filename = uploadFile(report);
-		model.addAttribute("fileUrl", this.uploadDirLocal + filename);
-		
-		int bookId = Integer.parseInt(request.getParameter("bookId"));
-		
-		UserSession user = (UserSession)request.getSession().getAttribute("userSession");
-		String userId = user.getUser().getUserId();
-		session.setAttribute("bookForm", bookForm);
-		
-		//String bookId =bookForm.getTitle();
-		model.addAttribute("userId",userId);
-		model.addAttribute("bookForm", bookForm);
-		
-		//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
-		
-		Book book = new Book();
-		book.setBookId(bookId);
-		book.setIsbn(bookForm.getIsbn());
-		book.setPrice(bookForm.getPrice());
-		book.setCategoryId(bookForm.getCategoryId());
-		book.setTitle(bookForm.getTitle());
-		book.setAuthor(bookForm.getAuthor());
-		book.setPublisher(bookForm.getPublisher());
-		book.setUserId(userId);
-		book.setImg(this.uploadDirLocal + filename);
-		
-		System.out.println("img: "+book.getImg());
-		
-		
-		
-		System.out.println(userId);
-		
-		bookService.updateBook(book);
-		
-		
-		
-		
-		return "redirect:/book/list"; //리다이렉트 하는게 나을듯?
+
 	}
 	
 	private String uploadFile(MultipartFile report) {

@@ -46,4 +46,10 @@ public class MybatisCartDao implements CartDao{
 		return cartMapper.getCartIdByUserId(userId);
 	}
 
+	@Override
+	public int registerCartbyUserId(String userId) {
+		// TODO Auto-generated method stub
+		return cartMapper.registerCartbyUserId(userId);
+	}
+
 }

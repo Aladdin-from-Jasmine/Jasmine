@@ -42,17 +42,14 @@ import com.ssg.Jasmine.service.UserService;
 @RequestMapping("/auction/*")
 public class AuctionFormController implements ApplicationContextAware  {
 	
-//	request handler가 보내줄 view이름 지정
 	private static final String AUCTION_FORM = "auction/auction_form";
 	private static final String AUCTION_DETAIL = "auction/auction_detail";
 
 	@Value("/images/")
 	private String uploadDirLocal;
-//	파일 업로드 위한 변수
 	private WebApplicationContext context;	
 	private String uploadDir;
 
-//	Service 객체
 	@Autowired
 	private AuctionService auctionService;
 	@Autowired
@@ -60,7 +57,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 	@Autowired
 	BidService bidService;
 
-	@Override					// life-cycle callback method
+	@Override				
 	public void setApplicationContext(ApplicationContext appContext)
 		throws BeansException {
 		this.context = (WebApplicationContext) appContext;
@@ -73,9 +70,9 @@ public class AuctionFormController implements ApplicationContextAware  {
 		String reqPage = request.getServletPath();
 		System.out.println(reqPage);
 		String auctionId = request.getParameter("auctionId");
-		if(auctionId == null) { //create: '/auction/form.do' 로 들어옴
+		if(auctionId == null) { 
 			return new AuctionForm();
-		} else { // update: '/auction/form.do?auctionId=' 로 들어옴
+		} else { 
 			Auction auction = auctionService.getAuction(Integer.valueOf(auctionId));
 			System.out.println("수정 전 auction 객체: " + auction.toString());
 			return new AuctionForm(auction);
@@ -93,7 +90,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 	public String submit(HttpServletRequest request, @Valid @ModelAttribute("auctionForm") AuctionForm auctionForm, BindingResult result,
 			Model model, SessionStatus sessionStatus, HttpSession session) {
 		System.out.println(auctionForm.toString());
-//		/auction/create.do인지 /auction/update.do인지 구분하기 위해 필요!
+
 		Auction auction = auctionForm.getAuction();
 		
 		String reqPage = request.getServletPath();
@@ -103,11 +100,11 @@ public class AuctionFormController implements ApplicationContextAware  {
 		String filename = uploadFile(report);
 		model.addAttribute("fileUrl", this.uploadDirLocal + filename);
 
-//		대표 이미지 선택 안 했을 시
+		//대표 이미지 선택 안 했을 시
 		if (report.getSize() == 0) {
 			result.rejectValue("auction.report", "notSelected");
 		}
-//		AuctionForm객체 validation
+
 		if (result.hasErrors()) {
 			if (requestUrl.equals("/auction/update")) {
 				model.addAttribute("auctionId", auction.getAuctionId());
@@ -117,21 +114,16 @@ public class AuctionFormController implements ApplicationContextAware  {
 			}
 		}
 		
-//		경매 create시 작성자 번호(userId)를 넣어야하고, view에서 작성자를 출력해야 하므로 현재 접속 중인 사용자의 정보를 Session에서 가져온다.
 		UserSession user  = (UserSession)request.getSession().getAttribute("userSession");
-//		System.out.println(user.toString());
-//		시간세팅
+
 		auction.timeSet();
 
-//		경매 update/create 작업
 		if (requestUrl.equals("/auction/update")) { // update
 			Auction oldAuction = auctionService.getAuction(auction.getAuctionId());
-//			기존 파일 삭제 후 파일 업로드
 			String[] oldFileName = oldAuction.getImg().split("/");
 			if (deleteFile(uploadDir + oldFileName[2])) {
 				System.out.println("파일 삭제 성공! 이제부터 파일 업로드.");
 			}
-//			파일 업로드 기능
 			String savedFileName = uploadFile(auction.getReport());
 			auction.setImg(this.uploadDirLocal + filename);
 			
@@ -140,8 +132,7 @@ public class AuctionFormController implements ApplicationContextAware  {
 			int auctionId = auctionService.updateAuction(auction);
 			model.addAttribute("auction", auctionService.getAuction(auctionId));
 			
-		} else { // create
-//			파일 업로드 기능
+		} else { 
 			String savedFileName = uploadFile(auction.getReport());
 			auction.setImg(this.uploadDirLocal + filename);
 
@@ -151,12 +142,9 @@ public class AuctionFormController implements ApplicationContextAware  {
 			model.addAttribute("auction", auction);
 		}
 		
-//		스케줄러 => create / update 시 endDate로 설정
-//		auctionService.deadLineScheduler(auctionForm.getAuction().getEndDate(), auctionForm.getAuction().getAuctionId());
-		
-//		view에 전송할 attribute
+
 		session.setAttribute("bidForm", new BidForm());
-//		작성자만 수정/삭제 버튼 보이게 하기 위해 isWriter, 작성자 출력 위해 writer값을 넘겨준다.
+		
 		if(user.getUser().getUserId().equals("admin")) {
 			model.addAttribute("isManager", true);
 			model.addAttribute("isWriter", false);
@@ -180,7 +168,6 @@ public class AuctionFormController implements ApplicationContextAware  {
 		this.auctionService = auctionService;
 	}
 	
-//	파일명 랜덤생성 메서드
 	private String uploadFile(MultipartFile report) {
 		String filename = UUID.randomUUID().toString() 
 						+ "_" + report.getOriginalFilename();
@@ -193,9 +180,8 @@ public class AuctionFormController implements ApplicationContextAware  {
 		return filename;
 	}
 	
-//	파일명 삭제 메서드
 	private boolean deleteFile(String oldFileSavedName) {
-//		서버에 저장된 업로드된 파일을 삭제
+
 		boolean result = new File(oldFileSavedName).delete();
 		return result;
 	}

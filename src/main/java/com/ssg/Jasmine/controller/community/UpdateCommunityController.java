@@ -1,7 +1,5 @@
 package com.ssg.Jasmine.controller.community;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +18,6 @@ import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Community;
 import com.ssg.Jasmine.service.CommunityService;
 import com.ssg.Jasmine.validator.CommunityFormValidator;
-import com.ssg.Jasmine.validator.UserFormValidator;
 
 @Controller
 @RequestMapping("/community/update")

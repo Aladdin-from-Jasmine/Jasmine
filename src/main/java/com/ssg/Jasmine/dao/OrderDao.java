@@ -25,4 +25,5 @@ public interface OrderDao {
 
 	  // orderList에서 경매 정보 출력을 위해서 필요
 	  int getAuctionId(int orderId) throws DataAccessException; // From SuccessBidders
+
 }

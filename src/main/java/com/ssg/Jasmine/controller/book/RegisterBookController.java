@@ -34,25 +34,22 @@ import com.ssg.Jasmine.domain.Category;
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
 import com.ssg.Jasmine.service.UserService;
+import com.ssg.Jasmine.validator.BookFormValidator;
 
 @Controller
 @RequestMapping(value="/book/register")
 public class RegisterBookController implements ApplicationContextAware{
 	@Value("/images/")
 	private String uploadDirLocal;
-//	파일 업로드 위한 변수
 	private WebApplicationContext context;	
 	private String uploadDir;
 	
 	@Autowired
 	BookService bookService;
 	@Autowired
-	CategoryService categoryService;
+	CategoryService categoryService;	
 	
-//	@Autowired
-//	UserService userService;
-	
-	@Override					// life-cycle callback method
+	@Override					
 	public void setApplicationContext(ApplicationContext appContext)
 		throws BeansException {
 		this.context = (WebApplicationContext) appContext;
@@ -72,14 +69,6 @@ public class RegisterBookController implements ApplicationContextAware{
 		return new BookForm();
 	}
 	
-//	@RequestMapping(method=RequestMethod.GET)
-//	public String showForm(@ModelAttribute("bookForm") BookForm bookForm) {
-//		System.out.println("dd");
-//		return "book/register";
-//		
-//	}
-	
-	//GET
 	@RequestMapping(method = RequestMethod.GET)
 	public void showRegisterForm(ModelMap model) {
 		BookForm bookForm=new BookForm();
@@ -88,52 +77,62 @@ public class RegisterBookController implements ApplicationContextAware{
 		System.out.println("get 호출됨");
 	}
 	
-	
-	//POST
 	@RequestMapping(method=RequestMethod.POST)
 	public String submit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("bookForm") BookForm bookForm, BindingResult result,
 			Model model, SessionStatus sessionStatus) throws Exception {
 		
-		MultipartFile report = bookForm.getReport();
-		String filename = uploadFile(report);
-		model.addAttribute("fileUrl", this.uploadDirLocal + filename);
+		new BookFormValidator().validate(bookForm, result);
 
+		ModelAndView mav = new ModelAndView();
+
+		if (result.hasErrors()) {
+			mav.setViewName("book/register"); 
+			return "book/register";
+		}
+		else {
+			MultipartFile report = bookForm.getReport();
+			String filename = uploadFile(report);
+			model.addAttribute("fileUrl", this.uploadDirLocal + filename);
+
+			
+			
+			UserSession user = (UserSession)request.getSession().getAttribute("userSession");
+			String userId = user.getUser().getUserId();
+			session.setAttribute("bookForm", bookForm);
+			
+			//String bookId =bookForm.getTitle();
+			model.addAttribute("userId",userId);
+			model.addAttribute("bookForm", bookForm);
+			
+			//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
+			
+			Book book = new Book();
+			book.setIsbn(bookForm.getIsbn());
+			book.setPrice(bookForm.getPrice());
+			book.setCategoryId(bookForm.getCategoryId());
+			book.setTitle(bookForm.getTitle());
+			book.setAuthor(bookForm.getAuthor());
+			book.setPublisher(bookForm.getPublisher());
+			book.setUserId(userId);
+			book.setImg(this.uploadDirLocal + filename);
+			
+			System.out.println("img: "+book.getImg());
+			
+			
+			
+			System.out.println(userId);
+			
+			bookService.createBook(book);
+			
+			
+			sessionStatus.setComplete();
+			
+			
+			return "redirect:/book/detail/"+book.getBookId();
+		}
 		
-		
-		UserSession user = (UserSession)request.getSession().getAttribute("userSession");
-		String userId = user.getUser().getUserId();
-		session.setAttribute("bookForm", bookForm);
-		
-		//String bookId =bookForm.getTitle();
-		model.addAttribute("userId",userId);
-		model.addAttribute("bookForm", bookForm);
-		
-		//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
-		
-		Book book = new Book();
-		book.setIsbn(bookForm.getIsbn());
-		book.setPrice(bookForm.getPrice());
-		book.setCategoryId(bookForm.getCategoryId());
-		book.setTitle(bookForm.getTitle());
-		book.setAuthor(bookForm.getAuthor());
-		book.setPublisher(bookForm.getPublisher());
-		book.setUserId(userId);
-		book.setImg(this.uploadDirLocal + filename);
-		
-		System.out.println("img: "+book.getImg());
-		
-		
-		
-		System.out.println(userId);
-		
-		bookService.createBook(book);
-		
-		
-		sessionStatus.setComplete();
-		
-		
-		return "redirect:/book/detail/"+book.getBookId(); //리다이렉트 하는게 나을듯?
+
 	}
 	
 	private String uploadFile(MultipartFile report) {

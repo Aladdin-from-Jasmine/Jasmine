@@ -48,11 +48,10 @@ public class UpdateUserFormController {
 			@ModelAttribute("userForm") UserForm userForm, Model model, BindingResult bindingResult) throws Exception {
 		
 		new UserFormValidator().validate(userForm, bindingResult);
-		
-		// 검증 오류 발생 시 다시 form view로 이동
+
 		if (bindingResult.hasErrors()) { 
 			return formViewName; 
-			}
+		}
 		
 		int result = userService.updateUser(userForm.getUser());
 		

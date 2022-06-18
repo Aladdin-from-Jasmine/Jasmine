@@ -45,6 +45,12 @@ public class CartServiceImpl implements CartService{
 		// TODO Auto-generated method stub
 		return cartDao.getCartIdByUserId(userId);
 	}
+
+	@Override
+	public int registerCartbyUserId(String userId) {
+		// TODO Auto-generated method stub
+		return cartDao.registerCartbyUserId(userId);
+	}
 	
 
 }

@@ -15,5 +15,8 @@ public interface CartService {
 	List<CartItem> getCartItemListbyUserId(String userId);
 	
 	int getCartIdByUserId(String userId);
+	
+	int registerCartbyUserId(String userId);
+
 
 }

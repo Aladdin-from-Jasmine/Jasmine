@@ -36,7 +36,6 @@ function orderAuction() {
 
 </script>
 
-
    <h1>About Auction</h1>
 
    <br />

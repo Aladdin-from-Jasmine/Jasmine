@@ -10,12 +10,12 @@ public class BidForm {
 	private Bid bid;
 	private boolean newBid;
 	
-	public BidForm() { // create
+	public BidForm() { 
 		this.bid = new Bid();
 		this.newBid = true;
 	}
 	
-	public BidForm(Bid bid) { //update
+	public BidForm(Bid bid) {
 		this.bid = bid;
 		this.newBid = false;
 	}

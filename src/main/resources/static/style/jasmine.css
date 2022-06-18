@@ -205,10 +205,22 @@ h2, h1, h3 {
 	width: 40%;
 }
 
-#signup-form-form, #auctionForm, #updateform {
+#signup-form-form, #auctionForm, #updateform{
 	padding: 20px;
 	background-color: rgb(231, 226, 235);
 	border-radius: 70px;
+}
+
+#bookForm {
+		text-align: center;
+	
+	padding: 20px;
+	background-color: rgb(231, 226, 235);
+	border-radius: 70px;
+	width:40%;
+	left: 50%;
+
+	
 }
 
 #search-auction-form {

@@ -33,12 +33,6 @@ public class IndexController {
 	UserService userService;
 	@Autowired
 	BidService bidService;
-
-//	@GetMapping(value= {"", "index"})
-//	public String index() {
-//		return "index";
-//	}
-	
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView indexAuctionList(SessionStatus sessionStatus, HttpSession session, HttpServletRequest request){

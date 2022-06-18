@@ -10,16 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-
-//	@Autowired
-//	@Qualifier(value = "signonInterceptor")
-//	private HandlerInterceptor interceptor;
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		// index
-//		registry.addViewController("/index").setViewName("index");	
-//		registry.addViewController("/index").setViewName("auction/auction_list");	
 		registry.addViewController("/index").setViewName("/");
 		
 		// community view
@@ -67,12 +61,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	
 	}
 	
-//	@Override
-//	public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(interceptor)
-//				.addPathPatterns("/index");		
-//	}
-//	
 	@Override		
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		registry.order(2);		

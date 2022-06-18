@@ -16,7 +16,7 @@ public interface BookDao {
 	
 	void updateBook(Book book);
 	
-	void deleteBook(int bookId); //근데 bookId로 하는게 나을거같기두..???
+	void deleteBook(int bookId); 
 	
 	List<Book> getBookList();
 	

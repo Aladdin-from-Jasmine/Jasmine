@@ -10,9 +10,6 @@
 <h1>책 수정</h1>
  <form:form modelAttribute="bookForm" method="POST"
 action="/book/update?bookId=${bookForm.bookId}" enctype="multipart/form-data">
-<!-- book이랑 카테고리 조인..하고 user정보도 넘겨줘야할거같은데,,? -->
-
-
 
 상품 사진
 <img src="${bookForm.img}" width="300px" height="350px"/>
@@ -49,7 +46,5 @@ ISBN
 
 <input type="submit" value="REGISTER" id="register-btn">
 			
-<!-- 근데 이런식으로 할거면,, category를 그냥 string으로 두는게 나을거같은뎅.. -->
-<!--  근데 있는 카테고리만 써야하니까,, 이렇게 할 ㅜㅅ ㅏㅂㄲ에 없는건가,, -->
  </form:form> 
 </body>

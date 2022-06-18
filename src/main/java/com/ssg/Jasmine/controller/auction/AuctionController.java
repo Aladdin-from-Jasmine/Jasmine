@@ -23,6 +23,7 @@ import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.domain.Bid;
 import com.ssg.Jasmine.domain.Community;
+import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.AuctionService;
@@ -166,9 +167,9 @@ public class AuctionController {
 			mav.addObject("successBidderUserId", successBidderUserId);
 			System.out.println("successBidderUserId: "+ successBidderUserId);
 			
-			int orderId = orderService.getOrderByAuctionId(auctionId);
+			Order order = orderService.getOrderByAuctionId2(auctionId);
 			// 낙찰자가 결제까지 완료한 경우
-			if (orderId > 0) {
+			if (order != null) {
 				mav.addObject("completeOrder", 1);
 			} else {
 				mav.addObject("completeOrder", 0);

@@ -40,6 +40,12 @@
 		<br/> <br/> <br/>
 	</c:if>
 	
+	총 ${listSize} 건의 검색결과가 있습니다.
+	
+	
+	
+	
+	
 		<div class="row">
 			<div class="col-lg-4 col-md-6 mb-4">
 				<div class="post-entry-1 h-100">

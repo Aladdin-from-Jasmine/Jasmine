@@ -63,6 +63,7 @@ public class ListBookController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("bookList", bookList);
+		mav.addObject("listSize", bookList.size());
 		mav.addObject("keyword", keyword);
 		
 		mav.setViewName("book/list"); 

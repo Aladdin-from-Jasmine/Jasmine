@@ -67,7 +67,7 @@ ISBN
 <div class="book-form-sub">
 <br>
 설명
-<form:input path="description" value="${description}" class="form-control"/>
+<form:textarea path="description" value="${description}" class="form-control" placeholder="Write description." id="auction-des-form"/>
 <form:errors path="description" class="error" />
 </div>
 

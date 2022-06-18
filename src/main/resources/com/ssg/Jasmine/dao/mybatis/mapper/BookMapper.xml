@@ -68,7 +68,5 @@
   	WHERE title LIKE '%'||#{param1}||'%' or author LIKE '%'||#{param1}||'%' or isbn LIKE '%'||#{param1}||'%' or publisher LIKE '%'||#{param1}||'%'
   	ORDER BY BOOKID DESC
   </select> 
- 
-  
 
 </mapper>

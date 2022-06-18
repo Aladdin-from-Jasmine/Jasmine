@@ -49,28 +49,6 @@
   	WHERE USERID = #{userId}
   </update>
 
-	<!-- <select id="getAuctionOrderList" resultType="Order">
-		SELECT s.auctionId, o.orderId, o.orderDate, o.totalPrice
-		FROM orders o, successBidders s
-		WHERE o.orderId = s.orderId and o.userId = #{param1}
-		ORDER BY orderId DESC
-	</select>
-
-	<select id="getGroupBuyOrderList" resultType="Order">
-		SELECT DISTINCT l.groupBuyId, o.orderId, o.orderDate, o.totalPrice
-		FROM orders o, lineGroupBuys l
-		WHERE o.orderId = l.orderId and o.userId= #{param1}
-		ORDER BY orderId DESC
-	</select>
-
-  <select id="getGroupBuyList" parameterType="int"
-  		resultType="GroupBuy">
-  	SELECT groupBuyId, title, content, img, minNo, uploadDate, endDate, count, state, rate, participants, menuId, catId, userId, price
-  	FROM groupBuys
-  	WHERE userId = #{userId}
-  	ORDER BY groupBuyId DESC
-  </select> --> <!-- user가 등록한 GroupBuyList를 가져옴 for 마이페이지 공동구매 등록 목록 보기 -->
-  
     <select id="getAuctionList" parameterType="int"
   		resultType="com.ssg.Jasmine.domain.Auction">
   	SELECT auctionId, title, content_, img, startPrice, uploadDate, endDate, count, maxPrice, state, menuId, userId

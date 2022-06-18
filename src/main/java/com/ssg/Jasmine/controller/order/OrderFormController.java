@@ -73,11 +73,11 @@ public class OrderFormController {
 		cardBanks.add("우리");
 		cardBanks.add("농협");
 		cardBanks.add("국민"); 
-		// add more
+
 		return cardBanks;			
 	}
 	
-	@RequestMapping(value = "/order/auction/create", method = RequestMethod.GET) // form 출력
+	@RequestMapping(value = "/order/auction/create", method = RequestMethod.GET) 
 	public ModelAndView auctionOrderForm(HttpServletRequest request,
 			@RequestParam("auctionId") int auctionId,
 			@ModelAttribute("orderForm") OrderForm orderForm
@@ -92,7 +92,7 @@ public class OrderFormController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/order/book/create", method = RequestMethod.GET) // form 출력
+	@RequestMapping(value = "/order/book/create", method = RequestMethod.GET) 
 	public ModelAndView bookOrderForm(HttpServletRequest request,
 			@RequestParam("bookId") int bookId,
 			@ModelAttribute("orderForm") OrderForm orderForm
@@ -110,7 +110,7 @@ public class OrderFormController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/order/create", method = RequestMethod.POST) // 결과 출력
+	@RequestMapping(value = "/order/create", method = RequestMethod.POST) 
 	protected ModelAndView auctionOrderSubmit(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			SessionStatus status, BindingResult bindingResult) {

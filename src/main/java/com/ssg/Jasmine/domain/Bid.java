@@ -5,7 +5,7 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
-public class Bid  implements Serializable{
+public class Bid implements Serializable{
 	int bidId;
 	String userId;
 	int auctionId;

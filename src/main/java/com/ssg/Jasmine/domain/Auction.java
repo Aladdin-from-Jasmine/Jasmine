@@ -33,7 +33,6 @@ public class Auction implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date uploadDate;
 	@NotNull
-//	@FutureOrPresent
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date endDate;
 	int count;
@@ -47,7 +46,6 @@ public class Auction implements Serializable {
 	int hour;
 	int minute;
 	
-
 	@NotNull
 	String booktitle;
 	@NotNull
@@ -220,8 +218,6 @@ public class Auction implements Serializable {
 		this.bookpublisher = bookpublisher;
 	}
 	
-	
-	
 	public void initAuction(User user) {
 		Calendar calendar = Calendar.getInstance();
         java.util.Date date = calendar.getTime();
@@ -239,7 +235,6 @@ public class Auction implements Serializable {
         SimpleDateFormat tmpFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat sdfHour = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
-        // date 형식 초기화
         Date tmpDate;
         String newDate = null;
 		try {
@@ -249,8 +244,7 @@ public class Auction implements Serializable {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-        
-        // 마감시간 세팅
+
         if(isAmPm.equals("pm")){
         	int tmpHour = getHour()+12;
         	if(tmpHour == 24) {
@@ -266,7 +260,7 @@ public class Auction implements Serializable {
         	String dateFormat = newDate + " " + String.valueOf(getHour()) + ":" + String.valueOf(getMinute());
             System.out.println("dateFormat: " + dateFormat);
 			Date resultDate = sdfHour.parse(dateFormat);
-			setEndDate(resultDate);	// 마감일 세팅
+			setEndDate(resultDate);	
 			System.out.println(resultDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -277,15 +271,6 @@ public class Auction implements Serializable {
 	public void initImg(String contextPath) {
 		img = contextPath + "/resources/static/images/snoopy.gif";
 	}
-
-//	@Override
-//	public String toString() {
-//		return "Auction [auctionId=" + auctionId + ", title=" + title + ", report=" + report + ", content_=" + content_
-//				+ ", img=" + img + ", startPrice=" + startPrice + ", uploadDate=" + uploadDate + ", endDate=" + endDate
-//				+ ", count=" + count + ", maxPrice=" + maxPrice + ", state=" + state + ", menuId=" + menuId
-//				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute + ", bids="
-//				+ bids + "]";
-//	}
 	
 	@Override
 	public String toString() {
@@ -295,8 +280,5 @@ public class Auction implements Serializable {
 				+ ", userId=" + userId + ", isAmPm=" + isAmPm + ", hour=" + hour + ", minute=" + minute 
 				+ ", booktitle=" + booktitle + ", bookauthor=" + bookauthor + ", bookpublisher=" + bookpublisher + "]";
 	}
-
-	
-	
 	
 }

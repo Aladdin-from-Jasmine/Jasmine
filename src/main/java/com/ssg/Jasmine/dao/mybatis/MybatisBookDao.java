@@ -47,13 +47,11 @@ public class MybatisBookDao implements BookDao{
 
 	@Override
 	public List<Book> getBookRecent3() {
-		// TODO Auto-generated method stub
 		return bookMapper.getBookRecent3();
 	}
 
 	@Override
 	public List<Book> getSearchBookList(String keyword) {
-		// TODO Auto-generated method stub
 		return bookMapper.getSearchBookList(keyword);
 	}
 

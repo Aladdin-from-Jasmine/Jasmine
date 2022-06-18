@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
@@ -120,11 +119,8 @@ public class UpdateBookController implements ApplicationContextAware{
 			String userId = user.getUser().getUserId();
 			session.setAttribute("bookForm", bookForm);
 			
-			//String bookId =bookForm.getTitle();
 			model.addAttribute("userId",userId);
-			model.addAttribute("bookForm", bookForm);
-			
-			//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
+			model.addAttribute("bookForm", bookForm);		
 			
 			Book book = new Book();
 			book.setBookId(bookId);
@@ -138,23 +134,10 @@ public class UpdateBookController implements ApplicationContextAware{
 			book.setImg(this.uploadDirLocal + filename);
 			book.setDescription(bookForm.getDescription());
 			
-			System.out.println("desc"+bookForm.getDescription());
-			System.out.println("img: "+book.getImg());
-			
-			
-			
-			System.out.println(userId);
-			
 			bookService.updateBook(book);
 			
-			
-			
-			
-			return "redirect:/book/list"; //리다이렉트 하는게 나을듯?
+			return "redirect:/book/list"; 
 		}
-		
-		
-
 	}
 	
 	private String uploadFile(MultipartFile report) {

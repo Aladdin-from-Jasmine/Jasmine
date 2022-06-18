@@ -5,14 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 
 import com.ssg.Jasmine.dao.AuctionDao;
-import com.ssg.Jasmine.dao.BidDao;
-//import com.ssg.Jasmine.dao.NotificationDao;
 import com.ssg.Jasmine.domain.Auction;
-import com.ssg.Jasmine.domain.Bid;
 import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.service.AuctionService;
 
@@ -22,12 +18,6 @@ public class AuctionServiceImpl implements AuctionService {
 	
 	@Autowired
 	private AuctionDao auctionDao;
-	@Autowired
-	private BidDao bidDao;
-	
-
-	@Autowired(required=false)
-	private ThreadPoolTaskScheduler scheduler;
 	
 	public Auction getAuction(int auctionId) throws DataAccessException {
 		return auctionDao.getAuction(auctionId);
@@ -114,8 +104,6 @@ public class AuctionServiceImpl implements AuctionService {
 	@Override
 	public List<Auction> getAuctionClosedList(String sortItem) throws DataAccessException {
 		return auctionDao.getAuctionClosedList(sortItem);
-	}
-
-	
+	}	
 	
 }

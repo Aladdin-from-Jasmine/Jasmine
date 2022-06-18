@@ -1,16 +1,9 @@
 package com.ssg.Jasmine.domain;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import javax.validation.constraints.NotEmpty;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -20,7 +13,6 @@ public class Community implements Serializable{
 	private int postId;
 	@NotEmpty
 	private String title;
-//  @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date communityDate;
 	@NotEmpty
 	private String content_;
@@ -72,17 +64,5 @@ public class Community implements Serializable{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	/*public Date dateFormatting(Date date) {
-        SimpleDateFormat sdfHour = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        
-        // date 형식 초기화
-        try {
-			Date communityDate = sdfHour.parse(date.toString());
-			return communityDate;
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return date;
-		}
-	}*/
+
 }

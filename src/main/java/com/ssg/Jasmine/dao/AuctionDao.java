@@ -1,14 +1,11 @@
 package com.ssg.Jasmine.dao;
-//
+
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
 import com.ssg.Jasmine.domain.Auction;
-import com.ssg.Jasmine.domain.Bid;
-import com.ssg.Jasmine.domain.Community;
-//import com.ssg.Jasmine.domain.GroupBuy; - 우리에겐 없는 기능인듯
 import com.ssg.Jasmine.domain.SuccessBidder;
 
 public interface AuctionDao {

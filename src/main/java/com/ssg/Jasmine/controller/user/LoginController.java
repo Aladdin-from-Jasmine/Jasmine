@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ssg.Jasmine.domain.User;
-import com.ssg.Jasmine.service.AuctionService;
 import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.validator.LoginFormValidator;
 

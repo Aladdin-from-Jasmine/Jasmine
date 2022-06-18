@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.ssg.Jasmine.domain.Auction;
-//import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.User;
 
 

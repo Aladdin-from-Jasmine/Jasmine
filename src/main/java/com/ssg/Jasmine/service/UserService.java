@@ -5,13 +5,11 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.ssg.Jasmine.domain.Auction;
-//import com.ssg.Jasmine.domain.GroupBuy;
-//import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.User;
 
 public interface UserService {
 
-	User getUser(String userId, String password); // 로그인 시 사용
+	User getUser(String userId, String password); 
 	
 	User getUserByUserId(String userId) throws DataAccessException;
 	
@@ -21,9 +19,7 @@ public interface UserService {
 
 	int deleteUser(User user);
 	
-//	List<Order> getAuctionOrderList(int userId);
-	
-	List<Auction> getAuctionList(String userId); // 마이페이지 경매 등록 목록 보기
+	List<Auction> getAuctionList(String userId); 
 	
 	boolean isUnClosedExist(String userId);
 

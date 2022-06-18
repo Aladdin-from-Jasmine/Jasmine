@@ -2,13 +2,9 @@ package com.ssg.Jasmine.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-
-
 @SuppressWarnings("serial")
 public class User implements Serializable {
 
-	/* Private Fields */
 	private String userId;
 	private String username;
 	private String password;
@@ -16,7 +12,6 @@ public class User implements Serializable {
 	private String address;
 	private String phone;
 
-	/* JavaBeans Properties */
 	public User() {
 		
 	}

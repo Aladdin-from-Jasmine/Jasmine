@@ -17,13 +17,11 @@ public class MybatisCategoryDao implements CategoryDao{
 	
 	@Override
 	public List<Category> getAllGenres() {
-		// TODO Auto-generated method stub
 		return categoryMapper.getAllGenres();
 	}
 
 	@Override
 	public String getGenreByCategoryId(int categoryId) {
-		// TODO Auto-generated method stub
 		return categoryMapper.getGenreByCategoryId(categoryId);
 	}
 	

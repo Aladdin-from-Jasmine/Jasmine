@@ -2,7 +2,6 @@ package com.ssg.Jasmine.controller.book;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +16,6 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +31,6 @@ import com.ssg.Jasmine.domain.Category;
 
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
-import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.validator.BookFormValidator;
 
 @Controller
@@ -94,19 +91,14 @@ public class RegisterBookController implements ApplicationContextAware{
 			MultipartFile report = bookForm.getReport();
 			String filename = uploadFile(report);
 			model.addAttribute("fileUrl", this.uploadDirLocal + filename);
-
-			
-			
+	
 			UserSession user = (UserSession)request.getSession().getAttribute("userSession");
 			String userId = user.getUser().getUserId();
 			session.setAttribute("bookForm", bookForm);
 			
-			//String bookId =bookForm.getTitle();
 			model.addAttribute("userId",userId);
 			model.addAttribute("bookForm", bookForm);
-			
-			//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
-			
+					
 			Book book = new Book();
 			book.setIsbn(bookForm.getIsbn());
 			book.setPrice(bookForm.getPrice());
@@ -117,22 +109,13 @@ public class RegisterBookController implements ApplicationContextAware{
 			book.setUserId(userId);
 			book.setImg(this.uploadDirLocal + filename);
 			book.setDescription(bookForm.getDescription());
-			System.out.println("img: "+book.getImg());
-			
-			
-			
-			System.out.println(userId);
 			
 			bookService.createBook(book);
 			
-			
 			sessionStatus.setComplete();
-			
-			
+		
 			return "redirect:/book/detail/"+book.getBookId();
 		}
-		
-
 	}
 	
 	private String uploadFile(MultipartFile report) {

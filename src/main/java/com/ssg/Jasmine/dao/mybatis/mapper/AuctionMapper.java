@@ -8,10 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DataAccessException;
 
 import com.ssg.Jasmine.domain.Auction;
-import com.ssg.Jasmine.domain.Community;
 
 @Mapper
-public interface AuctionMapper { // AuctionMapper.xml에서 구현한 method 이름과 일치해야함!
+public interface AuctionMapper { 
 	
 	Auction getAuction(int auctionId) throws DataAccessException;
 	

@@ -3,7 +3,6 @@ package com.ssg.Jasmine.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Service;
 
 import com.ssg.Jasmine.dao.BookDao;
@@ -15,13 +14,9 @@ public class BookServiceImpl implements BookService{
 	
 	@Autowired
 	private BookDao bookDao;
-	
-	@Autowired(required=false)
-	private ThreadPoolTaskScheduler scheduler;
 
 	@Override
 	public Book getBookByBookId(int bookId) {
-		// TODO Auto-generated method stub
 		return bookDao.getBookByBookId(bookId);
 	}
 
@@ -47,21 +42,16 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public List<Book> getBookRecent3() {
-		// TODO Auto-generated method stub
 		return bookDao.getBookRecent3();
 	}
 	
 	@Override
 	public void deleteBook(int bookId) {
-		// TODO Auto-generated method stub
 		bookDao.deleteBook(bookId);
 	}
 
 	@Override
 	public List<Book> getSearchBookList(String keyword) {
-		// TODO Auto-generated method stub
-		return bookDao.getSearchBookList(keyword);
-		
+		return bookDao.getSearchBookList(keyword);	
 	}
-	
 }

@@ -6,7 +6,6 @@ import org.springframework.validation.Validator;
 
 import com.ssg.Jasmine.controller.order.OrderForm;
 
-
 public class OrderFormValidator implements Validator {
 
 	@Override

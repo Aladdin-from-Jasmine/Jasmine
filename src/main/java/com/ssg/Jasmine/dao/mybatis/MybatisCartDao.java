@@ -15,42 +15,33 @@ public class MybatisCartDao implements CartDao{
 	@Autowired
 	private CartMapper cartMapper;
 	
-	
-
 	@Override
 	public int registerCartItem(CartItem cartItem) {
-		// TODO Auto-generated method stub
 		return cartMapper.registerCartItem(cartItem);
 	}	
 
 	@Override
 	public void deleteCartItem(int cartId) {
-		// TODO Auto-generated method stub
-		cartMapper.deleteCartItem(cartId);
-		
+		cartMapper.deleteCartItem(cartId);	
 	}
 
 	@Override
 	public List<CartItem> getCartItemListbyUserId(String userId) {
-		// TODO Auto-generated method stub
 		return cartMapper.getCartItemListbyUserId(userId);
 	}
 
 	@Override
 	public int getCartIdByUserId(String userId) {
-		// TODO Auto-generated method stub
 		return cartMapper.getCartIdByUserId(userId);
 	}
 
 	@Override
 	public int registerCartbyUserId(String userId) {
-		// TODO Auto-generated method stub
 		return cartMapper.registerCartbyUserId(userId);
 	}
 
 	@Override
 	public List<CartItem> getCartItemByBookIdAndUserId(int bookId, String userId) {
-		// TODO Auto-generated method stub
 		return cartMapper.getCartItemByBookIdAndUserId(bookId, userId);
 	}
 

@@ -22,12 +22,6 @@ public interface UserMapper {
 
 	int deleteUser(User user);
 	
-//	List<Order> getAuctionOrderList(String userId);
-//	
-//	List<Order> getGroupBuyOrderList(String userId);
-//	
-//	List<GroupBuy> getGroupBuyList(String userId); // 마이페이지 공동구매 등록 목록 보기
-//	
 	List<Auction> getAuctionList(String userId); // 마이페이지 경매 등록 목록 보기
 }
 

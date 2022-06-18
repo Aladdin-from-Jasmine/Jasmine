@@ -2,7 +2,6 @@ package com.ssg.Jasmine.dao.mybatis;
 
 import java.util.List;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -44,8 +43,7 @@ public class MybatisUserDao implements UserDao {
 
 	@Override
 	public List<Auction> getAuctionList(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return userMapper.getAuctionList(userId);
 	}
 	
 }

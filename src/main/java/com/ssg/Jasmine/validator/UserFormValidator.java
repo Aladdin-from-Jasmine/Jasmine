@@ -1,6 +1,5 @@
 package com.ssg.Jasmine.validator;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -8,7 +7,6 @@ import org.springframework.validation.Validator;
 
 import com.ssg.Jasmine.controller.user.UserForm;
 import com.ssg.Jasmine.domain.User;
-import com.ssg.Jasmine.service.UserService;
 
 @Component
 public class UserFormValidator implements Validator {
@@ -33,7 +31,6 @@ public class UserFormValidator implements Validator {
 		User user = regReq.getUser();
 		
 		if (regReq.isNewUser()) {
-			//user.setStatus("OK");
 			if (user.getPassword() == null || user.getPassword().length() < 1 ||
 					!user.getPassword().equals(regReq.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH",
@@ -48,7 +45,7 @@ public class UserFormValidator implements Validator {
 		
 		String emailRegax = "^[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\\.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$";
 		if (!user.getEmail().equals("") && !user.getEmail().matches(emailRegax)) {
-			errors.rejectValue("user.email", "typeMismatch"); // email type 검증
+			errors.rejectValue("user.email", "typeMismatch"); 
 		}
 		
 		if(user.getPassword().length() < 6) {

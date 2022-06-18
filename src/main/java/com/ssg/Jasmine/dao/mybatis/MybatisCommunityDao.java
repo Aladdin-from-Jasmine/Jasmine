@@ -12,20 +12,20 @@ import com.ssg.Jasmine.domain.Community;
 
 @Repository
 public class MybatisCommunityDao implements CommunityDao {
-	
+
 	@Autowired
 	private CommunityMapper communityMapper;
-	
+
 	public Community getCommunity(int postId) throws DataAccessException
 	{
 		return communityMapper.getCommunity(postId);		
 	}
-	
+
 	public Community getCommunityByUserId(String userId) throws DataAccessException
 	{
 		return communityMapper.getCommunityByUserId(userId);
 	}
-	
+
 	public void createPost(Community community) throws DataAccessException
 	{
 		communityMapper.createPost(community);
@@ -45,22 +45,22 @@ public class MybatisCommunityDao implements CommunityDao {
 	{
 		return communityMapper.getCommunityList();
 	}
-	
+
 	public List<Community> getCommunitySortedList(String sortItem) throws DataAccessException
 	{
 		return communityMapper.getCommunitySortedList(sortItem);
 	}
-	
+
 	public List<Community> getSearchCommunityList(String keyword) throws DataAccessException
 	{
 		return communityMapper.getSearchCommunityList(keyword);
 	}
-	
+
 	public List<Community> getSearchSortedCommunityList(String keyword) throws DataAccessException
 	{
 		return communityMapper.getSearchSortedCommunityList(keyword);
 	}
-	
+
 	public List<Community> getUserCommunityList(String userId) throws DataAccessException
 	{
 		return communityMapper.getUserCommunityList(userId);

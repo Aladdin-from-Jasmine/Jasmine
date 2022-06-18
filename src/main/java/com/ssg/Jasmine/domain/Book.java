@@ -3,7 +3,6 @@ package com.ssg.Jasmine.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 @SuppressWarnings("serial")
@@ -23,7 +22,6 @@ public class Book implements Serializable{
 	
 	String orderState;
 
-	//db에 이대로 넣을거임
 	
 	public int getBookId() {
 		return bookId;

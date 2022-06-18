@@ -14,43 +14,34 @@ public class CartServiceImpl implements CartService{
 
 	@Autowired
 	private CartDao cartDao;
-	
-	
 
 	@Override
 	public int registerCartItem(CartItem cartItem) {
-		// TODO Auto-generated method stub
 		return cartDao.registerCartItem(cartItem);
 	}	
 	
 	@Override
 	public void deleteCartItem(int cartId) {
-		// TODO Auto-generated method stub
 		cartDao.deleteCartItem(cartId);
-		
 	}
 
 	@Override
 	public List<CartItem> getCartItemListbyUserId(String userId) {
-		// TODO Auto-generated method stub
 		return cartDao.getCartItemListbyUserId(userId);
 	}
 
 	@Override
 	public int getCartIdByUserId(String userId) {
-		// TODO Auto-generated method stub
 		return cartDao.getCartIdByUserId(userId);
 	}
 
 	@Override
 	public int registerCartbyUserId(String userId) {
-		// TODO Auto-generated method stub
 		return cartDao.registerCartbyUserId(userId);
 	}
 
 	@Override
 	public List<CartItem> getCartItemByBookIdAndUserId(int bookId, String userId) {
-		// TODO Auto-generated method stub
 		return cartDao.getCartItemByBookIdAndUserId(bookId, userId);
 	}
 	

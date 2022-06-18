@@ -50,13 +50,11 @@ public class BidServiceImpl implements BidService{
 
 	@Override
 	public List<Bid> getBidByUserId(String userId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Bid getBidByUserIdAndAuctionId(String userId, int auctionId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

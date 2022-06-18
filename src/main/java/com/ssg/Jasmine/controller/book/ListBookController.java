@@ -9,20 +9,13 @@ import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.service.UserService;
 import com.ssg.Jasmine.service.BookService;
-import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Book;
-import com.ssg.Jasmine.domain.Community;
-import com.ssg.Jasmine.domain.User;
-
 @Controller
 @RequestMapping("/book/list")
 public class ListBookController {

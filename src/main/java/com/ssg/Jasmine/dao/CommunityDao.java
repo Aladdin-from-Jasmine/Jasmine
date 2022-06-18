@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.ssg.Jasmine.domain.Community;
-import com.ssg.Jasmine.domain.User;
 
 public interface CommunityDao {
 

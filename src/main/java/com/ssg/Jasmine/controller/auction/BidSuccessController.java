@@ -1,7 +1,6 @@
 package com.ssg.Jasmine.controller.auction;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -17,10 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.validation.Validator;
 
 import com.ssg.Jasmine.domain.Bid;
-import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.SuccessBidder;
 import com.ssg.Jasmine.service.BidService;
 import com.ssg.Jasmine.service.SuccessBidderService;

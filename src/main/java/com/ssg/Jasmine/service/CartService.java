@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.ssg.Jasmine.domain.CartItem;
 
-
 public interface CartService {
 	List<CartItem> getCartItemByBookIdAndUserId (int bookId, String userId);
 	

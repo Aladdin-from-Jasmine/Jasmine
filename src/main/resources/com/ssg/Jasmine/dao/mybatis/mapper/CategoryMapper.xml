@@ -3,13 +3,7 @@
 
 <mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.CategoryMapper">
   <cache />
-  
-  <!--<select id="getBookByBookId" resultType="com.ssg.Jasmine.domain.Book">
-    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, AUTHOR, CATEGORYID
-    FROM BOOK 
-    WHERE BOOKID = #{bookId}
-  </select>--> 
-  
+
   <select id="getAllGenres" resultType="com.ssg.Jasmine.domain.Category">
   	select categoryid, genre
   	from category
@@ -20,7 +14,5 @@
   	from category
   	where categoryid=#{categoryId}
   </select>
-  
-
 
 </mapper>

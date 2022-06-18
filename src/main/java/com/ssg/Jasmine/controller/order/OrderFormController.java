@@ -106,7 +106,7 @@ public class OrderFormController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/order/auction/create", method = RequestMethod.POST) // 결과 출력
+	@RequestMapping(value = "/order/create", method = RequestMethod.POST) // 결과 출력
 	protected ModelAndView auctionOrderSubmit(
 			@ModelAttribute("orderForm") OrderForm orderForm, 
 			SessionStatus status, BindingResult bindingResult) {

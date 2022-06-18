@@ -2,6 +2,7 @@ package com.ssg.Jasmine.service;
 
 import java.util.List;
 import com.ssg.Jasmine.domain.Auction;
+import com.ssg.Jasmine.domain.Book;
 import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.User;
 
@@ -17,7 +18,11 @@ public interface OrderService {
 	
 	public int getOrderByAuctionId(int auctionId);
 	
+	public int getOrderByBookId(int bookId);
+	
 	public Auction getAuction(int orderId);
+	
+	public Book getBook(int orderId);
 	
 	public List<Order> getOrderListByUserId(String userId);
 	

@@ -25,7 +25,7 @@
 			<div>
 				<h2 class="orderForm-h2" style="color: #f57ad4"><button disabled>경매</button> &nbsp;
 					<a href="<c:url value='/auction/detail'>
-								<c:param name="auctionId" value="${order.auction.auctionId}" />
+								<c:param name="auctionId" value="${order.auctionId}" />
 							</c:url>"> ${order.auction.title}</a>&nbsp;&nbsp;&nbsp;
 					TotalPrice : ${order.totalPrice}원</h2>
 			</div>

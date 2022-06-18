@@ -16,9 +16,9 @@ public interface OrderDao {
 	  void createBookOrder(Order order) throws DataAccessException;
 	  
 	  int getOrderByAuctionId(int auctionId) throws DataAccessException;
+	
+	  int getOrderByBookId(int bookId) throws DataAccessException;
 	  
-	  Order getOrderWithLineGroupBuys(int orderId) throws DataAccessException;
-		
 	  List<Order> getOrderListByUserId(String userId) throws DataAccessException;
 	  
 	  List<Auction> getAuctionListByUserId(String userId) throws DataAccessException;
@@ -26,4 +26,5 @@ public interface OrderDao {
 	  // orderList에서 경매 정보 출력을 위해서 필요
 	  int getAuctionId(int orderId) throws DataAccessException; // From SuccessBidders
 
+	  int getBookId(int orderId) throws DataAccessException;
 }

@@ -30,11 +30,11 @@ public class MybatisOrderDao implements OrderDao {
 	@Override
 	public int getOrderByAuctionId(int auctionId) throws DataAccessException {
 	    return orderMapper.getOrderByAuctionId(auctionId);
-	}
+	}	  
 
-	@Override	
-	public Order getOrderWithLineGroupBuys(int orderId) throws DataAccessException {
-		return orderMapper.getOrderWithLineGroupBuys(orderId);
+	@Override
+	public int getOrderByBookId(int bookId) throws DataAccessException {
+	    return orderMapper.getOrderByBookId(bookId);
 	}
 
 	@Override
@@ -51,7 +51,18 @@ public class MybatisOrderDao implements OrderDao {
 
 	@Override
 	public int getAuctionId(int orderId) throws DataAccessException { // From SuccessBidders
-		return orderMapper.getAuctionId(orderId);
+		int auctionId = orderMapper.getAuctionId(orderId);
+		if(auctionId > 0) {
+			return auctionId;
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	@Override
+	public int getBookId(int orderId) throws DataAccessException {
+		return orderMapper.getBookId(orderId);
 	}
 
 	@Override
@@ -63,4 +74,6 @@ public class MybatisOrderDao implements OrderDao {
 	public List<Auction> getAuctionListByUserId(String userId) throws DataAccessException {
 		return orderMapper.getAuctionListByUserId(userId);
 	}
+
+	
 }

@@ -20,6 +20,7 @@ import com.ssg.Jasmine.domain.Category;
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
 import com.ssg.Jasmine.service.JasmineFacade;
+import com.ssg.Jasmine.service.OrderService;
 import com.ssg.Jasmine.service.UserService;
 
 @Controller
@@ -31,6 +32,8 @@ public class DetailBookController {
 	UserService userService;
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	OrderService orderService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView bookDetail(@PathVariable("bookId") int bookId, HttpServletRequest request, HttpSession session) {
@@ -58,7 +61,14 @@ public class DetailBookController {
 		try {
 			ModelAndView mav = new ModelAndView("book/detail");
 
-			mav.addObject("orderState", book.getOrderState());
+			int orderId = orderService.getOrderByBookId(bookId);
+			// 낙찰자가 결제까지 완료한 경우
+			if (orderId > 0) {
+				mav.addObject("completeOrder", 1);
+			} else {
+				mav.addObject("completeOrder", 0);
+			}
+			
 			mav.addObject("book", book);
 			mav.addObject("genre", genre);
 			mav.addObject("isUser", isUser);

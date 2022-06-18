@@ -20,6 +20,7 @@ public class Book implements Serializable{
 	private MultipartFile report;
 	Date registerDate;
 	
+	String orderState;
 
 	//db에 이대로 넣을거임
 	
@@ -89,9 +90,11 @@ public class Book implements Serializable{
 	public void setRegisterDate(Date registerDate) {
 		this.registerDate = registerDate;
 	}
-	
-	
-
-	
+	public String getOrderState() {
+		return orderState;
+	}
+	public void setOrderState(String orderState) {
+		this.orderState = orderState;
+	}
 	
 }

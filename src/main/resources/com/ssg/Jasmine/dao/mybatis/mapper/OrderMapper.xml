@@ -11,13 +11,8 @@
   	refundBank, refundAccount,
   	totalPrice, 
   	orderDate, 
-  	userId,
-  	auctionId,
-  	status,
-  	bookId,auctionId,totalQuantity
+  	userId
   </sql>
-  
-
   
   <resultMap id="resultMap" type="Order">
 		<id column="orderId" property="orderId" />
@@ -46,18 +41,19 @@
   	WHERE orderId = #{orderId}
   </select>
   
-  <insert id="createOrder" parameterType="Order">
-  	INSERT INTO Order_ (<include refid="BaseColumns" />)
+  <insert id="createAuctionOrder" parameterType="Order">
+  	INSERT INTO Order_ (<include refid="BaseColumns" />, auctionId)
   	VALUES (seq_orderId.nextval, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
   		#{address},  #{phone}, #{refundBank}, #{refundAccount}, #{totalPrice}, 
   		SYSDATE, #{userId}, #{auction.auctionId})
   </insert>
   
-<!--   <select id="getGroupBuyId" parameterType="int" resultType="int">
-  	SELECT DISTINCT groupBuyId
-	FROM lineGroupBuys
-	WHERE orderId = #{orderId}
-  </select> -->
+  <insert id="createBookOrder" parameterType="Order">
+  	INSERT INTO Order_ (<include refid="BaseColumns" />, bookId)
+  	VALUES (seq_orderId.nextval, #{cardBank}, #{cardNo}, #{validDate}, #{cvc},
+  		#{address},  #{phone}, #{refundBank}, #{refundAccount}, #{totalPrice}, 
+  		SYSDATE, #{userId}, #{bookId})
+  </insert>
   
   <select id="getAuctionId" parameterType="int" resultType="int">
   	SELECT s.auctionId

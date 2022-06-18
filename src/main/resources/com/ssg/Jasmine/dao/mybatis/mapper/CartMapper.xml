@@ -9,8 +9,7 @@
     SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE
     FROM BOOK 
     WHERE BOOKID = #{bookId}
-  </select> 
-  
+  </select>  
 
   <insert id="registerCartItem" parameterType="com.ssg.Jasmine.domain.CartItem">
   

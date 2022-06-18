@@ -11,7 +11,7 @@ public interface CartMapper {
 	CartItem getCartItem (int cartId);
 	
 	int registerCartItem(CartItem cartItem);
-	
+
 	void deleteCartItem(int cartId);
 	
 	List<CartItem> getCartItemListbyUserId(String userId);

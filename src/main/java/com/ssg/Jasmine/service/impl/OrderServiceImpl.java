@@ -40,19 +40,24 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int createOrder(Order order) {
+	public int createAuctionOrder(Order order) {
 		try {
-			orderDao.createOrder(order);
+			orderDao.createAuctionOrder(order);
 		} catch(DataAccessException ex) {
 			return 0;
 		}
 		return 1;
 	}
 	
-//	@Override
-//	public Order getOrderWithLineGroupBuys(int orderId) {
-//		return orderDao.getOrderWithLineGroupBuys(orderId);
-//	}
+	@Override
+	public int createBookOrder(Order order) {
+		try {
+			orderDao.createBookOrder(order);
+		} catch(DataAccessException ex) {
+			return 0;
+		}
+		return 1;
+	}
 	
 	public Auction getAuction(int orderId) {
 		int auctionId = orderDao.getAuctionId(orderId);
@@ -68,7 +73,6 @@ public class OrderServiceImpl implements OrderService {
 		for (Order order : auctionOrderList) {
 			int auctionId = order.getAuctionId();
 			order.setAuction(auctionDao.getAuction(auctionId));
-			//order.setMenuId(1);
 		}
 		return auctionOrderList;
 	}
@@ -82,19 +86,5 @@ public class OrderServiceImpl implements OrderService {
 	public List<Auction> getAuctionListByUserId(String userId) {
 		return orderDao.getAuctionListByUserId(userId);
 	}
-	
-//	public List<Order> setGroupBuyInfo(List<Order> groupBuyOrderList) {
-//		
-//		if (groupBuyOrderList == null) {
-//			return null;
-//		}
-//		
-//		for (Order order : groupBuyOrderList) {
-//			int groupBuyId = order.getGroupBuyId();
-//			order.setGroupBuy(groupBuyDao.getGroupBuy(groupBuyId));
-//			order.setMenuId(2);
-//		}
-//		return groupBuyOrderList;
-//	}
 
 }

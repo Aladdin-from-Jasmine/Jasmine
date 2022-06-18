@@ -10,7 +10,6 @@
     WHERE BOOKID = #{bookId}
   </select> 
   
-
   <insert id="createBook" parameterType="com.ssg.Jasmine.domain.Book">
   
   <selectKey keyProperty="bookId" resultType="int" order="BEFORE">

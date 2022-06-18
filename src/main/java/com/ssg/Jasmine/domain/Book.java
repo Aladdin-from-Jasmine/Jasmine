@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @SuppressWarnings("serial")
 public class Book implements Serializable{
 	private int bookId;
-	private int isbn;
+	private String isbn;
 	private int price;
 	private int categoryId;
 	private String title;
@@ -29,10 +29,10 @@ public class Book implements Serializable{
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
-	public int getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 	public int getPrice() {

@@ -10,7 +10,7 @@ public class BookForm implements Serializable {
 	private int bookId;
 	//등록한사람이 누군지는.. 알아야되니까....
 	//private String userName;
-	private int isbn;
+	private String isbn;
 	private int price;
 	private int categoryId;
 	private String title;
@@ -42,10 +42,10 @@ public class BookForm implements Serializable {
 
 
 
-	public int getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 	public int getPrice() {

@@ -18,6 +18,7 @@ action="/book/update?bookId=${bookForm.bookId}" enctype="multipart/form-data">
 <img src="${bookForm.img}" width="300px" height="350px"/>
 
 <form:input type="file" path="report"/> 
+<form:errors path="report" class="error" />
 
 
 <br>
@@ -25,20 +26,29 @@ action="/book/update?bookId=${bookForm.bookId}" enctype="multipart/form-data">
 
 책 제목
 <form:input path="title" value="${title}"/>
+<form:errors path="title" class="error" />
+
 <br>
 ISBN
 <form:input path="isbn" value="${isbn}"/>
+<form:errors path="isbn" class="error" />
+
 <br>
 가격
 <form:input path="price" value="${price}"/>
+<form:errors path="price" class="error" />
+
 
 <br>
 작가
 <form:input path="author" value="${author}"/>
+<form:errors path="author" class="error" />
+
 
 <br>
 출판사
 <form:input path="publisher" value="${publisher}"/>
+<form:errors path="publisher" class="error" />
 
 <br>
 카테고리
@@ -46,6 +56,7 @@ ISBN
 <option value="categoryId">${categoryId}</option>
 <form:options items="${genres}" itemValue="categoryId" itemLabel="genre"/>
 </form:select> 
+<form:errors path="categoryId" class="error" />
 
 <input type="submit" value="REGISTER" id="register-btn">
 			

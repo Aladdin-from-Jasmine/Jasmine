@@ -34,6 +34,7 @@ import com.ssg.Jasmine.domain.Category;
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
 import com.ssg.Jasmine.service.UserService;
+import com.ssg.Jasmine.validator.BookFormValidator;
 
 @Controller
 @RequestMapping(value="/book/register")
@@ -95,45 +96,59 @@ public class RegisterBookController implements ApplicationContextAware{
 			@ModelAttribute("bookForm") BookForm bookForm, BindingResult result,
 			Model model, SessionStatus sessionStatus) throws Exception {
 		
-		MultipartFile report = bookForm.getReport();
-		String filename = uploadFile(report);
-		model.addAttribute("fileUrl", this.uploadDirLocal + filename);
+		new BookFormValidator().validate(bookForm, result);
 
+		ModelAndView mav = new ModelAndView();
+
+		if (result.hasErrors()) {
+			mav.setViewName("book/register"); 
+			return "book/register";
+		}
+		else {
+			MultipartFile report = bookForm.getReport();
+			String filename = uploadFile(report);
+			model.addAttribute("fileUrl", this.uploadDirLocal + filename);
+
+			
+			
+			UserSession user = (UserSession)request.getSession().getAttribute("userSession");
+			String userId = user.getUser().getUserId();
+			session.setAttribute("bookForm", bookForm);
+			
+			//String bookId =bookForm.getTitle();
+			model.addAttribute("userId",userId);
+			model.addAttribute("bookForm", bookForm);
+			
+			//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
+			
+			Book book = new Book();
+			book.setIsbn(bookForm.getIsbn());
+			book.setPrice(bookForm.getPrice());
+			book.setCategoryId(bookForm.getCategoryId());
+			book.setTitle(bookForm.getTitle());
+			book.setAuthor(bookForm.getAuthor());
+			book.setPublisher(bookForm.getPublisher());
+			book.setUserId(userId);
+			book.setImg(this.uploadDirLocal + filename);
+			
+			System.out.println("img: "+book.getImg());
+			
+			
+			
+			System.out.println(userId);
+			
+			bookService.createBook(book);
+			
+			
+			sessionStatus.setComplete();
+			
+			
+			return "redirect:/book/detail/"+book.getBookId(); //리다이렉트 하는게 나을듯?
+		}
 		
 		
-		UserSession user = (UserSession)request.getSession().getAttribute("userSession");
-		String userId = user.getUser().getUserId();
-		session.setAttribute("bookForm", bookForm);
-		
-		//String bookId =bookForm.getTitle();
-		model.addAttribute("userId",userId);
-		model.addAttribute("bookForm", bookForm);
-		
-		//String genre = categoryService.getGenreByCategoryId(bookForm.getCategoryId());
-		
-		Book book = new Book();
-		book.setIsbn(bookForm.getIsbn());
-		book.setPrice(bookForm.getPrice());
-		book.setCategoryId(bookForm.getCategoryId());
-		book.setTitle(bookForm.getTitle());
-		book.setAuthor(bookForm.getAuthor());
-		book.setPublisher(bookForm.getPublisher());
-		book.setUserId(userId);
-		book.setImg(this.uploadDirLocal + filename);
-		
-		System.out.println("img: "+book.getImg());
 		
 		
-		
-		System.out.println(userId);
-		
-		bookService.createBook(book);
-		
-		
-		sessionStatus.setComplete();
-		
-		
-		return "redirect:/book/detail/"+book.getBookId(); //리다이렉트 하는게 나을듯?
 	}
 	
 	private String uploadFile(MultipartFile report) {

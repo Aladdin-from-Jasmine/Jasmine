@@ -21,6 +21,16 @@
 							</c:url>"> ${order.auction.title}</a>&nbsp;&nbsp;&nbsp;
 					TotalPrice : ${order.totalPrice}원</h2>
 			</div>
+		</c:if>
+		<c:if test="${empty order.auction}">
+			<div>
+				<h2 class="orderForm-h2" style="color: #f57ad4"><button disabled>책</button> &nbsp;
+					<a href="<c:url value='/book/detail'>
+								<c:param name="bookId" value="${order.book.bookId}" />
+							</c:url>"> ${order.book.title}</a>&nbsp;&nbsp;&nbsp;
+					TotalPrice : ${order.totalPrice}원</h2>
+			</div>
+		</c:if>
 			<div id="orderForm">
 				<table class="TB5" align="center">
 					<tr>
@@ -49,7 +59,7 @@
 					</tr>
 				</table>
 			</div>
-		</c:if>
+		
 	</div> </br> </br>
 	
 	<div class="container">

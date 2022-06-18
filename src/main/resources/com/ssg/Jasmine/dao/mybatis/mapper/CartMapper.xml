@@ -10,7 +10,15 @@
     FROM BOOK 
     WHERE BOOKID = #{bookId}
   </select> 
+
+  <insert id="registerUserCart" parameterType="com.ssg.Jasmine.domain.CartItem">
   
+  	INSERT INTO Cart 
+  	( CARTID, TOTALPRICE, USERID)
+  	VALUES 
+  	(SEQ_cartID.nextval, 0, #{param1}) 
+
+  </insert>  
 
   <insert id="registerCartItem" parameterType="com.ssg.Jasmine.domain.CartItem">
   

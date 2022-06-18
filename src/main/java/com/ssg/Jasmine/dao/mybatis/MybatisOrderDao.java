@@ -44,32 +44,36 @@ public class MybatisOrderDao implements OrderDao {
 
 	@Override
 	@Transactional
-	public void createOrder(Order order) throws DataAccessException {
-		// ORDERS 테이블에 order 삽입
-		orderMapper.createOrder(order);
+	public void createAuctionOrder(Order order) throws DataAccessException{
+		orderMapper.createAuctionOrder(order);
+	}
+
+	@Override
+	@Transactional
+	public void createBookOrder(Order order) throws DataAccessException{
+		orderMapper.createBookOrder(order);
 		
 		// GroupBuy를 결제하는 경우
-		/*List<LineGroupBuy> lineGroupBuys = order.getLineGroupBuys();
-		if (lineGroupBuys != null) {
-			// LINEGROUPBUYS 테이블에 lineGroupBuy들 삽입
-			for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
-				lineGroupBuy.setOrderId(order.getOrderId());
-				lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
-			}
-			// GROUPBUYS 테이블에 참여자, 달성률, 상태 update
-			groupBuyMapper.updateState(order.getGroupBuy());
-		}*/
-		
-		// Auction을 결제하는 경우
-//		SuccessBidder successBidder = order.getSuccessBidder();
-//		
-//		System.out.println("[SuccessBidder] : " + successBidder);
-//		
-//		if (successBidder != null) {
-//			successBidder.setOrderId(order.getOrderId());
-//			successBidderMapper.createSuccessBidder(successBidder);//?
-//		}
-		
+				/*List<LineGroupBuy> lineGroupBuys = order.getLineGroupBuys();
+				if (lineGroupBuys != null) {
+					// LINEGROUPBUYS 테이블에 lineGroupBuy들 삽입
+					for (LineGroupBuy lineGroupBuy : lineGroupBuys) {
+						lineGroupBuy.setOrderId(order.getOrderId());
+						lineGroupBuyMapper.insertLineGroupBuy(lineGroupBuy);
+					}
+					// GROUPBUYS 테이블에 참여자, 달성률, 상태 update
+					groupBuyMapper.updateState(order.getGroupBuy());
+				}*/
+				
+				// Auction을 결제하는 경우
+//				SuccessBidder successBidder = order.getSuccessBidder();
+//				
+//				System.out.println("[SuccessBidder] : " + successBidder);
+//				
+//				if (successBidder != null) {
+//					successBidder.setOrderId(order.getOrderId());
+//					successBidderMapper.createSuccessBidder(successBidder);//?
+//				}
 	}
 	
 	/*@Override

@@ -40,9 +40,19 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int createOrder(Order order) {
+	public int createAuctionOrder(Order order) {
 		try {
-			orderDao.createOrder(order);
+			orderDao.createAuctionOrder(order);
+		} catch(DataAccessException ex) {
+			return 0;
+		}
+		return 1;
+	}
+	
+	@Override
+	public int createBookOrder(Order order) {
+		try {
+			orderDao.createBookOrder(order);
 		} catch(DataAccessException ex) {
 			return 0;
 		}

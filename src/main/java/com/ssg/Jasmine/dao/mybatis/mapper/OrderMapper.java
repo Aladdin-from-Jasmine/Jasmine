@@ -15,7 +15,9 @@ public interface OrderMapper {
 
 	  int getOrderByAuctionId(int auctionId) throws DataAccessException; // From SuccessBidders
 	  
-	  int createOrder(Order order) throws DataAccessException;
+	  int createAuctionOrder(Order order) throws DataAccessException;
+	  
+	  int createBookOrder(Order order) throws DataAccessException;
 	  
 	  Order getOrderWithLineGroupBuys(int orderId) throws DataAccessException; 
 	 

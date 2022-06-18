@@ -25,9 +25,6 @@ function bid(max, now) {
 	var txt = document.getElementById("bidPrice").value;
 	
    if (confirm("배팅 하시겠습니까?")) {
-	   /* if(max >= txt)
-		   alert("작아욘");
-	   else */
       	bidForm.submit();
    }
    

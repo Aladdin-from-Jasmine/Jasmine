@@ -70,6 +70,7 @@ public class CartBookController {
 			
 			cartItem.setQuantity(1);
 			
+			System.out.println("userId: " + userSession.getUser().getUserId());
 			int cartId = cartService.getCartIdByUserId(userSession.getUser().getUserId());
 			System.out.println("this is "+cartId);
 			cartItem.setCartId(cartId);

@@ -5,6 +5,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script>
+
+	function bookDetail(bookId) {
+		window.location.href = "http://localhost:8080/book/detail/"+ bookId;
+	}
+	
+</script>
+
 
 <h1>결제</h1></br></br></br>
 <div>
@@ -13,13 +21,24 @@
 		<div id="orderForm">
 			<table class="TB4" align="center">
 				<tr>
-					<td class="listTb-2">
-						상품명 : <a href="<c:url value='/auction/detail'>
-											<c:param name="auctionId" value="${orderForm.order.auction.auctionId}" />
-										</c:url>">${orderForm.order.auction.title}</a>
-					</td>
-					<td>금액 : ${orderForm.order.totalPrice}원</td>
-					<td style="font-weight: bold">TotalPrice : ${orderForm.order.totalPrice}원</td>
+					<!-- 경매 결제 -->
+					<c:if test="${isAuction == true}">
+						<td class="listTb-2">
+							상품명 : <a href="<c:url value='/auction/detail'>
+												<c:param name="auctionId" value="${orderForm.order.auctionId}" />
+											</c:url>">${orderForm.order.auction.title}</a>
+						</td>
+						<td>금액 : ${orderForm.order.totalPrice}원</td>
+						<td style="font-weight: bold">TotalPrice : ${orderForm.order.totalPrice}원</td>
+					</c:if>
+					<!-- 책 결제 -->
+					<c:if test="${isAuction == false}">
+						<td style="color:#2974ff" class="listTb-2" onClick="bookDetail(${orderForm.order.book.bookId})">
+							상품명 : ${orderForm.order.book.title}</a>
+						</td>
+						<td>금액 : ${orderForm.order.totalPrice}원</td>
+						<td style="font-weight: bold">TotalPrice : ${orderForm.order.totalPrice}원</td>
+					</c:if>
 				</tr>
 			</table>
 		</div>
@@ -89,9 +108,14 @@
 				</br></br>
 				<div  align="center">
 					<input id="auction-register-btn" type="submit" value="Order" > &nbsp;
-					<a id="auction-register-btn" href="<c:url value='/auction/detail'>
+					<c:if test="${isAuction == true}">
+						<a id="auction-register-btn" href="<c:url value='/auction/detail'>
 		                                 <c:param name="auctionId" value="${orderForm.order.auction.auctionId}"/>
 		                               </c:url>">Cancel</a> 
+		            </c:if>
+		            <c:if test="${isAuction == false}">
+						<a id="auction-register-btn" href="<c:url value='/user/cart' />">Cancel</a> 
+		            </c:if>
 				</div>
 			</form:form>
 		</div>	

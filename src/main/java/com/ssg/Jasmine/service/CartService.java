@@ -10,6 +10,8 @@ public interface CartService {
 	
 	int registerCartItem(CartItem cartItem);
 	
+	int registerUserCart(String userId);
+	
 	void deleteCartItem(int cartId);
 	
 	List<CartItem> getCartItemListbyUserId(String userId);

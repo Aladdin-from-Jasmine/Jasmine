@@ -27,6 +27,7 @@ public class Order implements Serializable {
 //	GroupBuy groupBuy;
 	SuccessBidder successBidder;
 	Auction auction;
+	Book book;
 	
 	//int menuId; // auction과 groupBuy를 구분하기 위함.
 	//int groupBuyId;
@@ -96,6 +97,14 @@ public class Order implements Serializable {
 
 	public void setAuction(Auction auction) {
 		this.auction = auction;
+	}
+	
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	
 	public int getTotalPrice() {
@@ -210,67 +219,79 @@ public class Order implements Serializable {
 		this.totalQuantity = totalQuantity;
 	}
 
-	public void initOrder(User user, Auction auction) {
+	public void initAuctionOrder(User user, Auction auction) {
 		userId = user.getUserId();
 		address = user.getAddress();
 		phone = user.getPhone();
 		
-		// 환불계좌 정보 불러오기
-		//refundBank = user.getRefundBank();
-		//refundAccount = user.getRefundAccount();
-		
 		totalPrice = 0;
 		totalQuantity = 0;
-		
-		// GroupBuy를 결제하는 경우
-		/*if (lineGroupBuyForm != null) {
-			lineGroupBuys = new ArrayList<LineGroupBuy>();
-			
-			groupBuyId = lineGroupBuyForm.getGroupBuyId();
-			groupBuy = lineGroupBuyForm.getGroupBuy();
-			
-			List<String> options = lineGroupBuyForm.getOptions();
-			List<Integer> quantities = lineGroupBuyForm.getQuantities();
-			List<Integer> unitPrices = new ArrayList<Integer>();
-			
-			for (int i = 0; i < quantities.size(); i++) { // (옵션, 수량)쌍의 갯수 동안
-				int unitPrice = lineGroupBuyForm.getQuantities().get(i) * groupBuy.getPrice();
-				unitPrices.add(unitPrice);
-				
-				LineGroupBuy lineGroupBuy = new LineGroupBuy();
-				lineGroupBuy.setSelectOption(options.get(i));
-				lineGroupBuy.setQuantity(quantities.get(i));
-				lineGroupBuy.setUnitPrice(unitPrice);
-				lineGroupBuy.setGroupBuyId(groupBuyId);
-				lineGroupBuy.setGroupBuy(groupBuy);
-				
-				lineGroupBuys.add(lineGroupBuy);
-				
-				totalPrice += unitPrice;
-				totalQuantity += quantities.get(i);
-			}
-			
-			lineGroupBuyForm.setUnitPrices(unitPrices);
-		}*/
-		
-		// Auction을 결제하는 경우
+	
 		if (auction != null) {
 			List<Bid> bids = auction.getBids();
 			totalPrice = auction.getMaxPrice();
 			auctionId = auction.getAuctionId();
 			this.auction = auction;
 			
+		}
+	}
+		
+	public void initBookOrder(User user, Book book) {
+		userId = user.getUserId();
+		address = user.getAddress();
+		phone = user.getPhone();
+		
+		totalPrice = book.getPrice();
+		bookId = book.getBookId();
+		this.book = book;
+			
+			// GroupBuy를 결제하는 경우
+			/*if (lineGroupBuyForm != null) {
+				lineGroupBuys = new ArrayList<LineGroupBuy>();
+				
+				groupBuyId = lineGroupBuyForm.getGroupBuyId();
+				groupBuy = lineGroupBuyForm.getGroupBuy();
+				
+				List<String> options = lineGroupBuyForm.getOptions();
+				List<Integer> quantities = lineGroupBuyForm.getQuantities();
+				List<Integer> unitPrices = new ArrayList<Integer>();
+				
+				for (int i = 0; i < quantities.size(); i++) { // (옵션, 수량)쌍의 갯수 동안
+					int unitPrice = lineGroupBuyForm.getQuantities().get(i) * groupBuy.getPrice();
+					unitPrices.add(unitPrice);
+					
+					LineGroupBuy lineGroupBuy = new LineGroupBuy();
+					lineGroupBuy.setSelectOption(options.get(i));
+					lineGroupBuy.setQuantity(quantities.get(i));
+					lineGroupBuy.setUnitPrice(unitPrice);
+					lineGroupBuy.setGroupBuyId(groupBuyId);
+					lineGroupBuy.setGroupBuy(groupBuy);
+					
+					lineGroupBuys.add(lineGroupBuy);
+					
+					totalPrice += unitPrice;
+					totalQuantity += quantities.get(i);
+				}
+				
+				lineGroupBuyForm.setUnitPrices(unitPrices);
+			}*/
+			
+			
+		
+			//List<Bid> bids = auction.getBids();
+			
+				
 			/*successBidder = new SuccessBidder();
 			successBidder.setAuctionId(auctionId);
-			successBidder.setUserId(user.getUserId());
-			
-			for (Bid bid : bids) {
-				if (bid.getBidPrice() == totalPrice) {
-					successBidder.setBidId(bid.getBidId());
-					break;
-				}
-			}*/
-		}
+				successBidder.setUserId(user.getUserId());
+				
+				for (Bid bid : bids) {
+					if (bid.getBidPrice() == totalPrice) {
+						successBidder.setBidId(bid.getBidId());
+						break;
+					}
+				}*/
+		
 
 	}
 

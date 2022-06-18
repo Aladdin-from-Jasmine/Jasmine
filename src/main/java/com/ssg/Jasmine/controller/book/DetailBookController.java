@@ -59,6 +59,7 @@ public class DetailBookController {
 		try {
 			ModelAndView mav = new ModelAndView("book/detail");
 
+			mav.addObject("orderState", book.getOrderState());
 			mav.addObject("book", book);
 			mav.addObject("genre", genre);
 			mav.addObject("isUser", isUser);

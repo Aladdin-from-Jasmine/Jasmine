@@ -52,11 +52,11 @@ public class ListCartController {
 			
 			for(CartItem c : cartItemList) {
 				Book b = bookService.getBookByBookId(c.getBookId());
-				System.out.println("카트 책 이름 : "+b.getTitle());
-				booklist.add(b);
+				if(b != null) {
+					System.out.println("카트 책 이름 : "+b.getTitle());
+					booklist.add(b);
+				}
 			}
-			
-			
 			
 			mav.addObject("bookList", booklist);		
 			mav.addObject("listSize", booklist.size());

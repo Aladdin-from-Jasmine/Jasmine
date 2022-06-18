@@ -85,6 +85,12 @@
 	WHERE auctionId = #{auctionId}
   </select>
   
+  <select id="getOrderByAuctionId2" parameterType="int" resultType="Order">
+  	SELECT *
+	FROM Order_
+	WHERE auctionId = #{auctionId}
+  </select>
+  
   <select id="getOrderByBookId" parameterType="int" resultType="int">
   	SELECT orderId
 	FROM Order_

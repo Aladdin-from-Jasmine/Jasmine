@@ -16,6 +16,8 @@ public interface OrderDao {
 	  void createBookOrder(Order order) throws DataAccessException;
 	  
 	  int getOrderByAuctionId(int auctionId) throws DataAccessException;
+	  
+	  Order getOrderByAuctionId2(int auctionId) throws DataAccessException;
 	
 	  int getOrderByBookId(int bookId) throws DataAccessException;
 	  

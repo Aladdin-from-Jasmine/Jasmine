@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ssg.Jasmine.controller.user.UserSession;
 import com.ssg.Jasmine.domain.Book;
 import com.ssg.Jasmine.domain.Category;
+import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.service.BookService;
 import com.ssg.Jasmine.service.CategoryService;
 import com.ssg.Jasmine.service.JasmineFacade;
@@ -59,9 +60,10 @@ public class DetailBookController {
 		try {
 			ModelAndView mav = new ModelAndView("book/detail");
 
-			int orderId = orderService.getOrderByBookId(bookId);
+			Order order = orderService.getOrderByBookId2(bookId);
+			
 			// 낙찰자가 결제까지 완료한 경우
-			if (orderId > 0) {
+			if (order != null) {
 				mav.addObject("completeOrder", 1);
 			} else {
 				mav.addObject("completeOrder", 0);

@@ -20,6 +20,8 @@ public interface OrderService {
 	
 	public int getOrderByBookId(int bookId);
 	
+	public Order getOrderByBookId2(int bookId);
+	
 	public Auction getAuction(int orderId);
 	
 	public Book getBook(int orderId);

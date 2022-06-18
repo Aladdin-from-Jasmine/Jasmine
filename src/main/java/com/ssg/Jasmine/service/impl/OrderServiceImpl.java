@@ -47,6 +47,11 @@ public class OrderServiceImpl implements OrderService {
 	public int getOrderByBookId(int bookId) {
 		return orderDao.getOrderByBookId(bookId);
 	}
+	
+	@Override
+	public Order getOrderByBookId2(int bookId) {
+		return orderDao.getOrderByBookId2(bookId);
+	}
 
 	@Override
 	public int createAuctionOrder(Order order) {

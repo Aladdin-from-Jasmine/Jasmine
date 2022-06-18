@@ -6,7 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
-	CART
+	<h1>CART</h1>
 		<div class="row">
 			<div class="col-lg-4 col-md-6 mb-4">
 				<div class="post-entry-1 h-100">

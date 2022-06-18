@@ -7,9 +7,11 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.ssg.Jasmine.dao.AuctionDao;
+import com.ssg.Jasmine.dao.BookDao;
 import com.ssg.Jasmine.dao.OrderDao;
 import com.ssg.Jasmine.dao.UserDao;
 import com.ssg.Jasmine.domain.Auction;
+import com.ssg.Jasmine.domain.Book;
 import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.domain.User;
 import com.ssg.Jasmine.service.OrderService;
@@ -23,6 +25,8 @@ public class OrderServiceImpl implements OrderService {
 	private AuctionDao auctionDao;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private BookDao bookDao;
 
 	@Override
 	public User getUser(String emailId) {
@@ -37,6 +41,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public int getOrderByAuctionId(int auctionId) {
 		return orderDao.getOrderByAuctionId(auctionId);
+	}
+	
+	@Override
+	public int getOrderByBookId(int bookId) {
+		return orderDao.getOrderByBookId(bookId);
 	}
 
 	@Override
@@ -61,7 +70,17 @@ public class OrderServiceImpl implements OrderService {
 	
 	public Auction getAuction(int orderId) {
 		int auctionId = orderDao.getAuctionId(orderId);
-		return auctionDao.getAuction(auctionId);
+		if(auctionId > 0) {
+			return auctionDao.getAuction(auctionId);
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public Book getBook(int orderId) {
+		int bookId = orderDao.getBookId(orderId);
+		return bookDao.getBookByBookId(bookId);
 	}
 	
 	public List<Order> setAuctionInfo(List<Order> auctionOrderList) {

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssg.Jasmine.controller.user.UserSession;
+import com.ssg.Jasmine.domain.Auction;
 import com.ssg.Jasmine.domain.Order;
 import com.ssg.Jasmine.service.OrderService;
 
@@ -29,7 +30,13 @@ public class DetailOrderController {
 			ModelAndView mav = new ModelAndView("order/payment_detail");
 			Order order = orderService.getOrder(orderId);
 
-			order.setAuction(orderService.getAuction(orderId));
+			if(order.getAuctionId() > 0) {
+				Auction auction = orderService.getAuction(orderId);
+				order.setAuction(auction);
+			}
+			else {
+				order.setBook(orderService.getBook(orderId));
+			}
 			
 			mav.addObject("order", order);
 			return mav;

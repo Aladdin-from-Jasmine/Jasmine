@@ -48,7 +48,7 @@
 		<div id="orderForm">
 			<table class="TB5" align="center">
 				<form:form modelAttribute="orderForm" method="POST" 
-				action="/order/auction/create">
+				action="/order/create">
 					<form:input type="hidden" path="order.orderId" value="${order.userId}"/>
 					<tr>
 						<td class="listTb-tr2">카드정보</td>

@@ -61,6 +61,11 @@
 	WHERE o.orderId = #{orderId} AND s.auctionId = o.auctionId
   </select>
 
+	<select id="getBookId" parameterType="int" resultType="int">
+  	SELECT bookId
+	FROM Order_ 
+	WHERE orderId = #{orderId}
+  </select>
   
   <select id="getAuctionListByUserId" parameterType="String" resultType="Auction"> 
   	SELECT a.*
@@ -80,9 +85,20 @@
 	WHERE auctionId = #{auctionId}
   </select>
   
+  <select id="getOrderByBookId" parameterType="int" resultType="int">
+  	SELECT orderId
+	FROM Order_
+	WHERE bookId = #{param1}
+  </select>
+  
   <delete id="deleteOrderByUserId" parameterType="Integer">
   	DELETE FROM Order_
   	WHERE USERID = #{userId}
+  </delete>
+  
+  <delete id="deleteOrderByOrderId" parameterType="Integer">
+  	DELETE FROM Order_
+  	WHERE ORDERID = #{orderId}
   </delete>
  
  </mapper>

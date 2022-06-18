@@ -25,6 +25,9 @@
 <div class="container">
 	<div id="signup-form">
 		<h2 class="text-center">책 상세 페이지</h2>
+		<c:if test="${completeOrder eq 1}" >
+			<h3 style="color:#e366a5">😢 거래완료 된 책 입니다.</h3>
+		</c:if>
 		<br />
 		<form:form modelAttribute="bookForm" method="POST" name="form" 
 		action="/book/delete/${bookId}" id="signup-form-form"><br />
@@ -115,7 +118,7 @@
 					<a href="<c:url value='/book/update?bookId=${book.bookId}'></c:url>" id="a-btn">수정</a>
 					<input id="a-btn" type="button" value="삭제" onClick="deleteBook()" />
 			</c:if>
-			<c:if test="${isUser==false && isManager==false && (orderState eq null or orderState eq 'fail')}" >
+			<c:if test="${isUser==false && isManager==false && completeOrder ne 1}" >
 				<div class="form-group" align="center">
 					
 					<input id="a-btn" type="button" value="카트에 담기" onClick="AddtoCart(${book.bookId})" />

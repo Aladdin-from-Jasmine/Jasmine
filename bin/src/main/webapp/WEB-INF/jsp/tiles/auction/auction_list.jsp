@@ -16,8 +16,6 @@
 
    <div>
       <c:forEach var="auction" items="${auctionList}" varStatus="status">
-         
-
          <div id="auctionForm">
          <a
             href="<c:url value='/auction/detail'><c:param name="auctionId" value="${auction.auctionId}"/></c:url>">
@@ -51,14 +49,5 @@
             <p>${auction.content}</p>
          </div>
       </c:forEach>
-
-<!-- 
-      <div class="col-12 mt-5 text-center">
-      		<span class="p-3">1</span> <a href="#" class="p-3">2</a> <a href="#"
-      		<class="p-3">3</a> <a href="#" class="p-3">4</a>
-      </div>
-      
-       -->
-
    </div>
 </div>

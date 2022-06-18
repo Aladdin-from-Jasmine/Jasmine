@@ -31,19 +31,7 @@ function auctionSubmit(isNewAuction) {
          <form:errors path="auction.title" cssClass="error" />
          <form:input path="auction.title" class="form-control"
             placeholder="Title" />
-
-         <%-- <c:choose>
-                              <c:when test="${auctionForm.newAuction}">
-                                 <form:input path="auction.title" class="form-control" placeholder="Title" />
-                              </c:when>
-                              <c:otherwise>
-                                 <form:input path="auction.title" class="form-control" value="${auctionForm.auction.title}" />
-                              </c:otherwise>
-                           </c:choose> --%>
-
       </div>
-
-
 
       <div class="auction-form-sub">
          <label for="auction.startPrice">최소 입찰 금액</label>
@@ -87,12 +75,10 @@ function auctionSubmit(isNewAuction) {
                itemLabel="label" itemValue="code" />
          </form:select>
 
-
          <form:radiobuttons items="${amPm}" id="amPm" path="auction.isAmPm" />
          <form:errors path="auction.isAmPm" cssClass="error" />
 
       </div>
-
 
       <div class="auction-form-sub">
          <label for="auction.content">상세 설명</label>

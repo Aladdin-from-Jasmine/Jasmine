@@ -6,7 +6,6 @@
 <html>
 <head>
 	<title><tiles:getAsString name="title" /></title>
-	<!--<title>JPetStore Demo</title>-->
 	<meta http-equiv="Content-Type" content="text/html;"	/>
 	<meta http-equiv="Cache-Control" content="max-age=0">
 	<meta http-equiv="Cache-Control" content="no-cache">

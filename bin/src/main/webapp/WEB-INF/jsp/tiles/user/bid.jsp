@@ -8,10 +8,10 @@
 
 <div class="container">
 	<h1>My Page</h1>
-	<h3>내가 올린 경매⌛</h3>
-
-		<div>
-		<c:forEach var="auction" items="${auctionList.pageList}" varStatus="status">
+	<h3>낙찰된 경매 ⌛</h3>
+</div>
+	<div>
+		<c:forEach var="auction" items="${auctionList}" varStatus="status">
 			<div id="auctionForm">
 				<table class="TB3" align="center">
 					<tr>
@@ -62,13 +62,4 @@
 				</table>
 			</div>
 		</c:forEach>
-		<c:if test="${!auctionList.firstPage}">
-	          <a href="/user/auction?page=previous" style=""><font color="#d164c4"><B>&lt;&lt;
-	                Prev</B></font></a>
-	        </c:if> 
-	        <c:if test="${!auctionList.lastPage}">
-	          <a href="/user/auction?page=next"><font color="#d164c4"><B>Next
-	                &gt;&gt;</B></font></a>
-	        </c:if>
 	</div>
-</div>

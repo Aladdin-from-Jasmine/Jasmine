@@ -11,14 +11,12 @@
 
 </c:if>
 
-
 <!-- 게시물 x -->
 <c:if test="${listcheck == 'empty'}">
-	<div class="table_empty">
-		검색결과가 없습니다.
-	</div>
+	<div class="table_empty">검색결과가 없습니다.</div>
 </c:if>
 
 <h1>Book</h1>
 
-   <a href="<c:url value='/book/register'></c:url>">경매 등록</a> <br />
+<a href="<c:url value='/book/register'></c:url>">경매 등록</a>
+<br />

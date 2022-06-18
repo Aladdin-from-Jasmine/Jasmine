@@ -5,9 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>	
-<%-- <c:if test="${deleteComplete == 1}">
-	<body onLoad="alert('회원탈퇴가 완료되었습니다.')">
-</c:if> --%>
 
 <div class="container">
 	<div id="login-form">

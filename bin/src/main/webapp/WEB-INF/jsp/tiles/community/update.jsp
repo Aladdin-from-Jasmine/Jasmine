@@ -75,7 +75,6 @@
 			</table><br/>
 			<div class="form-group" align="center">
  				<input type="submit" value="수정하기" id="register-btn">
- 				<!-- <input type="button" value="수정하기" id="register-btn" onclick="update()"> -->
 				<a href="<c:url value='/community/detail'>
 	  				<c:param name="postId" value="${community.postId}"/>
 				</c:url>" id="a-btn">취소</a>

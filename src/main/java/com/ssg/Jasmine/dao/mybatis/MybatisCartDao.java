@@ -15,11 +15,7 @@ public class MybatisCartDao implements CartDao{
 	@Autowired
 	private CartMapper cartMapper;
 	
-	@Override
-	public CartItem getCartItem(int cartId) {
-		// TODO Auto-generated method stub
-		return cartMapper.getCartItem(cartId);
-	}
+	
 
 	@Override
 	public int registerCartItem(CartItem cartItem) {
@@ -50,6 +46,12 @@ public class MybatisCartDao implements CartDao{
 	public int registerCartbyUserId(String userId) {
 		// TODO Auto-generated method stub
 		return cartMapper.registerCartbyUserId(userId);
+	}
+
+	@Override
+	public List<CartItem> getCartItemByBookIdAndUserId(int bookId, String userId) {
+		// TODO Auto-generated method stub
+		return cartMapper.getCartItemByBookIdAndUserId(bookId, userId);
 	}
 
 }

@@ -212,15 +212,11 @@ h2, h1, h3 {
 }
 
 #bookForm {
-		text-align: center;
-	
+	text-align: center;
 	padding: 20px;
 	background-color: rgb(231, 226, 235);
 	border-radius: 70px;
-	width:40%;
-	left: 50%;
-
-	
+	margin:2% 20%;
 }
 
 #search-auction-form {

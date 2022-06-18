@@ -4,12 +4,14 @@
 <mapper namespace="com.ssg.Jasmine.dao.mybatis.mapper.CartMapper">
   <cache />
   
-  <!-- 아직 x-->
-  <select id="getCartItem" resultType="com.ssg.Jasmine.domain.CartItem">
-    SELECT BOOKID, ISBN, PRICE, TITLE, AUTHOR, PUBLISHER, CATEGORYID, USERID, IMG, REGISTERDATE
-    FROM BOOK 
-    WHERE BOOKID = #{bookId}
-  </select>  
+
+  <select id="getCartItemByBookIdAndUserId" resultType="com.ssg.Jasmine.domain.CartItem">
+    SELECT cartitem.CARTITEMID, cartitem.QUANTITY, cartitem.CARTID, cartitem.BOOKID
+    FROM cartitem, cart
+    WHERE cartitem.BOOKID = #{bookId} AND cart.userid=#{userId}
+  </select> 
+  
+
 
   <insert id="registerCartItem" parameterType="com.ssg.Jasmine.domain.CartItem">
   
@@ -32,7 +34,7 @@
   </insert>
 
   
-   <delete id="deleteCartItem" parameterType="com.ssg.Jasmine.domain.CartItem">
+   <delete id="deleteCartItem">
   	DELETE cartitem 
   	WHERE cartitemid = #{cartitemid}
   </delete>

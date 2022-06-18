@@ -37,11 +37,9 @@ public class DetailBookController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView bookDetail(@PathVariable("bookId") int bookId, HttpServletRequest request, HttpSession session) {
-		System.out.println("여기님");
 		Book book =  bookService.getBookByBookId(bookId);
 		String genre = categoryService.getGenreByCategoryId(book.getCategoryId());
-		System.out.println("저자:" + book.getAuthor());
-	
+		
 		boolean isUser = false;
 		boolean isManager = false;
 		

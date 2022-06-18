@@ -81,10 +81,28 @@ public class ListBookController {
 		mav.addObject("keyword", keyword);
 		
 		mav.setViewName("book/list"); 
+		String page = request.getParameter("page");
+		PagedListHolder<Book> pagedBookList;
 		
-		System.out.println("list ok");
-		
-		return mav;
+		if (page == null) {
+			pagedBookList = new PagedListHolder<Book>(bookList);
+			pagedBookList.setPageSize(4);
+			request.getSession().setAttribute("BookController_bookList", pagedBookList);
+		}
+		else {
+			pagedBookList = (PagedListHolder<Book>)request.getSession().getAttribute("BookController_bookList");
+			if (pagedBookList == null) {
+				return new ModelAndView("Error", "message", "Your session has timed out. Please start over again.");
+			}
+			if ("next".equals(page)) {
+				pagedBookList.nextPage();
+			}
+			else if ("previous".equals(page)) {
+				pagedBookList.previousPage();
+			}	
+		}
+		return new ModelAndView("book/list", "bookList", pagedBookList);
+
 	}
 	
 }

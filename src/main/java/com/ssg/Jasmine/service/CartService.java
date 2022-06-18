@@ -6,7 +6,7 @@ import com.ssg.Jasmine.domain.CartItem;
 
 
 public interface CartService {
-	CartItem getCartItem (int cartId);
+	List<CartItem> getCartItemByBookIdAndUserId (int bookId, String userId);
 	
 	int registerCartItem(CartItem cartItem);
 

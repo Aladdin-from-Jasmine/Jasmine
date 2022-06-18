@@ -36,7 +36,7 @@ CREATE TABLE Community
 (
    postId               INTEGER NOT NULL ,
    title                VARCHAR2(20) NULL ,
-   communityDate        VARCHAR2(20) NULL ,
+   communityDate        DATE NULL ,
    content_             VARCHAR2(20) NULL ,
    userId               VARCHAR2(20) NULL 
 );
@@ -50,18 +50,18 @@ ALTER TABLE Community
 CREATE TABLE Auction
 (
 	auctionId            INTEGER NOT NULL ,
-	title                VARCHAR2(20) NULL ,
-	content_             VARCHAR2(20) NULL ,
-	img                  VARCHAR2(20) NULL ,
+	title                VARCHAR2(100) NULL ,
+	content_             VARCHAR2(1000) NULL ,
+	img                  VARCHAR2(100) NULL ,
 	startPrice           INTEGER NULL ,
 	uploadDate           DATE NULL ,
 	endDate              DATE NULL ,
 	count                INTEGER NULL ,
 	maxPrice             INTEGER NULL ,
-	state                VARCHAR2(20) NULL ,
-	bookTitle            VARCHAR2(20) NULL ,
-	bookAuthor           VARCHAR2(20) NULL ,
-	bookPublisher        VARCHAR2(20) NULL ,
+	state                VARCHAR2(100) NULL ,
+	bookTitle            VARCHAR2(100) NULL ,
+	bookAuthor           VARCHAR2(100) NULL ,
+	bookPublisher        VARCHAR2(100) NULL ,
 	userId               VARCHAR2(20) NULL 
 );
 
@@ -90,13 +90,16 @@ ALTER TABLE Bid
 CREATE TABLE Book
 (
    bookId               INTEGER NOT NULL ,
-   isbn                 INTEGER NULL ,
+   isbn                 VARCHAR2(100) NULL ,
    price                INTEGER NULL ,
-   title                VARCHAR2(20) NULL ,
-   author               VARCHAR2(20) NULL ,
-   publisher            VARCHAR2(20) NULL ,
+   title                100 NULL ,
+   author               VARCHAR2(100) NULL ,
+   publisher            VARCHAR2(100) NULL ,
    categoryId           INTEGER NULL 
-   userId				VARCHAR2(20)
+   userId				VARCHAR2(20),
+   img					VARCHAR2(100) NULL ,
+   registerDate			DATE NULL,
+   description			VARCHAR2(1000) NULL 
 );
 
 CREATE UNIQUE INDEX XPKBook ON Book
@@ -105,25 +108,26 @@ CREATE UNIQUE INDEX XPKBook ON Book
 ALTER TABLE Book
    ADD CONSTRAINT  XPKBook PRIMARY KEY (bookId);
 
-CREATE TABLE ORDER_
+CREATE TABLE Order_
 (
-   orderId      INTEGER NOT NULL ,
-  userId		VARCHAR2(20) NULL ,
-   bookId               INTEGER NULL ,
-   auctionId	 INTEGER NULL ,
-   cardBank	VARCHAR2(20) NULL ,
-   cardNo		VARCHAR2(20) NULL ,
-   validDate	 VARCHAR2(20) NULL ,
-   cvc		VARCHAR2(20) NULL ,
-  address		VARCHAR2(20) NULL ,
-  phone		VARCHAR2(20) NULL ,
-  refundBank	VARCHAR2(20) NULL ,
-  refundAccount    VARCHAR2(20) NULL ,
-  totalPrice	INTEGER NULL,
-  orderDate	DATE NULL,
-   status               VARCHAR2(20) NULL ,
-   totalQuantity	INTEGER NULL
+	orderId              INTEGER NOT NULL ,
+	bookId               INTEGER NULL ,
+	userId               VARCHAR2(20) NULL ,
+	auctionId            INTEGER NULL ,
+	cardbank             VARCHAR2(100) NULL ,
+	cardno               VARCHAR2(100) NULL ,
+	validate             VARCHAR2(100) NULL ,
+	cvc                  VARCHAR2(100) NULL ,
+	address              VARCHAR2(100) NULL ,
+	phone                VARCHAR2(100) NULL ,
+	refundbank           VARCHAR2(100) NULL ,
+	refundaccount        VARCHAR2(100) NULL ,
+	totalprice           VARCHAR2(100) NULL ,
+	orderdate            DATE NULL ,
+	status               VARCHAR2(100) NULL ,
+	totalquantity        VARCHAR2(100) NULL 
 );
+
 
 CREATE UNIQUE INDEX XPKOrder ON Order_
 (orderId   ASC);

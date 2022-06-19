@@ -19,15 +19,9 @@ https://youtu.be/3ePJRWcD6u0
 ## 개발 환경
 <span>
  
- - Presentation Layer: 
- <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>  
- <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/> 
-  <img src="https://img.shields.io/badge/Tiles-000000?style=flat-square&logo=Tile&logoColor=white"/>  </br>
+ - Presentation Layer: <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/Tiles-000000?style=flat-square&logo=Tile&logoColor=white"/>  </br>
  
-- Business Layer:
- <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/>
- <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=SpringBoot&logoColor=white"/> </br>
+- Business Layer: <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=SpringBoot&logoColor=white"/> </br>
 
 - Persistence Layer:
   <img src="https://img.shields.io/badge/SQL-CC2927?style=flat-square&logo=SpringBoot&logoColor=white"/> 

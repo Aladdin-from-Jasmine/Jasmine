@@ -43,6 +43,19 @@ https://youtu.be/3ePJRWcD6u0
 ## 서비스 소개
 ![개발목적](https://user-images.githubusercontent.com/84562885/171030540-af2fa3e2-c2d9-44a1-ab40-9e3041192f2a.PNG) </br></br></br>
 
+## 핵심기능
+![핵심기능](https://user-images.githubusercontent.com/84562885/174464516-ac7a211e-e636-4609-9897-00acb92ce0bc.PNG)
+![책기능](https://user-images.githubusercontent.com/84562885/174464527-31a9d0e8-a8d0-4b4f-8179-0e2c08544b7f.PNG)
+![커뮤니티기능](https://user-images.githubusercontent.com/84562885/174464528-545ee1a4-fa58-439b-9fe8-757e448eefe6.PNG)
+![경매기능](https://user-images.githubusercontent.com/84562885/174464529-ec5a535e-58e3-4841-8f47-b0ca5777e031.PNG)
+![마이페이지기능](https://user-images.githubusercontent.com/84562885/174464531-1b8149fa-9e09-448a-ba88-29ca6d11cd14.PNG)
+
+## 시스템설계
+![시스템설계](https://user-images.githubusercontent.com/84562885/174464532-f7c49c2b-036b-4fd2-afaa-2394f490c6b3.PNG)
+
+## 유스케이스
+![유스케이스](https://user-images.githubusercontent.com/84562885/174464525-a25c91a4-4e9a-4178-a8a2-a49f0210fb9a.PNG)
+
 ## 시스템 구성도
 ![시스템구성도](https://user-images.githubusercontent.com/84562885/171030528-275abe79-059b-4884-92a1-5abfdb9951ac.PNG) </br></br></br>
 
@@ -51,6 +64,9 @@ https://youtu.be/3ePJRWcD6u0
 
 ## 특징 및 장점
 ![특장점](https://user-images.githubusercontent.com/84562885/171030537-4756bbe2-1e20-45e6-afc2-a7f50e7b36a8.PNG) </br></br></br>
+
+## 업무분담
+![업무분담](https://user-images.githubusercontent.com/84562885/174464533-1b3c0d7b-652d-45c3-9c0a-2ffbc289d286.PNG)
 
 
 

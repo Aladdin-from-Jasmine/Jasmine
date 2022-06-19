@@ -41,7 +41,7 @@ https://youtu.be/3ePJRWcD6u0
 </span></br></br></br>
 
 ## 서비스 소개
-![개발목적](https://user-images.githubusercontent.com/84562885/171030540-af2fa3e2-c2d9-44a1-ab40-9e3041192f2a.PNG) </br></br></br>
+![개발배경및목적](https://user-images.githubusercontent.com/84562885/174464647-83381579-9bee-41e4-9918-58a148cb89ed.PNG)
 
 ## 핵심기능
 ![핵심기능](https://user-images.githubusercontent.com/84562885/174464516-ac7a211e-e636-4609-9897-00acb92ce0bc.PNG)
@@ -57,17 +57,13 @@ https://youtu.be/3ePJRWcD6u0
 ![유스케이스](https://user-images.githubusercontent.com/84562885/174464525-a25c91a4-4e9a-4178-a8a2-a49f0210fb9a.PNG)
 
 ## 시스템 구성도
-![시스템구성도](https://user-images.githubusercontent.com/84562885/171030528-275abe79-059b-4884-92a1-5abfdb9951ac.PNG) </br></br></br>
-
-## 주요기능
-![주요기능](https://user-images.githubusercontent.com/84562885/171030536-1de932db-3912-4ab2-a29d-528866a8603e.PNG)
+![시스템구성도](https://user-images.githubusercontent.com/84562885/174464645-62435ba6-157c-428a-8a58-c1f7beeb34a3.PNG)
 
 ## 특징 및 장점
-![특장점](https://user-images.githubusercontent.com/84562885/171030537-4756bbe2-1e20-45e6-afc2-a7f50e7b36a8.PNG) </br></br></br>
+![특징및장점](https://user-images.githubusercontent.com/84562885/174464646-e6dc2e67-ebd4-4906-b7da-0a0273eb33e6.PNG)
 
 ## 업무분담
 ![업무분담](https://user-images.githubusercontent.com/84562885/174464533-1b3c0d7b-652d-45c3-9c0a-2ffbc289d286.PNG)
-
 
 
 
